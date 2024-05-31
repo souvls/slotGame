@@ -5,14 +5,9 @@ import AlertMessage from './AlertMessage';
 import logo1 from "../../../public/assets/logo/logo.png"
 import logo2 from "../../../public/assets/logo/Designer (1).jpeg"
 const nav = () => {
-    const [btnQuestion, setBtnQuestion] = useState(false);
 
-    const handdleQuestion = () => {
-        setBtnQuestion(!btnQuestion);
-    }
     return (
         <>
-            {btnQuestion && <AlertMessage message={"ຕິດຕໍ່ເອເຢັນທີ່ເປີດເຊີໃຫ້ເຈົ້າ"} status={true}/>}
             <nav className=" w-full py-3 fixed top-0 border-b border-white shadow-lg   bg-black bg-opacity-25 backdrop-blur-sm z-40">
                 <div className=" container w-[960px] m-auto">
                     <div className=" flex justify-between items-center">
@@ -35,7 +30,7 @@ const nav = () => {
                                     placeholder="Password"
                                     className="p-2 rounded-lg bg-inherit border border-white text-white"
                                 />
-                                <button onClick={handdleQuestion} className="px-2 h-full absolute right-0 text-white">?</button>
+                                <button onClick={() => { return <AlertMessage message={"ຕິດຕໍ່ເອເຢັນທີ່ເປີດເຊີໃຫ້ເຈົ້າ"} status={false} /> }} className="px-2 h-full absolute right-0 text-white">?</button>
                             </div>
                             <div>
                                 <button className='p-2 bg-white text-red-500 rounded-lg font-medium'>LOGIN</button>

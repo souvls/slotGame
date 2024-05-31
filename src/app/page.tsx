@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { FiChevronsRight } from "react-icons/fi";
 import AlertMessage from "@/app/component/AlertMessage";
-import Nav from "@/app/component/nav";
+import Nav from "./component/Navbar";
 import bg1 from "../../public/assets/bg/bg1.jpg"
 import bg2 from "../../public/assets/bg/bg2.jpg"
 
@@ -114,16 +114,16 @@ export default function Home() {
                   </div>
                   <div className="mt-5 grid grid-cols-3 gap-8">
                     {game.map((item, index) => {
-                      const [isHover,setIshover] = useState(false)
+                      var ishover = false
                       const hover = () =>{
-                        setIshover(!isHover)
+                        ishover = !ishover
                       }
                       return (
                         <Link onMouseEnter={hover} onMouseLeave={hover} className=" relative" key={index} href="/">
                           <div className=" rounded-lg overflow-hidden">
                             <Image alt="cover" src={item.cover} className="w-full" />
                           </div>
-                          <div className={`w-full h-full flex flex-col justify-center items-center absolute top-0 text-white backdrop-opacity-10 backdrop-invert bg-black/30 ${isHover ? '' : 'hidden'}`}>
+                          <div className={`w-full h-full flex flex-col justify-center items-center absolute top-0 text-white backdrop-opacity-10 backdrop-invert bg-black/30 ${ishover ? '' : 'hidden'}`}>
                             <div>
                               <p>{item.title}</p>
                             </div>
