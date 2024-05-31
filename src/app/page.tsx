@@ -31,7 +31,7 @@ export default function Home() {
     <>
       <Nav />
       <div className=" relative">
-        <Image alt="bg1" src={bg1} className=" bg-repeat w-[100%] h-[100%]"/>
+        <Image alt="bg1" src={bg1} className=" bg-repeat w-[100%] h-[100%]" />
         <Image alt="bg1" src={bg2} className=" bg-repeat w-[100%] h-[100%]" />
         <div className="w-full absolute top-14">
           <section>
@@ -114,22 +114,10 @@ export default function Home() {
                   </div>
                   <div className="mt-5 grid grid-cols-3 gap-8">
                     {game.map((item, index) => {
-                      var ishover = false
-                      const hover = () =>{
-                        ishover = !ishover
-                      }
                       return (
-                        <Link onMouseEnter={hover} onMouseLeave={hover} className=" relative" key={index} href="/">
-                          <div className=" rounded-lg overflow-hidden">
+                        <Link className=" relative" key={index} target="bank" href="https://codecanyon.net/item/html-wild-west-slot-game/full_screen_preview/52146811?_ga=2.50987177.1203146145.1717149977-1032651987.1684309019">
+                          <div className=" rounded-lg overflow-hidden hover:p-2 duration-500 ease-in-out ">
                             <Image alt="cover" src={item.cover} className="w-full" />
-                          </div>
-                          <div className={`w-full h-full flex flex-col justify-center items-center absolute top-0 text-white backdrop-opacity-10 backdrop-invert bg-black/30 ${ishover ? '' : 'hidden'}`}>
-                            <div>
-                              <p>{item.title}</p>
-                            </div>
-                            <div >
-                              <button className="bg-white text-red-500 py-2 px-3 rounded-lg hover:text-white hover:bg-red-500">Play</button>
-                            </div>
                           </div>
                         </Link>
                       )
