@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 
 const AlertMessage = ({ message,status}) => {
-  const [statuss,setStatus] = useState(false);
+  const [statuss,setStatus] = useState(Boolean);
   useEffect(()=>{
     setStatus(status);
   },[])
