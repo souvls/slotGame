@@ -1,0 +1,25 @@
+:root {
+    --slider-width: 1000px;
+}
+
+.slider {
+    width: var(--slider-width);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.text {
+    color: white;
+    font-size: 13px;
+    display: inline-block;
+    animation: slide 20s linear infinite;
+}
+
+/* @keyframes slide {
+    0% {
+        transform: translateX(calc(-100% + var(--slider-width)));
+    }
+    100% {
+        transform: translateX(1%);
+    }
+} */

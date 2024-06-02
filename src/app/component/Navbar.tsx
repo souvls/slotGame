@@ -2,7 +2,9 @@
 import React, { useState } from 'react'
 import Image from "next/image";
 import AlertMessage from './AlertMessage';
-import logo1 from "../../../public/assets/logo/logo.png"
+// import logo1 from "../../../public/assets/logo/logo.png"
+import logo1 from "../../../public/assets/logo/Designer.jpeg"
+
 const Navbar = () => {
     const [showMessage, setShowMessage] = useState(false)
     return (

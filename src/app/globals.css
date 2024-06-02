@@ -3,10 +3,19 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: myFont;
+  font-family: myFontLao;
   src: url('../../public/assets/font/saysettha_ot.ttf');
 }
 
+@font-face {
+  font-family: myFontEn;
+  src: url('../../public/assets/font/RobotoSlab-Regular.ttf');
+}
+
 * {
-  font-family: myFont;
+  font-family: myFontEn;
+}
+
+* p {
+  font-family: myFontLao;
 }
