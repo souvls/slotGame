@@ -10,14 +10,21 @@
   },
   "dependencies": {
     "@madzadev/image-slider": "^2.0.1",
+    "@sweetalert2/theme-dark": "^5.0.16",
+    "dotenv": "^16.4.5",
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.9.0",
+    "md5": "^2.3.0",
     "next": "14.2.3",
+    "process": "^0.11.10",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^5.2.1"
+    "react-icons": "^5.2.1",
+    "react-spinners": "^0.13.8",
+    "sweetalert2": "^11.11.1"
   },
   "devDependencies": {
+    "@types/md5": "^2.3.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

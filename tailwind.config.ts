@@ -11,13 +11,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage:{
-        'custom-bg1':"url('/assets/bg/bg-game.webp')"
+      backgroundImage: {
+        'custom-bg1': "url('/assets/bg/bg-game.webp')"
       }
     },
   },
+  darkMode: "class",
   plugins: [
-    require("flowbite/plugin")
+    require("flowbite/plugin"),
   ],
 };
 export default config;

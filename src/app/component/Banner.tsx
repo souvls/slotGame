@@ -2,16 +2,16 @@ import React from 'react'
 import Image from 'next/image'
 
 
-import banner1 from '../../../public/assets/banner/overview_banner_desktop_en-US (1).webp'
-import banner2 from '../../../public/assets/banner/overview_banner_desktop_en-US (2).webp'
-import banner3 from '../../../public/assets/banner/overview_banner_desktop_en-US.webp'
+import banner1 from '../../../public/assets/banner/banner1.png'
+import banner2 from '../../../public/assets/banner/banner2.png'
+import banner3 from '../../../public/assets/banner/banner3.png'
 
 
 const Banner_ = () => {
     return (
-        <div className=' mt-20'>
+        <div className=' mt-14'>
             <div id="default-carousel" className="relative w-full" data-carousel="slide">
-                <div className="relative h-44 lg:h-[400px] overflow-hidden">
+                <div className="relative h-44 lg:h-[500px] overflow-hidden">
                     <div className="duration-700 ease-in-out" data-carousel-item>
                         <Image src={banner1} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." width={500} height={100} />
                     </div>
