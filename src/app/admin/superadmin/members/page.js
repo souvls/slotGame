@@ -4,7 +4,7 @@ import Spinner from '@/app/component/Spinner';
 import { FaCirclePlus } from "react-icons/fa6";
 import Swal from 'sweetalert2';
 import Link from 'next/link';
-export const page = () => {
+const page = () => {
     const [members, setMember] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -140,7 +140,7 @@ export const page = () => {
                                         <button className=' flex justify-start items-center bg-yellow-500 text-white p-2 rounded-lg' onClick={() => handdleAdCredit(item._id, item.Username)}><p>ຖອນ</p></button>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <Link href={"/admin/superadmin/members/edit/"+item._id} className='text-blue-500'><p>ແກ້ໄຂ</p></Link>
+                                        <Link href={"/admin/superadmin/members/edit/" + item._id} className='text-blue-500'><p>ແກ້ໄຂ</p></Link>
                                     </td>
                                     {/* <td class="px-6 py-4">
                                         <label class="inline-flex items-center cursor-pointer">
