@@ -1,6 +1,6 @@
 "use client"
 import Swal from 'sweetalert2';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Spinner from '../component/Spinner'
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
@@ -12,6 +12,12 @@ const page = () => {
     const [Password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
+    useEffect(()=>{
+        const role = localStorage.getItem("role");
+        if(role === "member"){
+            router.push("/member/office")
+        }
+    },[])
     const handleSubmit = async (e) => {
         e.preventDefault();
         const error = {}
@@ -21,7 +27,7 @@ const page = () => {
         if (!Password) {
             error.Password = "Input password!";
         }
-        console.log(Object.keys(error));
+        //console.log(Object.keys(error));
         setErrors(error);
         if (Object.keys(error).length <= 0) {
             setIsLoading(true);
@@ -35,16 +41,18 @@ const page = () => {
 
             const requestOptions = {
                 method: "POST",
-
+                headers: myHeaders,
                 body: raw,
                 redirect: "follow"
             };
 
-            await fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/x/login", requestOptions)
+            await fetch("/api/member/login", requestOptions)
                 .then((response) => response.json())
                 .then(async (result) => {
+                    console.log(result)
                     if (result.status === 'ok') {
-                        localStorage.setItem("userToken", JSON.stringify(result.result));
+                        localStorage.setItem("token", result.token);
+                        localStorage.setItem("role", "member");
                         setIsLoading(false);
                         Swal.fire({
                             title: "Login success",
@@ -55,11 +63,7 @@ const page = () => {
                             showConfirmButton: false,
                             timer: 1000
                         }).then(() => {
-                            if (result.result.Role === process.env.NEXT_PUBLIC_KEY_LOGIN) {
-                                router.push("admin/superadmin");
-                            } else {
-                                router.push("admin/normaladmin");
-                            }
+                            router.push("/member/office");
                         });
                     } else {
                         Swal.fire({
@@ -84,7 +88,7 @@ const page = () => {
                 <Spinner />
             }
             <div className='w-[80%] lg:w-[500px] bg-[#ffffff34] mx-auto py-10 px-5 rounded-lg border-2 border-yellow-300 text-white'>
-                <h1 className='text-center text-2xl font-bold'>Login</h1>
+                <h1 className='text-center text-2xl font-bold'>Member Login</h1>
                 <div className=' mt-5'>
                     <div>
                         <p>USERNAME</p>
