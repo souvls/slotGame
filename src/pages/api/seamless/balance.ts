@@ -9,7 +9,7 @@ export default async function handler(
             {
                 "code": 0,
                 "message": "",
-                "balance": process.env.BALANCE
+                "balance": 50000
             }
         );
     }
