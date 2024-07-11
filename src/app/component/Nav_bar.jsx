@@ -37,7 +37,11 @@ const Nav_bar = () => {
                 if (result.status === 'ok') {
                     setUser(result.result);
                     console.log(result)
-                } else {
+                } else if (result.status === 'off') {
+                    localStorage.clear();
+                    router.push("/");
+                }
+                else {
                     if (result.message === 'notoken') {
                         localStorage.clear();
                         router.push("/");
@@ -59,11 +63,11 @@ const Nav_bar = () => {
             <div className='px-5'>
                 <div className='flex justify-start items-center gap-2'>
                     <PiUserCircleBold size={20} color={'gold'} />
-                    <span className=' text-yellow-300 text-sm'>{loading?<BeatLoader color='gold' size={10}/> : user&&user.Username}</span>
+                    <span className=' text-yellow-300 text-sm'>{loading ? <BeatLoader color='gold' size={10} /> : user && user.Username}</span>
                 </div>
                 <div className='flex justify-start items-center gap-2'>
                     <LiaCoinsSolid size={20} color={'gold'} />
-                    <span className=' text-yellow-300 text-sm'>{loading?<BeatLoader color='gold' size={10}/> : user&&user.Amount.toLocaleString()+" ฿"}</span>
+                    <span className=' text-yellow-300 text-sm'>{loading ? <BeatLoader color='gold' size={10} /> : user && user.Amount.toLocaleString() + " ฿"}</span>
                 </div>
             </div>
         )

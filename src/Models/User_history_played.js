@@ -5,7 +5,11 @@ const { type } = require('os');
 let UserHistoryPlayedSchema = mongoose.Schema({
     UserID: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'users',
+        ref: 'user',
+        require: true
+    },
+    GameName: {
+        type: String,
         require: true
     },
     Result: {

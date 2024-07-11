@@ -12,7 +12,7 @@ let SuperadminSchema = mongoose.Schema({
     },
     Role: {
         type: String,
-        required: "super"
+        required: "superadmin"
     },
     status: {
         type: Boolean,

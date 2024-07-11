@@ -8,19 +8,33 @@ const page = () => {
 
     }, [])
     const fetchdata = async () => {
-        //const currentTimestamp =  // Current timestamp in milliseconds
         const request_time = new Date().getTime();
-        const hash = md5("H801" + request_time + "getbalance" + "pBXXGyr53ekS6CvjwgA5ES");
-        //const hash = md5(request_time + process.env.NEXT_PUBLIC_SECRET_KEY + "getbalance" + process.env.NEXT_PUBLIC_OP_CODE);
-        const data = {
+        const hash = md5("H801" + request_time + "deposit" + "pBXXGyr53ekS6CvjwgA5ES");
+        const data =
+        {
+            "member_account": "soudd",
             "operator_code": "H801",
-            "member_account": "mondev",
             "product_code": 1153,
             "currency": "IDR",
+            "transactions": [
+                {
+                    "id": "23746",
+                    "action": "bet",
+                    "wager_code": "tZDwLV3ayzBeP4Nvwxhcti",
+                    "wager_status": "BET",
+                    "amount": "- 10",
+                    "bet_amount": "10",
+                    "valid_bet_amount": "10",
+                    "prize_amount": "0",
+                    "tip_amount": "0",
+                    "settle_at": "0",
+                    "game_code": "1054"
+                }
+            ],
             "sign": hash,
             "request_time": request_time
         }
-        
+
         const requestOptions = {
             method: "POST",
             headers: {
@@ -29,7 +43,8 @@ const page = () => {
             body: JSON.stringify(data),
             redirect: "follow"
         };
-        await fetch("https://infinity999.com/api/seamless/balance", requestOptions)
+        await fetch("/api/seamless/deposit"
+            , requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 console.log(result);

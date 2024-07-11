@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 const condb = require('../config/condb');
 
-let UserHistoryCreditSchema = mongoose.Schema({
-    UserID: {
+let MemberHistoryCreditSchema = mongoose.Schema({
+    MemberID: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
+        ref: 'member',
         require: true
     },
     Amount: {
@@ -24,8 +24,8 @@ let UserHistoryCreditSchema = mongoose.Schema({
         type: Boolean,
         required: true,
         default: true
-    },
+    }
 }, { timestamps: true });
 
-let UserHistoryCredit = condb.model("user_history_credit", UserHistoryCreditSchema);
-module.exports = UserHistoryCredit;
+let MemberHistoryCredit = condb.model("member_history_credit", MemberHistoryCreditSchema);
+module.exports = MemberHistoryCredit;

@@ -49,7 +49,7 @@ const page = () => {
             await fetch("/api/member/login", requestOptions)
                 .then((response) => response.json())
                 .then(async (result) => {
-                    console.log(result)
+                    //console.log(result)
                     if (result.status === 'ok') {
                         localStorage.setItem("token", result.token);
                         localStorage.setItem("role", "member");

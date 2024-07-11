@@ -5,7 +5,7 @@ const User = require('../../../Models/User');
 const Member = require('../../../Models/Member');
 const User_history_credit = require("../../../Models/User_history_credit")
 
-import {format} from 'date-fns'
+import { format } from 'date-fns'
 const getDate = () => {
     const now = new Date();
     const data = format(now, 'dd/MM/yy HH:mm:ss');
@@ -22,14 +22,14 @@ export default async function handler(
         if (req.method === 'POST') {
             try {
                 //create history
-                const { UserID, Amount } = req.body;
+                const { UserID, Amount } = req.body
+                console.log(req.body)
                 const newHistory = new User_history_credit({
                     UserID: UserID,
                     Amount: Amount,
                     Transaction: "desposit",
                     Date: getDate()
                 })
-
                 //check credit member
                 await Member.findById(member.id)
                     .then(async (result: any) => {
@@ -47,8 +47,13 @@ export default async function handler(
                                     { $inc: { Amount: Amount } },
                                     { new: true } // tùy chọn này trả về tài liệu đã cập nhật
                                 );
-                                await newHistory.save()
-                                res.status(201).json({ status: 'ok', message: 'success' });
+                                await newHistory.save().then(() => {
+                                    res.status(201).json({ status: 'ok', message: 'success' });
+                                }).catch((err:any)=>{
+                                    console.log(err)
+                                    res.status(201).json({ status: 'no', message: 'err' });
+                                })
+
                             } else {
                                 res.status(201).json({ status: 'no', message: 'ເຄດີດບໍ່ພໍ' });
                             }

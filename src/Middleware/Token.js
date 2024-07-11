@@ -9,7 +9,7 @@ class token {
         return await jwt.sign({ "id": id, "username": username, "role": role }, process.env.SCRET_KEY_TOKEN, {algorithm: "HS256" })
     }
     static jwtValidate = async(NextRequest,NextResponse,NextMiddleware)=>  {
-        console.log("dfsdfsdffd")
+        
         try {
             const tokenHeader = NextRequest.headers.authorization || NextRequest.headers['authorization'];
             const access_token = await tokenHeader.token.split(" ")[1];

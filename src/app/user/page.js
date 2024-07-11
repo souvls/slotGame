@@ -33,7 +33,6 @@ const page = () => {
                 body: raw,
                 redirect: "follow"
             };
-
             await fetch("/api/user/login", requestOptions)
                 .then((response) => response.json())
                 .then(async (result) => {
@@ -55,7 +54,7 @@ const page = () => {
                     } else {
                         Swal.fire({
                             title: "Login fail",
-                            text: "ຊື່ຜູ້ໃຊ້ ຫຼື ລະຫັດຜ່ານ ຜິດ! ກະລຸນາຕິດຕໍ່ ເອເຢັນ",
+                            text: result.message,
                             icon: "error",
                             background: '#000000',
                             color: '#ffffff',

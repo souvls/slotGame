@@ -12,6 +12,11 @@ let MemberSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    Total_income: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
     Amount: {
         type: Number,
         required: true,
@@ -19,19 +24,20 @@ let MemberSchema = mongoose.Schema({
     },
     Role: {
         type: String,
-        required: "member"
+        required: true,
+        default: "member"
     },
-    PartnersPercent:{
-        type:Number,
-        require:true
+    PartnersPercent: {
+        type: Number,
+        require: true
     },
     status: {
         type: Boolean,
         required: true,
         default: true
     },
-    temp:String
-},{ timestamps: true });
+    temp: String
+}, { timestamps: true });
 
 let Member = condb.model("member", MemberSchema);
 module.exports = Member;

@@ -18,7 +18,7 @@ let UserSchema = mongoose.Schema({
     },
     MemberID: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'members'
+        ref: 'member'
     },
     Role: {
         type: String,
@@ -32,5 +32,5 @@ let UserSchema = mongoose.Schema({
     },
 }, { timestamps: true });
 
-let users = condb.model("users", UserSchema);
-module.exports = users;
+let User = condb.model("user", UserSchema);
+module.exports = User;
