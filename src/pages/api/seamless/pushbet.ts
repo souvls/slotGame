@@ -14,17 +14,14 @@ export default async function handler(
             {
                 "code": 0,
                 "message": "",
-                "balance": 12345.0000
             }
         );
     }
     if (req.method === 'GET') {
-        console.log(req.body)
         res.status(200).json(
             {
                 "code": 0,
                 "message": "",
-                "balance": 12345.0000
             }
         );
     }
