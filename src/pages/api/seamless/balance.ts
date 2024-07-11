@@ -1,9 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-
-
-
-
-
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -14,7 +9,7 @@ export default async function handler(
             {
                 "code": 0,
                 "message": "",
-                "balance": 500000
+                "balance": process.env.BALANCE
             }
         );
     }
