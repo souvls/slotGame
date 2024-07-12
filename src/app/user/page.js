@@ -9,7 +9,7 @@ const page = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const handdleSubmit = async (e) => {
+    const handdleSubmit = (e) => {
         e.preventDefault()
         if (!username || !password) {
             Swal.fire({
@@ -33,12 +33,13 @@ const page = () => {
                 body: raw,
                 redirect: "follow"
             };
-            await fetch("/api/user/login", requestOptions)
+            fetch("/api/user/login", requestOptions)
                 .then((response) => response.json())
                 .then(async (result) => {
                     console.log(result)
                     if (result.status === 'ok') {
                         localStorage.setItem("token", result.token);
+                        localStorage.setItem("data", JSON.stringify(result.result));
                         localStorage.setItem("role", "user");
                         Swal.fire({
                             title: "Login success",

@@ -21,7 +21,7 @@ const Nav_bar = () => {
         }
 
     }, []);
-    const fetchdata = async () => {
+    const fetchdata = () => {
         setLoading(true);
         const token = localStorage.getItem('token');
         const requestOptions = {
@@ -31,7 +31,7 @@ const Nav_bar = () => {
             },
             redirect: "follow"
         };
-        await fetch("/api/user/my-info", requestOptions)
+        fetch("/api/user/my-info", requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 if (result.status === 'ok') {
@@ -67,7 +67,7 @@ const Nav_bar = () => {
                 </div>
                 <div className='flex justify-start items-center gap-2'>
                     <LiaCoinsSolid size={20} color={'gold'} />
-                    <span className=' text-yellow-300 text-sm'>{loading ? <BeatLoader color='gold' size={10} /> : user && user.Amount.toLocaleString() + " ฿"}</span>
+                    <span className=' text-yellow-300 text-sm'>{loading ? <BeatLoader color='gold' size={10} /> : user && user.Amount&& user.Amount.toLocaleString() + " ฿"}</span>
                 </div>
             </div>
         )

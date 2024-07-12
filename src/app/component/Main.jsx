@@ -12,18 +12,15 @@ const Main = () => {
     useEffect(() => {
         fetchdata();
     }, [])
-    const fetchdata = async () => {
-        //const currentTimestamp =  // Current timestamp in milliseconds
+    const fetchdata = () => {
         const request_time = new Date().getTime();
         const hash = md5(request_time + process.env.NEXT_PUBLIC_SECRET_KEY + "gamelist" + process.env.NEXT_PUBLIC_OP_CODE);
-        //console.log(request_time)
         const requestOptions = {
             method: "GET",
             accept: 'application/json',
             redirect: "follow"
         };
-
-        await fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
+        fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
             "?product_code=1153" +
             "&operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
             "&game_type=SLOT" +
@@ -32,72 +29,67 @@ const Main = () => {
             , requestOptions)
             .then((response) => response.json())
             .then((result) => {
-                //console.log(result);
                 setGameList(result)
             })
             .catch((error) => console.error(error));
     }
     const handdlePlay = async (game) => {
-        const getGMT8TimestampInSeconds = () => {
-            // Create a Date object with the current time
-            const now = new Date();
-            // Specify the time zone offset for GMT+8
-            const timeZoneOffset = 8 * 60; // GMT+8 offset in minutes
-            // Convert the current time to GMT+8
-            const gmt8Time = new Date(now.getTime() + timeZoneOffset * 60000);
-            // Get the timestamp in seconds
-            return Math.floor(gmt8Time.getTime() / 1000);
-        };
-        //console.log(game);
-        const request_time = getGMT8TimestampInSeconds()
-        const hash = md5(request_time + "pBXXGyr53ekS6CvjwgA5ES" + "launchgame" + "H801");
-        const data = {
-            operator_lobby_url: "http://localhost:3000",
-            operator_code: "H801",
-            member_account: "soulixai",
-            password: "456789",
-            nickname: "soulixai",
-            currency: "IDR",
-            game_code: game.game_code,
-            product_code: game.product_code,
-            game_type: game.game_type,
-            language_code: 0,
-            ip: "10.0.170.40",
-            platform: "web",
-            sign: hash,
-            request_time: request_time
+        const token = localStorage.getItem("token");
+        if (token) {
+            const role = localStorage.getItem("role");
+            if (role === 'user') {
+                
+                const user = JSON.parse(localStorage.getItem("data"));
+                console.log(user)
+                const getGMT8TimestampInSeconds = () => {
+                    const now = new Date();
+                    const timeZoneOffset = 8 * 60;
+                    const gmt8Time = new Date(now.getTime() + timeZoneOffset * 60000);
+                    return Math.floor(gmt8Time.getTime() / 1000);
+                };
+                const request_time = getGMT8TimestampInSeconds()
+                const hash = md5(request_time + process.env.NEXT_PUBLIC_SECRET_KEY + "launchgame" + process.env.NEXT_PUBLIC_OP_CODE);
+                const data = {
+                    operator_lobby_url: "http://infinity999.com",
+                    operator_code: process.env.NEXT_PUBLIC_OP_CODE,
+                    member_account: user.Username,
+                    password: user.Password,
+                    nickname: user.Username,
+                    currency: "IDR",
+                    game_code: game.game_code,
+                    product_code: game.product_code,
+                    game_type: game.game_type,
+                    language_code: 0,
+                    ip: "10.0.170.40",
+                    platform: "web",
+                    sign: hash,
+                    request_time: request_time
+                }
+                const requestOptions = {
+                    method: "POST",
+                    headers: { accept: 'application/json' },
+                    body: JSON.stringify(data),
+                    redirect: "follow"
+                };
+
+                fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/launch-game", requestOptions)
+                    .then((response) => response.json())
+                    .then((result) => {
+                        console.log(result);
+                        window.open(result.url, '_blank');
+                    })
+                    .catch((error) => console.error(error));
+            }
+        } else {
+            Swal.fire({
+                title: "Login",
+                text: "ຕິດຕໍ່ເອເຢັ້ນ",
+                icon: "error",
+                background: '#000000',
+                color: '#ffffff',
+                showConfirmButton: false,
+            });
         }
-        const requestOptions = {
-            method: "POST",
-            headers: {accept: 'application/json'},
-            body: JSON.stringify(data),
-            redirect: "follow"
-        };
-
-        await fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/launch-game"
-            , requestOptions)
-            .then((response) => response.json())
-            .then((result) => {
-                console.log(result);
-                window.open(result.url, '_blank');
-            })
-            .catch((error) => console.error(error));
-        // const token = localStorage.getItem("token");
-        // if (token) {
-        //     const role = localStorage.getItem("role");
-        //     if (role === 'user') {
-
-        //     }
-        // } else {
-        //     Swal.fire({
-        //         title: "Login fail",
-        //         text: "ບໍ່ພົບຜູ້ໃຊ້",
-        //         icon: "error",
-        //         background: '#000000',
-        //         color: '#ffffff',
-        //         showConfirmButton: false,
-        //     });
-        // }
     }
     return (
         <>
@@ -112,9 +104,9 @@ const Main = () => {
                 </div>
                 <div className='w-[85%] h-[800px] overflow-scroll'>
                     <div className='w-full grid grid-cols-2 lg:grid-cols-4 gap-4'>
-                        <Link href={"testgame"} className=' bg-green-500 b-2 rounded-lg'>
+                        {/* <Link href={"testgame"} className=' bg-green-500 b-2 rounded-lg'>
                             <p className=' text-center text-white'>GAME TEST</p>
-                        </Link>
+                        </Link> */}
                         {loading ? 'loading' :
                             gameList.length > 0 && gameList.map((item, index) => {
                                 return (
