@@ -11,11 +11,10 @@ export default async function handler(
             const { amount } = transactions[0];
             User.findOne({ Username: member_account })
                 .then((result: any) => {
-                    console.log(amount)
-
+                    //console.log(amount)
                     User.findOneAndUpdate(
                         { _id: result._id },
-                        { $inc: { Amount: amount } },
+                        { $inc: { Amount:  Number(amount) } },
                         { new: true }
                     ).then((newBalance: any) => {
                         res.status(200).json(
