@@ -3,7 +3,7 @@ const condb = require('../config/condb');
 const { type } = require('os');
 
 let UserHistoryPlayedSchema = mongoose.Schema({
-    UserID: {
+    Username: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
         require: true
@@ -12,17 +12,28 @@ let UserHistoryPlayedSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    Result: {
-        type: String,
-        require: true
-    },
-    Amount: {
-        type: Number,
-        require: true
-    },
     Date: {
         type: String,
         require: true
+    },
+    action:{
+        type: String,
+        require: true
+    },
+    bet_amount: {
+        type: Number,
+        require: true,
+        default:0
+    },
+    prized_amount: {
+        type: Number,
+        require: true,
+        default:0
+    },
+    tip_amount: {
+        type: Number,
+        require: true,
+        default:0
     },
     status: {
         type: Boolean,

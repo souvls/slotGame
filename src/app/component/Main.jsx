@@ -38,7 +38,7 @@ const Main = () => {
         if (token) {
             const role = localStorage.getItem("role");
             if (role === 'user') {
-                
+
                 const user = JSON.parse(localStorage.getItem("data"));
                 console.log(user)
                 const getGMT8TimestampInSeconds = () => {
@@ -79,11 +79,20 @@ const Main = () => {
                         window.open(result.url, '_blank');
                     })
                     .catch((error) => console.error(error));
+            } else {
+                Swal.fire({
+                    title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
+                    text: "02011223344",
+                    icon: "error",
+                    background: '#000000',
+                    color: '#ffffff',
+                    showConfirmButton: false,
+                });
             }
         } else {
             Swal.fire({
-                title: "Login",
-                text: "ຕິດຕໍ່ເອເຢັ້ນ",
+                title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
+                text: "02011223344",
                 icon: "error",
                 background: '#000000',
                 color: '#ffffff',

@@ -8,28 +8,33 @@ export default async function handler(
     if (req.method === 'POST') {
         try {
             const { member_account, transactions } = req.body;
-            //const { amount } = transactions[0];
-            var totalAmount = 0;
-            for(const i of transactions){
-                totalAmount +=  Number(i.amount)
-            }
-            //console.log(totalAmount)
-            User.findOne({ Username: member_account })
-                .then((result: any) => {
-                    
-                    User.findOneAndUpdate(
-                        { _id: result._id },
-                        { $inc: { Amount: totalAmount } },
-                        { new: true }
-                    ).then((newBalance: any) => {
-                        res.status(200).json(
-                            {
-                                "code": 0,
-                                "message": "",
-                                "before_balance": result.Amount,
-                                "balance": newBalance.Amount
-                            }
-                        );
+            for (const i of transactions) {
+                User.findOne({ Username: member_account })
+                    .then((result: any) => {
+                        User.findOneAndUpdate(
+                            { _id: result._id },
+                            { $inc: { Amount: Number(i.amount) } },
+                            { new: true }
+                        ).then((newBalance: any) => {
+                            res.status(200).json(
+                                {
+                                    "code": 0,
+                                    "message": "",
+                                    "before_balance": result.Amount,
+                                    "balance": newBalance.Amount
+                                }
+                            );
+                        }).catch((err: any) => {
+                            console.log(err);
+                            res.status(200).json(
+                                {
+                                    "code": 1000,
+                                    "message": err,
+                                    "before_balance": 0,
+                                    "balance": 0
+                                }
+                            );
+                        });
                     }).catch((err: any) => {
                         console.log(err);
                         res.status(200).json(
@@ -40,18 +45,9 @@ export default async function handler(
                                 "balance": 0
                             }
                         );
-                    });
-                }).catch((err: any) => {
-                    console.log(err);
-                    res.status(200).json(
-                        {
-                            "code": 1000,
-                            "message": err,
-                            "before_balance": 0,
-                            "balance": 0
-                        }
-                    );
-                })
+                    })
+            }
+
         } catch (err) {
             console.log(err);
             res.status(200).json(

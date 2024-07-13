@@ -73,7 +73,10 @@ const layout = ({ children }) => {
                                     <a href="/admin/office/history/user" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><p>ປະຫວັດເຄດິດຢູເຊີ</p></a>
                                 </li>
                                 <li>
-                                    <a href="/admin/office/history/game" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><p>ປະຫວັດຫຼິ້ນເກມ</p></a>
+                                    <a href="/admin/office/history/game" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><p>ປະຫວັດຫຼິ້ນເກມ GMS</p></a>
+                                </li>
+                                <li>
+                                    <a href="/admin/office/history/my-history-game" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><p>ປະຫວັດຫຼິ້ນເກມ</p></a>
                                 </li>
                             </ul>
                         </li>

@@ -43,7 +43,7 @@ const page = () => {
             .then((response) => response.json())
             .then((result) => {
                 console.log(result);
-                setWagerList(result.wagers);
+                setWagerList(result.wagers.reverse());
                 setLoading(false);
             })
             .catch((error) => console.error(error));
@@ -69,8 +69,8 @@ const page = () => {
             , requestOptions)
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
-                setWagerList(result.wagers);
+                //console.log(result);
+                setWagerList(result.wagers.reverse());
                 setLoading(false);
             })
             .catch((error) => console.error(error));
@@ -98,7 +98,7 @@ const page = () => {
             .then((response) => response.json())
             .then((result) => {
                 console.log(result);
-                setWagerList(result.wagers);
+                setWagerList(result.wagers.reverse());
                 setLoading(false);
             })
             .catch((error) => console.error(error));
@@ -167,7 +167,7 @@ const page = () => {
                                 </tr>
                             </>
                             :
-                            wagerList && wagerList.length > 0 && wagerList.map((item, index) => {
+                            wagerList && wagerList.length > 0 && wagerList.reverse().map((item, index) => {
                                 return (
                                     <Wagger key={index} {...item}></Wagger>
                                 )
