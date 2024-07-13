@@ -20,7 +20,7 @@ const page = () => {
                 },
                 redirect: "follow"
             };
-            await fetch("/api/admin/history-credit-member", requestOptions)
+            fetch("/api/admin/history-credit-member", requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                     console.log(result)

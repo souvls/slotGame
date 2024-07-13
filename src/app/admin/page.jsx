@@ -12,12 +12,12 @@ const page = () => {
     const [Password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
-    useEffect(()=>{
+    useEffect(() => {
         // const role = localStorage.getItem("role");
         // if(role !== "member"){
         //     router.push("/member/office")
         // }
-    },[])
+    }, [])
     const handleSubmit = async (e) => {
         e.preventDefault();
         const error = {}
@@ -46,14 +46,13 @@ const page = () => {
                 redirect: "follow"
             };
 
-            await fetch("/api/admin/login", requestOptions)
+            fetch("/api/admin/login", requestOptions)
                 .then((response) => response.json())
-                .then(async (result) => {
-                    //console.log(result)
+                .then((result) => {
+                    
                     if (result.status === 'ok') {
                         localStorage.setItem("token", result.token);
                         localStorage.setItem("role", "superadmin");
-                        setIsLoading(false);
                         Swal.fire({
                             title: "Login success",
                             text: "ເຂົ້າລະບົບສຳເລັດ",
@@ -75,10 +74,11 @@ const page = () => {
                             showConfirmButton: false,
                             timer: 1000
                         });
-                        setIsLoading(false);
+
                     }
                 })
                 .catch((error) => console.error(error));
+            setIsLoading(false);
         }
 
     }

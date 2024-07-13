@@ -15,7 +15,7 @@ export default async function handler(
 ) {
     if (req.method === 'POST') {
         try {
-            console.log(x)
+            //console.log(x)
             // Handle POST request
             const { Username, Password } = req.body;
             const result = await SuperAdmin.findOne({Username: Username,Password: Password})
