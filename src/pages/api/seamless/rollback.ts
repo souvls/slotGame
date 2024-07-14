@@ -5,7 +5,10 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
+    console.log(req.body)
     if (req.method === 'POST') {
+        
+
         try {
             const { member_account, transactions } = req.body;
             var total_amount = 0
