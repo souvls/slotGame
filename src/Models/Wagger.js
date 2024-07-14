@@ -5,7 +5,6 @@ const { type } = require('os');
 let WagerSchema = mongoose.Schema({
     member_account: {
         type: String,
-        unique: true,
         required: true
     },
     operator_code: {
