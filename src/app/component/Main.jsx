@@ -29,7 +29,7 @@ const Main = () => {
             , requestOptions)
             .then((response) => response.json())
             .then((result) => {
-                setGameList(result)
+                setGameList(result.provider_games)
             })
             .catch((error) => console.error(error));
     }
@@ -100,6 +100,7 @@ const Main = () => {
             });
         }
     }
+    console.log(gameList)
     return (
         <>
             <div className=' bg-[#0f172a] py-3'>
