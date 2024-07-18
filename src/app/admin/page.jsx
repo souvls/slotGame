@@ -62,7 +62,8 @@ const page = () => {
                             showConfirmButton: false,
                             timer: 1000
                         }).then(() => {
-                            router.push("/admin/office");
+                            window.location.href = "/admin/office"
+                            //router.push("/admin/office");
                         });
                     } else {
                         Swal.fire({
