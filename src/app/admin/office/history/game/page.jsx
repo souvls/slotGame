@@ -52,9 +52,9 @@ const page = () => {
         setLoading(true);
         const now = new Date();
         const request_time = now.getTime();
-        const s = new Date(dateStart).getTime();
-        const e = new Date(dateEnd).getTime();
-        console.log(s)
+        const s = new Date(dateStart+'T00:00:00').getTime();
+        const e = new Date(dateEnd+'T23:59:59Z').getTime();
+        console.log(dateEnd)
         const hash = md5(request_time + process.env.NEXT_PUBLIC_SECRET_KEY + "getwagers" + process.env.NEXT_PUBLIC_OP_CODE);
         const requestOptions = {
             method: "GET",
@@ -62,10 +62,10 @@ const page = () => {
         };
         fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/wagers" +
             "?operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
-            "&start=" + s +
-            "&end=" + e +
             "&sign=" + hash +
-            "&request_time=" + request_time
+            "&request_time=" + request_time+
+            "&start=" + s +
+            "&end=" + e 
             , requestOptions)
             .then((response) => response.json())
             .then((result) => {

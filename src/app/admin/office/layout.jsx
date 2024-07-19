@@ -81,7 +81,7 @@ const layout = ({ children }) => {
                             </ul>
                         </li>
                         <li>
-                            <Link href="/admin/office/clean" class=" flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><p className=" w-full flex justify-start items-center"><MdDeleteSweep size={25}/>ລົບຂໍ້ມູນ</p></Link>
+                            <Link href="/admin/office/clean" class=" flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"><p className=" w-full">ຈັດການຂໍ້ມູນ</p></Link>
                         </li>
                         <li>
                             <button onClick={() => { localStorage.clear(); router.push("/admin") }} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">

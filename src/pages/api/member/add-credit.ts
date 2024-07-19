@@ -51,14 +51,14 @@ export default async function handler(
                                     res.status(201).json({ status: 'ok', message: 'success' });
                                 }).catch((err:any)=>{
                                     console.log(err)
-                                    res.status(201).json({ status: 'no', message: 'err' });
+                                    res.status(201).json({ status: 'no', message: err });
                                 })
 
                             } else {
                                 res.status(201).json({ status: 'no', message: 'ເຄດີດບໍ່ພໍ' });
                             }
                         } else {
-                            res.status(400).json({ status: 'no', message: "error" });
+                            res.status(400).json({ status: 'no', message: "nkow member" });
                         }
                     })
 

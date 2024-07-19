@@ -6,10 +6,12 @@ import { GiTakeMyMoney } from "react-icons/gi";
 const page = () => {
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(false);
+  const [dateStart, setDateStart] = useState('');
+  const [dateEnd, setDateEnd] = useState('');
   const [isOnline, setIsOnline] = useState(false);
   useEffect(() => {
     const data = localStorage.getItem('token');
-    const fetchdata = async () => {
+    const fetchdata = () => {
       setLoading(true);
       const requestOptions = {
         method: "GET",
@@ -18,10 +20,15 @@ const page = () => {
         },
         redirect: "follow"
       };
-      await fetch("/api/admin/maintenance", requestOptions)
+      fetch("/api/admin/maintenance", requestOptions)
         .then((response) => response.json())
         .then((result) => {
           if (result.status === 'ok') {
+            // console.log(result.result.DateEnd)
+            // const dateStartString = result.result && result.result.DateStart && result.result.DateStart.toISOString().split('T')[0]
+            // const dateEndString = result.result && result.result.DateEnd && result.result.End.toISOString().split('T')[0]
+            setDateStart(new Date(result.result.DateStart).toISOString().split('T')[0]);
+            setDateEnd(new Date(result.result.DateEnd).toISOString().split('T')[0]);
             setIsOnline(result.result.Online)
           } else {
             if (result.message === 'notoken') {
@@ -49,7 +56,7 @@ const page = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!"
-    }).then(async (result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
         setLoading(true);
         const requestOptions = {
@@ -59,7 +66,7 @@ const page = () => {
           },
           redirect: "follow"
         };
-        await fetch("/api/admin/clean-history-play", requestOptions)
+        fetch("/api/admin/clean-history-play", requestOptions)
           .then((response) => response.json())
           .then((result) => {
             console.log(result)
@@ -90,7 +97,7 @@ const page = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!"
-    }).then(async (result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
         setLoading(true);
         const requestOptions = {
@@ -100,7 +107,7 @@ const page = () => {
           },
           redirect: "follow"
         };
-        await fetch("/api/admin/clean-history-credit-user", requestOptions)
+        fetch("/api/admin/clean-history-credit-user", requestOptions)
           .then((response) => response.json())
           .then((result) => {
             console.log(result)
@@ -122,7 +129,7 @@ const page = () => {
       }
     });
   }
-  const handleClean3 = async () => {
+  const handleClean3 = () => {
     Swal.fire({
       title: "Are you sure?",
       html: "<p>ລົບປະຫວັດເຄດິດເອເຢັ້ນ!</p>",
@@ -141,7 +148,7 @@ const page = () => {
           },
           redirect: "follow"
         };
-        await fetch("/api/admin/clean-history-credit-user", requestOptions)
+        fetch("/api/admin/clean-history-credit-user", requestOptions)
           .then((response) => response.json())
           .then((result) => {
             //console.log(result)
@@ -163,7 +170,7 @@ const page = () => {
       }
     });
   }
-  const handleClean4 = async () => {
+  const handleClean4 = () => {
     Swal.fire({
       title: "SWAP OFFLINE <==> ONLINE?",
       icon: "warning",
@@ -171,7 +178,7 @@ const page = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, Swap it!"
-    }).then(async (result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
         setLoading(true);
         const requestOptions = {
@@ -181,7 +188,7 @@ const page = () => {
           },
           redirect: "follow"
         };
-        await fetch("/api/admin/maintenance", requestOptions)
+        fetch("/api/admin/maintenance", requestOptions)
           .then((response) => response.json())
           .then((result) => {
             console.log(result)
@@ -204,6 +211,92 @@ const page = () => {
       }
     });
   }
+  const handdleSetDate = () => {
+    Swal.fire({
+      title: "<p>ປ່ຽນວັນທີ</p>",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Swap it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setLoading(true);
+        const data = JSON.stringify({
+          DateStart: new Date(dateStart).getTime(),
+          DateEnd: new Date(dateEnd+'T23:59:59Z').getTime()
+        })
+        const requestOptions = {
+          method: "PUT",
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
+          },
+          body: data,
+          redirect: "follow"
+        };
+        fetch("/api/admin/maintenance", requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            if (result.status === 'ok') {
+              Swal.fire({
+                title: "Sucess!",
+                text: "",
+                icon: "success"
+              });
+            } else {
+              if (result.message === 'notoken') {
+                localStorage.clear();
+                router.push("/admin");
+              }
+            }
+          })
+          .catch((error) => console.error(error));
+        setLoading(false);
+      }
+    });
+  }
+  const handdleSumTotal = () => {
+    Swal.fire({
+      title: "<p>ໄລ່ເງິນໃຫ້ ເອເຢັ້ນ</p>",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Swap it!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        setLoading(true);
+        const requestOptions = {
+          method: "PATCH",
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          redirect: "follow"
+        };
+        fetch("/api/admin/update-member-money", requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            // console.log(result)
+            // if (result.status === 'ok') {
+            //   setIsOnline(result.result.Online)
+            //   Swal.fire({
+            //     title: "Sucess!",
+            //     text: "",
+            //     icon: "success"
+            //   });
+            // } else {
+            //   if (result.message === 'notoken') {
+            //     localStorage.clear();
+            //     router.push("/admin");
+            //   }
+            // }
+          })
+          .catch((error) => console.error(error));
+        setLoading(false);
+      }
+    });
+  }
   const Swap = () => {
     return (
       <div>
@@ -217,8 +310,27 @@ const page = () => {
     )
   }
   return (
-    <div className=' mt-10 grid grid-cols-2 gap-5'>
+    <div className=' mt-10 grid grid-cols-1 gap-5'>
       {loading && <Spinner />}
+      <div>
+        <p>ວັນທີໄລ່ເງິນ</p>
+        <div className=' flex justify-star items-center gap-3'>
+          <input
+            type='date'
+            value={dateStart}
+            onChange={(e => { setDateStart(e.target.value) })}
+            max={dateEnd}
+          />
+          <p>-</p>
+          <input
+            type='date'
+            value={dateEnd}
+            onChange={(e => setDateEnd(e.target.value))}
+          />
+          <button onClick={handdleSetDate} className=' p-2 bg-green-500 text-white'><p>ບັນທຶກ</p></button>
+          <button onClick={handdleSumTotal} className=' p-2 bg-green-500 text-white'><p>ໄລ່ເງິນ</p></button>
+        </div>
+      </div>
       <div>
         <div><button onClick={handleClean1} className='mb-3 bg-blue-500 text-white p-2 rounded-lg'><p>ລົບ ປະຫວັດຫຼິ້ນເກມ</p></button></div>
         <div><button onClick={handleClean2} className='mb-3 bg-yellow-400 text-white p-2 rounded-lg'><p>ລົບ ປະຫວັດເຄດິດຢູເຊີ</p></button></div>

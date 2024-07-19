@@ -43,12 +43,14 @@ export default async function handler(
 
             } else if (req.method === 'PATCH') {
                 try {
-                    const { MemberID, Username, Password, PartnersPercent } = req.body;
+                    const { MemberID, Username, Password, PartnersPercent,DateStart,DateEnd } = req.body;
                     //console.log(req.body)
                     await Member.findByIdAndUpdate(MemberID, {
                         Username: Username,
                         Password: Password,
-                        PartnersPercent: PartnersPercent
+                        PartnersPercent: PartnersPercent,
+                        DateStart:DateStart,
+                        DateEnd:DateEnd
                     }).then(() => {
                         res.status(200).json({ status: 'ok', message: 'success', });
                     }).catch(() => {

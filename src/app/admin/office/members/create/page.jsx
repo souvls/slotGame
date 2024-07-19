@@ -94,32 +94,42 @@ const page = () => {
                 </div>
             </div>
             <div className='w-full lg:m-4 '>
-                <div className=' grid grid-cols-1 lg:flex justify-start gap-3'>
-                    <input
-                        type='text'
-                        placeholder='username'
-                        className=' p-2 rounded-lg'
-                        value={username}
-                        onChange={(e) => setUserName(e.target.value)}
-                        ref={inputRef}
-                    />
-                    <input
-                        type='text'
-                        placeholder='ລະຫັດໃໝ່'
-                        className=' p-2 rounded-lg'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <input
-                        type='number'
-                        placeholder='ເປີເຊັນ'
-                        className=' p-2 rounded-lg'
-                        value={perCent}
-                        onChange={(e) => setPerCent(e.target.value)}
-                        min={0}
-                        max={100}
-                    />
-                    <button onClick={handdleSubmit} className=' bg-blue-500 text-white p-2 rounded-lg'><p>ເພີ່ມຢູເຊີ້ໃໝ່</p></button>
+                <div className=' grid grid-cols-1 gap-3'>
+                    <div>
+                        <p>username</p>
+                        <input
+                            type='text'
+                            placeholder='username'
+                            className=' p-2 rounded-lg'
+                            value={username}
+                            onChange={(e) => setUserName(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <p>password</p>
+                        <input
+                            type='text'
+                            placeholder='ລະຫັດໃໝ່'
+                            className=' p-2 rounded-lg'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <p>percent</p>
+                        <input
+                            type='number'
+                            placeholder='ເປີເຊັນ'
+                            className=' p-2 rounded-lg'
+                            value={perCent}
+                            onChange={(e) => setPerCent(e.target.value)}
+                            min={0}
+                            max={100}
+                        />
+                    </div>
+                    <div>
+                        <button onClick={handdleSubmit} className=' bg-blue-500 text-white p-2 rounded-lg'><p>ເພີ່ມຢູເຊີ້ໃໝ່</p></button>
+                    </div>
                 </div>
             </div>
         </div>

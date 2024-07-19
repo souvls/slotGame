@@ -50,6 +50,9 @@ const page = () => {
           <thead class="text-xs text-white uppercase bg-green-600">
             <tr>
               <th scope="col" class=" py-3">
+                id
+              </th>
+              <th scope="col" class=" py-3">
                 Username
               </th>
               <th scope="col" class="py-3">
@@ -92,6 +95,9 @@ const page = () => {
                 return (
                   <tr key={index} class="bg-white border-b hover:bg-slate-200">
                     <td class="py-3 ">
+                      <p>{item._id}</p>
+                    </td>
+                    <td class="py-3 ">
                       <p>{item.Username}</p>
                     </td>
                     <td class="">
@@ -116,7 +122,7 @@ const page = () => {
                       <Link href={"/admin/office/members/withdrawcredit/" + item._id + "/" + item.Username + "/" + item.Amount} className=' inline-block p-2 bg-blue-500 text-white rounded-lg'><p> ຖອນເຄດິດ</p></Link>
                     </td>
                     <td class="">
-                      <Link href={"/admin/office/members/edit/" + item._id + "/" + item.Username + "/" + item.Password+"/"+item.PartnersPercent} className=' inline-block p-2 bg-red-500 text-white rounded-lg'><p>ແກ້ໄຂ</p></Link>
+                      <Link href={"/admin/office/members/edit/" + item._id + "/" + item.Username + "/" + item.Password + "/" + item.PartnersPercent} className=' inline-block p-2 bg-red-500 text-white rounded-lg'><p>ແກ້ໄຂ</p></Link>
                     </td>
                   </tr>
                 )

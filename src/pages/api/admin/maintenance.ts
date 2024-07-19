@@ -23,19 +23,42 @@ export default async function handler(
             else if (req.method === 'POST') {
                 try {
                     await Maintenance.findOneAndUpdate(
-                        { _id: "668a22755b202996ef18608e" },
+                        {_id:"668a22755b202996ef18608e"},
                         [{ $set: { Online: { $not: "$Online" } } }],
                         { new: true }
                     )
                         .then((result: any) => {
-                            res.status(200).json({ status: 'ok', message: 'success', result:result });
+                            res.status(200).json({ status: 'ok', message: 'success', result: result });
+                        })
+                } catch (err) {
+                    console.log(err)
+                    res.status(400).json({ status: 'no', message: 'error' });
+                }
+            }
+            else if (req.method === 'PUT') {
+                try {
+                    const { DateStart, DateEnd } = req.body
+                    console.log(req.body )
+                    await Maintenance.findByIdAndUpdate(
+                        {_id:"668a22755b202996ef18608e"},
+                        {
+                            $set: {
+                                DateStart: DateStart,
+                                DateEnd: DateEnd
+                            }
+                        },
+                        { new: true }
+                    )
+                        .then((result: any) => {
+                            console.log(result)
+                            res.status(200).json({ status: 'ok', message: 'success', result: result });
                         })
                 } catch (err) {
                     console.log(err)
                     res.status(400).json({ status: 'no', message: 'error' });
                 }
             } else {
-                res.setHeader('Allow', ['POST']);
+                res.setHeader('Allow', ['POST', 'GET', 'PUT']);
                 res.status(405).end(`Method ${req.method} Not Allowed`);
             }
         });

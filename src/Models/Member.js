@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const condb = require('../config/condb');
-const { type } = require('os');
 
 let MemberSchema = mongoose.Schema({
     Username: {
@@ -30,6 +29,14 @@ let MemberSchema = mongoose.Schema({
     PartnersPercent: {
         type: Number,
         require: true
+    },
+    DateStart:{
+        type: Date,
+        default:0
+    },
+    DateEnd:{
+        type:Date,
+        default:0
     },
     status: {
         type: Boolean,

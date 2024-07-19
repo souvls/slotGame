@@ -32,5 +32,12 @@ let UserSchema = mongoose.Schema({
     },
 }, { timestamps: true });
 
+// UserSchema.post('findOneAndUpdate', function (next) {
+//     const Maintenance = require("../Models/Maintenance");
+//     // const 
+//     // console.log("dfkjdkfj");
+//     next
+// });
+
 let User = condb.model("user", UserSchema);
 module.exports = User;
