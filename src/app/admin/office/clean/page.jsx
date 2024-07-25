@@ -148,7 +148,7 @@ const page = () => {
           },
           redirect: "follow"
         };
-        fetch("/api/admin/clean-history-credit-user", requestOptions)
+        fetch("/api/admin/clean-history-credit-member", requestOptions)
           .then((response) => response.json())
           .then((result) => {
             //console.log(result)
@@ -224,7 +224,7 @@ const page = () => {
         setLoading(true);
         const data = JSON.stringify({
           DateStart: new Date(dateStart).getTime(),
-          DateEnd: new Date(dateEnd+'T23:59:59Z').getTime()
+          DateEnd: new Date(dateEnd + 'T23:59:59Z').getTime()
         })
         const requestOptions = {
           method: "PUT",

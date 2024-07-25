@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import md5 from 'md5';
 import gamingsoftIcon from "../../../public/assets/gameserviecLogo/GS-Logo-hori-min.png"
@@ -7,9 +8,9 @@ import covergame from "../../../public/assets/gameserviecLogo/coverGame.jpg"
 import Spinner from './Spinner';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
-import Link from 'next/link';
 import { FaGamepad } from "react-icons/fa6";
 import { IoIosFootball } from "react-icons/io";
+
 const Main = () => {
     const [gameList, setGameList] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -21,7 +22,6 @@ const Main = () => {
     const fetchGameList = async () => {
         const games = await fetch("/api/user/game-list").then((response) => response.json());
         setGameList(games.provider_games)
-
     }
     const handdlePlay = async (game) => {
         try {
@@ -63,7 +63,7 @@ const Main = () => {
                 fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/launch-game", requestOptions)
                     .then((response) => response.json())
                     .then((result) => {
-                        window.location.href = result.url;
+                        //window.location.href = result.url;
                     })
                     .catch((error) => console.error(error));
             }
@@ -82,11 +82,13 @@ const Main = () => {
     }
     return (
         <>
-            {loadingGame &&
-                <div>
-                    <Spinner />
-                </div>
-            }
+            <div>
+                {loadingGame &&
+                    <div>
+                        <Spinner />
+                    </div>
+                }
+            </div>
             <div className=' bg-[#0f172a] py-3'>
                 <div className=' flex justify-center items-center gap-10'>
                     <Image alt='' src={gamingsoftIcon} />
@@ -99,9 +101,6 @@ const Main = () => {
                 </div>
                 <div className='w-[85%] h-[800px] overflow-scroll'>
                     <div className='w-full grid grid-cols-2 lg:grid-cols-4 gap-4'>
-                        {/* <Link href={"testgame"} className=' bg-green-500 b-2 rounded-lg'>
-                            <p className=' text-center text-white'>GAME TEST</p>
-                        </Link> */}
                         {loading ? 'loading' :
                             gameList.length > 0 && gameList.map((item, index) => {
                                 return (
