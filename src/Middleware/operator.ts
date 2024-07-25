@@ -14,8 +14,8 @@ function TimeStampGMT8(dateString: any) {
 }
 export const getAllWager = async () => {
     const maintenance = await Maintenance.findById("668a22755b202996ef18608e");
-    const start = TimeStampGMT8(maintenance.DateStart)
-    const end = TimeStampGMT8(maintenance.DateEnd)
+    const start = new Date(maintenance.DateStart).getTime();
+    const end = new Date(maintenance.DateEnd).getTime();
     const now = new Date();
     const request_time = now.getTime();
     const hash = md5(request_time + "" + process.env.SECRET_KEY + "getwagers" + process.env.OP_CODE);
@@ -35,7 +35,8 @@ export const getAllWager = async () => {
 export const getWagerByMemberID = async (memberID: string) => {
     const id = memberID.slice(-4);
     const allWager = await getAllWager();
-    const wagerMember = allWager.filter((i: any) => i.member_account.slice(0, 4) === id);
+    console.log(id)
+    const wagerMember = await allWager.filter((i: any) => i.member_account.slice(0, 4) === id);
     return wagerMember
 }
 export const getGameList = async () => {

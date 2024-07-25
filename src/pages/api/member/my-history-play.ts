@@ -14,7 +14,7 @@ export default async function handler(
             if (req.method === 'GET') {
                 try {
                     const wager =  await getWagerByMemberID(member.id)
-                    //console.log(wager);
+                    console.log(wager);
                     res.status(400).json({ status: 'ok', message: 'my history', result: wager });
                 } catch (err) {
                     console.log(err)
