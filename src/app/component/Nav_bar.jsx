@@ -1,4 +1,5 @@
 "use client"
+import Cookies from 'js-cookie';
 import React, { use, useEffect, useState } from 'react'
 import { GiOverInfinity } from "react-icons/gi";
 import { PiUserCircleBold } from "react-icons/pi";
@@ -11,19 +12,20 @@ const Nav_bar = () => {
     const [isLogin, setIsLogin] = useState(false);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            const role = localStorage.getItem("role");
-            if (role === 'user') {
+        try {
+            const user = JSON.parse(Cookies.get('userdata'));
+            if (user) {
                 setIsLogin(true);
-                fetchdata();
+                fetchdata(user.token);
             }
+        }
+        catch (err) {
+            setIsLogin(false);
         }
 
     }, []);
-    const fetchdata = () => {
+    const fetchdata = (token) => {
         setLoading(true);
-        const token = localStorage.getItem('token');
         const requestOptions = {
             method: "GET",
             headers: {
@@ -36,14 +38,13 @@ const Nav_bar = () => {
             .then((result) => {
                 if (result.status === 'ok') {
                     setUser(result.result);
-                    console.log(result)
                 } else if (result.status === 'off') {
-                    localStorage.clear();
+                    Cookies.remove('userdata')
                     router.push("/");
                 }
                 else {
                     if (result.message === 'notoken') {
-                        localStorage.clear();
+                        Cookies.remove('userdata')
                         router.push("/");
                     }
                 }
@@ -58,16 +59,25 @@ const Nav_bar = () => {
             </div>
         )
     }
+    const handleLogout = () => {
+        Cookies.remove('userdata');
+        window.location.href = "/user"
+    }
     const UserInfoArea = () => {
         return (
-            <div className='px-5'>
-                <div className='flex justify-start items-center gap-2'>
-                    <PiUserCircleBold size={20} color={'gold'} />
-                    <span className=' text-yellow-300 text-sm'>{loading ? <BeatLoader color='gold' size={10} /> : user && user.Username}</span>
+            <div className='px-5 flex justify-end items-center gap-2'>
+                <div>
+                    <div className='flex justify-start items-center gap-2'>
+                        <PiUserCircleBold size={20} color={'gold'} />
+                        <span className=' text-yellow-300 text-sm'>{loading ? <BeatLoader color='gold' size={10} /> : user && user.Username}</span>
+                    </div>
+                    <div className='flex justify-start items-center gap-2'>
+                        <LiaCoinsSolid size={20} color={'gold'} />
+                        <span className=' text-yellow-300 text-sm'>{loading ? <BeatLoader color='gold' size={10} /> : user && user.Amount && user.Amount.toLocaleString() + " ฿"}</span>
+                    </div>
                 </div>
-                <div className='flex justify-start items-center gap-2'>
-                    <LiaCoinsSolid size={20} color={'gold'} />
-                    <span className=' text-yellow-300 text-sm'>{loading ? <BeatLoader color='gold' size={10} /> : user && user.Amount&& user.Amount.toLocaleString() + " ฿"}</span>
+                <div>
+                    <button onClick={handleLogout} className=' bg-red-600 text-white p-2 text-sm rounded-lg'>logout</button>
                 </div>
             </div>
         )
@@ -79,7 +89,7 @@ const Nav_bar = () => {
                     <div className=' flex justify-between items-center'>
                         <div className=' flex flex-col items-center px-2'>
                             <GiOverInfinity size={30} color={'gold'} />
-                            <h1 className=' text-yellow-300 text-sm'> INFINITY SLOT 999</h1>
+                            <h1 className=' text-yellow-300 text-sm'> INFINITY999</h1>
                         </div>
                         {isLogin ? <UserInfoArea /> : <LoginArea />}
                     </div>

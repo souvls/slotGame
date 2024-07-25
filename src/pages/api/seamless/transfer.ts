@@ -6,7 +6,7 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    console.log(req.body)
+    //console.log(req.body)
     if (req.method === 'POST') {
         var total_amount = 0
         try {
@@ -15,7 +15,7 @@ export default async function handler(
                 total_amount += Number(i.amount)
             }
             const user = await User.findOne({ Username: member_account });
-            console.log(user)
+
             const update_balance_user = await User.findOneAndUpdate(
                 { _id: user._id },
                 { $inc: { Amount: total_amount } },
@@ -28,6 +28,7 @@ export default async function handler(
                     "balance": update_balance_user.Amount
                 }
             );
+            console.log(member_account + "/" + " playing:" + game_type)
         } catch (err) {
             console.log(err);
             res.status(200).json(

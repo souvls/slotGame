@@ -6,7 +6,7 @@ class token {
         return await jwt.sign({ "id": id, "username": username, "role": role }, process.env.SCRET_KEY_TOKEN, { expiresIn: "2h", algorithm: "HS256" })
     }
     static async genToken2(id, username, role) {
-        return await jwt.sign({ "id": id, "username": username, "role": role }, process.env.SCRET_KEY_TOKEN, {algorithm: "HS256" })
+        return await jwt.sign({ "id": id, "username": username, "role": role }, process.env.SCRET_KEY_TOKEN, {expiresIn: "2h",algorithm: "HS256" })
     }
     static jwtValidate = async(NextRequest,NextResponse,NextMiddleware)=>  {
         

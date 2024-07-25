@@ -62,7 +62,7 @@ const page = () => {
                             showConfirmButton: false,
                             timer: 1000
                         }).then(() => {
-                            window.location.href = "/admin/office"
+                            window.location.href = "/admin/office/member"
                             //router.push("/admin/office");
                         });
                     } else {

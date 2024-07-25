@@ -53,7 +53,7 @@ const page = () => {
                     if (result.status === 'ok') {
                         localStorage.setItem("token", result.token);
                         localStorage.setItem("role", "member");
-                        setIsLoading(false);
+                        
                         Swal.fire({
                             title: "Login success",
                             text: "ເຂົ້າລະບົບສຳເລັດ",
@@ -63,7 +63,8 @@ const page = () => {
                             showConfirmButton: false,
                             timer: 1000
                         }).then(() => {
-                            router.push("/member/office");
+                            window.location.href = "/member/office"
+                            //router.push("/member/office");
                         });
                     } else {
                         Swal.fire({
@@ -75,10 +76,10 @@ const page = () => {
                             showConfirmButton: false,
                             timer: 1000
                         });
-                        setIsLoading(false);
                     }
                 })
                 .catch((error) => console.error(error));
+                setIsLoading(false);
         }
 
     }

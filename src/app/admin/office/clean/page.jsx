@@ -332,7 +332,6 @@ const page = () => {
         </div>
       </div>
       <div>
-        <div><button onClick={handleClean1} className='mb-3 bg-blue-500 text-white p-2 rounded-lg'><p>ລົບ ປະຫວັດຫຼິ້ນເກມ</p></button></div>
         <div><button onClick={handleClean2} className='mb-3 bg-yellow-400 text-white p-2 rounded-lg'><p>ລົບ ປະຫວັດເຄດິດຢູເຊີ</p></button></div>
         <div><button onClick={handleClean3} className='bg-red-500 text-white p-2 rounded-lg'><p>ລົບ ປະຫວັດເຄດິດເອເຢັ້ນ</p></button></div>
       </div>

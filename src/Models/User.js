@@ -28,7 +28,7 @@ let UserSchema = mongoose.Schema({
     status: {
         type: Boolean,
         required: true,
-        default: true
+        default: false
     },
 }, { timestamps: true });
 

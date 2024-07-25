@@ -21,7 +21,7 @@ export default async function handler(
             const admin: any = req.headers.data
             if (req.method === 'GET') {
                 try {
-                    await User_history_credit.find().populate({
+                    User_history_credit.find().populate({
                         path: 'UserID',
                         populate: {
                             path: 'MemberID',

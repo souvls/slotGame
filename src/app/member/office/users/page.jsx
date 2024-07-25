@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { BeatLoader } from 'react-spinners';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-
+import { RiRadioButtonLine } from "react-icons/ri";
 const page = () => {
   const router = useRouter();
   const [userList, setUserList] = useState([]);
@@ -67,6 +67,8 @@ const page = () => {
               <th scope="col" class="py-3">
                 Edit
               </th>
+              <th scope="col" class="py-3">
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -99,6 +101,9 @@ const page = () => {
                     </td>
                     <td class="">
                       <Link href={"/member/office/users/edit/" + item._id+"/"+item.Username+"/"+item.Password} className=' inline-block p-2 bg-red-500 text-white rounded-lg'><p>ແກ້ໄຂ</p></Link>
+                    </td>
+                    <td>
+                      {item.status && <RiRadioButtonLine color='green'/>}
                     </td>
                   </tr>
                 )

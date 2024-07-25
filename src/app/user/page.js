@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { GiOverInfinity } from "react-icons/gi";
+import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
 import Spinner from '../component/Spinner';
 import { useRouter } from 'next/navigation';
@@ -36,11 +37,15 @@ const page = () => {
             fetch("/api/user/login", requestOptions)
                 .then((response) => response.json())
                 .then(async (result) => {
-                    console.log(result)
+                    //console.log(result)
                     if (result.status === 'ok') {
-                        localStorage.setItem("token", result.token);
-                        localStorage.setItem("data", JSON.stringify(result.result));
-                        localStorage.setItem("role", "user");
+                        const data = {
+                            id: result.result._id,
+                            username: result.result.Username,
+                            password: result.result.Password,
+                            token: result.token
+                        }
+                        Cookies.set('userdata', JSON.stringify(data), { expires: 1 / 24 });
                         Swal.fire({
                             title: "Login success",
                             text: "ເຂົ້າລະບົບສຳເລັດ",
@@ -62,9 +67,9 @@ const page = () => {
                             showConfirmButton: false,
                         });
                     }
+                    setLoading(true);
                 })
                 .catch((error) => console.error(error));
-            setLoading(false);
         }
     }
     return (
@@ -92,7 +97,7 @@ const page = () => {
                     <div className='mt-5'>
                         <input
                             type='text'
-                            placeholder='Username'
+                            placeholder='Password'
                             className=' w-full p-2 text-amber-400 rounded-lg bg-transparent outline outline-amber-400'
                             value={password}
                             onChange={e => setPassword(e.target.value)} />

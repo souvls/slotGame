@@ -11,7 +11,27 @@ let MemberSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    Total_income: {
+    Total_bet_amount: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    Total_prized_amount:{
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    Total_result: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    Total_free: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    Total_pay: {
         type: Number,
         required: true,
         default: 0,
@@ -29,14 +49,6 @@ let MemberSchema = mongoose.Schema({
     PartnersPercent: {
         type: Number,
         require: true
-    },
-    DateStart:{
-        type: Date,
-        default:0
-    },
-    DateEnd:{
-        type:Date,
-        default:0
     },
     status: {
         type: Boolean,

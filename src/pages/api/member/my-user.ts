@@ -3,7 +3,7 @@ import verifyJWTToken from '../../../Middleware/auth'
 const User = require('../../../Models/User');
 const Member = require('../../../Models/Member');
 const User_history_credit = require('../../../Models/User_history_credit');
-const User_history_played = require('../../../Models/User_history_played');
+const Member_history_credit = require('../../../Models/Member_history_credit');
 
 import { format } from 'date-fns'
 const getDate = () => {
@@ -18,14 +18,14 @@ export default async function handler(
     verifyJWTToken(req, res, async () => {
         const member: any = req.headers.data
         if (req.method === 'GET') {
-            await User.find({ MemberID: member.id }).sort({ createdAt: -1 })
+            User.find({ MemberID: member.id }).sort({ createdAt: -1 })
                 .then((result: any) => {
                     res.status(200).json({ status: 'ok', message: 'success', result: result });
                 })
         } else if (req.method === 'PATCH') {
             try {
                 const { UserID, Username, Password } = req.body;
-                await User.findByIdAndUpdate(UserID, { Username: Username, Password: Password })
+                User.findByIdAndUpdate(UserID, { Username: Username, Password: Password })
                 res.status(200).json({ status: 'ok', message: 'success', });
             } catch (err) {
                 res.status(400).json({ status: 'no', message: 'error' });
@@ -35,7 +35,7 @@ export default async function handler(
                 //console.log(member)
                 const { Username, Password } = req.body;
                 const NewUser = new User({
-                    Username: member.id.slice(-4)+"_"+Username,
+                    Username: member.id.slice(-4) + "_" + Username,
                     Password: Password,
                     Amount: 0,
                     MemberID: member.id
@@ -50,35 +50,28 @@ export default async function handler(
         } else if (req.method === 'DELETE') {
             try {
                 const { UserID } = req.body;
-                // check user history
-                await User_history_played.find({ UserID: UserID })
+                //find and clear credit
+                User.findById(UserID)
                     .then(async (result: any) => {
-                        if (result.length > 0) {
-                            res.status(200).json({ status: 'no', message: 'ລຶບຢູເຊີນີ້ບໍ່ໄດ້ ຈົນກວ່າຈະເຄຍຍອດ' });
-                        } else {
-                            //find and clear credit
-                            await User.findById(UserID)
-                                .then(async (result: any) => {
-                                    //sent back credit to member
-                                    if (result.Amount > 0) {
-                                        //create histroy credit
-                                        const newHistory = new User_history_credit({
-                                            UserID: UserID,
-                                            Amount: result.Amount,
-                                            Transaction: "comeback",
-                                            Date: getDate()
-                                        })
-                                        await Member.findOneAndUpdate(
-                                            { _id: member.id },
-                                            { $inc: { Amount: result.Amount } },
-                                            { new: true }
-                                        );
-                                        await newHistory.save();
-                                    }
-                                    await User.findByIdAndDelete(UserID)
-                                    res.status(201).json({ status: 'ok', message: 'success' });
-                                })
+                        //sent back credit to member
+                        if (result.Amount > 0) {
+                            //create histroy credit
+                            const NewMemberHistory = new Member_history_credit({
+                                MemberID: result.MemberID,
+                                Amount: result.Amount,
+                                Transaction: "toback",
+                                Date: getDate()
+                            })
+                            await Member.findOneAndUpdate(
+                                { _id: member.id },
+                                { $inc: { Amount: result.Amount } },
+                                { new: true }
+                            );
+                            await NewMemberHistory.save();
                         }
+                        await User_history_credit.deleteMany({UserID:result._id})
+                        await User.findByIdAndDelete(UserID)
+                        res.status(201).json({ status: 'ok', message: 'success' });
                     })
             } catch (err) {
                 res.status(400).json({ status: 'no', message: 'err' });

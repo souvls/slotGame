@@ -11,8 +11,6 @@ export default function Home() {
       <Banner_/>
       <Main/>
       <Footer/>
-      
-      
     </>
   );
 }

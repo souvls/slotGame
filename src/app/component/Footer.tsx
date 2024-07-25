@@ -11,14 +11,14 @@ const Footer = () => {
           <div>
             <p className=' font-bold text-lg text-amber-400'>ເຕີມເກມ</p>
             <div>
-              <a href='#' className=' flex justify-start items-center gap-2 text-xl'> <FaWhatsapp size={25} color='green' /> 56388013</a>
-              <a href='#' className=' flex justify-start items-center gap-2 text-xl'> <CiFacebook size={25} color='blue' /> INFINITY999</a>
+              <a href='#' className=' flex justify-start items-center gap-2 text-sm'> <FaWhatsapp size={25} color='green' /> 02012345678</a>
+              <a href='#' className=' flex justify-start items-center gap-2 text-sm'> <CiFacebook size={25} color='blue' /> INFINITY999</a>
 
             </div>
           </div>
           <div>
             <p className=' font-bold text-lg text-amber-400'>ຜູ້ໃຫ້ບໍລິການເກມ</p>
-            <div>
+            <div className=' px-5'>
               <Image alt="" src={LogoGM} />
             </div>
           </div>

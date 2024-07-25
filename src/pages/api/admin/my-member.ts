@@ -37,20 +37,18 @@ export default async function handler(
                         res.status(201).json({ status: 'ok', message: 'success', result: result });
                     })
                 } catch (err) {
-                    //console.log(err);
+                    console.log(err);
                     res.status(400).json({ status: 'no', message: 'error' });
                 }
 
             } else if (req.method === 'PATCH') {
                 try {
-                    const { MemberID, Username, Password, PartnersPercent,DateStart,DateEnd } = req.body;
+                    const { MemberID, Username, Password, PartnersPercent } = req.body;
                     //console.log(req.body)
                     await Member.findByIdAndUpdate(MemberID, {
                         Username: Username,
                         Password: Password,
-                        PartnersPercent: PartnersPercent,
-                        DateStart:DateStart,
-                        DateEnd:DateEnd
+                        PartnersPercent: PartnersPercent
                     }).then(() => {
                         res.status(200).json({ status: 'ok', message: 'success', });
                     }).catch(() => {

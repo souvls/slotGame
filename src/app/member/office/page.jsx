@@ -25,7 +25,6 @@ const page = () => {
             await fetch("/api/member/dashboard", requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
-
                     if (result.status === 'ok') {
                         setData(result)
                         console.log(result)
@@ -73,68 +72,53 @@ const page = () => {
                         </div>
                         <FaPeopleGroup size={50} color='#fff' opacity={0.5} />
                     </div>
-                    <div className='w-full flex justify-between items-center bg-green-500 text-white p-4 rounded-lg'>
+                    <div className='w-full flex justify-between items-center bg-cyan-500 text-white p-4 rounded-lg'>
                         <div>
-                            <p className='text-lg'>ລາຍໄດ້</p>
+                            <p className='text-lg'>ຈຳນວນເງິນເດີມພັນ</p>
                             {loading ?
                                 <Spinner />
                                 :
-                                <h1 className='text-2xl font-bold'>{0}</h1>
+                                <h1 className='text-2xl font-bold'>{data && data.myInfo && data.myInfo.Total_bet_amount.toLocaleString() + " THB"}</h1>
                             }
                         </div>
                         <FaBahtSign size={50} color='#fff' opacity={0.5} />
                     </div>
-                    <div className='w-full flex justify-between items-center bg-red-500 text-white p-4 rounded-lg'>
+                    <div className='w-full flex justify-between items-center bg-purple-500 text-white p-4 rounded-lg'>
                         <div>
-                            <p className='text-lg'>ລາຍຈ່າຍ</p>
+                            <p className='text-lg'>ລາງວັນທີ່ໄດ້</p>
                             {loading ?
                                 <Spinner />
                                 :
-                                <h1 className='text-2xl font-bold'>{0}</h1>
+                                <h1 className='text-2xl font-bold'>{data && data.myInfo && data.myInfo.Total_prized_amount.toLocaleString() + " THB"}</h1>
                             }
                         </div>
                         <FaBahtSign size={50} color='#fff' opacity={0.5} />
                     </div>
-                    <div className='w-full flex justify-between items-center bg-red-500 text-white p-4 rounded-lg'>
+                    <div className='w-full flex justify-between items-center bg-green-400 text-white p-4 rounded-lg'>
                         <div className='w-full'>
                             {/* <p className='text-lg'>ລວມ</p> */}
                             {loading ?
                                 <Spinner />
                                 :
                                 <div>
-                                    <p className='text-sm font-bold'>ລາຍໄດ້ລວມ:{0}</p>
-                                    <p className='text-sm font-bold'>ຈ່າຍແມ່ {data.myInfo && data.myInfo.PartnersPercent + "%"}= {0}</p>
-                                    <p className='text-sm font-bold'>ລາຍໄດ້ໂຕຈິງ= {0}</p>
-
+                                    <p className='text-sm font-bold'>ລາຍໄດ້ລວມ: {data && data.myInfo && data.myInfo.Total_result.toLocaleString() + " THB"}</p>
+                                    <p className='text-sm font-bold'>ຈ່າຍແອັດມິນ: {data.myInfo && data.myInfo.PartnersPercent + "%"}= {data.myInfo && data.myInfo.Total_free + " THB"}</p>
                                 </div>
                             }
                         </div>
-                        {/* <FaBahtSign size={50} color='#fff' opacity={0.5} /> */}
                     </div>
-                </div>
-            </div>
-            <div className='mt-4'>
-                <div className=' grid grid-cols-2 gap-2'>
-                    <div className='w-full border border-yellow-200 bg-white rounded-lg shadow-xl p-3'>
-                        <p>ປະຫວັດເຄດິດ</p>
-                        {loading ?
-                            <Spinner />
-                            :
-                            <table className='w-full'>
-                                <thead>
-                                    <tr>
-                                        <th><p>ວັນທີ</p></th>
-                                        <th><p>ຊື່ຢູເຊີ</p></th>
-                                        <th><p>ຈຳນວນ</p></th>
-                                        <th><p>ລາຍການ</p></th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        }
+                    <div className='w-full flex justify-between items-center bg-green-500 text-white p-4 rounded-lg'>
+                        <div>
+                            <p className='text-lg'>ຍອດທີ່ໄດ້ຮັບ</p>
+                            {loading ?
+                                <Spinner />
+                                :
+                                <h1 className='text-2xl font-bold'>{data && data.myInfo && data.myInfo.Total_pay.toLocaleString() + " THB"}</h1>
+                            }
+                        </div>
+                        <FaBahtSign size={50} color='#fff' opacity={0.5} />
                     </div>
-                    <div className='w-full bg-white rounded-lg shadow-xl p-3'>
-                        <p>ປະຫວັດເຄດິດ</p>
-                    </div>
+
                 </div>
             </div>
         </div>

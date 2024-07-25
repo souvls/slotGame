@@ -1,64 +1,53 @@
 "use client"
 import React, { useEffect, useState } from 'react'
+import Swal from 'sweetalert2';
 import { BeatLoader } from 'react-spinners';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-
 const page = () => {
-    const router = useRouter();
-    const [userList, setUserList] = useState([]);
-    const [historyList, setHistory] = useState([]);
+    const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        const fetchdata = async () => {
-            setLoading(true);
-            const token = localStorage.getItem('token');
-            const requestOptions = {
-                method: "GET",
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                redirect: "follow"
-            };
-            fetch("/api/admin/history-credit-member", requestOptions)
-                .then((response) => response.json())
-                .then((result) => {
-                    console.log(result)
-                    if (result.status === 'ok') {
-                        //console.log(result)
-                        setHistory(result.result)
-                        setLoading(false);
-                    } else {
-                        setLoading(false);
-                        if (result.message === 'notoken') {
-                            localStorage.clear();
-                            router.push("/admin");
-                        }
-                    }
-                })
-                .catch((error) => console.error(error));
-        }
-
         fetchdata();
-
     }, [])
+    const fetchdata = () => {
+        setLoading(true);
+        const token = localStorage.getItem('token');
+        const requestOptions = {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            redirect: "follow"
+        };
+        fetch("/api/member/my-history-credit", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                if (result.status === 'ok') {
+                    setData(result.result);
+                    setLoading(false);
+                } else {
+                    if (result.message === 'notoken') {
+                        localStorage.clear();
+                        router.push("/member");
+                    }
+                }
+            })
+            .catch((error) => console.error(error));
+
+    }
     return (
         <div>
             <div className='w-full p-2 border-b-2'>
-                <p>ປະຫວັດເຄດິດເອເຢັ້ນ</p>
+                <p>ປະຫວັດເຄດິດ</p>
             </div>
             <div>
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-white uppercase bg-blue-600">
                         <tr>
                             <th scope="col" class=" py-3">
-                                Date
+                                <p>ວັນທີ</p>
                             </th>
                             <th scope="col" class="py-3">
-                                Username
-                            </th>
-                            <th scope="col" class="py-3">
-                                Credit
+                                <p>ເຄດິດ</p>
                             </th>
                             <th scope="col" class="py-3">
                                 Transaction
@@ -75,19 +64,18 @@ const page = () => {
                                 </tr>
                             </>
                             :
-                            historyList.length > 0 && historyList.map((item, index) => {
+                            data.length > 0 && data.map((item, index) => {
                                 return (
                                     <tr key={index} class="bg-white border-b hover:bg-slate-200">
                                         <td class="py-3 ">
                                             <p>{item.Date}</p>
                                         </td>
                                         <td class="">
-                                            {item.MemberID && item.MemberID.Username}
-                                        </td>
-                                        <td class="">
                                             {item.Transaction === 'withdraw' ?
                                                 <span className=' text-red-600'>- {item.Amount.toLocaleString() + " THB"}</span> :
-                                                <span className=' text-green-500'>{item.Amount.toLocaleString() + "  THB"}</span>
+                                                item.Transaction === 'toback' ?
+                                                    <span className=' text-black'>{item.Amount.toLocaleString() + "  THB"}</span> :
+                                                    <span className=' text-green-500'>{item.Amount.toLocaleString() + "  THB"}</span>
                                             }
                                         </td>
                                         <td class="">

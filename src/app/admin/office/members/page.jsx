@@ -19,7 +19,14 @@ const page = () => {
         },
         redirect: "follow"
       };
-      await fetch("/api/admin/my-member", requestOptions)
+      await fetch("/api/admin/update-member-money", {
+        method: "PATCH",
+        headers: {
+          'Authorization': 'Bearer ' + token
+        },
+        redirect: "follow"
+      })
+      fetch("/api/admin/my-member", requestOptions)
         .then((response) => response.json())
         .then((result) => {
           console.log(result)
@@ -62,13 +69,22 @@ const page = () => {
                 Credit
               </th>
               <th scope="col" class="py-3">
-                Percent
+                <p>ສ່ວນແບ່ງ</p>
+              </th>
+              <th scope="col" class="py-3">
+                <p>ເດີມພັນ</p>
+              </th>
+              <th scope="col" class="py-3">
+                <p>ຜົນ</p>
               </th>
               <th scope="col" class="py-3">
                 <p>ລາຍໄດ້ທັງໝົດ</p>
               </th>
               <th scope="col" class="py-3">
-                <p>ເງິນທີ່ໄດ້</p>
+                <p>ເງິນສ່ວນແບ່ງ</p>
+              </th>
+              <th scope="col" class="py-3">
+                <p>ເງິນຈ່າຍແອັດມິນ</p>
               </th>
               <th scope="col" class="py-3">
                 Desposit
@@ -110,10 +126,19 @@ const page = () => {
                       {item.PartnersPercent + " %"}
                     </td>
                     <td class="">
-                      {"0 THB"}
+                      {item.Total_bet_amount.toLocaleString()}
                     </td>
                     <td class="">
-                      {"0 THB"}
+                      {item.Total_prized_amount.toLocaleString()}
+                    </td>
+                    <td class="">
+                      {item.Total_result.toLocaleString()}
+                    </td>
+                    <td class="">
+                      {item.Total_pay.toLocaleString() + " THB"}
+                    </td>
+                    <td class="">
+                      {item.Total_free.toLocaleString() + " THB"}
                     </td>
                     <td class="">
                       <Link href={"/admin/office/members/addcredit/" + item._id + "/" + item.Username} className=' inline-block p-2 bg-green-500 text-white rounded-lg'><p>ເຕີມເຄດິດ</p></Link>

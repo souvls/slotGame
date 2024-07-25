@@ -27,9 +27,10 @@ export default async function handler(
                     res.status(200).json({ status: 'no', message: 'ຊື່ຜູ້ໃຊ້ ຫຼື ລະຫັດຜ່ານ ຜິດ! ກະລຸນາຕິດຕໍ່ ເອເຢັນ'});
                 }
             } catch (err) {
-                throw err
-            }
+                //throw err
+                res.status(400).json({ status: 'no', message: err});
 
+            }
         } else {
             res.setHeader('Allow', ['POST']);
             res.status(405).end(`Method ${req.method} Not Allowed`);

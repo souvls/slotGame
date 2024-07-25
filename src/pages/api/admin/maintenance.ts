@@ -8,11 +8,11 @@ export default async function handler(
     res: NextApiResponse
 ) {
     verifyJWTToken(req, res, async () => {
-        isAdmin(req, res, async () => {
+        isAdmin(req, res, () => {
             //const admin: any = req.headers.data
             if (req.method === 'GET') {
                 try {
-                    await Maintenance.findById("668a22755b202996ef18608e")
+                    Maintenance.findById("668a22755b202996ef18608e")
                         .then((result: any) => {
                             res.status(200).json({ status: 'ok', message: 'success', result: result });
                         })
@@ -22,8 +22,8 @@ export default async function handler(
             }
             else if (req.method === 'POST') {
                 try {
-                    await Maintenance.findOneAndUpdate(
-                        {_id:"668a22755b202996ef18608e"},
+                    Maintenance.findOneAndUpdate(
+                        { _id: "668a22755b202996ef18608e" },
                         [{ $set: { Online: { $not: "$Online" } } }],
                         { new: true }
                     )
@@ -38,9 +38,9 @@ export default async function handler(
             else if (req.method === 'PUT') {
                 try {
                     const { DateStart, DateEnd } = req.body
-                    console.log(req.body )
-                    await Maintenance.findByIdAndUpdate(
-                        {_id:"668a22755b202996ef18608e"},
+                    console.log(req.body)
+                    Maintenance.findByIdAndUpdate(
+                        { _id: "668a22755b202996ef18608e" },
                         {
                             $set: {
                                 DateStart: DateStart,

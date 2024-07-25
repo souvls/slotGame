@@ -69,7 +69,7 @@ const page = () => {
             , requestOptions)
             .then((response) => response.json())
             .then((result) => {
-                //console.log(result);
+                console.log(result);
                 setWagerList(result.wagers.reverse());
                 setLoading(false);
             })
@@ -97,7 +97,7 @@ const page = () => {
             , requestOptions)
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
+                // console.log(result.wagers[10]);
                 setWagerList(result.wagers.reverse());
                 setLoading(false);
             })

@@ -6,7 +6,7 @@ const isAdmin = async (req: NextApiRequest, res: NextApiResponse, next: () => vo
         if(user.role === process.env.code_1){
             next();
         }else{
-            res.status(400).json({status:'no', message: 'noadmin' });
+            res.status(400).json({status:'no', message: 'role not admin' });
         }
     } catch (err) {
         res.status(400).json({status:'no', message: 'noadmin' });
