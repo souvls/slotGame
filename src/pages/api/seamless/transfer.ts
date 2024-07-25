@@ -15,7 +15,6 @@ export default async function handler(
                 total_amount += Number(i.amount)
             }
             const user = await User.findOne({ Username: member_account });
-
             const update_balance_user = await User.findOneAndUpdate(
                 { _id: user._id },
                 { $inc: { Amount: total_amount } },

@@ -69,10 +69,11 @@ const Main = () => {
                     })
                     .catch((error) => console.error(error));
             }
+            setLoadingGame(false);
         }
         catch (err) {
             //console.log(err)
-            setLoadingGame(true);
+            setLoadingGame(false);
             Swal.fire({
                 title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
                 text: "02011223344",
@@ -81,7 +82,7 @@ const Main = () => {
                 color: '#ffffff',
                 showConfirmButton: false,
             });
-            
+
         }
     }
     return (
