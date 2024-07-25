@@ -16,7 +16,9 @@ const Main = () => {
     const [loading, setLoading] = useState(false);
     const [loadingGame, setLoadingGame] = useState(false)
     useEffect(() => {
+        setLoading(true)
         fetchGameList();
+        setLoading(false)
     }, [])
 
     const fetchGameList = async () => {
@@ -102,7 +104,7 @@ const Main = () => {
                 <div className='w-[85%] h-[800px] overflow-scroll'>
                     <div className='w-full grid grid-cols-2 lg:grid-cols-4 gap-4'>
                         {loading ? 'loading' :
-                            gameList.length > 0 && gameList.map((item, index) => {
+                            gameList && gameList.length > 0 && gameList.map((item, index) => {
                                 return (
                                     <div key={index} onClick={() => handdlePlay(item)} className=''>
                                         <div className=' rounded-xl overflow-hidden flex justify-center items-center'>
