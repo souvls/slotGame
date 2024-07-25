@@ -71,7 +71,8 @@ const Main = () => {
             }
         }
         catch (err) {
-            console.log(err)
+            //console.log(err)
+            setLoadingGame(true);
             Swal.fire({
                 title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
                 text: "02011223344",
@@ -80,6 +81,7 @@ const Main = () => {
                 color: '#ffffff',
                 showConfirmButton: false,
             });
+            
         }
     }
     return (

@@ -5,7 +5,6 @@ const page = () => {
     const [balance, setBalance] = useState([]);
     useEffect(() => {
         fetchdata();
-
     }, [])
     const fetchdata = async () => {
         //const currentTimestamp =  // Current timestamp in milliseconds
