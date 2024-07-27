@@ -29,8 +29,9 @@ const Main = () => {
         try {
             setLoadingGame(true);
             const user = await JSON.parse(Cookies.get('userdata'));
-            const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
+
             if (user) {
+                const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
                 const getGMT8TimestampInSeconds = () => {
                     const now = new Date();
                     const timeZoneOffset = 8 * 60;
@@ -65,11 +66,11 @@ const Main = () => {
                 fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/launch-game", requestOptions)
                     .then((response) => response.json())
                     .then((result) => {
-                        //window.location.href = result.url;
+                        window.location.href = result.url;
                     })
                     .catch((error) => console.error(error));
             }
-            setLoadingGame(false);
+            
         }
         catch (err) {
             //console.log(err)
