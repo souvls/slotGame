@@ -34,6 +34,7 @@ const page = () => {
       .catch((error) => console.error(error));
 
   }
+  console.log(data)
   return (
     <div>
       <div className='w-full p-2 border-b-2'>
@@ -45,6 +46,9 @@ const page = () => {
             <tr>
               <th scope="col" class=" py-3">
                 <p>ວັນທີ</p>
+              </th>
+              <th scope="col" class=" py-3">
+                <p>ຊື່ຢູເຊີ້</p>
               </th>
               <th scope="col" class="py-3">
                 <p>ຈຳນວນເງິນ</p>
@@ -69,6 +73,9 @@ const page = () => {
                   <tr key={index} class="bg-white border-b hover:bg-slate-200">
                     <td class="py-3 ">
                       <p>{item.Date}</p>
+                    </td>
+                    <td class="py-3 ">
+                      <p>{item.UserID?.Username}</p>
                     </td>
                     <td class="">
                       {item.Transaction === 'withdraw' ?

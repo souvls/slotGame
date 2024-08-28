@@ -12,12 +12,7 @@ const page = () => {
     const [Password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
-    useEffect(() => {
-        // const role = localStorage.getItem("role");
-        // if(role !== "member"){
-        //     router.push("/member/office")
-        // }
-    }, [])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const error = {}
@@ -49,10 +44,10 @@ const page = () => {
             fetch("/api/admin/login", requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
-                    
                     if (result.status === 'ok') {
                         localStorage.setItem("token", result.token);
                         localStorage.setItem("role", "superadmin");
+
                         Swal.fire({
                             title: "Login success",
                             text: "ເຂົ້າລະບົບສຳເລັດ",
@@ -61,10 +56,8 @@ const page = () => {
                             color: '#ffffff',
                             showConfirmButton: false,
                             timer: 1000
-                        }).then(() => {
-                            window.location.href = "/admin/office/members"
-                            //router.push("/admin/office");
-                        });
+                        })
+                        window.location.href = "/admin/office/members";
                     } else {
                         Swal.fire({
                             title: "Login fail",
@@ -75,11 +68,14 @@ const page = () => {
                             showConfirmButton: false,
                             timer: 1000
                         });
-
+                        setIsLoading(false);
                     }
                 })
-                .catch((error) => console.error(error));
-            setIsLoading(false);
+                .catch((error) => {
+                    setIsLoading(false);
+                    console.error(error);
+                });
+
         }
 
     }

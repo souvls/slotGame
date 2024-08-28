@@ -64,7 +64,6 @@ const page = () => {
                             timer: 1000
                         }).then(() => {
                             window.location.href = "/member/office"
-                            //router.push("/member/office");
                         });
                     } else {
                         Swal.fire({
@@ -76,10 +75,14 @@ const page = () => {
                             showConfirmButton: false,
                             timer: 1000
                         });
+                        setIsLoading(false);
                     }
                 })
-                .catch((error) => console.error(error));
-                setIsLoading(false);
+                .catch((error) => {
+                    console.error(error);
+                    setIsLoading(false);
+                });
+                
         }
 
     }

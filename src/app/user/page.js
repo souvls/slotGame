@@ -69,7 +69,10 @@ const page = () => {
                     }
                     setLoading(false);
                 })
-                .catch((error) => console.error(error));
+                .catch((error) => {
+                    console.error(error);
+                    setLoading(false);
+                });
         }
     }
     return (
