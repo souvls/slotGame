@@ -22,8 +22,21 @@ const Main = () => {
     }, [])
 
     const fetchGameList = async () => {
-        const games = await fetch("/api/user/game-list").then((response) => response.json());
-        setGameList(games.provider_games)
+        const request_time = new Date().getTime();
+        const hash = md5(request_time + "pBXXGyr53ekS6CvjwgA5ES" + "gamelist" + "H801");
+        await fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
+            "?product_code=" + 1153 +
+            "&operator_code=" + "H801" +
+            "&game_type=" + "SLOT" +
+            "&sign=" + hash +
+            "&request_time=" + request_time)
+            .then((response) => response.json())
+            .then(result => {
+                setGameList(result.provider_games)
+            })
+            .catch(err => {
+
+            })
     }
     const handdlePlay = async (game) => {
         try {
@@ -38,42 +51,43 @@ const Main = () => {
                     const gmt8Time = new Date(now.getTime() + timeZoneOffset * 60000);
                     return Math.floor(gmt8Time.getTime() / 1000);
                 };
-                const request_time = getGMT8TimestampInSeconds()
-                const hash = md5(request_time + process.env.NEXT_PUBLIC_SECRET_KEY + "launchgame" + process.env.NEXT_PUBLIC_OP_CODE);
-                const data = {
-                    operator_lobby_url: "http://infinity999.com",
-                    operator_code: process.env.NEXT_PUBLIC_OP_CODE,
-                    member_account: user.username,
-                    password: user.password,
-                    nickname: user.username,
-                    currency: "IDR",
-                    game_code: game.game_code,
-                    product_code: game.product_code,
-                    game_type: game.game_type,
-                    language_code: 3,
-                    ip: ip.ip,
-                    platform: "web",
-                    sign: hash,
-                    request_time: request_time
-                }
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                const request_time = new Date().getTime();
+                const hash = md5(request_time + "pBXXGyr53ekS6CvjwgA5ESlaunchgameH801");
+                const raw = JSON.stringify({
+                    "operator_code": "H801",
+                    "member_account": user.username,
+                    "password": user.password,
+                    "currency": "IDR",
+                    "game_code": game.game_code,
+                    "product_code": game.product_code,
+                    "game_type": "SLOT",
+                    "language_code": 0,
+                    "ip": ip.ip,
+                    "platform": "web",
+                    "sign": hash,
+                    "request_time": request_time,
+                    "operator_lobby_url": "http://infinity999.com",
+                })
                 const requestOptions = {
                     method: "POST",
-                    headers: { accept: 'application/json' },
-                    body: JSON.stringify(data),
+                    headers: myHeaders,
+                    body: raw,
                     redirect: "follow"
                 };
-
-                fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/launch-game", requestOptions)
+                fetch(process.env.NEXT_PUBLIC_API_NAME+"/api/operators/launch-game", requestOptions)
                     .then((response) => response.json())
                     .then((result) => {
+                        console.log(result)
                         window.location.href = result.url;
                     })
                     .catch((error) => console.error(error));
             }
-            
+
         }
         catch (err) {
-            //console.log(err)
+            console.log(err)
             setLoadingGame(false);
             Swal.fire({
                 title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",

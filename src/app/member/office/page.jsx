@@ -85,7 +85,7 @@ const page = () => {
                     </div>
                     <div className='w-full flex justify-between items-center bg-purple-500 text-white p-4 rounded-lg'>
                         <div>
-                            <p className='text-lg'>ລາງວັນທີ່ໄດ້</p>
+                            <p className='text-lg'>ລາງວັນທີ່ user ໄດ້</p>
                             {loading ?
                                 <Spinner />
                                 :

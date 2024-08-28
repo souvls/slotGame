@@ -23,6 +23,11 @@ const page = () => {
                 title: "<p>ໃສ່ຊື່ຢູເຊີ້</p>",
                 icon: "error"
             });
+        } else if (username.length !== 2) {
+            Swal.fire({
+                title: "<p>ຊື່ຢູເຊີ້ ຜີດ</p>",
+                icon: "error"
+            });
         } else if (!password) {
             Swal.fire({
                 title: "<p>ໃສ່ລະຫັດ</p>",
@@ -89,6 +94,7 @@ const page = () => {
                         className=' p-2 rounded-lg'
                         value={username}
                         onChange={(e) => setUserName(e.target.value)}
+                        maxlength="2"
                         ref={inputRef}
                     />
                     <input

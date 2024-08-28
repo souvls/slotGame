@@ -13,10 +13,10 @@ export const update_money = async () => {
         for (const i of members) {
             var bet_amount = 0;
             var prized_amount = 0;
-            const x = i._id
+            const x = i.Name
             for (const j of wager.wagers) {
                 if (new Date(j.created_at) >= new Date(maintenance.DateStart) && new Date(j.created_at) <= new Date(maintenance.DateEnd)) {
-                    if (x.toString().slice(-4) === j.member_account.slice(0, 4)) {
+                    if (x === j.member_account.slice(0, -2)) {
                         bet_amount += j.bet_amount
                         prized_amount += j.prized_amount
                     }

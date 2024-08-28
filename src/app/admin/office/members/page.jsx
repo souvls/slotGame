@@ -57,7 +57,7 @@ const page = () => {
           <thead class="text-xs text-white uppercase bg-green-600">
             <tr>
               <th scope="col" class=" py-3">
-                id
+                Name
               </th>
               <th scope="col" class=" py-3">
                 Username
@@ -111,7 +111,7 @@ const page = () => {
                 return (
                   <tr key={index} class="bg-white border-b hover:bg-slate-200">
                     <td class="py-3 ">
-                      <p>{item._id}</p>
+                      <p>{item.Name}</p>
                     </td>
                     <td class="py-3 ">
                       <p>{item.Username}</p>

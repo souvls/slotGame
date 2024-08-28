@@ -22,7 +22,7 @@ export default async function handler(
             //console.log(req.body)
             //console.log(result)
             if (result) {
-                const token = await Token.genToken1(result._id, result.Username, result.Role)
+                const token = await Token.genToken1(result._id,result.Name, result.Username, result.Role)
                 res.status(200).json({ status: 'ok', message: 'login succes', token: token });
             } else {
                 res.status(200).json({ status: 'no', message: 'login false', token: '' });

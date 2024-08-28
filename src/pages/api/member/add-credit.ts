@@ -23,7 +23,6 @@ export default async function handler(
             try {
                 //create history
                 const { UserID, Amount } = req.body
-                console.log(req.body)
                 const newHistory = new User_history_credit({
                     UserID: UserID,
                     Amount: Amount,
@@ -53,7 +52,6 @@ export default async function handler(
                                     console.log(err)
                                     res.status(201).json({ status: 'no', message: err });
                                 })
-
                             } else {
                                 res.status(201).json({ status: 'no', message: 'ເຄດີດບໍ່ພໍ' });
                             }

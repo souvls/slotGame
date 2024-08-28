@@ -67,7 +67,7 @@ const page = () => {
                             showConfirmButton: false,
                         });
                     }
-                    setLoading(true);
+                    setLoading(false);
                 })
                 .catch((error) => console.error(error));
         }

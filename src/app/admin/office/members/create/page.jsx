@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 const page = () => {
     const inputRef = useRef(null);
     const router = useRouter();
+    const [name, setName] = useState("");
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [perCent, setPerCent] = useState(0);
@@ -19,7 +20,12 @@ const page = () => {
     }, []);
 
     const handdleSubmit = async () => {
-        if (!username) {
+        if (!name) {
+            Swal.fire({
+                title: "<p>ໃສ່ຊື່</p>",
+                icon: "error"
+            });
+        } else if (!username) {
             Swal.fire({
                 title: "<p>ໃສ່ຊື່ຢູເຊີ້</p>",
                 icon: "error"
@@ -43,6 +49,7 @@ const page = () => {
             setLoading(true);
             const token = localStorage.getItem('token');
             const data = JSON.stringify({
+                Name:name,
                 Username: username,
                 Password: password,
                 PartnersPercent: perCent
@@ -95,6 +102,16 @@ const page = () => {
             </div>
             <div className='w-full lg:m-4 '>
                 <div className=' grid grid-cols-1 gap-3'>
+                    <div>
+                        <p>name</p>
+                        <input
+                            type='text'
+                            placeholder='name'
+                            className=' p-2 rounded-lg'
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
                     <div>
                         <p>username</p>
                         <input

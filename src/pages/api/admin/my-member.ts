@@ -27,8 +27,9 @@ export default async function handler(
                     })
             } else if (req.method === 'POST') {
                 try {
-                    const { Username, Password, PartnersPercent } = req.body;
+                    const {Name, Username, Password, PartnersPercent } = req.body;
                     const NewMember = new Member({
+                        Name:Name,
                         Username: Username,
                         Password: Password,
                         PartnersPercent: PartnersPercent,

@@ -32,11 +32,9 @@ export const getAllWager = async () => {
         return false
     }
 }
-export const getWagerByMemberID = async (memberID: string) => {
-    const id = memberID.slice(-4);
+export const getWagerByMemberID = async (memberName: string) => {
     const allWager = await getAllWager();
-    console.log(id)
-    const wagerMember = await allWager.filter((i: any) => i.member_account.slice(0, 4) === id);
+    const wagerMember = await allWager.filter((i: any) => i.member_account.slice(0, -2) === "soulixai");
     return wagerMember
 }
 export const getGameList = async () => {

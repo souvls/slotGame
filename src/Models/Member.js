@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 const condb = require('../config/condb');
 
 let MemberSchema = mongoose.Schema({
+    Name: {
+        type: String,
+        unique: true,
+        required: true
+    },
     Username: {
         type: String,
         unique: true,
@@ -16,7 +21,7 @@ let MemberSchema = mongoose.Schema({
         required: true,
         default: 0,
     },
-    Total_prized_amount:{
+    Total_prized_amount: {
         type: Number,
         required: true,
         default: 0,
