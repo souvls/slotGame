@@ -9,7 +9,37 @@ export default async function handler(
     //console.log(req.body)
     if (req.method === 'POST') {
         try {
-            const { member_account, transactions, operator_code, request_time, sign } = req.body;
+            const { member_account, currency, transactions, operator_code, request_time, sign } = req.body;
+            if (transactions[0].action !== 'BET') {
+                res.status(200).json(
+                    {
+                        "code": 1004,
+                        "message": "Expected to Return Invalid Action",
+                        "before_balance": 0,
+                        "balance": 0
+                    }
+                );
+            }
+            if (currency !== "IDR" && currency !== "THB" && currency !== 'IDR2' && currency !== 'KRW2' && currency !== 'MMK2' && currency !== 'VND2' && currency !== 'LAK2' && currency !== 'KHR2') {
+                res.status(200).json(
+                    {
+                        "code": 1004,
+                        "message": "Expected to Return Invalid Currency",
+                        "before_balance": 0,
+                        "balance": 0
+                    }
+                );
+            }
+            if (!member_account) {
+                res.status(200).json(
+                    {
+                        "code": 1001,
+                        "message": "Member not Exist",
+                        "before_balance": 0,
+                        "balance": 0
+                    }
+                );
+            }
             const originalSign = md5(operator_code + request_time + "withdraw" + process.env.SECRET_KEY);
             if (sign === originalSign) {
                 var total_amount = 0
@@ -20,10 +50,6 @@ export default async function handler(
                 User.findOne({ Username: member_account })
                     .then((result: any) => {
                         //check amount
-                        console.log(result.Amount - total_amount)
-                        console.log(total_amount)
-                        console.log(result.Amount)
-
                         if (result.Amount + total_amount < 0) {
                             res.status(200).json(
                                 {
@@ -64,11 +90,10 @@ export default async function handler(
 
 
                     }).catch((err: any) => {
-                        //console.log(err);
                         res.status(200).json(
                             {
-                                "code": 1000,
-                                "message": err,
+                                "code": 1001,
+                                "message": "Member not Exist",
                                 "before_balance": 0,
                                 "balance": 0
                             }
