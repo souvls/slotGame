@@ -26,15 +26,15 @@ export default async function handler(
                         }
                     );
                 } else {
-                    res.status(400).json(
+                    res.status(200).json(
                         {
-                            "code": 999,
+                            "code": 1004,
                             "message": "Expected return Invalid Currency",
                         }
                     );
                 }
             } else {
-                res.status(400).json(
+                res.status(200).json(
                     {
                         "code": 999,
                         "message": "",
