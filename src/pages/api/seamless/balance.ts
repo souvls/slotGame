@@ -5,7 +5,7 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    console.log(req.body)
+    //console.log(req.body)
     if (req.method === 'POST') {
         try {
             const { member_account, currency, sign } = req.body
@@ -20,8 +20,8 @@ export default async function handler(
                         "code": 0,
                         "message": "",
                         "balance": amount,
-                        "Currency": currency,
-                        "Sign": sign
+                        "currency": currency,
+                        "sign": sign
                     }
                 );
             } else {
