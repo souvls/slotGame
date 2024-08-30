@@ -33,7 +33,7 @@ export default async function handler(
             if (!member_account) {
                 res.status(200).json(
                     {
-                        "code": 1001,
+                        "code": 1000,
                         "message": "Member not Exist",
                         "before_balance": 0,
                         "balance": 0
@@ -49,6 +49,16 @@ export default async function handler(
                 //console.log(total_amount)
                 User.findOne({ Username: member_account })
                     .then((result: any) => {
+                        if (!result) {
+                            res.status(200).json(
+                                {
+                                    "code": 1000,
+                                    "message": "Member not Exist",
+                                    "before_balance": 0,
+                                    "balance": 0
+                                }
+                            );
+                        }
                         //check amount
                         if (result.Amount + total_amount < 0) {
                             res.status(200).json(
@@ -76,7 +86,7 @@ export default async function handler(
                                     }
                                 );
                             }).catch((err: any) => {
-                                console.log(err);
+                                //console.log(err);
                                 res.status(200).json(
                                     {
                                         "code": 1000,
