@@ -5,17 +5,21 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    console.log(req.body)
+    //console.log(req.body)
     if (req.method === 'POST') {
         try {
-            const { member_account } = req.body
+            const { member_account,currency } = req.body
             const result = await User.findOne({ Username: member_account });
             if (result) {
+                var amount = result.Amount;
+                if(currency === 'IDR2' || currency === 'KRW2' || currency === 'MMK2'|| currency === 'VND2' || currency === 'LAK2' || currency === 'KHR2'){
+                    amount = amount/1000
+                }
                 res.status(200).json(
                     {
                         "code": 0,
                         "message": "",
-                        "balance": result.Amount
+                        "balance": amount
                     }
                 );
             } else {

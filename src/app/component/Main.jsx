@@ -19,7 +19,7 @@ const Main = () => {
         setLoading(true)
         fetchGameList();
         setLoading(false)
-    }, [])
+    }, []);
 
     const fetchGameList = async () => {
         const request_time = new Date().getTime();
@@ -32,6 +32,7 @@ const Main = () => {
             "&request_time=" + request_time)
             .then((response) => response.json())
             .then(result => {
+                console.log(result)
                 setGameList(result.provider_games)
             })
             .catch(err => {
