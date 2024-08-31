@@ -1,3 +1,4 @@
+import axios from 'axios';
 import md5 from 'md5';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -9,20 +10,24 @@ export default async function handler(
     //console.log(req.body)
     if (req.method === 'POST') {
         try {
-            const { member_account, transactions, request_time } = req.body;
-            if (!transactions) {
+            const { operator_code, member_account, transactions, request_time } = req.body;
+            const hash = md5(`${request_time}${process.env.SECRET_KEY}getwager${operator_code}`)
+            const wager = await axios(`${process.env.API_NAME}/api/operators/wagers/${transactions[0].id}?operator_code=${operator_code}&sign=${hash}&request_time=${request_time}`);
+
+            if (wager.data) {
                 res.status(200).json(
                     {
                         "code": 1006,
                         "message": "Bet Not Exist",
                     }
                 );
+                return;
             }
 
-            var total_amount = 0
-            for (const i of transactions) {
-                total_amount += Number(i.amount)
-            }
+            // var total_amount = 0
+            // for (const i of transactions) {
+            //     total_amount += Number(i.amount)
+            // }
             User.findOne({ Username: member_account })
                 .then((result: any) => {
                     if (!result) {
@@ -32,11 +37,12 @@ export default async function handler(
                                 "message": "Member Not Exist",
                             }
                         );
+                        return;
                     }
                     //console.log(amount)
                     User.findOneAndUpdate(
                         { _id: result._id },
-                        { $inc: { Amount: total_amount } },
+                        { $inc: { Amount: transactions[0].amount } },
                         { new: true }
                     ).then((newBalance: any) => {
                         res.status(200).json(
@@ -47,6 +53,7 @@ export default async function handler(
                                 "balance": newBalance.Amount
                             }
                         );
+                        return;
                     }).catch((err: any) => {
                         console.log(err);
                         res.status(200).json(
@@ -57,6 +64,8 @@ export default async function handler(
                                 "balance": 0
                             }
                         );
+                        return;
+
                     });
                 }).catch((err: any) => {
                     console.log(err);
@@ -66,6 +75,7 @@ export default async function handler(
                             "message": "Member Not Exist",
                         }
                     );
+                    return;
                 })
         } catch (err) {
             console.log(err);
@@ -75,6 +85,7 @@ export default async function handler(
                     "message": "",
                 }
             );
+            return;
         }
     } else {
         res.setHeader('Allow', ['POST']);

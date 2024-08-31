@@ -10,6 +10,7 @@ export default async function handler(
     if (req.method === 'POST') {
         try {
             const { member_account, currency, transactions, operator_code, request_time, sign } = req.body;
+            const originalSign = md5(operator_code + request_time + "withdraw" + process.env.SECRET_KEY);
             if (transactions[0].action !== 'BET') {
                 res.status(200).json(
                     {
@@ -19,6 +20,7 @@ export default async function handler(
                         "balance": 0
                     }
                 );
+                return;
             }
             if (currency !== "IDR" && currency !== "THB" && currency !== 'IDR2' && currency !== 'KRW2' && currency !== 'MMK2' && currency !== 'VND2' && currency !== 'LAK2' && currency !== 'KHR2') {
                 res.status(200).json(
@@ -29,6 +31,7 @@ export default async function handler(
                         "balance": 0
                     }
                 );
+                return
             }
             if (!member_account) {
                 res.status(200).json(
@@ -39,73 +42,72 @@ export default async function handler(
                         "balance": 0
                     }
                 );
+                return
             }
-            const originalSign = md5(operator_code + request_time + "withdraw" + process.env.SECRET_KEY);
-            if (sign === originalSign) {
-                var total_amount = 0
-                for (const i of transactions) {
-                    total_amount += Number(i.amount)
-                }
-
-                User.findOne({ Username: member_account })
-                    .then((result: any) => {
-                        if (!result) {
-                            res.status(200).json(
-                                {
-                                    "code": 1000,
-                                    "message": "Member not Exist",
-                                }
-                            );
-                        }
-                        if (result.Amount + total_amount < 0) {
-                            res.status(200).json(
-                                {
-                                    "code": 1001,
-                                    "message": "Insufficient Balance",
-                                }
-                            );
-                        }
-                        //console.log(amount)
-                        User.findOneAndUpdate(
-                            { _id: result._id },
-                            { $inc: { Amount: total_amount } },
-                            { new: true }
-                        ).then((newBalance: any) => {
-                            res.status(200).json(
-                                {
-                                    "code": 0,
-                                    "message": "",
-                                    "before_balance": result.Amount,
-                                    "balance": newBalance.Amount
-                                }
-                            );
-                        }).catch((err: any) => {
-                            //console.log(err);
-                            res.status(200).json(
-                                {
-                                    "code": 1000,
-                                    "message": err,
-                                }
-                            );
-                        });
-                    }).catch((err: any) => {
-                        res.status(200).json(
-                            {
-                                "code": 1000,
-                                "message": err,
-                            }
-                        );
-                    })
-            } else {
+            if (sign !== originalSign) {
                 res.status(200).json(
                     {
                         "code": 1004,
                         "message": "Invalid Sign",
                     }
                 );
+                return
             }
+            //var total_amount = 0
+            // for (const i of transactions) {
+            //     total_amount += Number(i.amount)
+            // }
 
-
+            User.findOne({ Username: member_account })
+                .then((result: any) => {
+                    if (!result) {
+                        res.status(200).json(
+                            {
+                                "code": 1000,
+                                "message": "Member not Exist",
+                            }
+                        );
+                        return;
+                    }
+                    if (result.Amount + transactions[0].amount < 0) {
+                        res.status(200).json(
+                            {
+                                "code": 1001,
+                                "message": "Insufficient Balance",
+                            }
+                        );
+                        return;
+                    }
+                    User.findOneAndUpdate(
+                        { _id: result._id },
+                        { $inc: { Amount: transactions[0].amount } },
+                        { new: true }
+                    ).then((newBalance: any) => {
+                        res.status(200).json(
+                            {
+                                "code": 0,
+                                "message": "",
+                                "before_balance": result.Amount,
+                                "balance": newBalance.Amount
+                            }
+                        );
+                    }).catch((err: any) => {
+                        //console.log(err);
+                        res.status(200).json(
+                            {
+                                "code": 1000,
+                                "message": err,
+                            }
+                        );
+                    });
+                }).catch((err: any) => {
+                    res.status(200).json(
+                        {
+                            "code": 1000,
+                            "message": err,
+                        }
+                    );
+                })
         } catch (err) {
             console.log(err);
             res.status(200).json(
