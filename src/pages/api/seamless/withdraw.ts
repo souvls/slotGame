@@ -2,6 +2,7 @@ import md5 from 'md5';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const User = require("../../../Models/User");
+const Transaction = require("../../../Models/Transaction");
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -11,6 +12,18 @@ export default async function handler(
         try {
             const { member_account, currency, transactions, operator_code, request_time, sign } = req.body;
             const originalSign = md5(operator_code + request_time + "withdraw" + process.env.SECRET_KEY);
+
+            //check transaction
+            const duplicate = await Transaction.findOne({ id: transactions[0].id })
+            if (duplicate) {
+                res.status(200).json(
+                    {
+                        "code": 1003,
+                        "message": " Duplicate Transaction",
+                    }
+                );
+                return;
+            }
             if (transactions[0].action !== 'BET') {
                 res.status(200).json(
                     {
@@ -80,11 +93,26 @@ export default async function handler(
                         );
                         return;
                     }
+                    const newTransaction = new Transaction({
+                        "id": transactions[0].id,
+                        "amount": transactions[0].amount,
+                        "bet_amount": transactions[0].bet_amount,
+                        "valid_bet_amount": transactions[0].valid_bet_amount,
+                        "prize_amount": transactions[0].prize_amount,
+                        "tip_amount": transactions[0].tip_amount,
+                        "action": transactions[0].action,
+                        "wager_code": transactions[0].wager_code,
+                        "wager_status": transactions[0].wager_status,
+                        "payload": transactions[0].payload,
+                        "settled_at": transactions[0].settled_at,
+                        "game_code": transactions[0].game_code
+                    })
                     User.findOneAndUpdate(
                         { _id: result._id },
                         { $inc: { Amount: total_amount } },
                         { new: true }
-                    ).then((newBalance: any) => {
+                    ).then(async (newBalance: any) => {
+                        await newTransaction.save();
                         res.status(200).json(
                             {
                                 "code": 0,
