@@ -67,10 +67,10 @@ export default async function handler(
                 return
             }
 
-            var total_amount = 0
-            for (const i of transactions) {
-                total_amount += Number(i.amount);
-            }
+            // var total_amount = 0
+            // for (const i of transactions) {
+            //     total_amount += Number(i.amount);
+            // }
 
             User.findOne({ Username: member_account })
                 .then((result: any) => {
@@ -84,7 +84,7 @@ export default async function handler(
                         return;
                     }
 
-                    if (result.Amount + total_amount < 0) {
+                    if (result.Amount + parseInt(transactions[0].amount) < 0) {
                         res.status(200).json(
                             {
                                 "code": 1001,
@@ -93,7 +93,7 @@ export default async function handler(
                         );
                         return;
                     }
-                    const newTransaction = new Transaction({
+                    new Transaction({
                         "id": transactions[0].id,
                         "amount": transactions[0].amount,
                         "bet_amount": transactions[0].bet_amount,
@@ -106,13 +106,12 @@ export default async function handler(
                         "payload": transactions[0].payload,
                         "settled_at": transactions[0].settled_at,
                         "game_code": transactions[0].game_code
-                    })
+                    }).save();
                     User.findOneAndUpdate(
                         { _id: result._id },
-                        { $inc: { Amount: total_amount } },
+                        { $inc: { Amount: parseInt(transactions[0].amount) } },
                         { new: true }
-                    ).then(async (newBalance: any) => {
-                        await newTransaction.save();
+                    ).then((newBalance: any) => {
                         res.status(200).json(
                             {
                                 "code": 0,
