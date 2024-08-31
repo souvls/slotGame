@@ -1,8 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const User = require("../../../Models/User");
-// const Wager = require("../../../Models/Wagger");
-const Transaction = require("../../../Models/Transaction");
+const Wager = require("../../../Models/Wagger");
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -10,10 +9,11 @@ export default async function handler(
     //console.log(req.body)
     if (req.method === 'POST') {
         var total_amount = 0
-        const transactionID = []
         try {
             const { member_account, operator_code, product_code, game_type, request_time, sign, currency, transactions } = req.body;
-
+            for (const i of transactions) {
+                total_amount += Number(i.amount)
+            }
             const user = await User.findOne({ Username: member_account });
             if (!user) {
                 res.status(200).json(
@@ -24,24 +24,6 @@ export default async function handler(
                 );
                 return;
             }
-
-            for (const i of transactions) {
-                transactionID.push(i.id)
-                total_amount += parseInt(i.amount)
-            }
-            //check duplicate
-            const duplicate = await Transaction.find({ id: { $in: transactionID } })
-            if (duplicate.length !== 0) {
-                res.status(200).json(
-                    {
-                        "code": 1003,
-                        "message": " Duplicate Transaction",
-                    }
-                );
-                return;
-            }
-
-            Transaction.insertMany(transactions);
             const update_balance_user = await User.findOneAndUpdate(
                 { _id: user._id },
                 { $inc: { Amount: total_amount } },
@@ -54,7 +36,9 @@ export default async function handler(
                     "balance": update_balance_user.Amount
                 }
             );
+            
         } catch (err) {
+            console.log(err);
             res.status(200).json(
                 {
                     "code": 999,
