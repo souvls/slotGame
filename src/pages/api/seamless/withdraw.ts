@@ -69,7 +69,8 @@ export default async function handler(
                         );
                         return;
                     }
-                    if (result.Amount + transactions[0].amount < 0) {
+                    console.log(parseInt(result.Amount) + parseInt(transactions[0].amount))
+                    if (parseInt(result.Amount) + parseInt(transactions[0].amount) < 0) {
                         res.status(200).json(
                             {
                                 "code": 1001,
