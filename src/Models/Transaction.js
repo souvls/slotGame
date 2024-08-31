@@ -4,8 +4,6 @@ const condb = require('../config/condb')
 let TransactionSchema = mongoose.Schema({
     "id": {
         type: String,
-        required: true,
-        unique: true,
     },
     "amount": {
         type: Number,
@@ -34,21 +32,17 @@ let TransactionSchema = mongoose.Schema({
     },
     "action": {
         type: String,
-        required: true,
     },
     "wager_code": {
         type: String,
         required: true,
-        unique: true,
     },
     "wager_status": {
         type: String,
         required: true,
-        unique: true,
     },
     "payload": {
         type: Array,
-        required: true
     },
     "settled_at": {
         type: Number,
@@ -57,7 +51,6 @@ let TransactionSchema = mongoose.Schema({
     },
     "game_code": {
         type: String,
-        required: true,
     }
 }, { timestamps: true });
 
