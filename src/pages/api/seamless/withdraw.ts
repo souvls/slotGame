@@ -54,79 +54,62 @@ export default async function handler(
                 return
             }
 
-            const idSet = new Set();
-            let hashduplicate = false;
             var total_amount = 0
-
             for (const i of transactions) {
                 total_amount += Number(i.amount);
-                if (idSet.has(i.id)) {
-                    hashduplicate = true
-                    break;
-                }
-                idSet.add(i.id);
             }
-            if (hashduplicate) {
-                res.status(200).json(
-                    {
-                        "code": 1003,
-                        "message": "Duplicate Transaction",
-                    }
-                );
-                return;
-            } else {
-                User.findOne({ Username: member_account })
-                    .then((result: any) => {
-                        if (!result) {
-                            res.status(200).json(
-                                {
-                                    "code": 1000,
-                                    "message": "Member not Exist",
-                                }
-                            );
-                            return;
-                        }
 
-                        if (result.Amount + total_amount < 0) {
-                            res.status(200).json(
-                                {
-                                    "code": 1001,
-                                    "message": "Insufficient Balance",
-                                }
-                            );
-                            return;
-                        }
-                        User.findOneAndUpdate(
-                            { _id: result._id },
-                            { $inc: { Amount: total_amount } },
-                            { new: true }
-                        ).then((newBalance: any) => {
-                            res.status(200).json(
-                                {
-                                    "code": 0,
-                                    "message": "",
-                                    "before_balance": result.Amount,
-                                    "balance": newBalance.Amount
-                                }
-                            );
-                        }).catch((err: any) => {
-                            //console.log(err);
-                            res.status(200).json(
-                                {
-                                    "code": 1000,
-                                    "message": err,
-                                }
-                            );
-                        });
+            User.findOne({ Username: member_account })
+                .then((result: any) => {
+                    if (!result) {
+                        res.status(200).json(
+                            {
+                                "code": 1000,
+                                "message": "Member not Exist",
+                            }
+                        );
+                        return;
+                    }
+
+                    if (result.Amount + total_amount < 0) {
+                        res.status(200).json(
+                            {
+                                "code": 1001,
+                                "message": "Insufficient Balance",
+                            }
+                        );
+                        return;
+                    }
+                    User.findOneAndUpdate(
+                        { _id: result._id },
+                        { $inc: { Amount: total_amount } },
+                        { new: true }
+                    ).then((newBalance: any) => {
+                        res.status(200).json(
+                            {
+                                "code": 0,
+                                "message": "",
+                                "before_balance": result.Amount,
+                                "balance": newBalance.Amount
+                            }
+                        );
                     }).catch((err: any) => {
+                        //console.log(err);
                         res.status(200).json(
                             {
                                 "code": 1000,
                                 "message": err,
                             }
                         );
-                    })
-            }
+                    });
+                }).catch((err: any) => {
+                    res.status(200).json(
+                        {
+                            "code": 1000,
+                            "message": err,
+                        }
+                    );
+                })
 
         } catch (err) {
             console.log(err);
