@@ -53,11 +53,23 @@ export default async function handler(
                 );
                 return
             }
-            //var total_amount = 0
-            // for (const i of transactions) {
-            //     total_amount += Number(i.amount)
-            // }
 
+            const idSet = new Set();
+            var total_amount = 0
+
+            for (const i of transactions) {
+                if (idSet.has(i.id)) {
+                    total_amount += Number(i.amount);
+                    res.status(200).json(
+                        {
+                            "code": 1003,
+                            "message": "Duplicate Transaction",
+                        }
+                    );
+                    return;
+                }
+                idSet.add(i.id);
+            }
             User.findOne({ Username: member_account })
                 .then((result: any) => {
                     if (!result) {
@@ -69,8 +81,8 @@ export default async function handler(
                         );
                         return;
                     }
-                    console.log(parseInt(result.Amount) + parseInt(transactions[0].amount))
-                    if (parseInt(result.Amount) + parseInt(transactions[0].amount) < 0) {
+
+                    if (result.Amount + total_amount < 0) {
                         res.status(200).json(
                             {
                                 "code": 1001,
