@@ -29,9 +29,10 @@ export default async function handler(
                 transactionID.push(i.id)
                 total_amount += parseInt(i.amount)
             }
+
             //check duplicate
             const duplicate = await Transaction.find({ id: { $in: transactionID } })
-            if (duplicate.length !== 0) {
+            if (duplicate.length !== 0 || hasDuplicates(transactionID)) {
                 res.status(200).json(
                     {
                         "code": 1003,
@@ -68,4 +69,8 @@ export default async function handler(
         res.setHeader('Allow', ['POST']);
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
+}
+function hasDuplicates(array: any) {
+    const uniqueElements = new Set(array);
+    return uniqueElements.size !== array.length;
 }
