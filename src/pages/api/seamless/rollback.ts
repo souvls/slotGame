@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const User = require("../../../Models/User");
+const Transaction = require("../../../Models/Transaction");
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -9,9 +10,17 @@ export default async function handler(
     if (req.method === 'POST') {
         try {
             const { member_account, transactions } = req.body;
-            var total_amount = 0
-            for (const i of transactions) {
-                total_amount += Number(i.amount)
+
+            const duplicate = await Transaction.findOne({ id: transactions[0].id })
+
+            if (duplicate) {
+                res.status(200).json(
+                    {
+                        "code": 1003,
+                        "message": " Duplicate Transaction",
+                    }
+                );
+                return;
             }
             User.findOne({ Username: member_account })
                 .then((result: any) => {
@@ -25,9 +34,23 @@ export default async function handler(
                         );
                         return;
                     }
+                    new Transaction({
+                        "id": transactions[0].id,
+                        "amount": transactions[0].amount,
+                        "bet_amount": transactions[0].bet_amount,
+                        "valid_bet_amount": transactions[0].valid_bet_amount,
+                        "prize_amount": transactions[0].prize_amount,
+                        "tip_amount": transactions[0].tip_amount,
+                        "action": transactions[0].action,
+                        "wager_code": transactions[0].wager_code,
+                        "wager_status": transactions[0].wager_status,
+                        "payload": transactions[0].payload,
+                        "settled_at": transactions[0].settled_at,
+                        "game_code": transactions[0].game_code
+                    }).save();
                     User.findOneAndUpdate(
                         { _id: result._id },
-                        { $inc: { Amount: total_amount } },
+                        { $inc: { Amount: parseInt(transactions[0].amount) } },
                         { new: true }
                     ).then((newBalance: any) => {
                         res.status(200).json(
@@ -39,7 +62,6 @@ export default async function handler(
                             }
                         );
                     }).catch((err: any) => {
-                        console.log(err);
                         res.status(200).json(
                             {
                                 "code": 1000,
