@@ -5,9 +5,9 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    console.log(req.body)
+    //console.log(req.body)
     if (req.method === 'POST') {
-        
+
 
         try {
             const { member_account, transactions } = req.body;
@@ -18,9 +18,18 @@ export default async function handler(
             User.findOne({ Username: member_account })
                 .then((result: any) => {
                     //console.log(amount)
+                    if (!result) {
+                        res.status(200).json(
+                            {
+                                "code": 1000,
+                                "message": "Member Not Exists",
+                            }
+                        );
+                        return;
+                    }
                     User.findOneAndUpdate(
                         { _id: result._id },
-                        { $inc: { Amount:  total_amount} },
+                        { $inc: { Amount: total_amount } },
                         { new: true }
                     ).then((newBalance: any) => {
                         res.status(200).json(

@@ -7,7 +7,7 @@ export default async function handler(
 ) {
     //console.log(req.body)
     if (req.method === 'POST') {
-        console.log(req.body)
+        //console.log(req.body)
         try {
             res.status(200).json(
                 {
@@ -17,7 +17,7 @@ export default async function handler(
             );
 
         } catch (err) {
-            console.log(err);
+            //console.log(err);
             res.status(200).json(
                 {
                     "code": 999,

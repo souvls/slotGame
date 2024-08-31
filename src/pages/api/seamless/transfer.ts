@@ -15,6 +15,15 @@ export default async function handler(
                 total_amount += Number(i.amount)
             }
             const user = await User.findOne({ Username: member_account });
+            if (!user) {
+                res.status(200).json(
+                    {
+                        "code": 1000,
+                        "message": "Member Not Exists",
+                    }
+                );
+                return;
+            }
             const update_balance_user = await User.findOneAndUpdate(
                 { _id: user._id },
                 { $inc: { Amount: total_amount } },

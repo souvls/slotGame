@@ -15,10 +15,19 @@ export default async function handler(
             }
             User.findOne({ Username: member_account })
                 .then((result: any) => {
+                    if (!result) {
+                        res.status(200).json(
+                            {
+                                "code": 1000,
+                                "message": "Member Not Exists",
+                            }
+                        );
+                        return;
+                    }
                     //console.log(amount)
                     User.findOneAndUpdate(
                         { _id: result._id },
-                        { $inc: { Amount:  total_amount} },
+                        { $inc: { Amount: total_amount } },
                         { new: true }
                     ).then((newBalance: any) => {
                         res.status(200).json(
@@ -35,8 +44,6 @@ export default async function handler(
                             {
                                 "code": 1000,
                                 "message": err,
-                                "before_balance": 0,
-                                "balance": 0
                             }
                         );
                     });
@@ -46,8 +53,6 @@ export default async function handler(
                         {
                             "code": 1000,
                             "message": err,
-                            "before_balance": 0,
-                            "balance": 0
                         }
                     );
                 })
@@ -58,8 +63,6 @@ export default async function handler(
                 {
                     "code": 999,
                     "message": "",
-                    "before_balance": 0,
-                    "balance": 0
                 }
             );
         }
