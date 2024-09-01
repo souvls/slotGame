@@ -1,37 +1,21 @@
-import axios from 'axios';
 import md5 from 'md5';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const User = require("../../../Models/User");
-const Transaction = require("../../../Models/Transaction")
+const Transaction = require("../../../Models/Transaction");
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
+    //console.log(req.body)
     if (req.method === 'POST') {
-        var total_amount = 0
-        const transactionID = []
         try {
-            const { operator_code, member_account, transactions, request_time } = req.body;
+            const { member_account, currency, transactions, operator_code, request_time, sign } = req.body;
+            const originalSign = md5(operator_code + request_time + "deposit" + process.env.SECRET_KEY);
 
-            const user = User.findOne({ Username: member_account });
-            if (!user) {
-                res.status(200).json(
-                    {
-                        "code": 1000,
-                        "message": "Member Not Exist",
-                    }
-                );
-                return;
-            }
-            for (const i of transactions) {
-                transactionID.push(i.id)
-                total_amount += Number(i.amount);
-            }
-
-            //check duplicate
-            const duplicate = await Transaction.find({ id: { $in: transactionID } })
-            if (duplicate.length !== 0) {
+            //check transaction
+            const duplicate = await Transaction.findOne({ id: transactions[0].id })
+            if (duplicate) {
                 res.status(200).json(
                     {
                         "code": 1003,
@@ -40,36 +24,118 @@ export default async function handler(
                 );
                 return;
             }
-            Transaction.insertMany(transactions)
-            const newBalance = await User.findOneAndUpdate(
-                { _id: user._id },
-                { $inc: { Amount: total_amount } },
-                { new: true }
-            );
-            res.status(200).json(
-                {
-                    "code": 0,
-                    "message": "",
-                    "before_balance": user.Amount,
-                    "balance": newBalance.Amount
-                }
-            );
+            if (transactions[0].action !== 'SETTLED') {
+                res.status(200).json(
+                    {
+                        "code": 1004,
+                        "message": "Expected to Return Invalid Action",
+                        "before_balance": 0,
+                        "balance": 0
+                    }
+                );
+                return;
+            }
+            if (currency !== "IDR" && currency !== "THB" && currency !== 'IDR2' && currency !== 'KRW2' && currency !== 'MMK2' && currency !== 'VND2' && currency !== 'LAK2' && currency !== 'KHR2') {
+                res.status(200).json(
+                    {
+                        "code": 1004,
+                        "message": "Expected to Return Invalid Currency",
+                        "before_balance": 0,
+                        "balance": 0
+                    }
+                );
+                return
+            }
+            if (!member_account) {
+                res.status(200).json(
+                    {
+                        "code": 1000,
+                        "message": "Member not Exist",
+                        "before_balance": 0,
+                        "balance": 0
+                    }
+                );
+                return
+            }
+            if (sign !== originalSign) {
+                res.status(200).json(
+                    {
+                        "code": 1004,
+                        "message": "Invalid Sign",
+                    }
+                );
+                return
+            }
+
+            User.findOne({ Username: member_account })
+                .then((result: any) => {
+                    if (!result) {
+                        res.status(200).json(
+                            {
+                                "code": 1000,
+                                "message": "Member not Exist",
+                            }
+                        );
+                        return;
+                    }
+                    new Transaction({
+                        "id": transactions[0].id,
+                        "amount": transactions[0].amount,
+                        "bet_amount": transactions[0].bet_amount,
+                        "valid_bet_amount": transactions[0].valid_bet_amount,
+                        "prize_amount": transactions[0].prize_amount,
+                        "tip_amount": transactions[0].tip_amount,
+                        "action": transactions[0].action,
+                        "wager_code": transactions[0].wager_code,
+                        "wager_status": transactions[0].wager_status,
+                        "payload": transactions[0].payload,
+                        "settled_at": transactions[0].settled_at,
+                        "game_code": transactions[0].game_code
+                    }).save();
+                    User.findOneAndUpdate(
+                        { _id: result._id },
+                        { $inc: { Amount: parseInt(transactions[0].amount) } },
+                        { new: true }
+                    ).then((newBalance: any) => {
+                        res.status(200).json(
+                            {
+                                "code": 0,
+                                "message": "",
+                                "before_balance": result.Amount,
+                                "balance": newBalance.Amount
+                            }
+                        );
+                    }).catch((err: any) => {
+                        //console.log(err);
+                        res.status(200).json(
+                            {
+                                "code": 1000,
+                                "message": err,
+                            }
+                        );
+                    });
+                }).catch((err: any) => {
+                    res.status(200).json(
+                        {
+                            "code": 1000,
+                            "message": err,
+                        }
+                    );
+                })
+
         } catch (err) {
             console.log(err);
             res.status(200).json(
                 {
                     "code": 999,
                     "message": "",
+                    "before_balance": 0,
+                    "balance": 0
                 }
             );
-            return;
         }
     } else {
         res.setHeader('Allow', ['POST']);
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
-}
-function hasDuplicates(array: any) {
-    const uniqueElements = new Set(array);
-    return uniqueElements.size !== array.length;
 }
