@@ -1,18 +1,34 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const User = require("../../../Models/User");
+const Transaction = require("../../../Models/Transaction");
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    console.log(req.body)
+    //console.log(req.body)
     if (req.method === 'POST') {
+        var total_amount = 0;
+        const transactionID = [];
         try {
             const { member_account, transactions } = req.body;
-            var total_amount = 0
+
+
             for (const i of transactions) {
+                transactionID.push(i.id)
                 total_amount += Number(i.amount)
             }
+            const duplicate = await Transaction.find({ id: { $in: transactionID } })
+            if (duplicate.length !== 0 || hasDuplicates(transactionID)) {
+                res.status(200).json(
+                    {
+                        "code": 1003,
+                        "message": " Duplicate Transaction",
+                    }
+                );
+                return;
+            }
+            Transaction.insertMany(transactions);
             User.findOne({ Username: member_account })
                 .then((result: any) => {
                     if (!result) {
@@ -70,4 +86,8 @@ export default async function handler(
         res.setHeader('Allow', ['POST']);
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
+}
+function hasDuplicates(array: any) {
+    const uniqueElements = new Set(array);
+    return uniqueElements.size !== array.length;
 }
