@@ -51,44 +51,6 @@ export default async function handler(
                         }
                     );
                 }
-
-                // const duplicate = await Transaction.findOne({ id: transactions[0].id })
-                // if (!duplicate) {
-                //     //check wagger
-                //     const wager = await Transaction.findOne({ wager_code: transactions[0].wager_code })
-                //     if (wager) {
-                //         const updateuser = await User.findOneAndUpdate(
-                //             { _id: user._id },
-                //             { $inc: { Amount: transactions[0].amount } },
-                //             { new: true }
-                //         );
-                //         if (updateuser) {
-                //             res.status(200).json(
-                //                 {
-                //                     "code": 0,
-                //                     "message": "",
-                //                     "before_balance": user.Amount,
-                //                     "balance": updateuser.Amount
-                //                 }
-                //             );
-                //         }
-                //     } else {
-                //         res.status(200).json(
-                //             {
-                //                 "code": 1006,
-                //                 "message": " Bet Not Exist",
-                //             }
-                //         );
-                //         return;
-                //     }
-                // } else {
-                //     res.status(200).json(
-                //         {
-                //             "code": 1003,
-                //             "message": " Duplicate Transaction",
-                //         }
-                //     );
-                // }
             } else {
                 res.status(200).json(
                     {
@@ -110,8 +72,4 @@ export default async function handler(
         res.setHeader('Allow', ['POST']);
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
-}
-function hasDuplicates(array: any) {
-    const uniqueElements = new Set(array);
-    return uniqueElements.size !== array.length;
 }

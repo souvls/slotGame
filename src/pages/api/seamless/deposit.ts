@@ -1,4 +1,3 @@
-import md5 from 'md5';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const User = require("../../../Models/User");
@@ -10,8 +9,10 @@ export default async function handler(
     //console.log(req.body)
     if (req.method === 'POST') {
         try {
-            const { member_account, currency, transactions, operator_code, request_time, sign } = req.body;
-            const user = await User.findOne({ Username: member_account })
+            const { member_account, transactions } = req.body;
+
+            //check user
+            const user = await User.findOne({ Username: member_account });
             if (user) {
                 const transaction = await Transaction.find();
                 //check duplicate
@@ -21,9 +22,9 @@ export default async function handler(
                     if (wager) {
                         const updateuser = await User.findOneAndUpdate(
                             { _id: user._id },
-                            { $inc: { Amount: parseInt(transactions[0].amount) } },
+                            { $inc: { Amount: transactions[0].amount } },
                             { new: true }
-                        )
+                        );
                         res.status(200).json(
                             {
                                 "code": 0,
@@ -54,18 +55,16 @@ export default async function handler(
                 res.status(200).json(
                     {
                         "code": 1000,
-                        "message": "Member not Exist",
+                        "message": "Member Not Exists",
                     }
                 );
             }
         } catch (err) {
-            console.log(err);
+
             res.status(200).json(
                 {
                     "code": 999,
                     "message": "",
-                    "before_balance": 0,
-                    "balance": 0
                 }
             );
         }
