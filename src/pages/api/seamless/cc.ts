@@ -8,11 +8,20 @@ export default async function handler(
 ) {
     //console.log(req.body)
     if (req.method === 'POST') {
+        var total_amount = 0;
+        const transactionID = [];
+        const wager_code = [];
         try {
             const { member_account, transactions } = req.body;
 
-            const duplicate = await Transaction.findOne({ id: transactions[0].id })
-            if (duplicate) {
+
+            for (const i of transactions) {
+                transactionID.push(i.id);
+                wager_code.push(i.wager_code)
+                total_amount += Number(i.amount);
+            }
+            const duplicate = await Transaction.find({ id: { $in: transactionID } })
+            if (duplicate.length !== 0 || hasDuplicates(transactionID)) {
                 res.status(200).json(
                     {
                         "code": 1003,
@@ -21,8 +30,8 @@ export default async function handler(
                 );
                 return;
             }
-            const wager = await Transaction.findOne({ wager_code: transactions[0].wager_code })
-            if (!wager) {
+            const wager = await Transaction.find({ wager_code: { $in: wager_code } })
+            if (wager.length === 0) {
                 res.status(200).json(
                     {
                         "code": 1006,
@@ -31,7 +40,7 @@ export default async function handler(
                 );
                 return;
             }
-            new Transaction(transactions[0]).save();
+            Transaction.insertMany(transactions);
             User.findOne({ Username: member_account })
                 .then((result: any) => {
                     if (!result) {
@@ -46,7 +55,7 @@ export default async function handler(
                     //console.log(amount)
                     User.findOneAndUpdate(
                         { _id: result._id },
-                        { $inc: { Amount: transactions[0].amount } },
+                        { $inc: { Amount: total_amount } },
                         { new: true }
                     ).then((newBalance: any) => {
                         res.status(200).json(
