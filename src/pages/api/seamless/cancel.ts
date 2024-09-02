@@ -10,13 +10,15 @@ export default async function handler(
     if (req.method === 'POST') {
         var total_amount = 0;
         const transactionID = [];
+        const wager_code = [];
         try {
             const { member_account, transactions } = req.body;
 
 
             for (const i of transactions) {
-                transactionID.push(i.id)
-                total_amount += Number(i.amount)
+                transactionID.push(i.id);
+                wager_code.push(i.wager_code)
+                total_amount += Number(i.amount);
             }
             const duplicate = await Transaction.find({ id: { $in: transactionID } })
             if (duplicate.length !== 0 || hasDuplicates(transactionID)) {
@@ -24,6 +26,16 @@ export default async function handler(
                     {
                         "code": 1003,
                         "message": " Duplicate Transaction",
+                    }
+                );
+                return;
+            }
+            const wager = await Transaction.find({ wager_code: { $in: wager_code } })
+            if (wager.length === 0) {
+                res.status(200).json(
+                    {
+                        "code": 1006,
+                        "message": " Bet Not Exist",
                     }
                 );
                 return;
