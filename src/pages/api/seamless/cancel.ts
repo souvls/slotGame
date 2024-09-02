@@ -11,73 +11,57 @@ export default async function handler(
         try {
             const { member_account, transactions } = req.body;
 
-            const duplicate = await Transaction.findOne({ id: transactions[0].id })
-            if (duplicate) {
-                res.status(200).json(
-                    {
-                        "code": 1003,
-                        "message": " Duplicate Transaction",
-                    }
-                );
-                return;
-            }
-            const wager = await Transaction.findOne({ wager_code: transactions[0].wager_code })
-            if (!wager) {
-                res.status(200).json(
-                    {
-                        "code": 1006,
-                        "message": " Bet Not Exist",
-                    }
-                );
-                return;
-            }
-            new Transaction(transactions[0]).save();
-            User.findOne({ Username: member_account })
-                .then((result: any) => {
-                    if (!result) {
+            //check user
+            const user = await User.findOne({ Username: member_account });
+            if (user) {
+                //check duplicate
+                const duplicate = await Transaction.findOne({ id: transactions[0].id })
+                if (!duplicate) {
+                    //check wagger
+                    const wager = await Transaction.findOne({ wager_code: transactions[0].wager_code })
+                    if (wager) {
+                        const updateuser = await User.findOneAndUpdate(
+                            { _id: user._id },
+                            { $inc: { Amount: transactions[0].amount } },
+                            { new: true }
+                        );
+                        if (updateuser) {
+                            res.status(200).json(
+                                {
+                                    "code": 0,
+                                    "message": "",
+                                    "before_balance": user.Amount,
+                                    "balance": updateuser.Amount
+                                }
+                            );
+                        }
+                    } else {
                         res.status(200).json(
                             {
-                                "code": 1000,
-                                "message": "Member Not Exists",
+                                "code": 1006,
+                                "message": " Bet Not Exist",
                             }
                         );
                         return;
                     }
-                    //console.log(amount)
-                    User.findOneAndUpdate(
-                        { _id: result._id },
-                        { $inc: { Amount: transactions[0].amount } },
-                        { new: true }
-                    ).then((newBalance: any) => {
-                        res.status(200).json(
-                            {
-                                "code": 0,
-                                "message": "",
-                                "before_balance": result.Amount,
-                                "balance": newBalance.Amount
-                            }
-                        );
-                    }).catch((err: any) => {
-                        console.log(err);
-                        res.status(200).json(
-                            {
-                                "code": 1000,
-                                "message": err,
-                            }
-                        );
-                    });
-                }).catch((err: any) => {
-                    console.log(err);
+                } else {
                     res.status(200).json(
                         {
-                            "code": 1000,
-                            "message": err,
+                            "code": 1003,
+                            "message": " Duplicate Transaction",
                         }
                     );
-                })
-
+                }
+            } else {
+                res.status(200).json(
+                    {
+                        "code": 1000,
+                        "message": "Member Not Exists",
+                    }
+                );
+            }
         } catch (err) {
-            console.log(err);
+
             res.status(200).json(
                 {
                     "code": 999,
