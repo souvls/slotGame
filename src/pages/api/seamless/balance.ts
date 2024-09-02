@@ -9,39 +9,30 @@ export default async function handler(
     if (req.method === 'POST') {
         try {
             const { member_account, operator_code, request_time, currency, sign } = req.body
-            if (sign) {
+            //currency
+            if (currency === "IDR" || currency === "THB" || currency === 'IDR2' || currency === 'KRW2' || currency === 'MMK2' || currency === 'VND2' || currency === 'LAK2' || currency === 'KHR2') {
+                //sign
                 const originalSign = md5(operator_code + request_time + "getbalance" + process.env.SECRET_KEY);
                 if (sign === originalSign) {
-                    const result = await User.findOne({ Username: member_account });
-                    if (result) {
-                        if (currency === "IDR" || currency === "THB" || currency === 'IDR2' || currency === 'KRW2' || currency === 'MMK2' || currency === 'VND2' || currency === 'LAK2' || currency === 'KHR2') {
-                            var amount = result.Amount;
-                            if (currency === 'IDR2' || currency === 'KRW2' || currency === 'MMK2' || currency === 'VND2' || currency === 'LAK2' || currency === 'KHR2') {
-                                amount = amount / 1000
-                            }
-                            res.status(200).json(
-                                {
-                                    "code": 0,
-                                    "message": "",
-                                    "balance": amount,
-                                    "currency": currency,
-                                    "sign": sign
-                                }
-                            );
-                        } else {
-                            res.status(200).json(
-                                {
-                                    "code": 1004,
-                                    "message": "Expected return Invalid Currency",
-                                }
-                            );
+                    //user
+                    const user = await User.findOne({ Username: member_account });
+                    if (user) {
+                        var amount = user.Amount;
+                        if (currency === 'IDR2' || currency === 'KRW2' || currency === 'MMK2' || currency === 'VND2' || currency === 'LAK2' || currency === 'KHR2') {
+                            amount = amount / 1000
                         }
+                        res.status(200).json(
+                            {
+                                "code": 0,
+                                "message": "",
+                                "balance": amount,
+                            }
+                        );
                     } else {
                         res.status(200).json(
                             {
                                 "code": 1000,
                                 "message": "Member Not Exists",
-                                "balance": 0
                             }
                         );
                     }
@@ -50,18 +41,22 @@ export default async function handler(
                         {
                             "code": 1004,
                             "message": "Incorrect Signature",
-                            "balance": 0
                         }
                     );
                 }
+            } else {
+                res.status(200).json(
+                    {
+                        "code": 1004,
+                        "message": "Expected return Invalid Currency",
+                    }
+                );
             }
-
         } catch (err) {
             res.status(200).json(
                 {
-                    "code": 1000,
-                    "message": "Member Not Exists",
-                    "balance": 0
+                    "code": 0,
+                    "message": err,
                 }
             );
         }

@@ -18,6 +18,7 @@ export default async function handler(
                 //check duplicate
                 const duplicate = transaction.find((item: any) => item.id === transactions[0].id);
                 if (!duplicate) {
+                    //check wager
                     const wager = transaction.find((item: any) => item.wager_code === transactions[0].wager_code);
                     if (wager) {
                         const updateuser = await User.findOneAndUpdate(

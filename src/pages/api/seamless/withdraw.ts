@@ -93,20 +93,7 @@ export default async function handler(
                         );
                         return;
                     }
-                    new Transaction({
-                        "id": transactions[0].id,
-                        "amount": transactions[0].amount,
-                        "bet_amount": transactions[0].bet_amount,
-                        "valid_bet_amount": transactions[0].valid_bet_amount,
-                        "prize_amount": transactions[0].prize_amount,
-                        "tip_amount": transactions[0].tip_amount,
-                        "action": transactions[0].action,
-                        "wager_code": transactions[0].wager_code,
-                        "wager_status": transactions[0].wager_status,
-                        "payload": transactions[0].payload,
-                        "settled_at": transactions[0].settled_at,
-                        "game_code": transactions[0].game_code
-                    }).save();
+
                     User.findOneAndUpdate(
                         { _id: result._id },
                         { $inc: { Amount: parseInt(transactions[0].amount) } },
@@ -120,6 +107,7 @@ export default async function handler(
                                 "balance": newBalance.Amount
                             }
                         );
+                        new Transaction(transactions[0]).save();
                     }).catch((err: any) => {
                         //console.log(err);
                         res.status(200).json(

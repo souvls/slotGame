@@ -11,7 +11,6 @@ export default async function handler(
         try {
             const { operator_code, transactions } = req.body;
             const member_account = transactions[0].member_account
-
             const user = await User.findOne({ Username: member_account })
             if (!user) {
                 res.status(200).json(
@@ -23,16 +22,6 @@ export default async function handler(
                 return;
             }
 
-            Transaction({
-                "amount": transactions[0].amount,
-                "bet_amount": transactions[0]?.bet_amount,
-                "valid_bet_amount": transactions[0].valid_bet_amount,
-                "prize_amount": transactions[0].prize_amount,
-                "tip_amount": transactions[0].tip_amount,
-                "wager_code": transactions[0].wager_code,
-                "wager_status": transactions[0].wager_status,
-                "settled_at": transactions[0].settled_at,
-            }).save();
             res.status(200).json(
                 {
                     "code": 0,
@@ -41,6 +30,8 @@ export default async function handler(
                     "balance": user.Amount
                 }
             );
+            Transaction(transactions[0]).save();
+
         } catch (err) {
             //console.log(err);
             res.status(200).json(
