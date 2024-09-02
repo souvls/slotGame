@@ -11,73 +11,62 @@ export default async function handler(
         try {
             const { member_account, transactions } = req.body;
 
-            const duplicate = await Transaction.findOne({ id: transactions[0].id })
-            if (duplicate) {
-                res.status(200).json(
-                    {
-                        "code": 1003,
-                        "message": " Duplicate Transaction",
-                    }
-                );
-                return;
-            }
-            User.findOne({ Username: member_account })
-                .then((result: any) => {
-                    //console.log(amount)
-                    if (!result) {
-                        res.status(200).json(
-                            {
-                                "code": 1000,
-                                "message": "Member Not Exists",
-                            }
+            //check user
+            const user = await User.findOne({ Username: member_account });
+            if (user) {
+                const transaction = await Transaction.find();
+                //check duplicate
+                const duplicate = await transaction.find((item: any) => item.id === transactions[0].id);
+                if (!duplicate) {
+                    //check wager
+                    const wager = await transaction.find((item: any) => item.wager_code === transactions[0].wager_code);
+                    if (wager) {
+                        const updateuser = await User.findOneAndUpdate(
+                            { _id: user._id },
+                            { $inc: { Amount: transactions[0].amount } },
+                            { new: true }
                         );
-                        return;
-                    }
-
-                    User.findOneAndUpdate(
-                        { _id: result._id },
-                        { $inc: { Amount: parseInt(transactions[0].amount) } },
-                        { new: true }
-                    ).then((newBalance: any) => {
+                        await new Transaction(transactions[0]).save();
                         res.status(200).json(
                             {
                                 "code": 0,
                                 "message": "",
-                                "before_balance": result.Amount,
-                                "balance": newBalance.Amount
+                                "before_balance": user.Amount,
+                                "balance": updateuser.Amount
                             }
                         );
-                        new Transaction(transactions[0]).save();
-                    }).catch((err: any) => {
+
+                    } else {
                         res.status(200).json(
                             {
-                                "code": 1000,
-                                "message": err,
-                                "before_balance": 0,
-                                "balance": 0
+                                "code": 1006,
+                                "message": "Bet Not Exist",
                             }
                         );
-                    });
-                }).catch((err: any) => {
-                    console.log(err);
+                        return;
+                    }
+                } else {
                     res.status(200).json(
                         {
-                            "code": 1000,
-                            "message": err,
-                            "before_balance": 0,
-                            "balance": 0
+                            "code": 1003,
+                            "message": "Duplicate Transaction",
                         }
                     );
-                })
-
+                }
+            } else {
+                res.status(200).json(
+                    {
+                        "code": 1000,
+                        "message": "Member Not Exists",
+                    }
+                );
+            }
         } catch (err) {
-            console.log(err);
+
             res.status(200).json(
                 {
                     "code": 999,
                     "message": "",
-                    "before_balance": 0,
-                    "balance": 0
                 }
             );
         }

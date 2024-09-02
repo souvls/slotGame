@@ -25,7 +25,7 @@ export default async function handler(
                             { $inc: { Amount: transactions[0].amount } },
                             { new: true }
                         );
-                        await new Transaction(transactions[0]).save();
+                        
                         res.status(200).json(
                             {
                                 "code": 0,
@@ -34,6 +34,7 @@ export default async function handler(
                                 "balance": updateuser.Amount
                             }
                         );
+                        await new Transaction(transactions[0]).save();
                         
                     } else {
                         res.status(200).json(

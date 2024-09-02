@@ -40,7 +40,7 @@ export default async function handler(
                         res.status(200).json(
                             {
                                 "code": 1006,
-                                "message": " Bet Not Exist",
+                                "message": "Bet Not Exist",
                             }
                         );
                         return;
@@ -49,7 +49,7 @@ export default async function handler(
                     res.status(200).json(
                         {
                             "code": 1003,
-                            "message": " Duplicate Transaction",
+                            "message": "Duplicate Transaction",
                         }
                     );
                 }
