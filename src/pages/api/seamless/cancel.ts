@@ -16,15 +16,16 @@ export default async function handler(
             if (user) {
                 const transaction = await Transaction.find();
                 //check duplicate
-                const duplicate = transaction.find((item: any) => item.id === transactions[0].id);
+                const duplicate = await transaction.find((item: any) => item.id === transactions[0].id);
                 if (!duplicate) {
-                    const wager = transaction.find((item: any) => item.wager_code === transactions[0].wager_code);
+                    const wager = await transaction.find((item: any) => item.wager_code === transactions[0].wager_code);
                     if (wager) {
                         const updateuser = await User.findOneAndUpdate(
                             { _id: user._id },
                             { $inc: { Amount: transactions[0].amount } },
                             { new: true }
                         );
+                        await new Transaction(transactions[0]).save();
                         res.status(200).json(
                             {
                                 "code": 0,
@@ -33,7 +34,7 @@ export default async function handler(
                                 "balance": updateuser.Amount
                             }
                         );
-                        new Transaction(transactions[0]).save();
+                        
                     } else {
                         res.status(200).json(
                             {
