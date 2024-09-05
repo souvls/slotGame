@@ -25,7 +25,7 @@ const Main = () => {
         const request_time = new Date().getTime();
         const hash = md5(request_time + "pBXXGyr53ekS6CvjwgA5ES" + "gamelist" + "H801");
         await fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
-            "?product_code=" + 1153 +
+            "?product_code=" + 1091 +
             "&operator_code=" + "H801" +
             "&game_type=" + "SLOT" +
             "&sign=" + hash +
