@@ -54,9 +54,9 @@ const page = () => {
                             color: '#ffffff',
                             showConfirmButton: false,
                             timer: 1000,
-                        }).then(() => {
-                            router.push("/");
-                        });
+                        })
+                        router.push("/");
+                        setLoading(false);
                     } else {
                         Swal.fire({
                             title: "Login fail",
@@ -66,8 +66,8 @@ const page = () => {
                             color: '#ffffff',
                             showConfirmButton: false,
                         });
+                        setLoading(false);
                     }
-                    setLoading(false);
                 })
                 .catch((error) => {
                     console.error(error);

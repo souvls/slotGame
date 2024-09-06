@@ -140,8 +140,8 @@ export default function Home() {
                     .then((response) => response.json())
                     .then((result) => {
                         // console.log(raw)
-                        console.log(result)
-                        //window.location.href = result.url;
+                        //console.log(result)
+                        window.location.href = result.url;
                     })
                     .catch((error) => console.error(error));
             } else {
