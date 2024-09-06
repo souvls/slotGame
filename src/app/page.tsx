@@ -29,7 +29,7 @@ import { json } from 'stream/consumers';
 import User from "../Models/User"
 import Logout from './component/Logout';
 import Game from './component/Game';
-
+import Cookies from 'js-cookie';
 const services = [
   {
     path: "#",
@@ -108,6 +108,11 @@ async function getAmount() {
     throw err;
   }
 }
+// async function getUserData() {
+//   const cookie = Cookies.get("userdata");
+//   console.log(cookie)
+// }
+// getUserData()
 export default async function Home() {
   const user = await getAmount();
   return (
@@ -231,7 +236,6 @@ export default async function Home() {
           </div>
         </div>
         <Game />
-
         {/* end credit */}
         <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>
           <div className="flex justify-center items-center gap-10 pt-10 pb-5">
