@@ -209,8 +209,7 @@ export default function Home() {
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 max-h-[600px] overflow-scroll'>
                         {games.map((item: any, index) => {
                             return (
-                                // onClick={() => handdlePlay(item)}
-                                <div key={index}  className=' flex flex-col items-center'>
+                                <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
                                     <img
                                         src={`/assets/icon/game/${item?.product_code + item?.game_code}.png`}
                                         alt='..'
@@ -222,8 +221,8 @@ export default function Home() {
                                         className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
                                     />
                                     <h1 className=' text-center text-white'>{item.game_name}</h1>
-                                    <span className=' text-center text-white'>{item.product_code}{item.game_code}</span>
-                                    <span className=' text-center text-white'>{item.game_code}</span>
+                                    {/* <p className=' text-center text-white'>{item.product_code}</p>
+                                    <p className=' text-center text-white'>{item.game_code}</p> */}
                                 </div>
                             )
                         })}
