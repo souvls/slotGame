@@ -9,6 +9,9 @@ export default async function handler(
     if (req.method === 'POST') {
         try {
             const { member_account, operator_code, request_time, currency, sign } = req.body
+            const forwarded = req.headers['x-forwarded-for'];
+            const ip = typeof forwarded === 'string' ? forwarded.split(',')[0] : req.socket.remoteAddress;
+
             //currency
             if (currency === "IDR" || currency === "THB" || currency === 'IDR2' || currency === 'KRW2' || currency === 'MMK2' || currency === 'VND2' || currency === 'LAK2' || currency === 'KHR2') {
                 //sign
@@ -17,17 +20,26 @@ export default async function handler(
                     //user
                     const user = await User.findOne({ Username: member_account });
                     if (user) {
-                        var amount = user.Amount;
-                        if (currency === 'IDR2' || currency === 'KRW2' || currency === 'MMK2' || currency === 'VND2' || currency === 'LAK2' || currency === 'KHR2') {
-                            amount = amount / 1000
-                        }
-                        res.status(200).json(
-                            {
-                                "code": 0,
-                                "message": "",
-                                "balance": amount,
+                        if (ip === user.ip) {
+                            var amount = user.Amount;
+                            if (currency === 'IDR2' || currency === 'KRW2' || currency === 'MMK2' || currency === 'VND2' || currency === 'LAK2' || currency === 'KHR2') {
+                                amount = amount / 1000
                             }
-                        );
+                            res.status(200).json(
+                                {
+                                    "code": 0,
+                                    "message": "",
+                                    "balance": amount,
+                                }
+                            );
+                        } else {
+                            res.status(200).json(
+                                {
+                                    "code": 0,
+                                    "message": "exp_token"
+                                }
+                            );
+                        }
                     } else {
                         res.status(200).json(
                             {
