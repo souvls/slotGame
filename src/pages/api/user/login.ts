@@ -18,9 +18,7 @@ export default async function handler(
         if (req.method === 'POST') {
             try {
                 // Handle POST request
-                const { Username, Password } = req.body;
-                const forwarded = req.headers['x-forwarded-for'];
-                const ip = typeof forwarded === 'string' ? forwarded.split(',')[0] : req.socket.remoteAddress;
+                const { Username, Password,ip } = req.body;
                 const result = await User.findOne({ Username: Username, Password: Password });
                 if (result) {
                     //checkip

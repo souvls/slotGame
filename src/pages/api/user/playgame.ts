@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import verifyJWTToken from '../../../Middleware/auth'
 import checkMaintenance from '../../../Middleware/checkMaintenance';
-import { playGame } from '@/Middleware/operator';
+import User from '@/Models/User';
 import md5 from 'md5';
 export default async function handler(
     req: NextApiRequest,
@@ -11,45 +11,46 @@ export default async function handler(
         verifyJWTToken(req, res, async () => {
             const user: any = req.headers.data
             if (req.method === "POST") {
-                try {
-                    const { username, password, game_code, product_code, game_type, ip } = await req.body
-                    console.log(req.body)
-                    const getGMT8TimestampInSeconds = () => {
-                        const now = new Date();
-                        const timeZoneOffset = 8 * 60;
-                        const gmt8Time = new Date(now.getTime() + timeZoneOffset * 60000);
-                        return Math.floor(gmt8Time.getTime() / 1000);
-                    };
+                const { game_code, product_code, ip } = req.body;
 
-                    const request_time = await getGMT8TimestampInSeconds()
-                    const hash = await md5(request_time + "" + process.env.SECRET_KEY + "launchgame" + process.env.OP_CODE);
-                    const data = JSON.stringify({
-                        operator_lobby_url: "http://infinity999.com",
-                        operator_code: process.env.OP_CODE,
-                        member_account: username,
-                        password: password,
-                        nickname: "",
-                        currency: "IDR",
-                        game_code: game_code,
-                        product_code: product_code,
-                        game_type: game_type,
-                        language_code: 0,
-                        ip: ip,
-                        platform: "web",
-                        sign: hash,
-                        request_time: request_time
+                //checkIp 
+                const _user = await User.findById(user.id);
+                console.log(_user.ip)
+                console.log(ip)
+                if (_user.ip === ip) {
+                    const myHeaders = new Headers();
+                    myHeaders.append("Content-Type", "application/json");
+                    const request_time = new Date().getTime();
+                    const hash = md5(`${request_time}${process.env.SECRET_KEY}launchgame${process.env.OP_CODE}`);
+                    const raw = JSON.stringify({
+                        "operator_code": process.env.OP_CODE,
+                        "member_account": user.username,
+                        "password": generateRandomPassword(12),
+                        "currency": "IDR",
+                        "game_code": game_code,
+                        "product_code": product_code,
+                        "game_type": "SLOT",
+                        "language_code": 3,
+                        "ip": ip,
+                        "platform": "web",
+                        "sign": hash,
+                        "request_time": request_time,
+                        "operator_lobby_url": "http://infinity999.com",
                     })
-                    console.log(data)
-                    const result = await fetch(process.env.API_NAME + "/api/operators/launch-game", {
+                    fetch(process.env.API_NAME + "/api/operators/launch-game", {
                         method: "POST",
-                        headers: { accept: 'application/json' },
-                        body: data,
+                        headers: myHeaders,
+                        body: raw,
                         redirect: "follow"
-                    }).then((response) => response.json())
-                    console.log(result)
-                    res.status(200).json({ status: 'ok', message: 'playgame', result: result });
-                } catch (err) {
-                    res.status(200).json({ status: 'no', message: 'err' });
+                    })
+                        .then((response) => response.json())
+                        .then((result) => {
+                            //console.log(result)
+                            res.status(200).json({ status: 'ok', message: "", result: result.url });
+                        })
+                        .catch((error) => console.error(error));
+                } else {
+                    res.status(200).json({ status: 'no', message: "logout" });
                 }
             }
             else {
@@ -58,4 +59,15 @@ export default async function handler(
             }
         });
     })
+}
+function generateRandomPassword(length: number): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=';
+    let password = '';
+
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        password += characters[randomIndex];
+    }
+
+    return password;
 }

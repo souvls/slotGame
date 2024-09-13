@@ -1,11 +1,11 @@
 "use client"
 import md5 from 'md5';
-import useSWR from 'swr'
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
 import Spinner from './Spinner';
+
+import { useRouter } from 'next/navigation';
 const products = [
     {
         "provider": "Jili",
@@ -79,6 +79,7 @@ const products = [
     }
 ]
 export default function Home() {
+    const router = useRouter();
     const [productActive, setProductActive] = useState(0);
     const [games, setGames] = useState([]);
     const [loadingGame, setLoadingGame] = useState(false);
@@ -108,42 +109,56 @@ export default function Home() {
         try {
             setLoadingGame(true);
             const cookie = Cookies.get("userdata");
-            console.log(cookie)
             if (cookie) {
-                const user = await JSON.parse(cookie);
+                const token = JSON.parse(cookie).token;
                 const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
-                const myHeaders = new Headers();
-                myHeaders.append("Content-Type", "application/json");
-                const request_time = new Date().getTime();
-                const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}launchgame${process.env.NEXT_PUBLIC_OP_CODE}`);
-                const raw = JSON.stringify({
-                    "operator_code": process.env.NEXT_PUBLIC_OP_CODE,
-                    "member_account": user.username,
-                    "password": user.password,
-                    "currency": "IDR",
-                    "game_code": game.game_code,
-                    "product_code": game.product_code,
-                    "game_type": "SLOT",
-                    "language_code": 3,
-                    "ip": ip.ip,
-                    "platform": "web",
-                    "sign": hash,
-                    "request_time": request_time,
-                    "operator_lobby_url": "http://infinity999.com",
-                })
-                fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/launch-game", {
+
+                const data = JSON.stringify({
+                    game_code: game.game_code,
+                    product_code: game.product_code,
+                    ip: ip.ip
+                });
+                fetch("/api/user/playgame", {
                     method: "POST",
-                    headers: myHeaders,
-                    body: raw,
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: data,
                     redirect: "follow"
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        // console.log(raw)
-                        //console.log(result)
-                        window.location.href = result.url;
+                        if (result.status === 'no' && result.message === "logout") {
+                            Cookies.remove("userdata");
+                            setLoadingGame(false);
+                            Swal.fire({
+                                title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
+                                text: "02011223344",
+                                icon: "error",
+                                background: '#000000',
+                                color: '#ffffff',
+                                showConfirmButton: false,
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        } else {
+                            router.push(result.result)
+                        }
+                    }).catch(() => {
+                        Cookies.remove("userdata");
+                        setLoadingGame(false);
+                        Swal.fire({
+                            title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
+                            text: "02011223344",
+                            icon: "error",
+                            background: '#000000',
+                            color: '#ffffff',
+                            showConfirmButton: false,
+                        }).then(() => {
+                            window.location.reload();
+                        });
                     })
-                    .catch((error) => console.error(error));
             } else {
                 setLoadingGame(false);
                 Swal.fire({
@@ -167,7 +182,6 @@ export default function Home() {
                 color: '#ffffff',
                 showConfirmButton: false,
             });
-
         }
     }
     const fetchGames = async (product_code: any) => {
@@ -182,7 +196,7 @@ export default function Home() {
                 "&request_time=" + request_time)
                 .then((response) => response.json())
                 .then(result => {
-                    console.log(result)
+                    // console.log(result)
                     setGames(result.provider_games);
                 })
                 .catch(err => {

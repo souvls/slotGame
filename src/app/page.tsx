@@ -1,7 +1,6 @@
 import md5 from 'md5';
 import useSWR from 'swr'
 import Image from 'next/image';
-import logo from "../../public/assets/logo/logo.svg";
 import superjackpot from "../../public/assets/icon/supper-jackport.png"
 import banner1 from "../../public/assets/banner/banner1.jpg";
 import banner2 from "../../public/assets/banner/banner2.webp";
@@ -11,25 +10,19 @@ import provider1 from "../../public/assets/banner/provider-logo1.png";
 import provider2 from "../../public/assets/banner/provider-logo2.png";
 import provider3 from "../../public/assets/banner/provider-logo3.png";
 import gamesoftLogo from "../../public/assets/logo/GSS (2).png"
-import { GiOverInfinity } from "react-icons/gi";
-import { PiUserCircleBold } from "react-icons/pi";
-import { LiaCoinsSolid } from "react-icons/lia";
-import { AiOutlineHome } from "react-icons/ai";
-import { CiMobile3 } from "react-icons/ci";
-import { MdOutlineSportsSoccer } from "react-icons/md";
-import { IoGameController } from "react-icons/io5";
-import { MdCasino } from "react-icons/md";
+
 import { GiSloth } from "react-icons/gi";
 import { RiVipCrownLine } from "react-icons/ri";
-import { IoFishOutline } from "react-icons/io5";
+
 import { CiGift } from "react-icons/ci";
 import Link from 'next/link';
 import { cookies } from 'next/headers';
-import { json } from 'stream/consumers';
+
 import User from "../Models/User"
-import Logout from './component/Logout';
 import Game from './component/Game';
-import Cookies from 'js-cookie';
+import axios from 'axios';
+import Nav_bar_ from './component/Nav_bar_';
+
 const services = [
   {
     path: "#",
@@ -108,59 +101,14 @@ async function getAmount() {
     throw err;
   }
 }
-// async function getUserData() {
-//   const cookie = Cookies.get("userdata");
-//   console.log(cookie)
-// }
-// getUserData()
-export default async function Home() {
-  const user = await getAmount();
+async function fetchdata() {
+ 
+}
+export default function Home() {
   return (
     <>
       {/* Header */}
-      <nav className='w-full fixed top-0 z-50'>
-        <div className=' bg-gradient-to-br from-black to-black border-b-1 via-purple-700'>
-          <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto py-4 px-2 lg:px-0 md:px-0'>
-            <div className=' flex justify-between items-center'>
-              <div>
-                <Image src={logo} alt='logo' width={50} />
-              </div>
-              {user ?
-                <div className=' flex justify-end items-center gap-3'>
-                  <div className=''>
-                    <div className='flex justify-end items-center gap-2'>
-                      <span className=' text-yellow-300 text-sm'>{user?.Username}</span>
-                      <PiUserCircleBold size={20} color={'gold'} />
-                    </div>
-                    <div className='flex justify-end items-center gap-2'>
-                      <span className=' text-yellow-300 text-sm'>{user?.Amount.toLocaleString()}</span>
-                      <LiaCoinsSolid size={20} color={'gold'} />
-                    </div>
-                  </div>
-                  <Logout />
-                </div>
-                :
-                <div className=' flex gap-2'>
-                  <Link href={"/user"} className="px-3 flex items-center text-sm  rounded-full duration-500 hover:bg-yellow-400 hover:text-gray-950 bg-gray-950 text-white">
-                    <span>LOGIN</span>
-                  </Link>
-                  <Link href={"https://api.whatsapp.com/send?phone=8562056388013"} className="flex items-center px-3 text-sm rounded-full bg-yellow-400">
-                    JOIN NOW
-                  </Link>
-                  <div className=' flex items-center '>
-                    <img
-                      src="https://cdn-icons-png.freepik.com/512/3973/3973555.png"
-                      alt=""
-                      width={40}
-                    />
-                    <span className=" text-white ">TH</span>
-                  </div>
-                </div>
-              }
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Nav_bar_ />
       {/* content */}
       <section className=' pt-[90px] bg-gradient-to-bl from-black to-black via-purple-700'>
         <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>

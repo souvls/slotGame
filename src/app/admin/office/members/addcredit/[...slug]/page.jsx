@@ -45,7 +45,7 @@ const page = () => {
         body: data,
         redirect: "follow"
       };
-      await fetch("/api/admin/add-credit", requestOptions)
+      fetch("/api/admin/add-credit", requestOptions)
         .then((response) => response.json())
         .then((result) => {
           //console.log(result)

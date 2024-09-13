@@ -10,7 +10,7 @@ const page = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const handdleSubmit = (e) => {
+    const handdleSubmit = async (e) => {
         e.preventDefault()
         if (!username || !password) {
             Swal.fire({
@@ -20,12 +20,14 @@ const page = () => {
             })
         } else {
             setLoading(true);
+            const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
             const raw = JSON.stringify({
                 "Username": username,
-                "Password": password
+                "Password": password,
+                "ip":ip.ip
             });
 
             const requestOptions = {

@@ -1,105 +1,103 @@
 "use client"
-import Cookies from 'js-cookie';
-import React, { use, useEffect, useState } from 'react'
-import { GiOverInfinity } from "react-icons/gi";
+import React, { useEffect, useState } from 'react'
+import Logout from './Logout';
+import Image from 'next/image';
+import logo from "../../../public/assets/logo/logo.svg";
 import { PiUserCircleBold } from "react-icons/pi";
 import { LiaCoinsSolid } from "react-icons/lia";
-import { useRouter } from 'next/navigation';
-import { BeatLoader } from 'react-spinners';
-const Nav_bar = () => {
-    const router = useRouter();
-    const [user, setUser] = useState([]);
-    const [isLogin, setIsLogin] = useState(false);
-    const [loading, setLoading] = useState(false);
-    useEffect(() => {
-        try {
-            const user = JSON.parse(Cookies.get('userdata'));
-            if (user) {
-                setIsLogin(true);
-                fetchdata(user.token);
-            }
-        }
-        catch (err) {
-            setIsLogin(false);
-        }
+import Cookies from 'js-cookie';
+import Link from 'next/link';
+import axios from 'axios';
+const Nav_bar_ = () => {
+    const [user, setUser] = useState();
 
-    }, []);
-    const fetchdata = (token) => {
-        setLoading(true);
-        const requestOptions = {
-            method: "GET",
-            headers: {
-                'Authorization': 'Bearer ' + token
-            },
-            redirect: "follow"
-        };
-        fetch("/api/user/my-info", requestOptions)
-            .then((response) => response.json())
-            .then((result) => {
-                if (result.status === 'ok') {
-                    setUser(result.result);
-                } else if (result.status === 'off') {
-                    Cookies.remove('userdata')
-                    router.push("/");
-                }
-                else {
-                    if (result.message === 'notoken') {
-                        Cookies.remove('userdata')
-                        router.push("/");
-                    }
-                }
+    useEffect(() => {
+        fetchdata();
+    }, [])
+    const fetchdata = async () => {
+        const cookie = Cookies.get("userdata")
+        if (cookie) {
+            const user = JSON.parse(cookie);
+            const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
+
+            const data = JSON.stringify({
+                ip: ip.ip
+            });
+            fetch("/api/user/my-info", {
+                method: "POST",
+                headers: {
+                    'Authorization': 'Bearer ' + user.token,
+                    'Content-Type': 'application/json'
+                },
+                body: data,
+                redirect: "follow"
             })
-            .catch((error) => console.error(error));
-        setLoading(false);
-    }
-    const LoginArea = () => {
-        return (
-            <div>
-                <button onClick={() => router.push("/user")} className=' bg-yellow-300 text-white p-2 rounded-xl'>Login</button>
-            </div>
-        )
-    }
-    const handleLogout = () => {
-        Cookies.remove('userdata');
-        window.location.href = "/user"
-    }
-    const UserInfoArea = () => {
-        return (
-            <div className='px-5 flex justify-end items-center gap-2'>
-                <div>
-                    <div className='flex justify-start items-center gap-2'>
-                        <PiUserCircleBold size={20} color={'gold'} />
-                        <span className=' text-yellow-300 text-sm'>{loading ? <BeatLoader color='gold' size={10} /> : user && user.Username}</span>
-                    </div>
-                    <div className='flex justify-start items-center gap-2'>
-                        <LiaCoinsSolid size={20} color={'gold'} />
-                        <span className=' text-yellow-300 text-sm'>{loading ? <BeatLoader color='gold' size={10} /> : user && user.Amount && user.Amount.toLocaleString() + " ฿"}</span>
-                    </div>
-                </div>
-                <div>
-                    <button onClick={handleLogout} className=' bg-red-600 text-white p-2 text-sm rounded-lg'>logout</button>
-                </div>
-            </div>
-        )
+                .then((response) => response.json())
+                .then((result) => {
+                    console.log(result);
+                    if (result.status === 'no' && result.message === "logout") {
+                        Cookies.remove("userdata");
+                        Swal.fire({
+                            title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
+                            text: "02011223344",
+                            icon: "error",
+                            background: '#000000',
+                            color: '#ffffff',
+                            showConfirmButton: false,
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    } else {
+                        setUser(result.result);
+                    }
+                })
+        }
     }
     return (
-        <nav className=' w-full fixed top-0 z-40'>
-            <div className='bg-[#151515] py-2 lg:py-4'>
-                <div className=' container mx-auto px-2' style={{ maxWidth: "960px" }}>
+        <nav className='w-full fixed top-0 z-50'>
+            <div className=' bg-gradient-to-br from-black to-black border-b-1 via-purple-700'>
+                <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto py-4 px-2 lg:px-0 md:px-0'>
                     <div className=' flex justify-between items-center'>
-                        <div className=' flex flex-col items-center px-2'>
-                            <GiOverInfinity size={30} color={'gold'} />
-                            <h1 className=' text-yellow-300 text-sm'> INFINITY999</h1>
+                        <div>
+                            <Image src={logo} alt='logo' width={50} />
                         </div>
-                        {isLogin ? <UserInfoArea /> : <LoginArea />}
+                        {user ?
+                            <div className=' flex justify-end items-center gap-3'>
+                                <div className=''>
+                                    <div className='flex justify-end items-center gap-2'>
+                                        <span className=' text-yellow-300 text-sm'>{user?.Username}</span>
+                                        <PiUserCircleBold size={20} color={'gold'} />
+                                    </div>
+                                    <div className='flex justify-end items-center gap-2'>
+                                        <span className=' text-yellow-300 text-sm'>{user?.Amount?.toLocaleString()}</span>
+                                        <LiaCoinsSolid size={20} color={'gold'} />
+                                    </div>
+                                </div>
+                                <Logout />
+                            </div>
+                            :
+                            <div className=' flex gap-2'>
+                                <Link href={"/user"} className="px-3 flex items-center text-sm  rounded-full duration-500 hover:bg-yellow-400 hover:text-gray-950 bg-gray-950 text-white">
+                                    <span>LOGIN</span>
+                                </Link>
+                                <Link href={"https://api.whatsapp.com/send?phone=8562056388013"} className="flex items-center px-3 text-sm rounded-full bg-yellow-400">
+                                    JOIN NOW
+                                </Link>
+                                <div className=' flex items-center '>
+                                    <img
+                                        src="https://cdn-icons-png.freepik.com/512/3973/3973555.png"
+                                        alt=""
+                                        width={40}
+                                    />
+                                    <span className=" text-white ">TH</span>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
-
         </nav>
-
     )
 }
 
-
-export default Nav_bar
+export default Nav_bar_
