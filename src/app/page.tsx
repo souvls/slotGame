@@ -1,5 +1,3 @@
-import md5 from 'md5';
-import useSWR from 'swr'
 import Image from 'next/image';
 import superjackpot from "../../public/assets/icon/supper-jackport.png"
 import banner1 from "../../public/assets/banner/banner1.jpg";
@@ -11,17 +9,10 @@ import provider2 from "../../public/assets/banner/provider-logo2.png";
 import provider3 from "../../public/assets/banner/provider-logo3.png";
 import gamesoftLogo from "../../public/assets/logo/GSS (2).png"
 
-import { GiSloth } from "react-icons/gi";
-import { RiVipCrownLine } from "react-icons/ri";
 
-import { CiGift } from "react-icons/ci";
 import Link from 'next/link';
-import { cookies } from 'next/headers';
-
-import User from "../Models/User"
-import Game from './component/Game';
-import axios from 'axios';
 import Nav_bar_ from './component/Nav_bar_';
+import MenuGameType from './component/MenuGameType';
 
 const services = [
   {
@@ -72,38 +63,8 @@ const Banking = [
     label: "ธนาคารร่วมพัฒนา",
   },
 ];
-const menu = [
-  // { path: "#", icon: <AiOutlineHome />, label: "หน้าแลก" },
-  // { path: "#", icon: <CiMobile3 />, label: "มือถือ" },
-  // { path: "#", icon: <MdOutlineSportsSoccer />, label: "กีฬา", },
-  // { path: "#", icon: <IoGameController />, label: "อีสปอร์ต", },
-  // { path: "#", icon: <MdCasino />, label: "คาสิโน" },
-  { path: "#", icon: <GiSloth />, label: "สล็อต" },
-  // { path: "#", icon: <IoFishOutline />, label: "ปลา" },
-  { path: "#", icon: <RiVipCrownLine />, label: "วีไอพี" },
-  { path: "#", icon: <CiGift />, label: "โปรโมชั่น" },
-];
-async function getUser() {
-  const cookieStore = cookies();
-  const token = await cookieStore.get('userdata')?.value;
-  return token;
-}
-async function getAmount() {
-  try {
-    const data = await getUser();
-    if (data) {
-      const token = JSON.parse(data);
-      const user = await User.findById(token.id);
-      return user;
-    }
-  } catch (err) {
-    return null
-    throw err;
-  }
-}
-async function fetchdata() {
- 
-}
+
+
 export default function Home() {
   return (
     <>
@@ -171,19 +132,7 @@ export default function Home() {
       </section>
       {/* menu */}
       <section className=' bg-gradient-to-bl from-black to-black via-purple-700 '>
-        <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto border-b '>
-          <div className=' w-[90%] py-3 mx-auto flex justify-center items-center gap-8 '>
-            {menu.map((item, index) => {
-              return (
-                <Link key={index} href={item.path} className={"flex flex-col items-center text-yellow-200 duration-500 transform hover:scale-125  hover:text-yellow-300 font-bold "}>
-                  <span className='text-[40px] lg:text-[50px]'>{item.icon}</span>
-                  {item.label}
-                </Link>
-              )
-            })}
-          </div>
-        </div>
-        <Game />
+        <MenuGameType />
         {/* end credit */}
         <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>
           <div className="flex justify-center items-center gap-10 pt-10 pb-5">

@@ -143,18 +143,3 @@ const Main = () => {
 }
 
 export default Main
-
-// "?operator_code=H801" +
-// "&member_account=INFINITY999" +
-// "&agent_account=INFINITY999" +
-// "&password=Qwer1234" +
-// "&nickname=INFINITY999" +
-// "&currency=IDR" +
-// "&game_code=1054" +
-// "&product_code=1153" +
-// "&game_type=SLOT" +
-// "&language_code=" + 0 +
-// "&ip=10.0.109.190" +
-// "&platform=web" +
-// "&sign=" + hash+
-// "&request_time=" + request_time
