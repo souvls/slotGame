@@ -70,7 +70,7 @@ const LiveCasino = () => {
                 "&request_time=" + request_time)
                 .then((response) => response.json())
                 .then(result => {
-                    console.log(result)
+                    //console.log(result)
                     setGames(result.provider_games);
                 })
                 .catch(err => {
@@ -102,7 +102,7 @@ const LiveCasino = () => {
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        console.log(result)
+                        //console.log(result)
                         setLoadingGame(false);
                         // if (result.status === 'no' && result.message === "logout") {
                         //     Cookies.remove("userdata");
@@ -185,7 +185,7 @@ const LiveCasino = () => {
                         }
                     </div>
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
-                        {games.map((item: any, index) => {
+                        {games&&games.length>0&&games.map((item: any, index) => {
                             return (
                                 <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
                                     <img src={item.image_url} />
