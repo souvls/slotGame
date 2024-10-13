@@ -18,7 +18,7 @@ const menu = [
     // { title: "#", icon: <CiGift />, label: "โปรโมชั่น" },
 ];
 const MenuGameType = () => {
-    const [selectGame, setSelectGame] = useState("casino");
+    const [selectGame, setSelectGame] = useState("slot");
     const handleSelect = (title: string) => {
         setSelectGame(title);
     }

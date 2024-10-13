@@ -104,23 +104,23 @@ const LiveCasino = () => {
                     .then((result) => {
                         //console.log(result)
                         setLoadingGame(false);
-                        // if (result.status === 'no' && result.message === "logout") {
-                        //     Cookies.remove("userdata");
-                        //     setLoadingGame(false);
-                        //     Swal.fire({
-                        //         title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-                        //         text: "02011223344",
-                        //         icon: "error",
-                        //         background: '#000000',
-                        //         color: '#ffffff',
-                        //         showConfirmButton: false,
-                        //     }).then(() => {
-                        //         window.location.reload();
-                        //     });
-                        // } else {
-                        //     setLoadingGame(false);
-                        //     router.push(result.result);
-                        // }
+                        if (result.status === 'no' && result.message === "logout") {
+                            Cookies.remove("userdata");
+                            setLoadingGame(false);
+                            Swal.fire({
+                                title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
+                                text: "02011223344",
+                                icon: "error",
+                                background: '#000000',
+                                color: '#ffffff',
+                                showConfirmButton: false,
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        } else {
+                            setLoadingGame(false);
+                            router.push(result.result);
+                        }
                     }).catch(() => {
                         Cookies.remove("userdata");
                         setLoadingGame(false);
@@ -185,10 +185,18 @@ const LiveCasino = () => {
                         }
                     </div>
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
-                        {games&&games.length>0&&games.map((item: any, index) => {
+                        {games && games.length > 0 && games.map((item: any, index) => {
                             return (
                                 <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
-                                    <img src={item.image_url} />
+                                    <img
+                                        src={item.image_url}
+                                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                                            const img = e.target as HTMLImageElement;
+                                            img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
+                                            img.src = `/assets/icon/product/${products[productActive].product_name}.png`;
+                                        }}
+                                        className='hover:border-2 border-yellow-300'
+                                    />
                                     {/* <img
                                         src={`/assets/icon/game/${item?.product_code + item?.game_code}.png`}
                                         alt={item.game_name}

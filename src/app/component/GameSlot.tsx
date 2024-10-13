@@ -1,11 +1,12 @@
 "use client"
 import md5 from 'md5';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
 import Spinner from './Spinner';
 import { MdCasino } from "react-icons/md";
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 const products = [
     {
         "provider": "Live22",
@@ -160,6 +161,16 @@ const products = [
         "game_type": "SLOT"
     }
 ]
+interface Game {
+    game_code: string,
+    game_name: string,
+    game_type: string,
+    image_url: string,
+    product_code: number,
+    product_id: number,
+    status: string,
+    support_currency: string,
+}
 export default function Home() {
     const router = useRouter();
     const [productActive, setProductActive] = useState(0);
@@ -170,7 +181,7 @@ export default function Home() {
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
-        //fetchProductList();
+        fetchProductList();
     }, [productActive])
     const fetchProductList = () => {
         const request_time = new Date().getTime();
@@ -280,7 +291,7 @@ export default function Home() {
                 "&request_time=" + request_time)
                 .then((response) => response.json())
                 .then(result => {
-                    // console.log(result)
+                    //console.log(result)
                     setGames(result.provider_games);
                 })
                 .catch(err => {
@@ -313,28 +324,64 @@ export default function Home() {
                         }
                     </div>
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
-                        {games&&games.map((item: any, index) => {
+                        {games && games.map((item: Game, index) => {
                             return (
                                 <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
-                                    <img
-                                        src={`/assets/icon/game/${item?.product_code + item?.game_code}.png`}
-                                        alt={item.game_name}
-                                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                            const img = e.target as HTMLImageElement;
-                                            img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
-                                            //img.src = `/assets/icon/product/${products[productActive].product_name}.png`;
-                                        }}
-                                        className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
-                                    />
+                                    <GameItem {...item} />
+                                    {/* {img_url !== null ?
+                                        <img
+                                            src={item.image_url}
+                                            alt={item.game_name}
+                                            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                                                const img = e.target as HTMLImageElement;
+                                                img.onerror = null;
+                                            }}
+                                            className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
+                                        />
+                                        :
+                                        <img
+                                            src={`/assets/icon/game/${item?.product_code + item?.game_code}.png`}
+                                            alt={item.game_name}
+                                            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                                                const img = e.target as HTMLImageElement;
+                                                img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
+                                            }}
+                                            className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
+                                        />
+                                    }
+
                                     <h1 className=' text-center text-white'>{item.game_name}</h1>
-                                    {/* <p className=' text-center text-white'>{item.product_code}</p>
-                                    <p className=' text-center text-white'>{item.game_code}</p> */}
+                                    <p className=' text-center text-white'>{item.product_code}{item.game_code}</p> */}
                                 </div>
                             )
                         })}
                     </div>
                 </div>
             </div>
+        </>
+    )
+}
+const GameItem: React.FC<Game> = (item: Game) => {
+    const [imgSrc, setImageSrc] = useState(item.image_url);
+    return (
+        <>
+            <img
+                src={item.image_url}
+                alt={item.game_name}
+                onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                    const img = e.target as HTMLImageElement;
+                    img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
+                    img.onerror = null;
+                }}
+                // onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                //     const img = e.target as HTMLImageElement;
+                //     img.onerror = null;
+                // }}
+                className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
+            />
+            <p className=' text-center text-white text-sm'>{item.game_name}</p>
+            {/* <h1 className=' text-center text-white'>{item.product_id}</h1>
+            <p className=' text-center text-white'>{item.product_code}{item.game_code}</p> */}
         </>
     )
 }
