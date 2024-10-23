@@ -110,7 +110,7 @@ const page = () => {
                     <div className='mt-5'>
                         <button onClick={handdleSubmit} className=' w-full p-2 rounded-lg bg-amber-400'>LOGIN</button>
                     </div>
-                    <p className=' mt-5 text-white text-sm'>ຫາກບໍ່ມີບັນຊີ ຕິດຕໍ່ແອັດມິນໄດ້ທີ່: <a className=' italic text-green-500' href='https://api.whatsapp.com/send?phone=8562056388013'>whatsapp</a></p>
+                    <p className=' mt-5 text-white text-sm'>ຫາກບໍ່ມີບັນຊີ ຕິດຕໍ່ແອັດມິນໄດ້ທີ່: <a className=' italic text-green-500' href='https://api.whatsapp.com/send?phone=8562098399064'>whatsapp</a></p>
                 </div>
             </div>
         </div>

@@ -39,7 +39,7 @@ const Nav_bar_ = () => {
                         Cookies.remove("userdata");
                         Swal.fire({
                             title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-                            text: "02011223344",
+                            text: "020 98 399 064",
                             icon: "error",
                             background: '#000000',
                             color: '#ffffff',
@@ -80,7 +80,7 @@ const Nav_bar_ = () => {
                                 <Link href={"/user"} className="px-3 flex items-center text-sm  rounded-full duration-500 hover:bg-yellow-400 hover:text-gray-950 bg-gray-950 text-white">
                                     <span>LOGIN</span>
                                 </Link>
-                                <Link href={"https://api.whatsapp.com/send?phone=8562056388013"} className="flex items-center px-3 text-sm rounded-full bg-yellow-400">
+                                <Link href={"https://api.whatsapp.com/send?phone=8562098399064"} className="flex items-center px-3 text-sm rounded-full bg-yellow-400">
                                     JOIN NOW
                                 </Link>
                                 <div className=' flex items-center '>

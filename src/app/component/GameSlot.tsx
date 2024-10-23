@@ -4,10 +4,10 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
 import Spinner from './Spinner';
-import { MdCasino } from "react-icons/md";
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 const products = [
+
     {
         "provider": "Live22",
         "currency": "IDR",
@@ -16,9 +16,9 @@ const products = [
         "product_id": 72,
         "product_code": 1018,
         "product_name": "live_22",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "Live22"
     },
-
     {
         "provider": "Evolution",
         "currency": "IDR2",
@@ -27,7 +27,19 @@ const products = [
         "product_id": 88,
         "product_code": 1168,
         "product_name": "netent",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "Netent"
+    },
+    {
+        "provider": "PragmaticPlay",
+        "currency": "IDR",
+        "status": "ACTIVATED",
+        "provider_id": 32,
+        "product_id": 49,
+        "product_code": 1006,
+        "product_name": "pragmatic_play",
+        "game_type": "LIVE_CASINO",
+        "product_title": "PragmaticPlay"
     },
     {
         "provider": "PragmaticPlay",
@@ -37,7 +49,8 @@ const products = [
         "product_id": 50,
         "product_code": 1006,
         "product_name": "pragmatic_play",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "PragmaticPlay"
     },
     {
         "provider": "EVOPLAY",
@@ -47,7 +60,8 @@ const products = [
         "product_id": 63,
         "product_code": 1049,
         "product_name": "evoplay",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "EvoPlay"
     },
     {
         "provider": "JDB",
@@ -57,7 +71,8 @@ const products = [
         "product_id": 57,
         "product_code": 1085,
         "product_name": "jdb",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "JDB"
     },
     {
         "provider": "PlayStar",
@@ -67,7 +82,8 @@ const products = [
         "product_id": 37,
         "product_code": 1050,
         "product_name": "playstar",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "PlayStar"
     },
     {
         "provider": "CQ9",
@@ -77,7 +93,8 @@ const products = [
         "product_id": 47,
         "product_code": 1009,
         "product_name": "cq9",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "CQ9"
     },
     {
         "provider": "Jili",
@@ -87,7 +104,8 @@ const products = [
         "product_id": 6,
         "product_code": 1091,
         "product_name": "jili_tcg",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "JiLi"
     },
     {
         "provider": "BoomingGames",
@@ -97,18 +115,10 @@ const products = [
         "product_id": 114,
         "product_code": 1115,
         "product_name": "booming_games",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "Booming Games"
     },
-    {
-        "provider": "Spribe",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 92,
-        "product_id": 1,
-        "product_code": 1138,
-        "product_name": "spribe",
-        "game_type": "POKER"
-    },
+
     {
         "provider": "WOW GAMING",
         "currency": "IDR",
@@ -117,9 +127,9 @@ const products = [
         "product_id": 40,
         "product_code": 1148,
         "product_name": "wow_gaming",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "WOW Gaming"
     },
-
     {
         "provider": "HACKSAW",
         "currency": "IDR",
@@ -128,7 +138,8 @@ const products = [
         "product_id": 65,
         "product_code": 1153,
         "product_name": "hacksaw",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "Hacksaw"
     },
     {
         "provider": "N2",
@@ -138,7 +149,8 @@ const products = [
         "product_id": 83,
         "product_code": 1162,
         "product_name": "octoplay",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "OCTOPlay"
     },
     {
         "provider": "SmartSoft",
@@ -148,7 +160,8 @@ const products = [
         "product_id": 92,
         "product_code": 1170,
         "product_name": "smartsoft",
-        "game_type": "SLOT"
+        "game_type": "SLOT",
+        "product_title": "SmartSoft"
     },
     {
         "provider": "Rich88",
@@ -158,8 +171,9 @@ const products = [
         "product_id": 112,
         "product_code": 1184,
         "product_name": "rich88",
-        "game_type": "SLOT"
-    }
+        "game_type": "SLOT",
+        "product_title": "RiCH88"
+    },
 ]
 interface Game {
     game_code: string,
@@ -181,7 +195,7 @@ export default function Home() {
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
-        fetchProductList();
+        //fetchProductList();
     }, [productActive])
     const fetchProductList = () => {
         const request_time = new Date().getTime();
@@ -229,7 +243,7 @@ export default function Home() {
                             setLoadingGame(false);
                             Swal.fire({
                                 title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-                                text: "02011223344",
+                                text: "020 98 399 064",
                                 icon: "error",
                                 background: '#000000',
                                 color: '#ffffff',
@@ -245,7 +259,7 @@ export default function Home() {
                         setLoadingGame(false);
                         Swal.fire({
                             title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-                            text: "02011223344",
+                            text: "020 98 399 064",
                             icon: "error",
                             background: '#000000',
                             color: '#ffffff',
@@ -258,7 +272,7 @@ export default function Home() {
                 setLoadingGame(false);
                 Swal.fire({
                     title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-                    text: "02011223344",
+                    text: "020 98 399 064",
                     icon: "error",
                     background: '#000000',
                     color: '#ffffff',
@@ -326,33 +340,13 @@ export default function Home() {
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
                         {games && games.map((item: Game, index) => {
                             return (
-                                <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
-                                    <GameItem {...item} />
-                                    {/* {img_url !== null ?
-                                        <img
-                                            src={item.image_url}
-                                            alt={item.game_name}
-                                            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                                const img = e.target as HTMLImageElement;
-                                                img.onerror = null;
-                                            }}
-                                            className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
-                                        />
-                                        :
-                                        <img
-                                            src={`/assets/icon/game/${item?.product_code + item?.game_code}.png`}
-                                            alt={item.game_name}
-                                            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                                const img = e.target as HTMLImageElement;
-                                                img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
-                                            }}
-                                            className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
-                                        />
+                                <>
+                                    {item.status === "ACTIVATED" &&
+                                        <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
+                                            <GameItem {...item} />
+                                        </div>
                                     }
-
-                                    <h1 className=' text-center text-white'>{item.game_name}</h1>
-                                    <p className=' text-center text-white'>{item.product_code}{item.game_code}</p> */}
-                                </div>
+                                </>
                             )
                         })}
                     </div>
@@ -362,7 +356,6 @@ export default function Home() {
     )
 }
 const GameItem: React.FC<Game> = (item: Game) => {
-    const [imgSrc, setImageSrc] = useState(item.image_url);
     return (
         <>
             <img
@@ -373,10 +366,6 @@ const GameItem: React.FC<Game> = (item: Game) => {
                     img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
                     img.onerror = null;
                 }}
-                // onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                //     const img = e.target as HTMLImageElement;
-                //     img.onerror = null;
-                // }}
                 className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
             />
             <p className=' text-center text-white text-sm'>{item.game_name}</p>

@@ -1,94 +1,47 @@
+"use client"
 import md5 from 'md5';
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
-import Spinner from './Spinner';
+import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
+import Spinner from './Spinner';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 const products = [
+
     {
-        "provider": "AWC",
+        "provider": "Spribe",
         "currency": "IDR",
         "status": "ACTIVATED",
-        "provider_id": 23,
-        "product_id": 29,
-        "product_code": 1022,
-        "product_name": "sexy_gaming",
-        "game_type": "LIVE_CASINO"
+        "provider_id": 92,
+        "product_id": 1,
+        "product_code": 1138,
+        "product_name": "spribe",
+        "game_type": "POKER",
+        "product_title": "Spribe"
     },
-    {
-        "provider": "PragmaticPlay",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 32,
-        "product_id": 49,
-        "product_code": 1006,
-        "product_name": "pragmatic_play",
-        "game_type": "LIVE_CASINO"
-    },
-    {
-        "provider": "BigGaming",
-        "currency": "IDR2",
-        "status": "ACTIVATED",
-        "provider_id": 34,
-        "product_id": 68,
-        "product_code": 1004,
-        "product_name": "big_gaming",
-        "game_type": "LIVE_CASINO"
-    },
-    {
-        "provider": "AI Live Casino",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 102,
-        "product_id": 41,
-        "product_code": 1149,
-        "product_name": "ai_live_casino",
-        "game_type": "LIVE_CASINO"
-    },
-    {
-        "provider": "SA Gaming",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 8,
-        "product_id": 116,
-        "product_code": 1185,
-        "product_name": "sa_gaming",
-        "game_type": "LIVE_CASINO",
-        "product_title": "SA Gaming"
-    },
+
 ]
-const LiveCasino = () => {
+interface Game {
+    game_code: string,
+    game_name: string,
+    game_type: string,
+    image_url: string,
+    product_code: number,
+    product_id: number,
+    status: string,
+    support_currency: string,
+}
+export default function Home() {
     const router = useRouter();
     const [productActive, setProductActive] = useState(0);
     const [games, setGames] = useState([]);
     const [loadingGame, setLoadingGame] = useState(false);
-
     useEffect(() => {
-        fetchGames(1022);
+        fetchGames(1138);
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
     }, [productActive])
-    const fetchGames = async (product_code: any) => {
-        for (const i of products) {
-            const request_time = new Date().getTime();
-            const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}gamelist${process.env.NEXT_PUBLIC_OP_CODE}`);
-            fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
-                "?product_code=" + product_code +
-                "&operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
-                "&game_type=" + "LIVE_CASINO" +
-                "&sign=" + hash +
-                "&request_time=" + request_time)
-                .then((response) => response.json())
-                .then(result => {
-                    //console.log(result)
-                    setGames(result.provider_games);
-                })
-                .catch(err => {
-                    throw err
-                })
-        }
-    }
     const handdlePlay = async (game: any) => {
         try {
             setLoadingGame(true);
@@ -113,8 +66,7 @@ const LiveCasino = () => {
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        //console.log(result)
-                        setLoadingGame(false);
+                        console.log(result)
                         if (result.status === 'no' && result.message === "logout") {
                             Cookies.remove("userdata");
                             setLoadingGame(false);
@@ -129,8 +81,7 @@ const LiveCasino = () => {
                                 window.location.reload();
                             });
                         } else {
-                            setLoadingGame(false);
-                            router.push(result.result);
+                            router.push(result.result)
                         }
                     }).catch(() => {
                         Cookies.remove("userdata");
@@ -171,8 +122,28 @@ const LiveCasino = () => {
             });
         }
     }
+    const fetchGames = async (product_code: any) => {
+        for (const i of products) {
+            const request_time = new Date().getTime();
+            const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}gamelist${process.env.NEXT_PUBLIC_OP_CODE}`);
+            fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
+                "?product_code=" + product_code +
+                "&operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
+                "&game_type=" + "POKER" +
+                "&sign=" + hash +
+                "&request_time=" + request_time)
+                .then((response) => response.json())
+                .then(result => {
+                    console.log(result)
+                    setGames(result.provider_games);
+                })
+                .catch(err => {
+                    throw err
+                })
+        }
+    }
     return (
-        <div>
+        <>
             {loadingGame && <Spinner />}
             <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>
                 <div className='flex border rounded-lg overflow-hidden'>
@@ -196,39 +167,41 @@ const LiveCasino = () => {
                         }
                     </div>
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
-                        {games && games.length > 0 && games.map((item: any, index) => {
+                        {games && games.map((item: Game, index) => {
                             return (
-                                <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
-                                    <img
-                                        src={item.image_url}
-                                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                            const img = e.target as HTMLImageElement;
-                                            img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
-                                            img.src = `/assets/icon/product/${products[productActive].product_name}.png`;
-                                        }}
-                                        className='hover:border-2 border-yellow-300'
-                                    />
-                                    {/* <img
-                                        src={`/assets/icon/game/${item?.product_code + item?.game_code}.png`}
-                                        alt={item.game_name}
-                                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                            const img = e.target as HTMLImageElement;
-                                            img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
-                                            //img.src = `/assets/icon/product/${products[productActive].product_name}.png`;
-                                        }}
-                                        className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
-                                    /> */}
-                                    <h1 className=' text-center text-white'>{item.game_name}</h1>
-                                    {/* <p className=' text-center text-white'>{item.product_code}</p>
-                                    <p className=' text-center text-white'>{item.game_code}</p> */}
-                                </div>
+                                <>
+                                    {item.status === "ACTIVATED" &&
+                                        <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
+                                            <GameItem {...item} />
+                                        </div>
+                                    }
+                                </>
+
                             )
                         })}
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
-
-export default LiveCasino
+const GameItem: React.FC<Game> = (item: Game) => {
+    const [imgSrc, setImageSrc] = useState(item.image_url);
+    return (
+        <>
+            <img
+                src={item.image_url}
+                alt={item.game_name}
+                onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                    const img = e.target as HTMLImageElement;
+                    img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
+                    img.onerror = null;
+                }}
+                className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
+            />
+            <p className=' text-center text-white text-sm'>{item.game_name}</p>
+            {/* <h1 className=' text-center text-white'>{item.product_id}</h1>
+            <p className=' text-center text-white'>{item.product_code}{item.game_code}</p> */}
+        </>
+    )
+}
