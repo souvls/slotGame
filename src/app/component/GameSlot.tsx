@@ -35,17 +35,6 @@ const products = [
         "currency": "IDR",
         "status": "ACTIVATED",
         "provider_id": 32,
-        "product_id": 49,
-        "product_code": 1006,
-        "product_name": "pragmatic_play",
-        "game_type": "LIVE_CASINO",
-        "product_title": "PragmaticPlay"
-    },
-    {
-        "provider": "PragmaticPlay",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 32,
         "product_id": 50,
         "product_code": 1006,
         "product_name": "pragmatic_play",
@@ -369,8 +358,8 @@ const GameItem: React.FC<Game> = (item: Game) => {
                 className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
             />
             <p className=' text-center text-white text-sm'>{item.game_name}</p>
-            {/* <h1 className=' text-center text-white'>{item.product_id}</h1>
-            <p className=' text-center text-white'>{item.product_code}{item.game_code}</p> */}
+            <h1 className=' text-center text-white'>{item.product_id}</h1>
+            <p className=' text-center text-white'>{item.product_code}{item.game_code}</p>
         </>
     )
 }

@@ -34,7 +34,7 @@ const Nav_bar_ = () => {
             })
                 .then((response) => response.json())
                 .then((result) => {
-                    console.log(result);
+                    // console.log(result);
                     if (result.status === 'no' && result.message === "logout") {
                         Cookies.remove("userdata");
                         Swal.fire({

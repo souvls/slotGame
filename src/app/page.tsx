@@ -227,7 +227,7 @@ export default function Home() {
           </div>
         </div>
         <div className=' w-[90%] pt-5 pb-10 mx-auto text-justify'>
-          <h1 className="text-gray-300 text-center font-semibold mt-1 xl:mt-10 lg:mt-8 md:mt-4 xs:mt-2 indent-8 text-[5px]  xl:text-[12px] lg:text-[10px] md:text-[8px] xs:text-[6px] xl:leading-6 lg:leading-5  sm:leading-3  xl:indent-10">
+          <h1 className="text-gray-300 text-center font-semibold mt-1 xl:mt-10 lg:mt-8 md:mt-4 xs:mt-2 indent-8 text-[10px]  xl:text-[12px] lg:text-[10px] md:text-[8px] xs:text-[6px] xl:leading-6 lg:leading-5  sm:leading-3  xl:indent-10">
             <span className="text-gray-200 bg-purple-500 bg-opacity-50 rounded-tr-lg rounded px-3 uppercase text-xs xl:text-[26px] lg:text-[22px] md:text-[18px] xs:text-[14px] font-semibold">
               Infinity
             </span>{" "}
@@ -260,20 +260,13 @@ export default function Home() {
           </h1>
         </div>
       </section>
-      <section className=' bg-gray-900 p-5'>
-        <div className=' w-[90%] mx-auto flex justify-between'>
-          <div className='w-full'>
-            <p className=' text-yellow-300 text-xl font-bold text-center'>ຄູ່ຄ້າລາຍໃຫຍ່</p>
-            <div className=' flex flex-col items-center'>
-              <Image src={gamesoftLogo} alt='logo' width={100} />
-              <Link className=' text-yellow-300 text-sm font-bold text-center' href={"https://www.gamingsoft.com/"}>www.gamingsoft.com</Link>
-            </div>
-          </div>
-          <div className='w-full'>
-            <p className=' text-yellow-300 text-xl font-bold text-center'>ພັດທະນາໂດຍ</p>
-            <p className=' text-blue-500 text-center'>Telegram:@mondev20</p>
-          </div>
-        </div>
+      <section className=' mxa-w-[960px] mx-auto py-10 px-2'>
+        <h1 className='font-bold text-yellow-400 text-center text-xl'>
+          INFINITY999 ผู้ให้บริการคาสิโนออนไลน์
+        </h1>
+        <h1 className=' text-center text-sm'>
+          เราคือ เว็บพนันออนไลน์ ครบวงจร มั่นคง ปลอดภัย ให้ บริการ บาคาร่าออนไลน์ สล็อตออนไลน์ ทุกค่าย slotxo pgslot joker jili โปรโมชั่นมากมาย บริการด้วยใจ ฝากถอน รวดเร็ว ไม่มีขั้นต่ำา
+        </h1>
       </section>
       <section className=' bg-black py-2'>
         <p className=' text-gray-300 text-center'>copyright @ mondev2024</p>

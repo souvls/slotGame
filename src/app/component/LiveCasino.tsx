@@ -113,7 +113,7 @@ const LiveCasino = () => {
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        //console.log(result)
+                        console.log(result)
                         setLoadingGame(false);
                         if (result.status === 'no' && result.message === "logout") {
                             Cookies.remove("userdata");
@@ -198,30 +198,25 @@ const LiveCasino = () => {
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
                         {games && games.length > 0 && games.map((item: any, index) => {
                             return (
-                                <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
-                                    <img
-                                        src={item.image_url}
-                                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                            const img = e.target as HTMLImageElement;
-                                            img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
-                                            img.src = `/assets/icon/product/${products[productActive].product_name}.png`;
-                                        }}
-                                        className='hover:border-2 border-yellow-300'
-                                    />
-                                    {/* <img
-                                        src={`/assets/icon/game/${item?.product_code + item?.game_code}.png`}
-                                        alt={item.game_name}
-                                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                            const img = e.target as HTMLImageElement;
-                                            img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
-                                            //img.src = `/assets/icon/product/${products[productActive].product_name}.png`;
-                                        }}
-                                        className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
-                                    /> */}
-                                    <h1 className=' text-center text-white'>{item.game_name}</h1>
-                                    {/* <p className=' text-center text-white'>{item.product_code}</p>
-                                    <p className=' text-center text-white'>{item.game_code}</p> */}
-                                </div>
+                                <>
+                                    {item.status === "ACTIVATED" &&
+                                        <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
+                                            <img
+                                                src={item.image_url}
+                                                onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                                                    const img = e.target as HTMLImageElement;
+                                                    img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
+                                                    img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
+                                                }}
+                                                className='hover:border-2 border-yellow-300 lg:w-[248px] lg:h-[248px] overflow-hidden'
+                                            />
+                                            <h1 className=' text-center text-white'>{item.game_name}</h1>
+                                            {/* <p className=' text-center text-white'>{item.product_code}</p>
+                                                                    <p className=' text-center text-white'>{item.game_code}</p> */}
+                                        </div>
+                                    }
+                                </>
+
                             )
                         })}
                     </div>

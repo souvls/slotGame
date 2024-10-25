@@ -26,7 +26,7 @@ export default async function handler(
                         "operator_code": process.env.OP_CODE,
                         "member_account": user.username,
                         "password": generateRandomPassword(12),
-                        "currency": "IDR",
+                        "currency": "THB",
                         "game_code": game_code,
                         "product_code": product_code,
                         "game_type": "SLOT",
