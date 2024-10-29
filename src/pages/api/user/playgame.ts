@@ -3,6 +3,7 @@ import verifyJWTToken from '../../../Middleware/auth'
 import checkMaintenance from '../../../Middleware/checkMaintenance';
 import User from '@/Models/User';
 import md5 from 'md5';
+import { json } from 'stream/consumers';
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -15,38 +16,39 @@ export default async function handler(
 
                 //checkIp 
                 const _user = await User.findById(user.id);
-                console.log(_user.ip)
-                console.log(ip)
+                // console.log(_user.ip)
+                // console.log(ip)
                 if (_user.ip === ip) {
                     const myHeaders = new Headers();
                     myHeaders.append("Content-Type", "application/json");
                     const request_time = new Date().getTime();
                     const hash = md5(`${request_time}${process.env.SECRET_KEY}launchgame${process.env.OP_CODE}`);
-                    const raw = JSON.stringify({
+                    const raw = {
                         "operator_code": process.env.OP_CODE,
                         "member_account": user.username,
                         "password": generateRandomPassword(12),
                         "currency": "THB",
                         "game_code": game_code,
                         "product_code": product_code,
-                        "game_type": "SLOT",
-                        "language_code": 3,
-                        "ip": ip,
+                        "game_type": "Slot",
+                        "language_code": 0,
+                        "ip": "27.0.0.1",
                         "platform": "web",
                         "sign": hash,
                         "request_time": request_time,
                         "operator_lobby_url": "http://infinity999.com",
-                    })
-                    fetch(process.env.API_NAME + "/api/operators/launch-game", {
+                    }
+                    fetch( "https://production.gsimw.com/api/operators/launch-game", {
                         method: "POST",
                         headers: myHeaders,
-                        body: raw,
+                        body: JSON.stringify(raw),
                         redirect: "follow"
                     })
                         .then((response) => response.json())
                         .then((result) => {
-                            //console.log(result)
-                            res.status(200).json({ status: 'ok', message: "", result: result.url });
+                            console.log(raw);
+                            console.log(result)
+                            res.status(200).json({ status: 'ok', message: result.message, result: result.url });
                         })
                         .catch((error) => console.error(error));
                 } else {

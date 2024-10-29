@@ -6,164 +6,18 @@ import Cookies from 'js-cookie';
 import Spinner from './Spinner';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-const products = [
+import productList from '@/lib/ProductList'
 
-    {
-        "provider": "Live22",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 11,
-        "product_id": 72,
-        "product_code": 1018,
-        "product_name": "live_22",
-        "game_type": "SLOT",
-        "product_title": "Live22"
-    },
-    {
-        "provider": "Evolution",
-        "currency": "IDR2",
-        "status": "ACTIVATED",
-        "provider_id": 29,
-        "product_id": 88,
-        "product_code": 1168,
-        "product_name": "netent",
-        "game_type": "SLOT",
-        "product_title": "Netent"
-    },
-    {
-        "provider": "PragmaticPlay",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 32,
-        "product_id": 50,
-        "product_code": 1006,
-        "product_name": "pragmatic_play",
-        "game_type": "SLOT",
-        "product_title": "PragmaticPlay"
-    },
-    {
-        "provider": "EVOPLAY",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 38,
-        "product_id": 63,
-        "product_code": 1049,
-        "product_name": "evoplay",
-        "game_type": "SLOT",
-        "product_title": "EvoPlay"
-    },
-    {
-        "provider": "JDB",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 41,
-        "product_id": 57,
-        "product_code": 1085,
-        "product_name": "jdb",
-        "game_type": "SLOT",
-        "product_title": "JDB"
-    },
-    {
-        "provider": "PlayStar",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 42,
-        "product_id": 37,
-        "product_code": 1050,
-        "product_name": "playstar",
-        "game_type": "SLOT",
-        "product_title": "PlayStar"
-    },
-    {
-        "provider": "CQ9",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 47,
-        "product_id": 47,
-        "product_code": 1009,
-        "product_name": "cq9",
-        "game_type": "SLOT",
-        "product_title": "CQ9"
-    },
-    {
-        "provider": "Jili",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 48,
-        "product_id": 6,
-        "product_code": 1091,
-        "product_name": "jili_tcg",
-        "game_type": "SLOT",
-        "product_title": "JiLi"
-    },
-    {
-        "provider": "BoomingGames",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 68,
-        "product_id": 114,
-        "product_code": 1115,
-        "product_name": "booming_games",
-        "game_type": "SLOT",
-        "product_title": "Booming Games"
-    },
-
-    {
-        "provider": "WOW GAMING",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 101,
-        "product_id": 40,
-        "product_code": 1148,
-        "product_name": "wow_gaming",
-        "game_type": "SLOT",
-        "product_title": "WOW Gaming"
-    },
-    {
-        "provider": "HACKSAW",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 105,
-        "product_id": 65,
-        "product_code": 1153,
-        "product_name": "hacksaw",
-        "game_type": "SLOT",
-        "product_title": "Hacksaw"
-    },
-    {
-        "provider": "N2",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 115,
-        "product_id": 83,
-        "product_code": 1162,
-        "product_name": "octoplay",
-        "game_type": "SLOT",
-        "product_title": "OCTOPlay"
-    },
-    {
-        "provider": "SmartSoft",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 118,
-        "product_id": 92,
-        "product_code": 1170,
-        "product_name": "smartsoft",
-        "game_type": "SLOT",
-        "product_title": "SmartSoft"
-    },
-    {
-        "provider": "Rich88",
-        "currency": "IDR2",
-        "status": "ACTIVATED",
-        "provider_id": 124,
-        "product_id": 112,
-        "product_code": 1184,
-        "product_name": "rich88",
-        "game_type": "SLOT",
-        "product_title": "RiCH88"
-    },
-]
+// interface Product {
+//     provider: string,
+//     currency: string,
+//     status: string,
+//     provider_id: number,
+//     product_id: number,
+//     product_code: number,
+//     product_name: string,
+//     game_type: string
+// }
 interface Game {
     game_code: string,
     game_name: string,
@@ -174,6 +28,192 @@ interface Game {
     status: string,
     support_currency: string,
 }
+const products = [
+    {
+        "provider": "PG Soft",
+        "currency": "EUR",
+        "status": "ACTIVATED",
+        "provider_id": 31,
+        "product_id": 1141,
+        "product_code": 1007,
+        "product_name": "pg_soft",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "JDB",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 41,
+        "product_id": 1194,
+        "product_code": 1085,
+        "product_name": "jdb",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "Live22",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 11,
+        "product_id": 1237,
+        "product_code": 1018,
+        "product_name": "live_22",
+        "game_type": "SLOT"
+    },
+    //netent
+    {
+        "provider": "Evolution",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 29,
+        "product_id": 1252,
+        "product_code": 1168,
+        "product_name": "netent",
+        "game_type": "SLOT"
+    },
+    //parmatic
+    {
+        "provider": "PragmaticPlay",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 32,
+        "product_id": 1185,
+        "product_code": 1006,
+        "product_name": "pragmatic_play",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "EVOPLAY",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 38,
+        "product_id": 1228,
+        "product_code": 1049,
+        "product_name": "evoplay",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "PlayStar",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 42,
+        "product_id": 1174,
+        "product_code": 1050,
+        "product_name": "playstar",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "CQ9",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 47,
+        "product_id": 1186,
+        "product_code": 1009,
+        "product_name": "cq9",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "Jili",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 48,
+        "product_id": 1144,
+        "product_code": 1091,
+        "product_name": "jili_tcg",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "MrSlotty",
+        "currency": "MXN",
+        "status": "ACTIVATED",
+        "provider_id": 49,
+        "product_id": 1152,
+        "product_code": 1111,
+        "product_name": "gamingworld",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "BoomingGames",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 68,
+        "product_id": 1280,
+        "product_code": 1115,
+        "product_name": "booming_games",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "WOW GAMING",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 101,
+        "product_id": 1177,
+        "product_code": 1148,
+        "product_name": "wow_gaming",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "HACKSAW",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 105,
+        "product_id": 1230,
+        "product_code": 1153,
+        "product_name": "hacksaw",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "EPICWIN",
+        "currency": "KES",
+        "status": "ACTIVATED",
+        "provider_id": 112,
+        "product_id": 1240,
+        "product_code": 1160,
+        "product_name": "epicwin",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "N2",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 115,
+        "product_id": 1247,
+        "product_code": 1162,
+        "product_name": "octoplay",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "SmartSoft",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 118,
+        "product_id": 1256,
+        "product_code": 1170,
+        "product_name": "smartsoft",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "Rich88",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 124,
+        "product_id": 1277,
+        "product_code": 1184,
+        "product_name": "rich88",
+        "game_type": "SLOT"
+    }
+    // {
+    //     "provider": "WorldEntertainment",
+    //     "currency": "CNY",
+    //     "status": "ACTIVATED",
+    //     "provider_id": 120,
+    //     "product_id": 1261,
+    //     "product_code": 1172,
+    //     "product_name": "world_entertainment",
+    //     "game_type": "SLOT"
+    // }
+];
+
+
 export default function Home() {
     const router = useRouter();
     const [productActive, setProductActive] = useState(0);
@@ -184,7 +224,7 @@ export default function Home() {
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
-        //fetchProductList();
+        fetchProductList();
     }, [productActive])
     const fetchProductList = () => {
         const request_time = new Date().getTime();
@@ -195,7 +235,7 @@ export default function Home() {
             "&request_time=" + request_time)
             .then((response) => response.json())
             .then(result => {
-                //console.log(result)
+                console.log(result)
                 //setProductList(result);
             })
             .catch(err => {
@@ -311,7 +351,7 @@ export default function Home() {
                         {
                             products.map((item, index) => {
                                 return (
-                                    <div key={index} onClick={() => setProductActive(index)} className={`w-full h-[50px] flex items-center border-2  rounded-lg overflow-hidden ${index == productActive ? 'border-yellow-300' : 'border-purple-600'}`}>
+                                    <div key={index} onClick={() => setProductActive(index)} className={`bg-white w-full h-[50px] flex items-center border-2  rounded-lg overflow-hidden  ${index == productActive ? 'border-yellow-300' : 'border-purple-600'}`}>
                                         <img
                                             src={`/assets/icon/product/${item.product_name}.png`}
                                             alt={item.product_name} width={100} height={100}
@@ -352,7 +392,9 @@ const GameItem: React.FC<Game> = (item: Game) => {
                 alt={item.game_name}
                 onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                     const img = e.target as HTMLImageElement;
-                    img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
+                    //img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
+                    img.src = `/assets/icon/product/booming_games.png`
+
                     img.onerror = null;
                 }}
                 className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
