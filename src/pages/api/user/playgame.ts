@@ -12,7 +12,7 @@ export default async function handler(
         verifyJWTToken(req, res, async () => {
             const user: any = req.headers.data
             if (req.method === "POST") {
-                const { game_code, product_code, ip } = req.body;
+                const { game_code, product_code, ip,game_type} = req.body;
 
                 //checkIp 
                 const _user = await User.findById(user.id);
@@ -30,9 +30,9 @@ export default async function handler(
                         "currency": "THB",
                         "game_code": game_code,
                         "product_code": product_code,
-                        "game_type": "Slot",
+                        "game_type": game_type,
                         "language_code": 0,
-                        "ip": "27.0.0.1",
+                        "ip": ip,
                         "platform": "web",
                         "sign": hash,
                         "request_time": request_time,
@@ -46,8 +46,8 @@ export default async function handler(
                     })
                         .then((response) => response.json())
                         .then((result) => {
-                            console.log(raw);
-                            console.log(result)
+                            //console.log(raw);
+                            //console.log(result)
                             res.status(200).json({ status: 'ok', message: result.message, result: result.url });
                         })
                         .catch((error) => console.error(error));

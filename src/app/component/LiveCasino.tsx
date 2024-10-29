@@ -6,56 +6,55 @@ import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
 const products = [
     {
+        "provider": "SA Gaming",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 8,
+        "product_id": 1279,
+        "product_code": 1185,
+        "product_name": "sa_gaming",
+        "game_type": "LIVE_CASINO"
+    },
+    {
         "provider": "AWC",
-        "currency": "IDR",
+        "currency": "THB",
         "status": "ACTIVATED",
         "provider_id": 23,
-        "product_id": 29,
+        "product_id": 1166,
         "product_code": 1022,
         "product_name": "sexy_gaming",
         "game_type": "LIVE_CASINO"
     },
     {
         "provider": "PragmaticPlay",
-        "currency": "IDR",
+        "currency": "THB",
         "status": "ACTIVATED",
         "provider_id": 32,
-        "product_id": 49,
+        "product_id": 1184,
         "product_code": 1006,
         "product_name": "pragmatic_play",
         "game_type": "LIVE_CASINO"
     },
     {
         "provider": "BigGaming",
-        "currency": "IDR2",
+        "currency": "THB",
         "status": "ACTIVATED",
         "provider_id": 34,
-        "product_id": 68,
+        "product_id": 1233,
         "product_code": 1004,
         "product_name": "big_gaming",
         "game_type": "LIVE_CASINO"
     },
     {
         "provider": "AI Live Casino",
-        "currency": "IDR",
+        "currency": "THB",
         "status": "ACTIVATED",
         "provider_id": 102,
-        "product_id": 41,
+        "product_id": 1178,
         "product_code": 1149,
         "product_name": "ai_live_casino",
         "game_type": "LIVE_CASINO"
-    },
-    {
-        "provider": "SA Gaming",
-        "currency": "IDR",
-        "status": "ACTIVATED",
-        "provider_id": 8,
-        "product_id": 116,
-        "product_code": 1185,
-        "product_name": "sa_gaming",
-        "game_type": "LIVE_CASINO",
-        "product_title": "SA Gaming"
-    },
+    }
 ]
 const LiveCasino = () => {
     const router = useRouter();
@@ -64,11 +63,35 @@ const LiveCasino = () => {
     const [loadingGame, setLoadingGame] = useState(false);
 
     useEffect(() => {
-        fetchGames(1022);
+        fetchGames(1185);
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
+        fetchProductList();
+
     }, [productActive])
+    const fetchProductList = () => {
+        const request_time = new Date().getTime();
+        const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}productlist${process.env.NEXT_PUBLIC_OP_CODE}`);
+        fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/available-products" +
+            "?operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
+            "&sign=" + hash +
+            "&request_time=" + request_time)
+            .then((response) => response.json())
+            .then(result => {
+                const x = [{}];
+                result.forEach((item: any) => {
+                    if (item.game_type !== "SLOT" && item.game_type !== "LIVE_CASINO" && item.currency === "THB" && item.status === 'ACTIVATED') {
+                        x.push(item)
+                    }
+                });
+                console.log(x);
+                //setProductList(result);
+            })
+            .catch(err => {
+                throw err
+            })
+    }
     const fetchGames = async (product_code: any) => {
         for (const i of products) {
             const request_time = new Date().getTime();
@@ -100,7 +123,8 @@ const LiveCasino = () => {
                 const data = JSON.stringify({
                     game_code: game.game_code,
                     product_code: game.product_code,
-                    ip: ip.ip
+                    ip: ip.ip,
+                    game_type:"LIVE_CASINO"
                 });
                 fetch("/api/user/playgame", {
                     method: "POST",
@@ -129,8 +153,15 @@ const LiveCasino = () => {
                                 window.location.reload();
                             });
                         } else {
-                            setLoadingGame(false);
-                            router.push(result.result);
+                            if(result.result != ""){
+                                router.push(result.result)
+                            }else{
+                                setLoadingGame(false);
+                                Swal.fire({
+                                    icon:"error",
+                                    title:result.message
+                                })
+                            }
                         }
                     }).catch(() => {
                         Cookies.remove("userdata");
@@ -180,7 +211,7 @@ const LiveCasino = () => {
                         {
                             products.map((item, index) => {
                                 return (
-                                    <div key={index} onClick={() => setProductActive(index)} className={`w-full h-[50px] flex items-center border-2  rounded-lg overflow-hidden ${index == productActive ? 'border-yellow-300' : 'border-purple-600'}`}>
+                                    <div key={index} onClick={() => setProductActive(index)} className={` bg-white w-full h-[50px] flex items-center border-2  rounded-lg overflow-hidden ${index == productActive ? 'border-yellow-300' : 'border-purple-600'}`}>
                                         <img
                                             src={`/assets/icon/product/${item.product_name}.png`}
                                             alt={item.product_name} width={100} height={100}

@@ -10,15 +10,14 @@ const products = [
 
     {
         "provider": "Spribe",
-        "currency": "IDR",
+        "currency": "THB",
         "status": "ACTIVATED",
         "provider_id": 92,
         "product_id": 1,
         "product_code": 1138,
         "product_name": "spribe",
-        "game_type": "POKER",
-        "product_title": "Spribe"
-    },
+        "game_type": "POKER"
+    }
 
 ]
 interface Game {
@@ -53,7 +52,8 @@ export default function Home() {
                 const data = JSON.stringify({
                     game_code: game.game_code,
                     product_code: game.product_code,
-                    ip: ip.ip
+                    ip: ip.ip,
+                    game_type:"POKER"
                 });
                 fetch("/api/user/playgame", {
                     method: "POST",
@@ -81,7 +81,15 @@ export default function Home() {
                                 window.location.reload();
                             });
                         } else {
-                            router.push(result.result)
+                            if (result.result != "") {
+                                router.push(result.result)
+                            } else {
+                                setLoadingGame(false);
+                                Swal.fire({
+                                    icon: "error",
+                                    title: result.message
+                                })
+                            }
                         }
                     }).catch(() => {
                         Cookies.remove("userdata");
@@ -151,7 +159,7 @@ export default function Home() {
                         {
                             products.map((item, index) => {
                                 return (
-                                    <div key={index} onClick={() => setProductActive(index)} className={`w-full h-[50px] flex items-center border-2  rounded-lg overflow-hidden ${index == productActive ? 'border-yellow-300' : 'border-purple-600'}`}>
+                                    <div key={index} onClick={() => setProductActive(index)} className={`bg-white w-full h-[50px] flex items-center border-2  rounded-lg overflow-hidden ${index == productActive ? 'border-yellow-300' : 'border-purple-600'}`}>
                                         <img
                                             src={`/assets/icon/product/${item.product_name}.png`}
                                             alt={item.product_name} width={100} height={100}

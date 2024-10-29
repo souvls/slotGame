@@ -201,16 +201,7 @@ const products = [
         "product_name": "rich88",
         "game_type": "SLOT"
     }
-    // {
-    //     "provider": "WorldEntertainment",
-    //     "currency": "CNY",
-    //     "status": "ACTIVATED",
-    //     "provider_id": 120,
-    //     "product_id": 1261,
-    //     "product_code": 1172,
-    //     "product_name": "world_entertainment",
-    //     "game_type": "SLOT"
-    // }
+
 ];
 
 
@@ -224,7 +215,7 @@ export default function Home() {
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
-        fetchProductList();
+        //fetchProductList();
     }, [productActive])
     const fetchProductList = () => {
         const request_time = new Date().getTime();
@@ -235,7 +226,7 @@ export default function Home() {
             "&request_time=" + request_time)
             .then((response) => response.json())
             .then(result => {
-                console.log(result)
+                //console.log(result)
                 //setProductList(result);
             })
             .catch(err => {
@@ -253,7 +244,8 @@ export default function Home() {
                 const data = JSON.stringify({
                     game_code: game.game_code,
                     product_code: game.product_code,
-                    ip: ip.ip
+                    ip: ip.ip,
+                    game_type:game.game_type,
                 });
                 fetch("/api/user/playgame", {
                     method: "POST",
@@ -266,7 +258,7 @@ export default function Home() {
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        console.log(result)
+                        //console.log(result)
                         if (result.status === 'no' && result.message === "logout") {
                             Cookies.remove("userdata");
                             setLoadingGame(false);
@@ -281,7 +273,16 @@ export default function Home() {
                                 window.location.reload();
                             });
                         } else {
-                            router.push(result.result)
+                            if(result.result != ""){
+                                router.push(result.result)
+                            }else{
+                                setLoadingGame(false);
+                                Swal.fire({
+                                    icon:"error",
+                                    title:result.message
+                                })
+                            }
+                            
                         }
                     }).catch(() => {
                         Cookies.remove("userdata");
