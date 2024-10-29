@@ -220,7 +220,7 @@ export default function Home() {
     const [games, setGames] = useState([]);
     const [loadingGame, setLoadingGame] = useState(false);
     useEffect(() => {
-        fetchGames(1018);
+        fetchGames(1007);
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
