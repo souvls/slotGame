@@ -26,13 +26,13 @@ export default async function handler(
                     const raw = {
                         "operator_code": process.env.OP_CODE,
                         "member_account": user.username,
-                        "password": generateRandomPassword(12),
+                        "password": "@ddfkj_reHG4982$Gxx#sSEW783",
                         "currency": "THB",
                         "game_code": game_code,
                         "product_code": product_code,
                         "game_type": game_type,
                         "language_code": 0,
-                        "ip": ip,
+                        "ip": "127.0.0.1",
                         "platform": "web",
                         "sign": hash,
                         "request_time": request_time,
@@ -47,8 +47,8 @@ export default async function handler(
                         .then((response) => response.json())
                         .then((result) => {
                             //console.log(raw);
-                            //console.log(result)
-                            res.status(200).json({ status: 'ok', message: result.message, result: result.url });
+                            console.log(result)
+                            res.status(200).json({ status: 'ok', message: result.message, result: result.url,content:result.content });
                         })
                         .catch((error) => console.error(error));
                 } else {

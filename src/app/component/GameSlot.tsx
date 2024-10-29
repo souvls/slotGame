@@ -273,15 +273,16 @@ export default function Home() {
                                 window.location.reload();
                             });
                         } else {
-                            if(result.result != ""){
-                                router.push(result.result)
-                            }else{
-                                setLoadingGame(false);
-                                Swal.fire({
-                                    icon:"error",
-                                    title:result.message
-                                })
-                            }
+                            console.log(result);
+                            // if(result.result != ""){
+                            //     router.push(result.result)
+                            // }else{
+                            //     setLoadingGame(false);
+                            //     Swal.fire({
+                            //         icon:"error",
+                            //         title:result.message
+                            //     })
+                            // }
                             
                         }
                     }).catch(() => {
