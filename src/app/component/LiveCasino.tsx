@@ -117,52 +117,48 @@ const LiveCasino = () => {
             setLoadingGame(true);
             const cookie = Cookies.get("userdata");
             if (cookie) {
-                const token = JSON.parse(cookie).token;
+                //const token = JSON.parse(cookie).token;
                 const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                const request_time = new Date().getTime();
+                console.log(process.env.NEXT_PUBLIC_SECRET_KEY);
+                console.log(process.env.NEXT_PUBLIC_OP_CODE);
 
-                const data = JSON.stringify({
-                    game_code: game.game_code,
-                    product_code: game.product_code,
-                    ip: ip.ip,
-                    game_type:"LIVE_CASINO"
-                });
-                fetch("/api/user/playgame", {
+                const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}launchgame${process.env.NEXT_PUBLIC_OP_CODE}`);
+                const raw = {
+                    "operator_code": process.env.NEXT_PUBLIC_OP_CODE,
+                    "member_account": JSON.parse(cookie).username,
+                    "password": "@ddfkj_reHG4982$Gxx#sSEW783",
+                    "currency": "THB",
+                    "game_code": game.game_code,
+                    "product_code": game.product_code,
+                    "game_type": game.game_type,
+                    "language_code": 0,
+                    "ip": "127.0.0.1",
+                    "platform": "web",
+                    "sign": hash,
+                    "request_time": request_time,
+                    "operator_lobby_url": "http://infinity999.com",
+                }
+                fetch("https://production.gsimw.com/api/operators/launch-game", {
                     method: "POST",
-                    headers: {
-                        'Authorization': 'Bearer ' + token,
-                        'Content-Type': 'application/json'
-                    },
-                    body: data,
+                    headers: myHeaders,
+                    body: JSON.stringify(raw),
                     redirect: "follow"
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        console.log(result)
-                        setLoadingGame(false);
-                        if (result.status === 'no' && result.message === "logout") {
-                            Cookies.remove("userdata");
+                        //console.log(result)
+                        
+                        if (result.code === 200) {
+                            router.push(result.url)
+                        } else {
                             setLoadingGame(false);
                             Swal.fire({
-                                title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-                                text: "020 98 399 064",
                                 icon: "error",
-                                background: '#000000',
-                                color: '#ffffff',
-                                showConfirmButton: false,
-                            }).then(() => {
-                                window.location.reload();
-                            });
-                        } else {
-                            console.log(result);
-                            // if(result.result != ""){
-                            //     router.push(result.result)
-                            // }else{
-                            //     setLoadingGame(false);
-                            //     Swal.fire({
-                            //         icon:"error",
-                            //         title:result.message
-                            //     })
-                            // }
+                                title: result.message
+                            })
                         }
                     }).catch(() => {
                         Cookies.remove("userdata");
@@ -203,6 +199,97 @@ const LiveCasino = () => {
             });
         }
     }
+    // const handdlePlay = async (game: any) => {
+    //     try {
+    //         setLoadingGame(true);
+    //         const cookie = Cookies.get("userdata");
+    //         if (cookie) {
+    //             const token = JSON.parse(cookie).token;
+    //             const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
+
+    //             const data = JSON.stringify({
+    //                 game_code: game.game_code,
+    //                 product_code: game.product_code,
+    //                 ip: ip.ip,
+    //                 game_type:"LIVE_CASINO"
+    //             });
+    //             fetch("/api/user/playgame", {
+    //                 method: "POST",
+    //                 headers: {
+    //                     'Authorization': 'Bearer ' + token,
+    //                     'Content-Type': 'application/json'
+    //                 },
+    //                 body: data,
+    //                 redirect: "follow"
+    //             })
+    //                 .then((response) => response.json())
+    //                 .then((result) => {
+    //                     console.log(result)
+    //                     setLoadingGame(false);
+    //                     if (result.status === 'no' && result.message === "logout") {
+    //                         Cookies.remove("userdata");
+    //                         setLoadingGame(false);
+    //                         Swal.fire({
+    //                             title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
+    //                             text: "020 98 399 064",
+    //                             icon: "error",
+    //                             background: '#000000',
+    //                             color: '#ffffff',
+    //                             showConfirmButton: false,
+    //                         }).then(() => {
+    //                             window.location.reload();
+    //                         });
+    //                     } else {
+    //                         console.log(result);
+    //                         // if(result.result != ""){
+    //                         //     router.push(result.result)
+    //                         // }else{
+    //                         //     setLoadingGame(false);
+    //                         //     Swal.fire({
+    //                         //         icon:"error",
+    //                         //         title:result.message
+    //                         //     })
+    //                         // }
+    //                     }
+    //                 }).catch(() => {
+    //                     Cookies.remove("userdata");
+    //                     setLoadingGame(false);
+    //                     Swal.fire({
+    //                         title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
+    //                         text: "020 98 399 064",
+    //                         icon: "error",
+    //                         background: '#000000',
+    //                         color: '#ffffff',
+    //                         showConfirmButton: false,
+    //                     }).then(() => {
+    //                         window.location.reload();
+    //                     });
+    //                 })
+    //         } else {
+    //             setLoadingGame(false);
+    //             Swal.fire({
+    //                 title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
+    //                 text: "020 98 399 064",
+    //                 icon: "error",
+    //                 background: '#000000',
+    //                 color: '#ffffff',
+    //                 showConfirmButton: false,
+    //             });
+    //         }
+    //     }
+    //     catch (err) {
+    //         console.log(err)
+    //         setLoadingGame(false);
+    //         Swal.fire({
+    //             title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
+    //             text: "02011223344",
+    //             icon: "error",
+    //             background: '#000000',
+    //             color: '#ffffff',
+    //             showConfirmButton: false,
+    //         });
+    //     }
+    // }
     return (
         <div>
             {loadingGame && <Spinner />}
