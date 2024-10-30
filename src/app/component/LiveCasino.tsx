@@ -63,6 +63,7 @@ const LiveCasino = () => {
     const [loadingGame, setLoadingGame] = useState(false);
 
     useEffect(() => {
+        setLoadingGame(false);
         fetchGames(1185);
     }, [])
     useEffect(() => {

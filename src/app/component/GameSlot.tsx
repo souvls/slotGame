@@ -190,11 +190,12 @@ export default function Home() {
     const [games, setGames] = useState([]);
     const [loadingGame, setLoadingGame] = useState(false);
     useEffect(() => {
+        setLoadingGame(false);
         fetchGames(1007);
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
-        fetchProductList();
+        //fetchProductList();
     }, [productActive])
     const fetchProductList = () => {
         const request_time = new Date().getTime();
@@ -211,7 +212,7 @@ export default function Home() {
                         x.push(item)
                     }
                 });
-                console.log(x);
+                //console.log(x);
                 //setProductList(x);
             })
             .catch(err => {
@@ -255,7 +256,7 @@ export default function Home() {
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        //console.log(result)
+                        console.log(result)
 
                         if (result.code === 200) {
                             router.push(result.url)
@@ -266,6 +267,7 @@ export default function Home() {
                                 title: result.message
                             })
                         }
+                        setLoadingGame(false);
                     }).catch(() => {
                         Cookies.remove("userdata");
                         setLoadingGame(false);
