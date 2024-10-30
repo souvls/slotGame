@@ -40,16 +40,6 @@ const products = [
         "game_type": "SLOT"
     },
     {
-        "provider": "JDB",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 41,
-        "product_id": 1194,
-        "product_code": 1085,
-        "product_name": "jdb",
-        "game_type": "SLOT"
-    },
-    {
         "provider": "Live22",
         "currency": "THB",
         "status": "ACTIVATED",
@@ -59,7 +49,6 @@ const products = [
         "product_name": "live_22",
         "game_type": "SLOT"
     },
-    //netent
     {
         "provider": "Evolution",
         "currency": "THB",
@@ -70,7 +59,6 @@ const products = [
         "product_name": "netent",
         "game_type": "SLOT"
     },
-    //parmatic
     {
         "provider": "PragmaticPlay",
         "currency": "THB",
@@ -89,6 +77,16 @@ const products = [
         "product_id": 1228,
         "product_code": 1049,
         "product_name": "evoplay",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "JDB",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 41,
+        "product_id": 1194,
+        "product_code": 1085,
+        "product_name": "jdb",
         "game_type": "SLOT"
     },
     {
@@ -122,16 +120,6 @@ const products = [
         "game_type": "SLOT"
     },
     {
-        "provider": "MrSlotty",
-        "currency": "MXN",
-        "status": "ACTIVATED",
-        "provider_id": 49,
-        "product_id": 1152,
-        "product_code": 1111,
-        "product_name": "gamingworld",
-        "game_type": "SLOT"
-    },
-    {
         "provider": "BoomingGames",
         "currency": "THB",
         "status": "ACTIVATED",
@@ -159,16 +147,6 @@ const products = [
         "product_id": 1230,
         "product_code": 1153,
         "product_name": "hacksaw",
-        "game_type": "SLOT"
-    },
-    {
-        "provider": "EPICWIN",
-        "currency": "KES",
-        "status": "ACTIVATED",
-        "provider_id": 112,
-        "product_id": 1240,
-        "product_code": 1160,
-        "product_name": "epicwin",
         "game_type": "SLOT"
     },
     {
@@ -202,6 +180,7 @@ const products = [
         "game_type": "SLOT"
     }
 
+
 ];
 
 
@@ -215,7 +194,7 @@ export default function Home() {
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
-        //fetchProductList();
+        fetchProductList();
     }, [productActive])
     const fetchProductList = () => {
         const request_time = new Date().getTime();
@@ -226,8 +205,14 @@ export default function Home() {
             "&request_time=" + request_time)
             .then((response) => response.json())
             .then(result => {
-                //console.log(result)
-                //setProductList(result);
+                const x = [{}];
+                result.forEach((item: any) => {
+                    if (item.game_type === "SLOT" && item.currency === "THB" && item.status === 'ACTIVATED') {
+                        x.push(item)
+                    }
+                });
+                console.log(x);
+                //setProductList(x);
             })
             .catch(err => {
                 throw err
@@ -238,52 +223,48 @@ export default function Home() {
             setLoadingGame(true);
             const cookie = Cookies.get("userdata");
             if (cookie) {
-                const token = JSON.parse(cookie).token;
+                //const token = JSON.parse(cookie).token;
                 const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                const request_time = new Date().getTime();
+                console.log(process.env.NEXT_PUBLIC_SECRET_KEY);
+                console.log(process.env.NEXT_PUBLIC_OP_CODE);
 
-                const data = JSON.stringify({
-                    game_code: game.game_code,
-                    product_code: game.product_code,
-                    ip: ip.ip,
-                    game_type:game.game_type,
-                });
-                fetch("/api/user/playgame", {
+                const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}launchgame${process.env.NEXT_PUBLIC_OP_CODE}`);
+                const raw = {
+                    "operator_code": process.env.NEXT_PUBLIC_OP_CODE,
+                    "member_account": JSON.parse(cookie).username,
+                    "password": process.env.NEXT_PUBLIC_PASS,
+                    "currency": "THB",
+                    "game_code": game.game_code,
+                    "product_code": game.product_code,
+                    "game_type": game.game_type,
+                    "language_code": 0,
+                    "ip": ip.ip,
+                    "platform": "web",
+                    "sign": hash,
+                    "request_time": request_time,
+                    "operator_lobby_url": "http://infinity999.com",
+                }
+                fetch("https://production.gsimw.com/api/operators/launch-game", {
                     method: "POST",
-                    headers: {
-                        'Authorization': 'Bearer ' + token,
-                        'Content-Type': 'application/json'
-                    },
-                    body: data,
+                    headers: myHeaders,
+                    body: JSON.stringify(raw),
                     redirect: "follow"
                 })
                     .then((response) => response.json())
                     .then((result) => {
                         //console.log(result)
-                        if (result.status === 'no' && result.message === "logout") {
-                            Cookies.remove("userdata");
+
+                        if (result.code === 200) {
+                            router.push(result.url)
+                        } else {
                             setLoadingGame(false);
                             Swal.fire({
-                                title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-                                text: "020 98 399 064",
                                 icon: "error",
-                                background: '#000000',
-                                color: '#ffffff',
-                                showConfirmButton: false,
-                            }).then(() => {
-                                window.location.reload();
-                            });
-                        } else {
-                            console.log(result);
-                            // if(result.result != ""){
-                            //     router.push(result.result)
-                            // }else{
-                            //     setLoadingGame(false);
-                            //     Swal.fire({
-                            //         icon:"error",
-                            //         title:result.message
-                            //     })
-                            // }
-                            
+                                title: result.message
+                            })
                         }
                     }).catch(() => {
                         Cookies.remove("userdata");
