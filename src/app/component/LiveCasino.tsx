@@ -16,6 +16,16 @@ const products = [
         "game_type": "LIVE_CASINO"
     },
     {
+        "provider": "WMCasino",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 17,
+        "product_id": 1142,
+        "product_code": 1020,
+        "product_name": "wm_casino",
+        "game_type": "LIVE_CASINO"
+    },
+    {
         "provider": "AWC",
         "currency": "THB",
         "status": "ACTIVATED",
@@ -82,7 +92,7 @@ const LiveCasino = () => {
             .then(result => {
                 const x = [{}];
                 result.forEach((item: any) => {
-                    if (item.game_type !== "SLOT" && item.game_type !== "LIVE_CASINO" && item.currency === "THB" && item.status === 'ACTIVATED') {
+                    if (item.game_type === "LIVE_CASINO" && item.currency === "THB" && item.status === 'ACTIVATED') {
                         x.push(item)
                     }
                 });
@@ -151,7 +161,7 @@ const LiveCasino = () => {
                     .then((response) => response.json())
                     .then((result) => {
                         //console.log(result)
-                        
+
                         if (result.code === 200) {
                             router.push(result.url)
                         } else {
@@ -328,7 +338,7 @@ const LiveCasino = () => {
                                                     img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
                                                     img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
                                                 }}
-                                                className='hover:border-2 border-yellow-300 lg:w-[248px] lg:h-[248px] overflow-hidden'
+                                                className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
                                             />
                                             <h1 className=' text-center text-white'>{item.game_name}</h1>
                                             {/* <p className=' text-center text-white'>{item.product_code}</p>

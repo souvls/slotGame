@@ -6,17 +6,47 @@ import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
 const products = [
     {
-        "provider": "Spribe",
+        "provider": "JDB",
         "currency": "THB",
         "status": "ACTIVATED",
-        "provider_id": 92,
-        "product_id": 1,
-        "product_code": 1138,
-        "product_name": "spribe",
-        "game_type": "POKER"
+        "provider_id": 41,
+        "product_id": 1195,
+        "product_code": 1085,
+        "product_name": "jdb",
+        "game_type": "FISHING"
+    },
+    {
+        "provider": "CQ9",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 47,
+        "product_id": 1187,
+        "product_code": 1009,
+        "product_name": "cq9",
+        "game_type": "FISHING"
+    },
+    {
+        "provider": "Jili",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 48,
+        "product_id": 1165,
+        "product_code": 1091,
+        "product_name": "jili_tcg",
+        "game_type": "FISHING"
+    },
+    {
+        "provider": "Fachai",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 113,
+        "product_id": 1246,
+        "product_code": 1079,
+        "product_name": "fachai",
+        "game_type": "FISHING"
     }
 ]
-const Poker = () => {
+const Fishing = () => {
     const router = useRouter();
     const [productActive, setProductActive] = useState(0);
     const [games, setGames] = useState([]);
@@ -24,7 +54,7 @@ const Poker = () => {
 
     useEffect(() => {
         setLoadingGame(false);
-        fetchGames(1138);
+        fetchGames(1085);
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
@@ -42,7 +72,7 @@ const Poker = () => {
             .then(result => {
                 const x = [{}];
                 result.forEach((item: any) => {
-                    if (item.game_type === "POKER" && item.currency === "THB" && item.status === 'ACTIVATED') {
+                    if (item.game_type === "FISHING" && item.currency === "THB" && item.status === 'ACTIVATED') {
                         x.push(item)
                     }
                 });
@@ -60,7 +90,7 @@ const Poker = () => {
             fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
                 "?product_code=" + product_code +
                 "&operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
-                "&game_type=" + "POKER" +
+                "&game_type=" + "FISHING" +
                 "&sign=" + hash +
                 "&request_time=" + request_time)
                 .then((response) => response.json())
@@ -160,97 +190,6 @@ const Poker = () => {
             });
         }
     }
-    // const handdlePlay = async (game: any) => {
-    //     try {
-    //         setLoadingGame(true);
-    //         const cookie = Cookies.get("userdata");
-    //         if (cookie) {
-    //             const token = JSON.parse(cookie).token;
-    //             const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
-
-    //             const data = JSON.stringify({
-    //                 game_code: game.game_code,
-    //                 product_code: game.product_code,
-    //                 ip: ip.ip,
-    //                 game_type:"LIVE_CASINO"
-    //             });
-    //             fetch("/api/user/playgame", {
-    //                 method: "POST",
-    //                 headers: {
-    //                     'Authorization': 'Bearer ' + token,
-    //                     'Content-Type': 'application/json'
-    //                 },
-    //                 body: data,
-    //                 redirect: "follow"
-    //             })
-    //                 .then((response) => response.json())
-    //                 .then((result) => {
-    //                     console.log(result)
-    //                     setLoadingGame(false);
-    //                     if (result.status === 'no' && result.message === "logout") {
-    //                         Cookies.remove("userdata");
-    //                         setLoadingGame(false);
-    //                         Swal.fire({
-    //                             title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-    //                             text: "020 98 399 064",
-    //                             icon: "error",
-    //                             background: '#000000',
-    //                             color: '#ffffff',
-    //                             showConfirmButton: false,
-    //                         }).then(() => {
-    //                             window.location.reload();
-    //                         });
-    //                     } else {
-    //                         console.log(result);
-    //                         // if(result.result != ""){
-    //                         //     router.push(result.result)
-    //                         // }else{
-    //                         //     setLoadingGame(false);
-    //                         //     Swal.fire({
-    //                         //         icon:"error",
-    //                         //         title:result.message
-    //                         //     })
-    //                         // }
-    //                     }
-    //                 }).catch(() => {
-    //                     Cookies.remove("userdata");
-    //                     setLoadingGame(false);
-    //                     Swal.fire({
-    //                         title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-    //                         text: "020 98 399 064",
-    //                         icon: "error",
-    //                         background: '#000000',
-    //                         color: '#ffffff',
-    //                         showConfirmButton: false,
-    //                     }).then(() => {
-    //                         window.location.reload();
-    //                     });
-    //                 })
-    //         } else {
-    //             setLoadingGame(false);
-    //             Swal.fire({
-    //                 title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-    //                 text: "020 98 399 064",
-    //                 icon: "error",
-    //                 background: '#000000',
-    //                 color: '#ffffff',
-    //                 showConfirmButton: false,
-    //             });
-    //         }
-    //     }
-    //     catch (err) {
-    //         console.log(err)
-    //         setLoadingGame(false);
-    //         Swal.fire({
-    //             title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-    //             text: "02011223344",
-    //             icon: "error",
-    //             background: '#000000',
-    //             color: '#ffffff',
-    //             showConfirmButton: false,
-    //         });
-    //     }
-    // }
     return (
         <div>
             {loadingGame && <Spinner />}
@@ -286,7 +225,7 @@ const Poker = () => {
                                                 onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                                                     const img = e.target as HTMLImageElement;
                                                     img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
-                                                    img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
+                                                    // img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
                                                 }}
                                                 className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
                                             />
@@ -306,4 +245,4 @@ const Poker = () => {
     )
 }
 
-export default Poker
+export default Fishing

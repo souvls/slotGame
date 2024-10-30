@@ -60,6 +60,26 @@ const products = [
         "game_type": "SLOT"
     },
     {
+        "provider": "Evolution",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 29,
+        "product_id": 1250,
+        "product_code": 1166,
+        "product_name": "no_limit_city",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "Evolution",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 29,
+        "product_id": 1253,
+        "product_code": 1169,
+        "product_name": "redtiger",
+        "game_type": "SLOT"
+    },
+    {
         "provider": "PragmaticPlay",
         "currency": "THB",
         "status": "ACTIVATED",
@@ -150,6 +170,16 @@ const products = [
         "game_type": "SLOT"
     },
     {
+        "provider": "Fachai",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 113,
+        "product_id": 1245,
+        "product_code": 1079,
+        "product_name": "fachai",
+        "game_type": "SLOT"
+    },
+    {
         "provider": "N2",
         "currency": "THB",
         "status": "ACTIVATED",
@@ -179,8 +209,6 @@ const products = [
         "product_name": "rich88",
         "game_type": "SLOT"
     }
-
-
 ];
 
 
@@ -212,7 +240,7 @@ export default function Home() {
                         x.push(item)
                     }
                 });
-                //console.log(x);
+                console.log(x);
                 //setProductList(x);
             })
             .catch(err => {
@@ -256,7 +284,7 @@ export default function Home() {
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        console.log(result)
+                        //console.log(result)
 
                         if (result.code === 200) {
                             router.push(result.url)
@@ -385,8 +413,8 @@ const GameItem: React.FC<Game> = (item: Game) => {
                 className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
             />
             <p className=' text-center text-white text-sm'>{item.game_name}</p>
-            <h1 className=' text-center text-white'>{item.product_id}</h1>
-            <p className=' text-center text-white'>{item.product_code}{item.game_code}</p>
+            {/* <h1 className=' text-center text-white'>{item.product_id}</h1> */}
+            {/* <p className=' text-center text-white'>{item.product_code}{item.game_code}</p>*/}
         </>
     )
 }

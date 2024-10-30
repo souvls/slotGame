@@ -134,8 +134,8 @@ export default function Home() {
       <section className=' bg-gradient-to-bl from-black to-black via-purple-700 '>
         <MenuGameType />
         {/* end credit */}
-        <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>
-          <div className="flex justify-center items-center gap-10 pt-10 pb-5">
+        <div className='w-full'>
+          <div className="flex justify-center items-center gap-3 pt-10 pb-5">
             {services.map((items, index) => (
               <div
                 key={index}
@@ -146,17 +146,17 @@ export default function Home() {
                   <img
                     src={items.src}
                     alt=""
-                    className=" w-full h-full  relative"
+                    className=" w-[20px] lg:w-[50px] relative"
                   />
                 </div>
                 <div className="text-gray-100 flex flex-col">
-                  <span className="text-[10px] md:text-[15px] lg:text-[20px]">
+                  <span className="text-[8px] md:text-[15px] lg:text-[20px]">
                     {items.step}
                   </span>
-                  <span className="text-[9px] md:text-[12px] lg:text-[18px] font-semibold text-yellow-300 ">
+                  <span className="text-[8px] md:text-[12px] lg:text-[18px] font-semibold text-yellow-300 ">
                     {items.title}
                   </span>
-                  <span className="text-[9px] md:text-[12px] lg:text-[18px] text-gray-200">{items.label}</span>
+                  <span className="text-[8px] md:text-[12px] lg:text-[18px] text-gray-200">{items.label}</span>
                 </div>
               </div>
             ))}
@@ -186,7 +186,7 @@ export default function Home() {
           <hr className="my-2 xl:my-10  lg:my-8  md:my-6 xs:my-4 bg-gradient-to-r from-violet-500 to-fuchsia-500" />
         </div>
         <div className=' w-[90%] mx-auto'>
-          <p className=' text-white text-xl text-center font-bold'>ຄູ່ຄ້າຂອງເຮົາ</p>
+          <h1 className=' text-white text-xl text-center font-bold'>หุ้นส่วนของเรา</h1>
           <div>
             <div id="default-carousel" className="relative w-full" data-carousel="slide">
               <div className="relative h-44 lg:h-[500px] overflow-hidden">
