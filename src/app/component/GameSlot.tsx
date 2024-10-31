@@ -381,6 +381,7 @@ export default function Home() {
                     </div>
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
                         {games && games.map((item: Game, index) => {
+                            console.log(item);
                             return (
                                 <>
                                     {item.status === "ACTIVATED" &&
@@ -405,16 +406,16 @@ const GameItem: React.FC<Game> = (item: Game) => {
                 alt={item.game_name}
                 onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                     const img = e.target as HTMLImageElement;
-                    //img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
-                    img.src = `/assets/icon/product/booming_games.png`
+                    img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
+                    //img.src = `/assets/icon/product/booming_games.png`
 
                     img.onerror = null;
                 }}
                 className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
             />
             <p className=' text-center text-white text-sm'>{item.game_name}</p>
-            {/* <h1 className=' text-center text-white'>{item.product_id}</h1> */}
-            {/* <p className=' text-center text-white'>{item.product_code}{item.game_code}</p>*/}
+            {/* <h1 className=' text-center text-white'>{item.product_id}</h1> 
+            <p className=' text-center text-white'>{item.product_code}{item.game_code}</p> */}
         </>
     )
 }

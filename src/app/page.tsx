@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import superjackpot from "../../public/assets/icon/supper-jackport.png"
 import banner1 from "../../public/assets/banner/banner1.jpg";
 import banner2 from "../../public/assets/banner/banner2.jpg";
@@ -8,9 +9,8 @@ import provider1 from "../../public/assets/banner/provider-logo1.png";
 import provider2 from "../../public/assets/banner/provider-logo2.png";
 import provider3 from "../../public/assets/banner/provider-logo3.png";
 import gamesoftLogo from "../../public/assets/logo/GSS (2).png"
+import whatapp_icon from "../../public/assets/icon/whataap_icon.gif"
 
-
-import Link from 'next/link';
 import Nav_bar_ from './component/Nav_bar_';
 import MenuGameType from './component/MenuGameType';
 
@@ -70,6 +70,15 @@ export default function Home() {
     <>
       {/* Header */}
       <Nav_bar_ />
+      // btn contact
+      <div className=' fixed bottom-2 right-3 lg:right-10'>
+        <div>
+          <Link href={"https://api.whatsapp.com/send?phone=8562098399064"}>
+            <Image src={whatapp_icon} alt='whatapp' className='w-[50px]' />
+          </Link>
+        </div>
+
+      </div>
       {/* content */}
       <section className=' pt-[90px] bg-gradient-to-bl from-black to-black via-purple-700'>
         <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>
@@ -268,8 +277,8 @@ export default function Home() {
           เราคือ เว็บพนันออนไลน์ ครบวงจร มั่นคง ปลอดภัย ให้ บริการ บาคาร่าออนไลน์ สล็อตออนไลน์ ทุกค่าย slotxo pgslot joker jili โปรโมชั่นมากมาย บริการด้วยใจ ฝากถอน รวดเร็ว ไม่มีขั้นต่ำา
         </h1>
       </section>
-      <section className=' bg-black py-2'>
-        <p className=' text-gray-300 text-center'>copyright @ mondev2024</p>
+      <section className=' bg-black py-10'>
+        <p className=' text-gray-300 text-center'>copyright @ mondev2024 <Link href={"https://t.me/mondev20"} className=' text-sky-400' target='bank'> click for contact me</Link></p>
       </section>
     </>
   )

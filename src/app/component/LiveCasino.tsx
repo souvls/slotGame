@@ -341,8 +341,7 @@ const LiveCasino = () => {
                                                 className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
                                             />
                                             <h1 className=' text-center text-white'>{item.game_name}</h1>
-                                            {/* <p className=' text-center text-white'>{item.product_code}</p>
-                                                                    <p className=' text-center text-white'>{item.game_code}</p> */}
+                                            {/* <p className=' text-center text-white'>{item.product_code}{item.game_code}</p>  */}
                                         </div>
                                     }
                                 </>
