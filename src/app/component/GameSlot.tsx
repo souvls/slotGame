@@ -50,6 +50,46 @@ const products = [
         "game_type": "SLOT"
     },
     {
+        "provider": "PragmaticPlay",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 32,
+        "product_id": 1185,
+        "product_code": 1006,
+        "product_name": "pragmatic_play",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "Fachai",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 113,
+        "product_id": 1245,
+        "product_code": 1079,
+        "product_name": "fachai",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "Jili",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 48,
+        "product_id": 1144,
+        "product_code": 1091,
+        "product_name": "jili_tcg",
+        "game_type": "SLOT"
+    },
+    {
+        "provider": "CQ9",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 47,
+        "product_id": 1186,
+        "product_code": 1009,
+        "product_name": "cq9",
+        "game_type": "SLOT"
+    },
+    {
         "provider": "Live22",
         "currency": "THB",
         "status": "ACTIVATED",
@@ -89,16 +129,7 @@ const products = [
         "product_name": "redtiger",
         "game_type": "SLOT"
     },
-    {
-        "provider": "PragmaticPlay",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 32,
-        "product_id": 1185,
-        "product_code": 1006,
-        "product_name": "pragmatic_play",
-        "game_type": "SLOT"
-    },
+
     {
         "provider": "EVOPLAY",
         "currency": "THB",
@@ -120,26 +151,7 @@ const products = [
         "game_type": "SLOT"
     },
 
-    {
-        "provider": "CQ9",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 47,
-        "product_id": 1186,
-        "product_code": 1009,
-        "product_name": "cq9",
-        "game_type": "SLOT"
-    },
-    {
-        "provider": "Jili",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 48,
-        "product_id": 1144,
-        "product_code": 1091,
-        "product_name": "jili_tcg",
-        "game_type": "SLOT"
-    },
+ 
     {
         "provider": "BoomingGames",
         "currency": "THB",
@@ -170,16 +182,7 @@ const products = [
         "product_name": "hacksaw",
         "game_type": "SLOT"
     },
-    {
-        "provider": "Fachai",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 113,
-        "product_id": 1245,
-        "product_code": 1079,
-        "product_name": "fachai",
-        "game_type": "SLOT"
-    },
+
     {
         "provider": "N2",
         "currency": "THB",
@@ -188,6 +191,17 @@ const products = [
         "product_id": 1247,
         "product_code": 1162,
         "product_name": "octoplay",
+        "game_type": "SLOT"
+    },
+
+    {
+        "provider": "Rich88",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 124,
+        "product_id": 1277,
+        "product_code": 1184,
+        "product_name": "rich88",
         "game_type": "SLOT"
     },
     {
@@ -200,16 +214,6 @@ const products = [
         "product_name": "smartsoft",
         "game_type": "SLOT"
     },
-    {
-        "provider": "Rich88",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 124,
-        "product_id": 1277,
-        "product_code": 1184,
-        "product_name": "rich88",
-        "game_type": "SLOT"
-    }
 ];
 
 
