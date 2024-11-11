@@ -45,7 +45,7 @@ const products = [
         "status": "ACTIVATED",
         "provider_id": 31,
         "product_id": 1141,
-        "product_code": 10070,
+        "product_code": 1007,
         "product_name": "pg_soft",
         "game_type": "SLOT"
     },
@@ -228,7 +228,7 @@ export default function Home() {
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
-        fetchProductList();
+        //fetchProductList();
     }, [productActive])
     const fetchProductList = () => {
         const request_time = new Date().getTime();
@@ -354,7 +354,7 @@ export default function Home() {
                 "&request_time=" + request_time)
                 .then((response) => response.json())
                 .then(result => {
-                    console.log(result)
+                    // console.log(result)
                     setGames(result.provider_games);
                 })
                 .catch(err => {
