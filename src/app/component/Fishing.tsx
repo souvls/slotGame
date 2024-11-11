@@ -147,8 +147,9 @@ const Fishing = () => {
                         } else {
                             setLoadingGame(false);
                             Swal.fire({
-                                icon: "error",
-                                title: result.message
+                                icon: "warning",
+                                title: "<p>ຂໍອະໄພ</p>",
+                                html: "<p>ເກມກຳລັງປັບປຸງ</p>"
                             })
                         }
                     }).catch(() => {

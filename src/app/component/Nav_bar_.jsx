@@ -8,6 +8,7 @@ import { LiaCoinsSolid } from "react-icons/lia";
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 const Nav_bar_ = () => {
     const [user, setUser] = useState();
 
@@ -78,10 +79,10 @@ const Nav_bar_ = () => {
                             :
                             <div className=' flex gap-2'>
                                 <Link href={"/user"} className="px-3 flex items-center text-sm  rounded-full duration-500 hover:bg-yellow-400 hover:text-gray-950 bg-gray-950 text-white">
-                                    <span>LOGIN</span>
+                                    <span>เข้าสู่ละบบ</span>
                                 </Link>
                                 <Link href={"https://api.whatsapp.com/send?phone=8562098399064"} className="flex items-center px-3 text-sm rounded-full bg-yellow-400">
-                                    JOIN NOW
+                                    สมัครสมาชิก
                                 </Link>
                                 <div className=' flex items-center '>
                                     <img

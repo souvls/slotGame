@@ -237,11 +237,11 @@ export default function Home() {
             .then(result => {
                 const x = [{}];
                 result.forEach((item: any) => {
-                    if (item.game_type === "FISHING" && item.currency === "THB" && item.status === 'ACTIVATED') {
+                    if (item.game_type === "SLOT" && item.currency === "THB" && item.status === 'ACTIVATED') {
                         x.push(item)
                     }
                 });
-                // console.log(x);
+                console.log(x);
                 //setProductList(x);
             })
             .catch(err => {
@@ -286,12 +286,15 @@ export default function Home() {
                         console.log(result)
 
                         if (result.code === 200) {
-                            //router.push(result.url)
+                            router.push(result.url)
                         } else {
                             setLoadingGame(false);
                             Swal.fire({
-                                icon: "error",
-                                title: result.message
+                                icon: "warning",
+                                title: "<p>ຂໍອະໄພ</p>",
+                                html: "<p>ເກມກຳລັງປັບປຸງ</p>"
+
+                                // title: result.message
                             })
                         }
                         setLoadingGame(false);
@@ -347,7 +350,7 @@ export default function Home() {
                 "&request_time=" + request_time)
                 .then((response) => response.json())
                 .then(result => {
-                    //console.log(result)
+                    console.log(result)
                     setGames(result.provider_games);
                 })
                 .catch(err => {
@@ -383,13 +386,38 @@ export default function Home() {
                         {games && games.map((item: Game, index) => {
                             // console.log(item)
                             if (item.status === "ACTIVATED") {
-                                if (item.support_currency.includes("THB")) {
-                                    return (
-                                        <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
-                                            <GameItem {...item} />
-                                        </div>
-                                    )
-                                }
+                                return (
+                                    <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
+                                        <GameItem {...item} />
+                                    </div>
+                                )
+                                // if (
+                                //     // CQ9
+                                //     item.game_name != "FruitKing" && 
+                                //     item.game_name != "Fly Out" && 
+                                //     item.game_name != "Diamond Treasure" &&
+                                //     item.game_name != "Zuma Wild" &&
+                                //     item.game_name != "Disco Night M" &&
+                                //     item.game_name != "Move n' Jump" &&
+                                //     item.game_name != "Gu Gu Gu 2 M" &&
+                                //     item.game_name != "Six Candy" &&
+                                //     item.game_name != "TreasureHouse" &&
+                                //     item.game_name != "Zeus M"
+
+                                // ) {
+                                //     return (
+                                //         <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
+                                //             <GameItem {...item} />
+                                //         </div>
+                                //     )
+                                // }
+                                // if (item.support_currency.includes("THB")) {
+                                //     return (
+                                //         <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
+                                //             <GameItem {...item} />
+                                //         </div>
+                                //     )
+                                // }
                             }
 
                         })}
