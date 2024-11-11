@@ -30,12 +30,22 @@ interface Game {
 }
 const products = [
     {
+        "provider": "PlayStar",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 42,
+        "product_id": 1174,
+        "product_code": 1050,
+        "product_name": "playstar",
+        "game_type": "SLOT"
+    },
+    {
         "provider": "PG Soft",
         "currency": "EUR",
         "status": "ACTIVATED",
         "provider_id": 31,
         "product_id": 1141,
-        "product_code": 1007,
+        "product_code": 10070,
         "product_name": "pg_soft",
         "game_type": "SLOT"
     },
@@ -109,16 +119,7 @@ const products = [
         "product_name": "jdb",
         "game_type": "SLOT"
     },
-    {
-        "provider": "PlayStar",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 42,
-        "product_id": 1174,
-        "product_code": 1050,
-        "product_name": "playstar",
-        "game_type": "SLOT"
-    },
+
     {
         "provider": "CQ9",
         "currency": "THB",
@@ -219,11 +220,11 @@ export default function Home() {
     const [loadingGame, setLoadingGame] = useState(false);
     useEffect(() => {
         setLoadingGame(false);
-        fetchGames(1007);
+        fetchGames(1050);
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
-        //fetchProductList();
+        fetchProductList();
     }, [productActive])
     const fetchProductList = () => {
         const request_time = new Date().getTime();
@@ -236,11 +237,11 @@ export default function Home() {
             .then(result => {
                 const x = [{}];
                 result.forEach((item: any) => {
-                    if (item.game_type === "SLOT" && item.currency === "THB" && item.status === 'ACTIVATED') {
+                    if (item.game_type === "FISHING" && item.currency === "THB" && item.status === 'ACTIVATED') {
                         x.push(item)
                     }
                 });
-                console.log(x);
+                // console.log(x);
                 //setProductList(x);
             })
             .catch(err => {
@@ -257,8 +258,6 @@ export default function Home() {
                 const myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
                 const request_time = new Date().getTime();
-                console.log(process.env.NEXT_PUBLIC_SECRET_KEY);
-                console.log(process.env.NEXT_PUBLIC_OP_CODE);
 
                 const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}launchgame${process.env.NEXT_PUBLIC_OP_CODE}`);
                 const raw = {
@@ -284,10 +283,10 @@ export default function Home() {
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        //console.log(result)
+                        console.log(result)
 
                         if (result.code === 200) {
-                            router.push(result.url)
+                            //router.push(result.url)
                         } else {
                             setLoadingGame(false);
                             Swal.fire({
@@ -296,8 +295,9 @@ export default function Home() {
                             })
                         }
                         setLoadingGame(false);
-                    }).catch(() => {
-                        Cookies.remove("userdata");
+                    }).catch((err) => {
+                        //Cookies.remove("userdata");
+                        console.log(err);
                         setLoadingGame(false);
                         Swal.fire({
                             title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
@@ -381,16 +381,17 @@ export default function Home() {
                     </div>
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
                         {games && games.map((item: Game, index) => {
-                            console.log(item);
-                            return (
-                                <>
-                                    {item.status === "ACTIVATED" &&
+                            // console.log(item)
+                            if (item.status === "ACTIVATED") {
+                                if (item.support_currency.includes("THB")) {
+                                    return (
                                         <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
                                             <GameItem {...item} />
                                         </div>
-                                    }
-                                </>
-                            )
+                                    )
+                                }
+                            }
+
                         })}
                     </div>
                 </div>
