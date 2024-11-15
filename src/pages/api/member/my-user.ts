@@ -25,7 +25,7 @@ export default async function handler(
         } else if (req.method === 'PATCH') {
             try {
                 const { UserID, Username, Password } = req.body;
-                User.findByIdAndUpdate(UserID, { Username: Username, Password: Password })
+                await User.findByIdAndUpdate(UserID, { Username: Username, Password: Password })
                 res.status(200).json({ status: 'ok', message: 'success', });
             } catch (err) {
                 res.status(400).json({ status: 'no', message: 'error' });

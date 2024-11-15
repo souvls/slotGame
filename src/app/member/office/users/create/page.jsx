@@ -23,9 +23,9 @@ const page = () => {
                 title: "<p>ໃສ່ຊື່ຢູເຊີ້</p>",
                 icon: "error"
             });
-        } else if (username.length !== 2) {
+        } else if (username.length !== 4) {
             Swal.fire({
-                title: "<p>ຊື່ຢູເຊີ້ ຜີດ</p>",
+                title: "<p>ຊື່ຢູເຊີ້ ຕ້ອງ 4 ໂຕ</p>",
                 icon: "error"
             });
         } else if (!password) {
@@ -94,7 +94,7 @@ const page = () => {
                         className=' p-2 rounded-lg'
                         value={username}
                         onChange={(e) => setUserName(e.target.value)}
-                        maxlength="2"
+                        maxlength="4"
                         ref={inputRef}
                     />
                     <input
