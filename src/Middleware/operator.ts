@@ -35,7 +35,9 @@ export const getAllWager = async () => {
 export const getWagerByMemberID = async (memberName: string) => {
     const allWager = await getAllWager();
     const wagerMember = await allWager.filter((i: any) => i.member_account.slice(0, -4) === memberName);
-    return wagerMember
+    await wagerMember.sort((a:any, b:any) => b.created_at - a.created_at);
+    const top20 = wagerMember.slice(0, 20);
+    return top20
 }
 export const getGameList = async () => {
     const request_time = new Date().getTime();

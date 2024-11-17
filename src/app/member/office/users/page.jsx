@@ -7,6 +7,9 @@ import { RiRadioButtonLine } from "react-icons/ri";
 const page = () => {
   const router = useRouter();
   const [userList, setUserList] = useState([]);
+  const [currentUserList, setCurrentUserList] = useState([]);
+  const [pageLength, setPageLength] = useState(0);
+  const [pageCurrent, setPageCurrent] = useState(0);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchdata = async () => {
@@ -24,7 +27,10 @@ const page = () => {
         .then((result) => {
 
           if (result.status === 'ok') {
-            setUserList(result.result)
+            setUserList(result.result);
+            console.log(result)
+            setPageLength(Math.ceil(result.result.length / 10));
+            setCurrentUserList(result.result.slice(0, 10))
             setLoading(false);
           } else {
             setLoading(false);
@@ -39,7 +45,15 @@ const page = () => {
 
     fetchdata();
 
-  }, [])
+  }, []);
+  const handlePage = (index) => {
+    setPageCurrent(index);
+    if (index === 0) {
+      setCurrentUserList(userList.slice(0, 10))
+    }else{
+      setCurrentUserList(userList.slice(index*10+1, (index*10+1)+10))
+    }
+  }
   return (
     <div>
       <div className='w-full p-2 border-b-2'>
@@ -81,7 +95,7 @@ const page = () => {
                 </tr>
               </>
               :
-              userList.map((item, index) => {
+              currentUserList.map((item, index) => {
                 return (
                   <tr key={index} class="bg-white border-b hover:bg-slate-200">
                     <td class="py-3 ">
@@ -100,17 +114,25 @@ const page = () => {
                       <Link href={"/member/office/users/withdrawcredit/" + item._id + "/" + item.Username + "/" + item.Amount} className=' inline-block p-2 bg-blue-500 text-white rounded-lg'><p> ຖອນເງິນ</p></Link>
                     </td>
                     <td class="">
-                      <Link href={"/member/office/users/edit/" + item._id+"/"+item.Username+"/"+item.Password} className=' inline-block p-2 bg-red-500 text-white rounded-lg'><p>ແກ້ໄຂ</p></Link>
+                      <Link href={"/member/office/users/edit/" + item._id + "/" + item.Username + "/" + item.Password} className=' inline-block p-2 bg-red-500 text-white rounded-lg'><p>ແກ້ໄຂ</p></Link>
                     </td>
                     <td>
-                      {item.status && <RiRadioButtonLine color='green'/>}
+                      {item.status && <RiRadioButtonLine color='green' />}
                     </td>
                   </tr>
                 )
               })}
-
           </tbody>
         </table>
+        <div className=' flex justify-center items-center gap-3 mt-5'>
+          {Array(pageLength).fill().map((item, index) => {
+            return (
+              <>
+                <button onClick={() => handlePage(index)} className={`${index === pageCurrent ? 'bg-sky-500 text-white' : ' bg-white border border-sky-500'} p-2 rounded-lg`}>{index + 1}</button>
+              </>
+            )
+          })}
+        </div>
       </div>
     </div>
   )

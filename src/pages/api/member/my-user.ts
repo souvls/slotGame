@@ -32,7 +32,7 @@ export default async function handler(
             }
         } else if (req.method === 'POST') {
             try {
-                console.log(member)
+                //console.log(member)
                 const { Username, Password } = req.body;
                 const NewUser = new User({
                     Username: member.name+Username,
