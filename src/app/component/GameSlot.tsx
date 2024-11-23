@@ -267,7 +267,8 @@ export default function Home() {
                 const raw = {
                     "operator_code": process.env.NEXT_PUBLIC_OP_CODE,
                     "member_account": JSON.parse(cookie).username,
-                    "password": process.env.NEXT_PUBLIC_PASS,
+                    "password":JSON.parse(cookie).password,
+                    // "password": process.env.NEXT_PUBLIC_PASS,
                     "currency": "THB",
                     "game_code": game.game_code,
                     "product_code": game.product_code,
