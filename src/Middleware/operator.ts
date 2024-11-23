@@ -1,4 +1,5 @@
 
+import axios from "axios";
 import md5 from "md5";
 const Maintenance = require("../Models/Maintenance");
 
@@ -20,24 +21,25 @@ export const getAllWager = async () => {
     const request_time = now.getTime();
     const hash = md5(request_time + "" + process.env.SECRET_KEY + "getwagers" + process.env.OP_CODE);
     try {
-        const wagers = await fetch(process.env.API_NAME + "/api/operators/wagers" +
+        const res = await axios.get(process.env.API_NAME + "/api/operators/wagers" +
             "?operator_code=" + process.env.OP_CODE +
             "&sign=" + hash +
             "&request_time=" + request_time +
             "&start=" + start +
             "&end=" + end
-        ).then((response) => response.json())
-        return wagers.wagers;
+        );
+        console.log(res);
+        // return res.data.wagers;
     } catch (err) {
+        console.log(err);
         return false
     }
 }
 export const getWagerByMemberID = async (memberName: string) => {
-    const allWager = await getAllWager();
-    const wagerMember = await allWager.filter((i: any) => i.member_account.slice(0, -4) === memberName);
-    await wagerMember.sort((a:any, b:any) => b.created_at - a.created_at);
-    const top20 = wagerMember.slice(0, 20);
-    return top20
+    // await getAllWager();
+    // const wagerMember = allWager.filter((i: any) => i.member_account.slice(0, -4) === memberName);
+    // return wagerMember.sort((a:any, b:any) => b.created_at - a.created_at);
+
 }
 export const getGameList = async () => {
     const request_time = new Date().getTime();

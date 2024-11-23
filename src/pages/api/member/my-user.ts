@@ -18,7 +18,7 @@ export default async function handler(
     verifyJWTToken(req, res, async () => {
         const member: any = req.headers.data
         if (req.method === 'GET') {
-            User.find({ MemberID: member.id }).sort({ createdAt: -1 })
+            User.find({ MemberID: member.id }).sort({ createdAt: 1 })
                 .then((result: any) => {
                     res.status(200).json({ status: 'ok', message: 'success', result: result });
                 })

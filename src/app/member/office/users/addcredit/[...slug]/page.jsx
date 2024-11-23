@@ -53,7 +53,9 @@ const page = () => {
             setLoading(false);
             Swal.fire({
               title: result.message,
-              icon: "success"
+              icon: "success",
+              showConfirmButton:false,
+              timer:100
             }).then(() => {
               router.push("/member/office/users");
             });

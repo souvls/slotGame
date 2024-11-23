@@ -113,8 +113,8 @@ const Fishing = () => {
                 const myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
                 const request_time = new Date().getTime();
-                console.log(process.env.NEXT_PUBLIC_SECRET_KEY);
-                console.log(process.env.NEXT_PUBLIC_OP_CODE);
+                // console.log(process.env.NEXT_PUBLIC_SECRET_KEY);
+                // console.log(process.env.NEXT_PUBLIC_OP_CODE);
 
                 const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}launchgame${process.env.NEXT_PUBLIC_OP_CODE}`);
                 const raw = {
@@ -217,9 +217,10 @@ const Fishing = () => {
                     </div>
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
                         {games && games.length > 0 && games.map((item: any, index) => {
+                            console.log(item)
                             return (
                                 <>
-                                    {item.status === "ACTIVATED" &&
+                                    {item.status === "ACTIVATED" && item.game_code !== "289" &&
                                         <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
                                             <img
                                                 src={item.image_url}
@@ -232,7 +233,7 @@ const Fishing = () => {
                                             />
                                             <h1 className=' text-center text-white'>{item.game_name}</h1>
                                             {/* <p className=' text-center text-white'>{item.product_code}</p>
-                                                                    <p className=' text-center text-white'>{item.game_code}</p> */}
+                                            <p className=' text-center text-white'>{item.game_code}</p> */}
                                         </div>
                                     }
                                 </>
