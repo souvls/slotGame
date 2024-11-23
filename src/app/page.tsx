@@ -1,3 +1,4 @@
+"use client"
 import Image from 'next/image';
 import Link from 'next/link';
 import superjackpot from "../../public/assets/icon/supper-jackport.png"
@@ -10,10 +11,11 @@ import provider2 from "../../public/assets/banner/provider-logo2.png";
 import provider3 from "../../public/assets/banner/provider-logo3.png";
 import gamesoftLogo from "../../public/assets/logo/GSS (2).png"
 import whatapp_icon from "../../public/assets/icon/whataap_icon.gif"
-
+import { RiCloseCircleLine } from "react-icons/ri";
 import Nav_bar_ from './component/Nav_bar_';
 import MenuGameType from './component/MenuGameType';
-
+import Ads1 from '../../public/assets/ads/ads1.jpg'
+import { useState } from 'react';
 const services = [
   {
     path: "#",
@@ -66,8 +68,9 @@ const Banking = [
 
 
 export default function Home() {
+  const [showAds, setShowAds] = useState(true);
   return (
-    <>
+    <div className=' relative'>
       {/* Header */}
       <Nav_bar_ />
       // btn contact
@@ -280,6 +283,14 @@ export default function Home() {
       <section className=' bg-black py-10'>
         <p className=' text-gray-300 text-center'>copyright @ mondev2024 <Link href={"https://t.me/mondev20"} className=' text-sky-400' target='bank'> click for contact me</Link></p>
       </section>
-    </>
+      <div className={`${!showAds && ' hidden'}`}>
+        <div className=' fixed w-full  top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center  h-screen bg-black bg-opacity-25  z-50'>
+          <div className=' relative'>
+            <button onClick={() => setShowAds(!showAds)} className=' bg-white bg-opacity-10 rounded-lg absolute -bottom-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2'><RiCloseCircleLine size={50} color='red' /></button>
+            <Image alt='ads' src={Ads1} className=' w-[300px] lg:w-[400px]' />
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }

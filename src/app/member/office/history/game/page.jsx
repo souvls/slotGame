@@ -51,7 +51,7 @@ const page = () => {
       .then((response) => response.json())
       .then((result) => {
         if (result.status === 'ok') {
-          console.log(result)
+          // console.log(result)
           setData(result.result);
           setLoading(false);
         } else {

@@ -28,9 +28,9 @@ const page = () => {
 
           if (result.status === 'ok') {
             setUserList(result.result);
-            console.log(result)
-            setPageLength(Math.ceil(result.result.length / 10));
-            setCurrentUserList(result.result.slice(0, 10))
+            // console.log(result)
+            setPageLength(Math.ceil(result.result.length / 20));
+            setCurrentUserList(result.result.slice(0, 20))
             setLoading(false);
           } else {
             setLoading(false);
@@ -49,9 +49,9 @@ const page = () => {
   const handlePage = (index) => {
     setPageCurrent(index);
     if (index === 0) {
-      setCurrentUserList(userList.slice(0, 10))
-    }else{
-      setCurrentUserList(userList.slice(index*10+1, (index*10+1)+10))
+      setCurrentUserList(userList.slice(0, 20))
+    } else {
+      setCurrentUserList(userList.slice(index * 20, (index * 20 ) + 20))
     }
   }
   return (
