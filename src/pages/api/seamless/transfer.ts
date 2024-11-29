@@ -9,7 +9,7 @@ export default async function handler(
 ) {
     //console.log(req.body)
     if (req.method === 'POST') {
-        var total_amount = 0
+        var total_amount =0;
         const transactionID = []
         try {
             const { member_account, operator_code, product_code, game_type, request_time, sign, currency, transactions } = req.body;
@@ -27,7 +27,7 @@ export default async function handler(
 
             for (const i of transactions) {
                 transactionID.push(i.id)
-                total_amount += parseInt(i.amount)
+                total_amount += parseFloat(parseFloat(i.amount).toFixed(2))
             }
 
             //check duplicate

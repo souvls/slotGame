@@ -151,7 +151,7 @@ const products = [
         "game_type": "SLOT"
     },
 
- 
+
     {
         "provider": "BoomingGames",
         "currency": "THB",
@@ -228,7 +228,7 @@ export default function Home() {
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
-        //fetchProductList();
+        fetchProductList();
     }, [productActive])
     const fetchProductList = () => {
         const request_time = new Date().getTime();
@@ -241,7 +241,7 @@ export default function Home() {
             .then(result => {
                 const x = [{}];
                 result.forEach((item: any) => {
-                    if (item.game_type === "SLOT" && item.currency === "THB" && item.status === 'ACTIVATED') {
+                    if (item.game_type === "SLOT" && item.status === 'ACTIVATED') {
                         x.push(item)
                     }
                 });
@@ -267,7 +267,7 @@ export default function Home() {
                 const raw = {
                     "operator_code": process.env.NEXT_PUBLIC_OP_CODE,
                     "member_account": JSON.parse(cookie).username,
-                    "password":JSON.parse(cookie).password,
+                    "password": JSON.parse(cookie).password,
                     // "password": process.env.NEXT_PUBLIC_PASS,
                     "currency": "THB",
                     "game_code": game.game_code,
@@ -344,24 +344,35 @@ export default function Home() {
         }
     }
     const fetchGames = async (product_code: any) => {
-        for (const i of products) {
-            const request_time = new Date().getTime();
-            const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}gamelist${process.env.NEXT_PUBLIC_OP_CODE}`);
-            fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
-                "?product_code=" + product_code +
-                "&operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
-                "&game_type=" + "SLOT" +
-                "&sign=" + hash +
-                "&request_time=" + request_time)
-                .then((response) => response.json())
-                .then(result => {
-                    // console.log(result)
-                    setGames(result.provider_games);
-                })
-                .catch(err => {
-                    throw err
-                })
-        }
+        const request_time = new Date().getTime();
+        const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}gamelist${process.env.NEXT_PUBLIC_OP_CODE}`);
+        fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
+            "?product_code=" + product_code +
+            "&operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
+            "&game_type=" + "SLOT" +
+            "&sign=" + hash +
+            "&request_time=" + request_time)
+            .then((response) => response.json())
+            .then(result => {
+                const x = [{}];
+                const game = result.provider_games.reduce((acc:any, current:any) => {
+                    if (current.status === "ACTIVATED" &&!acc.find((item:any) => (item.game_name === current.game_name))) {
+                      acc.push(current);
+                    }
+                    return acc;
+                  }, []);
+                //console.log(result)
+                // result.provider_games.map((item: any) => {
+                //     if (item.status === "ACTIVATED" && item.support_currency.includes("THB") && item.game_code === "PSS-ON-00149") {
+                //         x.push(item)
+                //     }
+                // });
+                console.log(game);
+                setGames(game);
+            })
+            .catch(err => {
+                throw err
+            })
     }
     return (
         <>
@@ -387,43 +398,44 @@ export default function Home() {
                             })
                         }
                     </div>
-                    <div className='w-[80%] lg:w-[90%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
+                    <div className='w-[80%] lg:w-[90%] grid grid-cols-3 lg:grid-cols-4 gap-4 p-5 '>
                         {games && games.map((item: Game, index) => {
+                            return (
+                                <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
+                                    <GameItem {...item} />
+                                </div>
+                            )
                             // console.log(item)
-                            if (item.status === "ACTIVATED") {
-                                return (
-                                    <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
-                                        <GameItem {...item} />
-                                    </div>
-                                )
-                                // if (
-                                //     // CQ9
-                                //     item.game_name != "FruitKing" && 
-                                //     item.game_name != "Fly Out" && 
-                                //     item.game_name != "Diamond Treasure" &&
-                                //     item.game_name != "Zuma Wild" &&
-                                //     item.game_name != "Disco Night M" &&
-                                //     item.game_name != "Move n' Jump" &&
-                                //     item.game_name != "Gu Gu Gu 2 M" &&
-                                //     item.game_name != "Six Candy" &&
-                                //     item.game_name != "TreasureHouse" &&
-                                //     item.game_name != "Zeus M"
+                            // if (item.status === "ACTIVATED" && item.support_currency.includes("THB")) {
+                                
+                            //     // if (
+                            //     //     // CQ9
+                            //     //     item.game_name != "FruitKing" && 
+                            //     //     item.game_name != "Fly Out" && 
+                            //     //     item.game_name != "Diamond Treasure" &&
+                            //     //     item.game_name != "Zuma Wild" &&
+                            //     //     item.game_name != "Disco Night M" &&
+                            //     //     item.game_name != "Move n' Jump" &&
+                            //     //     item.game_name != "Gu Gu Gu 2 M" &&
+                            //     //     item.game_name != "Six Candy" &&
+                            //     //     item.game_name != "TreasureHouse" &&
+                            //     //     item.game_name != "Zeus M"
 
-                                // ) {
-                                //     return (
-                                //         <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
-                                //             <GameItem {...item} />
-                                //         </div>
-                                //     )
-                                // }
-                                // if (item.support_currency.includes("THB")) {
-                                //     return (
-                                //         <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
-                                //             <GameItem {...item} />
-                                //         </div>
-                                //     )
-                                // }
-                            }
+                            //     // ) {
+                            //     //     return (
+                            //     //         <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
+                            //     //             <GameItem {...item} />
+                            //     //         </div>
+                            //     //     )
+                            //     // }
+                            //     // if (item.support_currency.includes("THB")) {
+                            //     //     return (
+                            //     //         <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
+                            //     //             <GameItem {...item} />
+                            //     //         </div>
+                            //     //     )
+                            //     // }
+                            // }
 
                         })}
                     </div>
@@ -440,14 +452,14 @@ const GameItem: React.FC<Game> = (item: Game) => {
                 alt={item.game_name}
                 onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                     const img = e.target as HTMLImageElement;
-                    img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
+                    //img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
                     //img.src = `/assets/icon/product/booming_games.png`
 
                     img.onerror = null;
                 }}
-                className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
+                className='w-full h-full rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
             />
-            <p className=' text-center text-white text-sm'>{item.game_name}</p>
+            <p className='mt-2 text-center text-white text-[8px]'>{item.game_name}</p>
             {/* <h1 className=' text-center text-white'>{item.product_id}</h1> 
             <p className=' text-center text-white'>{item.product_code}{item.game_code}</p> */}
         </>
