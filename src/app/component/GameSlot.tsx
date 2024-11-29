@@ -258,7 +258,7 @@ export default function Home() {
             const cookie = Cookies.get("userdata");
             if (cookie) {
                 //const token = JSON.parse(cookie).token;
-                const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
+                //const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
                 const myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
                 const request_time = new Date().getTime();
@@ -274,7 +274,7 @@ export default function Home() {
                     "product_code": game.product_code,
                     "game_type": game.game_type,
                     "language_code": 0,
-                    "ip": ip.ip,
+                    "ip": "0.0.0.1",
                     "platform": "web",
                     "sign": hash,
                     "request_time": request_time,
