@@ -9,7 +9,9 @@ export default async function handler(
     if (req.method === 'POST') {
 
         try {
+            console.log(req.body);
             const { operator_code, transactions } = req.body;
+
             const member_account = transactions[0].member_account
             const user = await User.findOne({ Username: member_account })
             if (!user) {

@@ -12,8 +12,9 @@ export default async function handler(
         var total_amount =0;
         const transactionID = []
         try {
-            const { member_account, operator_code, product_code, game_type, request_time, sign, currency, transactions } = req.body;
             console.log(req.body);
+            const { member_account, operator_code, product_code, game_type, request_time, sign, currency, transactions } = req.body;
+            
 
             const user = await User.findOne({ Username: member_account });
             if (!user) {

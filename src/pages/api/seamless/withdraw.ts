@@ -11,6 +11,7 @@ export default async function handler(
     if (req.method === 'POST') {
         try {
             const { member_account, currency, transactions, operator_code, request_time, sign } = req.body;
+            console.log(req.body);
             const originalSign = md5(operator_code + request_time + "withdraw" + process.env.SECRET_KEY);
 
             //check transaction

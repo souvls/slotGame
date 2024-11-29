@@ -8,6 +8,7 @@ export default async function handler(
     //console.log(req.body)
     if (req.method === 'POST') {
         try {
+            console.log(req.body);
             const { member_account, operator_code, request_time, currency, sign } = req.body
             //currency
             if (currency === "IDR" || currency === "THB" || currency === 'IDR2' || currency === 'KRW2' || currency === 'MMK2' || currency === 'VND2' || currency === 'LAK2' || currency === 'KHR2') {
