@@ -104,24 +104,22 @@ const LiveCasino = () => {
             })
     }
     const fetchGames = async (product_code: any) => {
-        for (const i of products) {
-            const request_time = new Date().getTime();
-            const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}gamelist${process.env.NEXT_PUBLIC_OP_CODE}`);
-            fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
-                "?product_code=" + product_code +
-                "&operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
-                "&game_type=" + "LIVE_CASINO" +
-                "&sign=" + hash +
-                "&request_time=" + request_time)
-                .then((response) => response.json())
-                .then(result => {
-                    //console.log(result)
-                    setGames(result.provider_games);
-                })
-                .catch(err => {
-                    throw err
-                })
-        }
+        const request_time = new Date().getTime();
+        const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}gamelist${process.env.NEXT_PUBLIC_OP_CODE}`);
+        fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
+            "?product_code=" + product_code +
+            "&operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
+            "&game_type=" + "LIVE_CASINO" +
+            "&sign=" + hash +
+            "&request_time=" + request_time)
+            .then((response) => response.json())
+            .then(result => {
+                //console.log(result)
+                setGames(result.provider_games);
+            })
+            .catch(err => {
+                throw err
+            })
     }
     const handdlePlay = async (game: any) => {
         try {
