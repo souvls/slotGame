@@ -288,7 +288,7 @@ export default function Home() {
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        // console.log(result)
+                        console.log(result)
                         if (result.code === 200) {
                             router.push(result.url)
                         } else {
@@ -351,7 +351,7 @@ export default function Home() {
             "&request_time=" + request_time)
             .then((response) => response.json())
             .then(result => {
-                // console.log(result)
+                console.log(result)
                 const game = result.provider_games.reduce((acc: any, current: any) => {
                     if (current.status === "ACTIVATED" && !acc.find((item: any) => (item.game_name === current.game_name))) {
                         acc.push(current);

@@ -75,8 +75,8 @@ export default async function handler(
                     {
                         "code": 0,
                         "message": "",
-                        "before_balance": user.Amount,
-                        "balance": update_balance_user.Amount
+                        "before_balance": parseFloat(parseFloat(user.Amount).toFixed(2)),
+                        "balance": parseFloat(parseFloat(update_balance_user.Amount).toFixed(2))
                     }
                 );
                 await Transaction.insertMany(transactions);

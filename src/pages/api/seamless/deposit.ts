@@ -105,15 +105,15 @@ export default async function handler(
                         console.log({
                             "code": 0,
                             "message": "deposit",
-                            "before_balance": result.Amount,
-                            "balance": newBalance.Amount
+                            "before_balance": parseFloat(parseFloat(result.Amount).toFixed(2)),
+                            "balance": parseFloat(parseFloat(newBalance.Amount).toFixed(2))
                         })
                         res.status(200).json(
                             {
                                 "code": 0,
                                 "message": "",
-                                "before_balance": result.Amount,
-                                "balance": newBalance.Amount
+                                "before_balance": parseFloat(parseFloat(result.Amount).toFixed(2)),
+                                "balance": parseFloat(parseFloat(newBalance.Amount).toFixed(2))
                             }
                         );
                         new Transaction(transactions[0]).save();

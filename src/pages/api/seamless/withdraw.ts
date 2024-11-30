@@ -109,24 +109,25 @@ export default async function handler(
 
                     User.findOneAndUpdate(
                         { _id: result._id },
-                        { $inc: { Amount: total_amount } },
+                        { $inc: { Amount: parseFloat(total_amount.toFixed(2)) } },
                         { new: true }
                     ).then((newBalance: any) => {
+                        new Transaction(transactions[0]).save();
                         console.log({
                             "code": 0,
                             "message": "withdraw",
-                            "before_balance": result.Amount,
-                            "balance": newBalance.Amount
+                            "before_balance": parseFloat(parseFloat(result.Amount).toFixed(2)),
+                            "balance": parseFloat(parseFloat(newBalance.Amount).toFixed(2))
                         })
                         res.status(200).json(
                             {
                                 "code": 0,
                                 "message": "",
-                                "before_balance": result.Amount,
-                                "balance": newBalance.Amount
+                                "before_balance": parseFloat(parseFloat(result.Amount).toFixed(2)),
+                                "balance": parseFloat(parseFloat(newBalance.Amount).toFixed(2))
                             }
                         );
-                        new Transaction(transactions[0]).save();
+
                     }).catch((err: any) => {
                         console.log(err);
                         res.status(200).json(
