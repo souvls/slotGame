@@ -71,7 +71,7 @@ export default async function handler(
             }
 
             //check sing
-            const originalSign = md5(operator_code + request_time + "withdraw" + process.env.SECRET_KEY);
+            const originalSign = md5(operator_code + request_time + "deposit" + process.env.SECRET_KEY);
             if (sign !== originalSign) {
                 console.log("Invalid Sign")
                 res.status(200).json(
