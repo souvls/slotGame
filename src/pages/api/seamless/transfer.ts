@@ -44,7 +44,7 @@ export default async function handler(
                 return;
             }
 
-            Transaction.insertMany(transactions);
+            await Transaction.insertMany(transactions);
             const update_balance_user = await User.findOneAndUpdate(
                 { _id: user._id },
                 { $inc: { Amount: total_amount } },

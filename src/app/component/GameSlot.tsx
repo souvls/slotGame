@@ -224,11 +224,11 @@ export default function Home() {
     const [loadingGame, setLoadingGame] = useState(false);
     useEffect(() => {
         setLoadingGame(false);
-        fetchGames(1050);
+        //fetchGames(1050);
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
-        fetchProductList();
+        //fetchProductList();
     }, [productActive])
     const fetchProductList = () => {
         const request_time = new Date().getTime();
@@ -239,13 +239,14 @@ export default function Home() {
             "&request_time=" + request_time)
             .then((response) => response.json())
             .then(result => {
-                const x = [{}];
-                result.forEach((item: any) => {
-                    if (item.game_type === "SLOT" && item.status === 'ACTIVATED') {
-                        x.push(item)
-                    }
-                });
-                console.log(x);
+                console.log(result)
+                // const x = [{}];
+                // result.forEach((item: any) => {
+                //     if (item.game_type === "SLOT" && item.status === 'ACTIVATED') {
+                //         x.push(item)
+                //     }
+                // });
+                // console.log(x);
                 //setProductList(x);
             })
             .catch(err => {
@@ -258,7 +259,7 @@ export default function Home() {
             const cookie = Cookies.get("userdata");
             if (cookie) {
                 //const token = JSON.parse(cookie).token;
-                //const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
+                const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
                 const myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
                 const request_time = new Date().getTime();
@@ -274,7 +275,7 @@ export default function Home() {
                     "product_code": game.product_code,
                     "game_type": game.game_type,
                     "language_code": 0,
-                    "ip": "0.0.0.1",
+                    "ip": ip.ip,
                     "platform": "web",
                     "sign": hash,
                     "request_time": request_time,
@@ -354,20 +355,15 @@ export default function Home() {
             "&request_time=" + request_time)
             .then((response) => response.json())
             .then(result => {
-                const x = [{}];
-                const game = result.provider_games.reduce((acc:any, current:any) => {
-                    if (current.status === "ACTIVATED" &&!acc.find((item:any) => (item.game_name === current.game_name))) {
-                      acc.push(current);
+                // console.log(result)
+                const game = result.provider_games.reduce((acc: any, current: any) => {
+                    if (current.status === "ACTIVATED" && !acc.find((item: any) => (item.game_name === current.game_name))) {
+                        acc.push(current);
                     }
                     return acc;
-                  }, []);
-                //console.log(result)
-                // result.provider_games.map((item: any) => {
-                //     if (item.status === "ACTIVATED" && item.support_currency.includes("THB") && item.game_code === "PSS-ON-00149") {
-                //         x.push(item)
-                //     }
-                // });
-                console.log(game);
+                }, []);
+
+                // console.log(game);
                 setGames(game);
             })
             .catch(err => {
@@ -407,7 +403,7 @@ export default function Home() {
                             )
                             // console.log(item)
                             // if (item.status === "ACTIVATED" && item.support_currency.includes("THB")) {
-                                
+
                             //     // if (
                             //     //     // CQ9
                             //     //     item.game_name != "FruitKing" && 
