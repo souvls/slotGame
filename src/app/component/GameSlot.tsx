@@ -224,35 +224,35 @@ export default function Home() {
     const [loadingGame, setLoadingGame] = useState(false);
     useEffect(() => {
         setLoadingGame(false);
-        //fetchGames(1050);
+        fetchGames(1050);
     }, [])
     useEffect(() => {
         fetchGames(products[productActive].product_code);
         //fetchProductList();
     }, [productActive])
-    const fetchProductList = () => {
-        const request_time = new Date().getTime();
-        const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}productlist${process.env.NEXT_PUBLIC_OP_CODE}`);
-        fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/available-products" +
-            "?operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
-            "&sign=" + hash +
-            "&request_time=" + request_time)
-            .then((response) => response.json())
-            .then(result => {
-                console.log(result)
-                // const x = [{}];
-                // result.forEach((item: any) => {
-                //     if (item.game_type === "SLOT" && item.status === 'ACTIVATED') {
-                //         x.push(item)
-                //     }
-                // });
-                // console.log(x);
-                //setProductList(x);
-            })
-            .catch(err => {
-                throw err
-            })
-    }
+    // const fetchProductList = () => {
+    //     const request_time = new Date().getTime();
+    //     const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}productlist${process.env.NEXT_PUBLIC_OP_CODE}`);
+    //     fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/available-products" +
+    //         "?operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
+    //         "&sign=" + hash +
+    //         "&request_time=" + request_time)
+    //         .then((response) => response.json())
+    //         .then(result => {
+    //             console.log(result)
+    //             // const x = [{}];
+    //             // result.forEach((item: any) => {
+    //             //     if (item.game_type === "SLOT" && item.status === 'ACTIVATED') {
+    //             //         x.push(item)
+    //             //     }
+    //             // });
+    //             // console.log(x);
+    //             //setProductList(x);
+    //         })
+    //         .catch(err => {
+    //             throw err
+    //         })
+    // }
     const handdlePlay = async (game: any) => {
         try {
             setLoadingGame(true);
@@ -269,7 +269,6 @@ export default function Home() {
                     "operator_code": process.env.NEXT_PUBLIC_OP_CODE,
                     "member_account": JSON.parse(cookie).username,
                     "password": JSON.parse(cookie).password,
-                    // "password": process.env.NEXT_PUBLIC_PASS,
                     "currency": "THB",
                     "game_code": game.game_code,
                     "product_code": game.product_code,
@@ -281,7 +280,7 @@ export default function Home() {
                     "request_time": request_time,
                     "operator_lobby_url": "http://infinity999.com",
                 }
-                fetch("https://production.gsimw.com/api/operators/launch-game", {
+                fetch(`${process.env.NEXT_PUBLIC_API_NAME}/api/operators/launch-game`, {
                     method: "POST",
                     headers: myHeaders,
                     body: JSON.stringify(raw),
@@ -289,8 +288,7 @@ export default function Home() {
                 })
                     .then((response) => response.json())
                     .then((result) => {
-                        console.log(result)
-
+                        // console.log(result)
                         if (result.code === 200) {
                             router.push(result.url)
                         } else {
@@ -299,8 +297,6 @@ export default function Home() {
                                 icon: "warning",
                                 title: "<p>ຂໍອະໄພ</p>",
                                 html: "<p>ເກມກຳລັງປັບປຸງ</p>"
-
-                                // title: result.message
                             })
                         }
                         setLoadingGame(false);

@@ -66,7 +66,14 @@ const Poker = () => {
                 .then((response) => response.json())
                 .then(result => {
                     //console.log(result)
-                    setGames(result.provider_games);
+                    const game = result.provider_games.reduce((acc: any, current: any) => {
+                        if (current.status === "ACTIVATED" && !acc.find((item: any) => (item.game_name === current.game_name))) {
+                            acc.push(current);
+                        }
+                        return acc;
+                    }, []);
+                    // console.log(game);
+                    setGames(game);
                 })
                 .catch(err => {
                     throw err
@@ -102,7 +109,7 @@ const Poker = () => {
                     "request_time": request_time,
                     "operator_lobby_url": "http://infinity999.com",
                 }
-                fetch("https://production.gsimw.com/api/operators/launch-game", {
+                fetch(`${process.env.NEXT_PUBLIC_API_NAME}/api/operators/launch-game`, {
                     method: "POST",
                     headers: myHeaders,
                     body: JSON.stringify(raw),
@@ -163,97 +170,7 @@ const Poker = () => {
             });
         }
     }
-    // const handdlePlay = async (game: any) => {
-    //     try {
-    //         setLoadingGame(true);
-    //         const cookie = Cookies.get("userdata");
-    //         if (cookie) {
-    //             const token = JSON.parse(cookie).token;
-    //             const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
 
-    //             const data = JSON.stringify({
-    //                 game_code: game.game_code,
-    //                 product_code: game.product_code,
-    //                 ip: ip.ip,
-    //                 game_type:"LIVE_CASINO"
-    //             });
-    //             fetch("/api/user/playgame", {
-    //                 method: "POST",
-    //                 headers: {
-    //                     'Authorization': 'Bearer ' + token,
-    //                     'Content-Type': 'application/json'
-    //                 },
-    //                 body: data,
-    //                 redirect: "follow"
-    //             })
-    //                 .then((response) => response.json())
-    //                 .then((result) => {
-    //                     console.log(result)
-    //                     setLoadingGame(false);
-    //                     if (result.status === 'no' && result.message === "logout") {
-    //                         Cookies.remove("userdata");
-    //                         setLoadingGame(false);
-    //                         Swal.fire({
-    //                             title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-    //                             text: "020 98 399 064",
-    //                             icon: "error",
-    //                             background: '#000000',
-    //                             color: '#ffffff',
-    //                             showConfirmButton: false,
-    //                         }).then(() => {
-    //                             window.location.reload();
-    //                         });
-    //                     } else {
-    //                         console.log(result);
-    //                         // if(result.result != ""){
-    //                         //     router.push(result.result)
-    //                         // }else{
-    //                         //     setLoadingGame(false);
-    //                         //     Swal.fire({
-    //                         //         icon:"error",
-    //                         //         title:result.message
-    //                         //     })
-    //                         // }
-    //                     }
-    //                 }).catch(() => {
-    //                     Cookies.remove("userdata");
-    //                     setLoadingGame(false);
-    //                     Swal.fire({
-    //                         title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-    //                         text: "020 98 399 064",
-    //                         icon: "error",
-    //                         background: '#000000',
-    //                         color: '#ffffff',
-    //                         showConfirmButton: false,
-    //                     }).then(() => {
-    //                         window.location.reload();
-    //                     });
-    //                 })
-    //         } else {
-    //             setLoadingGame(false);
-    //             Swal.fire({
-    //                 title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-    //                 text: "020 98 399 064",
-    //                 icon: "error",
-    //                 background: '#000000',
-    //                 color: '#ffffff',
-    //                 showConfirmButton: false,
-    //             });
-    //         }
-    //     }
-    //     catch (err) {
-    //         console.log(err)
-    //         setLoadingGame(false);
-    //         Swal.fire({
-    //             title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-    //             text: "02011223344",
-    //             icon: "error",
-    //             background: '#000000',
-    //             color: '#ffffff',
-    //             showConfirmButton: false,
-    //         });
-    //     }
-    // }
     return (
         <div>
             {loadingGame && <Spinner />}
@@ -272,31 +189,29 @@ const Poker = () => {
                                                 img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
                                             }}
                                         />
-                                        <p>{item.product_name}</p>
+                                        {/* <p>{item.product_name}</p> */}
                                     </div>
                                 )
                             })
                         }
                     </div>
-                    <div className='w-[80%] lg:w-[90%] grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
+                    <div className='w-[80%] lg:w-[90%] grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
                         {games && games.length > 0 && games.map((item: any, index) => {
                             return (
                                 <>
-                                    {item.status === "ACTIVATED" &&
-                                        <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
-                                            <img
-                                                src={item.image_url}
-                                                onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                                    const img = e.target as HTMLImageElement;
-                                                    img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
-                                                    img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
-                                                }}
-                                                className='w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
-                                            />
-                                            <h1 className=' text-center text-white'>{item.game_name}</h1>
-                                            {/* <p className=' text-center text-white'>{item.product_code}{item.game_code}</p>  */}
-                                        </div>
-                                    }
+                                    <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
+                                        <img
+                                            src={item.image_url}
+                                            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                                                const img = e.target as HTMLImageElement;
+                                                img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
+                                                img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
+                                            }}
+                                            className='w-full rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
+                                        />
+                                        <h1 className=' text-center text-white text-[8px]'>{item.game_name}</h1>
+                                        {/* <p className=' text-center text-white'>{item.product_code}{item.game_code}</p>  */}
+                                    </div>
                                 </>
 
                             )
