@@ -20,6 +20,7 @@ export default async function handler(
     verifyJWTToken(req, res, async () => {
         const member: any = req.headers.data
         if (req.method === 'POST') {
+            console.log(req.body)
             try {
                 //create history
                 const { UserID, Amount } = req.body
@@ -30,9 +31,10 @@ export default async function handler(
                     Date: getDate()
                 })
                 //check credit member
-                await Member.findById(member.id)
+                Member.findById(member.id)
                     .then(async (result: any) => {
                         if (result) {
+                            // console.log(result)
                             if (result.Amount - Amount >= 0) {
                                 //reduce credit member
                                 await Member.findOneAndUpdate(
@@ -46,9 +48,9 @@ export default async function handler(
                                     { $inc: { Amount: Amount } },
                                     { new: true } // tùy chọn này trả về tài liệu đã cập nhật
                                 );
-                                await newHistory.save().then(() => {
+                                newHistory.save().then(() => {
                                     res.status(201).json({ status: 'ok', message: 'success' });
-                                }).catch((err:any)=>{
+                                }).catch((err: any) => {
                                     console.log(err)
                                     res.status(201).json({ status: 'no', message: err });
                                 })
@@ -59,8 +61,8 @@ export default async function handler(
                             res.status(400).json({ status: 'no', message: "nkow member" });
                         }
                     })
-
             } catch (err) {
+                console.log(err)
                 res.status(400).json({ status: 'no', message: err });
             }
         } else {

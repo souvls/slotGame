@@ -5,6 +5,7 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import { useRouter, useParams } from 'next/navigation';
 import Spinner from '@/app/component/Spinner';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const page = () => {
   const inputRef = useRef(null);
@@ -19,6 +20,8 @@ const page = () => {
   }, []);
 
   const handdleSubmit = async () => {
+    if (loading) return; // ป้องกันการยิงซ้ำ
+    setLoading(true);
     if (credit < 1) {
       Swal.fire({
         title: "<p>ໃສ່ຈຳນວນຜິດ</p>",
@@ -30,49 +33,41 @@ const page = () => {
         icon: "error"
       });
     } else {
-      setLoading(true);
+
       const token = localStorage.getItem('token');
       const data = JSON.stringify({
         UserID: parms.slug[0],
-        Amount: credit
+        Amount: parseFloat(credit)
       })
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          'Authorization': 'Bearer ' + token,
-          'Content-Type': 'application/json'
-        },
-        body: data,
-        redirect: "follow"
-      };
-      await fetch("/api/member/add-credit", requestOptions)
-        .then((response) => response.json())
-        .then((result) => {
-          //console.log(result)
-          if (result.status === 'ok') {
-            setLoading(false);
-            Swal.fire({
-              title: result.message,
-              icon: "success",
-              showConfirmButton:false,
-              timer:100
-            }).then(() => {
-              router.push("/member/office/users");
-            });
-          } else {
-            if (result.message === 'notoken') {
-              localStorage.clear();
-              router.push("/member");
-            } else {
-              setLoading(false);
-              Swal.fire({
-                title: `<p>${result.message}</p>`,
-                icon: "error"
-              });
-            }
+      const res = await axios.post("/api/member/add-credit",
+        data,
+        {
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
           }
-        })
-        .catch((error) => console.error(error));
+        },
+      )
+      if (res.data.status === 'ok') {
+        Swal.fire({
+          title: res.data.message,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 100
+        }).then(() => {
+          router.push("/member/office/users");
+        });
+      } else {
+        if (res.data.message === 'notoken') {
+          localStorage.clear();
+          router.push("/member");
+        } else {
+          Swal.fire({
+            title: `<p>${res.data.message}</p>`,
+            icon: "error"
+          });
+        }
+      }
       setLoading(false)
     }
   }

@@ -17,6 +17,7 @@ export default async function handler(
     verifyJWTToken(req, res, async () => {
         const member: any = req.headers.data
         if (req.method === 'POST') {
+            // console.log(req.body)
             try {
                 //create history
                 const { UserID, Amount } = req.body;
@@ -27,7 +28,7 @@ export default async function handler(
                     Date: getDate()
                 })
                 //check credit user
-                await User.findById(UserID)
+                User.findById(UserID)
                     .then(async (result: any) => {
                         if (result) {
                             if (result.Amount - Amount >= 0) {

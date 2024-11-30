@@ -15,7 +15,6 @@ let UserSchema = mongoose.Schema({
         type: Number,
         required: true,
         default: 0,
-        set: (value) => parseFloat(value.toFixed(2))
     },
     MemberID: {
         type: mongoose.Schema.Types.ObjectId,

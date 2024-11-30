@@ -5,6 +5,7 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import { useRouter, useParams } from 'next/navigation';
 import Spinner from '@/app/component/Spinner';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const page = () => {
     const inputRef = useRef(null);
@@ -19,6 +20,8 @@ const page = () => {
     }, []);
 
     const handdleSubmit = async () => {
+        if (loading) return; // ป้องกันการยิงซ้ำ
+        setLoading(true);
         if (credit < 1) {
             Swal.fire({
                 title: "<p>ໃສ່ຈຳນວນຜິດ</p>",
@@ -29,54 +32,44 @@ const page = () => {
                 title: "<p>ໃສ່ຈຳນວນ</p>",
                 icon: "error"
             });
-        } else if (parseInt(parms.slug[2]) - credit < 0) {
+        } else if (parseFloat(parms.slug[2]) - credit < 0) {
             Swal.fire({
                 title: "<p>ເງິນບໍ່ພໍ</p>",
                 icon: "error"
             });
         }
         else {
-            setLoading(true);
             const token = localStorage.getItem('token');
             const data = JSON.stringify({
                 UserID: parms.slug[0],
-                Amount: credit
+                Amount: parseFloat(credit)
             })
-            const requestOptions = {
-                method: "POST",
+            const res = await axios.post("/api/member/withdraw-credit", data, {
                 headers: {
                     'Authorization': 'Bearer ' + token,
                     'Content-Type': 'application/json'
-                },
-                body: data,
-                redirect: "follow"
-            };
-            await fetch("/api/member/withdraw-credit", requestOptions)
-                .then((response) => response.json())
-                .then((result) => {
-                    //console.log(result)
-                    if (result.status === 'ok') {
-                        setLoading(false);
-                        Swal.fire({
-                            title: result.message,
-                            icon: "success"
-                        }).then(() => {
-                            router.push("/member/office/users");
-                        });
-                    } else {
-                        if (result.message === 'notoken') {
-                            localStorage.clear();
-                            router.push("/member");
-                        } else {
-                            setLoading(false);
-                            Swal.fire({
-                                title: `<p>${result.message}</p>`,
-                                icon: "error"
-                            });
-                        }
-                    }
-                })
-                .catch((error) => console.error(error));
+                }
+            })
+            if (res.data.status === 'ok') {
+                Swal.fire({
+                    title: res.data.message,
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 100
+                }).then(() => {
+                    router.push("/member/office/users");
+                });
+            } else {
+                if (res.data.message === 'notoken') {
+                    localStorage.clear();
+                    router.push("/member");
+                } else {
+                    Swal.fire({
+                        title: `<p>${res.data.message}</p>`,
+                        icon: "error"
+                    });
+                }
+            }
             setLoading(false)
         }
     }
