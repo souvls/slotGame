@@ -9,6 +9,8 @@ export default async function handler(
 ) {
     //console.log(req.body)
     if (req.method === 'POST') {
+        var total_amount = 0;
+        const transactionID = []
         try {
             const { member_account, currency, transactions, operator_code, request_time, sign } = req.body;
             console.log(req.body);
@@ -25,14 +27,31 @@ export default async function handler(
                 );
                 return
             }
-            if (transactions[0].action !== 'SETTLED') {
-                console.log("Expected to Return Invalid Action");
+
+            for (const i of transactions) {
+                if (i.action !== 'SETTLED') {
+                    console.log("Expected to Return Invalid Action");
+                    res.status(200).json(
+                        {
+                            "code": 1004,
+                            "message": "Expected to Return Invalid Action",
+                            "before_balance": 0,
+                            "balance": 0
+                        }
+                    );
+                    return;
+                }
+                transactionID.push(i.id)
+                total_amount += parseFloat(parseFloat(i.amount).toFixed(2));
+            }
+            //check transaction
+            const duplicate = await Transaction.find({ id: { $in: transactionID } })
+            if (duplicate.length !== 0 || hasDuplicates(transactionID)) {
+                console.log("Duplicate Transaction")
                 res.status(200).json(
                     {
-                        "code": 1004,
-                        "message": "Expected to Return Invalid Action",
-                        "before_balance": 0,
-                        "balance": 0
+                        "code": 1003,
+                        "message": " Duplicate Transaction",
                     }
                 );
                 return;
@@ -80,7 +99,7 @@ export default async function handler(
 
                     User.findOneAndUpdate(
                         { _id: result._id },
-                        { $inc: { Amount: parseFloat(parseFloat(transactions[0].amount).toFixed(2)) } },
+                        { $inc: { Amount: total_amount } },
                         { new: true }
                     ).then((newBalance: any) => {
                         console.log({
@@ -97,7 +116,7 @@ export default async function handler(
                                 "balance": parseFloat(parseFloat(newBalance.Amount).toFixed(2))
                             }
                         );
-                        //new Transaction(transactions[0]).save();
+                        new Transaction(transactions[0]).save();
                     }).catch((err: any) => {
                         console.log(err);
                         res.status(200).json(
@@ -127,12 +146,11 @@ export default async function handler(
             );
         }
     } else {
-        console.log("Not allow " + req.method);
         res.setHeader('Allow', ['POST']);
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 }
-// function hasDuplicates(array: any) {
-//     const uniqueElements = new Set(array);
-//     return uniqueElements.size !== array.length;
-// }
+function hasDuplicates(array: any) {
+    const uniqueElements = new Set(array);
+    return uniqueElements.size !== array.length;
+}
