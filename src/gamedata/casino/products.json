@@ -1,0 +1,62 @@
+[
+    {
+        "provider": "SA Gaming",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 8,
+        "product_id": 1279,
+        "product_code": 1185,
+        "product_name": "sa_gaming",
+        "game_type": "LIVE_CASINO"
+    },
+    {
+        "provider": "WMCasino",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 17,
+        "product_id": 1142,
+        "product_code": 1020,
+        "product_name": "wm_casino",
+        "game_type": "LIVE_CASINO"
+    },
+    {
+        "provider": "AWC",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 23,
+        "product_id": 1166,
+        "product_code": 1022,
+        "product_name": "sexy_gaming",
+        "game_type": "LIVE_CASINO"
+    },
+    {
+        "provider": "PragmaticPlay",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 32,
+        "product_id": 1184,
+        "product_code": 1006,
+        "product_name": "pragmatic_play",
+        "game_type": "LIVE_CASINO"
+    },
+    {
+        "provider": "BigGaming",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 34,
+        "product_id": 1233,
+        "product_code": 1004,
+        "product_name": "big_gaming",
+        "game_type": "LIVE_CASINO"
+    },
+    {
+        "provider": "AI Live Casino",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 102,
+        "product_id": 1178,
+        "product_code": 1149,
+        "product_name": "ai_live_casino",
+        "game_type": "LIVE_CASINO"
+    }
+]

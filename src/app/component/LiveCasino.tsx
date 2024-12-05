@@ -4,310 +4,67 @@ import React, { useEffect, useState } from 'react'
 import Spinner from './Spinner';
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
-const products = [
-    {
-        "provider": "SA Gaming",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 8,
-        "product_id": 1279,
-        "product_code": 1185,
-        "product_name": "sa_gaming",
-        "game_type": "LIVE_CASINO"
-    },
-    {
-        "provider": "WMCasino",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 17,
-        "product_id": 1142,
-        "product_code": 1020,
-        "product_name": "wm_casino",
-        "game_type": "LIVE_CASINO"
-    },
-    {
-        "provider": "AWC",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 23,
-        "product_id": 1166,
-        "product_code": 1022,
-        "product_name": "sexy_gaming",
-        "game_type": "LIVE_CASINO"
-    },
-    {
-        "provider": "PragmaticPlay",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 32,
-        "product_id": 1184,
-        "product_code": 1006,
-        "product_name": "pragmatic_play",
-        "game_type": "LIVE_CASINO"
-    },
-    {
-        "provider": "BigGaming",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 34,
-        "product_id": 1233,
-        "product_code": 1004,
-        "product_name": "big_gaming",
-        "game_type": "LIVE_CASINO"
-    },
-    {
-        "provider": "AI Live Casino",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 102,
-        "product_id": 1178,
-        "product_code": 1149,
-        "product_name": "ai_live_casino",
-        "game_type": "LIVE_CASINO"
-    }
-]
+import products from '@/gamedata/casino/products.json'
+import sa_gaming from '@/gamedata/casino/sa_gaming.json'
+import wm_casino from '@/gamedata/casino/wm_casino.json'
+import sexy_gaming from '@/gamedata/casino/sexy_gaming.json'
+import pragmatic_play from '@/gamedata/casino/pragmatic_play.json'
+import ai_live_casino from '@/gamedata/casino/ai_live_casino.json'
+import big_gaming from '@/gamedata/casino/big_gaming.json'
+import ShowGameItem from './ShowGameItem';
+
+interface Game {
+    game_code: string,
+    game_name: string,
+    game_type: string,
+    image_url: string,
+    product_code: number,
+    product_id: number,
+    status: string,
+    support_currency: string,
+}
 const LiveCasino = () => {
     const router = useRouter();
     const [productActive, setProductActive] = useState(0);
-    const [games, setGames] = useState([]);
+    const [games, setGames] = useState<Game[]>();
     const [loadingGame, setLoadingGame] = useState(false);
 
     useEffect(() => {
-        setLoadingGame(false);
-        fetchGames(1185);
+        const active = localStorage.getItem("casino_active");
+        if (active) {
+            setProductActive(parseInt(active));
+        }
     }, [])
     useEffect(() => {
-        fetchGames(products[productActive].product_code);
-        //fetchProductList();
-
-    }, [productActive])
-    // const fetchProductList = () => {
-    //     const request_time = new Date().getTime();
-    //     const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}productlist${process.env.NEXT_PUBLIC_OP_CODE}`);
-    //     fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/available-products" +
-    //         "?operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
-    //         "&sign=" + hash +
-    //         "&request_time=" + request_time)
-    //         .then((response) => response.json())
-    //         .then(result => {
-    //             const x = [{}];
-    //             result.forEach((item: any) => {
-    //                 if (item.game_type === "LIVE_CASINO" && item.currency === "THB" && item.status === 'ACTIVATED') {
-    //                     x.push(item)
-    //                 }
-    //             });
-    //             console.log(x);
-    //             //setProductList(result);
-    //         })
-    //         .catch(err => {
-    //             throw err
-    //         })
-    // }
-    const fetchGames = async (product_code: any) => {
-        const request_time = new Date().getTime();
-        const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}gamelist${process.env.NEXT_PUBLIC_OP_CODE}`);
-        fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
-            "?product_code=" + product_code +
-            "&operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
-            "&game_type=" + "LIVE_CASINO" +
-            "&sign=" + hash +
-            "&request_time=" + request_time)
-            .then((response) => response.json())
-            .then(result => {
-                //console.log(result)
-                const game = result.provider_games.reduce((acc: any, current: any) => {
-                    if (current.status === "ACTIVATED" && !acc.find((item: any) => (item.game_name === current.game_name))) {
-                        acc.push(current);
-                    }
-                    return acc;
-                }, []);
-                setGames(game);
-            })
-            .catch(err => {
-                throw err
-            })
-    }
-    const handdlePlay = async (game: any) => {
-        try {
-            setLoadingGame(true);
-            const cookie = Cookies.get("userdata");
-            if (cookie) {
-                //const token = JSON.parse(cookie).token;
-                const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
-                const myHeaders = new Headers();
-                myHeaders.append("Content-Type", "application/json");
-                const request_time = new Date().getTime();
-                console.log(process.env.NEXT_PUBLIC_SECRET_KEY);
-                console.log(process.env.NEXT_PUBLIC_OP_CODE);
-
-                const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}launchgame${process.env.NEXT_PUBLIC_OP_CODE}`);
-                const raw = {
-                    "operator_code": process.env.NEXT_PUBLIC_OP_CODE,
-                    "member_account": JSON.parse(cookie).username,
-                    "password": process.env.NEXT_PUBLIC_PASS,
-                    "currency": "THB",
-                    "game_code": game.game_code,
-                    "product_code": game.product_code,
-                    "game_type": game.game_type,
-                    "language_code": 0,
-                    "ip": ip.ip,
-                    "platform": "web",
-                    "sign": hash,
-                    "request_time": request_time,
-                    "operator_lobby_url": "http://infinity999.com",
-                }
-                fetch(`${process.env.NEXT_PUBLIC_API_NAME}/api/operators/launch-game`, {
-                    method: "POST",
-                    headers: myHeaders,
-                    body: JSON.stringify(raw),
-                    redirect: "follow"
-                })
-                    .then((response) => response.json())
-                    .then((result) => {
-                        //console.log(result)
-
-                        if (result.code === 200) {
-                            router.push(result.url)
-                        } else {
-                            setLoadingGame(false);
-                            Swal.fire({
-                                icon: "warning",
-                                title: "<p>ຂໍອະໄພ</p>",
-                                html: "<p>ເກມກຳລັງປັບປຸງ</p>"
-
-                                // title: result.message
-                            })
-                        }
-                    }).catch(() => {
-                        Cookies.remove("userdata");
-                        setLoadingGame(false);
-                        Swal.fire({
-                            title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-                            text: "020 98 399 064",
-                            icon: "error",
-                            background: '#000000',
-                            color: '#ffffff',
-                            showConfirmButton: false,
-                        }).then(() => {
-                            window.location.reload();
-                        });
-                    })
-            } else {
-                setLoadingGame(false);
-                Swal.fire({
-                    title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-                    text: "020 98 399 064",
-                    icon: "error",
-                    background: '#000000',
-                    color: '#ffffff',
-                    showConfirmButton: false,
-                });
+        switch (products[productActive].product_name) {
+            case "sa_gaming": {
+                setGames(sa_gaming); break;
+            }
+            case "wm_casino": {
+                setGames(wm_casino); break;
+            }
+            case "sexy_gaming": {
+                setGames(sexy_gaming); break;
+            }
+            case "pragmatic_play": {
+                setGames(pragmatic_play); break;
+            }
+            case "big_gaming": {
+                setGames(big_gaming); break;
+            }
+            case "ai_live_casino": {
+                setGames(ai_live_casino); break;
+            }
+            default: {
+                setGames([]);
             }
         }
-        catch (err) {
-            console.log(err)
-            setLoadingGame(false);
-            Swal.fire({
-                title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-                text: "02011223344",
-                icon: "error",
-                background: '#000000',
-                color: '#ffffff',
-                showConfirmButton: false,
-            });
-        }
-    }
-    // const handdlePlay = async (game: any) => {
-    //     try {
-    //         setLoadingGame(true);
-    //         const cookie = Cookies.get("userdata");
-    //         if (cookie) {
-    //             const token = JSON.parse(cookie).token;
-    //             const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
 
-    //             const data = JSON.stringify({
-    //                 game_code: game.game_code,
-    //                 product_code: game.product_code,
-    //                 ip: ip.ip,
-    //                 game_type:"LIVE_CASINO"
-    //             });
-    //             fetch("/api/user/playgame", {
-    //                 method: "POST",
-    //                 headers: {
-    //                     'Authorization': 'Bearer ' + token,
-    //                     'Content-Type': 'application/json'
-    //                 },
-    //                 body: data,
-    //                 redirect: "follow"
-    //             })
-    //                 .then((response) => response.json())
-    //                 .then((result) => {
-    //                     console.log(result)
-    //                     setLoadingGame(false);
-    //                     if (result.status === 'no' && result.message === "logout") {
-    //                         Cookies.remove("userdata");
-    //                         setLoadingGame(false);
-    //                         Swal.fire({
-    //                             title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-    //                             text: "020 98 399 064",
-    //                             icon: "error",
-    //                             background: '#000000',
-    //                             color: '#ffffff',
-    //                             showConfirmButton: false,
-    //                         }).then(() => {
-    //                             window.location.reload();
-    //                         });
-    //                     } else {
-    //                         console.log(result);
-    //                         // if(result.result != ""){
-    //                         //     router.push(result.result)
-    //                         // }else{
-    //                         //     setLoadingGame(false);
-    //                         //     Swal.fire({
-    //                         //         icon:"error",
-    //                         //         title:result.message
-    //                         //     })
-    //                         // }
-    //                     }
-    //                 }).catch(() => {
-    //                     Cookies.remove("userdata");
-    //                     setLoadingGame(false);
-    //                     Swal.fire({
-    //                         title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-    //                         text: "020 98 399 064",
-    //                         icon: "error",
-    //                         background: '#000000',
-    //                         color: '#ffffff',
-    //                         showConfirmButton: false,
-    //                     }).then(() => {
-    //                         window.location.reload();
-    //                     });
-    //                 })
-    //         } else {
-    //             setLoadingGame(false);
-    //             Swal.fire({
-    //                 title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-    //                 text: "020 98 399 064",
-    //                 icon: "error",
-    //                 background: '#000000',
-    //                 color: '#ffffff',
-    //                 showConfirmButton: false,
-    //             });
-    //         }
-    //     }
-    //     catch (err) {
-    //         console.log(err)
-    //         setLoadingGame(false);
-    //         Swal.fire({
-    //             title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-    //             text: "02011223344",
-    //             icon: "error",
-    //             background: '#000000',
-    //             color: '#ffffff',
-    //             showConfirmButton: false,
-    //         });
-    //     }
-    // }
+    }, [productActive])
+    const handleSelectProduct = (index: number) => {
+        localStorage.setItem("casino_active", index.toString());
+        setProductActive(index);
+    }
     return (
         <div>
             {loadingGame && <Spinner />}
@@ -317,7 +74,7 @@ const LiveCasino = () => {
                         {
                             products.map((item, index) => {
                                 return (
-                                    <div key={index} onClick={() => setProductActive(index)} className={` bg-white w-full h-[50px] flex items-center border-2  rounded-lg overflow-hidden ${index == productActive ? 'border-yellow-300' : 'border-purple-600'}`}>
+                                    <div key={index} onClick={() => handleSelectProduct(index)} className={` bg-white w-full h-[50px] flex items-center border-2  rounded-lg overflow-hidden ${index == productActive ? 'border-yellow-300' : 'border-purple-600'}`}>
                                         <img
                                             src={`/assets/icon/product/${item.product_name}.png`}
                                             alt={item.product_name} width={100} height={100}
@@ -335,24 +92,7 @@ const LiveCasino = () => {
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
                         {games && games.length > 0 && games.map((item: any, index) => {
                             return (
-                                <>
-                                    {item.status === "ACTIVATED" &&
-                                        <div key={index} onClick={() => handdlePlay(item)} className=' flex flex-col items-center'>
-                                            <img
-                                                src={item.image_url}
-                                                onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                                    const img = e.target as HTMLImageElement;
-                                                    img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
-                                                    //img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
-                                                }}
-                                                className='w-full rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
-                                            />
-                                            <h1 className=' text-center text-white text-[8px]'>{item.game_name}</h1>
-                                            {/* <p className=' text-center text-white'>{item.product_code}{item.game_code}</p>  */}
-                                        </div>
-                                    }
-                                </>
-
+                                <ShowGameItem key={index} product_name={products[productActive].product_name} game={item} />
                             )
                         })}
                     </div>

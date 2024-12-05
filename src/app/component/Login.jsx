@@ -1,15 +1,18 @@
+
 "use client"
 import React, { useState } from 'react'
 import { GiOverInfinity } from "react-icons/gi";
 import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
-import Spinner from '../component/Spinner';
+import Spinner from './Spinner';
 import { useRouter } from 'next/navigation';
-const page = () => {
+const Login = () => {
+
     const router = useRouter();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+
     const handdleSubmit = async (e) => {
         e.preventDefault()
         if (!username || !password) {
@@ -27,7 +30,7 @@ const page = () => {
             const raw = JSON.stringify({
                 "Username": username,
                 "Password": password,
-                "ip":ip.ip
+                "ip": ip.ip
             });
 
             const requestOptions = {
@@ -117,4 +120,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Login

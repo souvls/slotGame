@@ -1,0 +1,92 @@
+[
+    {
+        "game_code": "bac",
+        "game_name": "Baccarat",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1185/LIVE_CASINO/bac.png",
+        "product_id": 1279,
+        "product_code": 1185,
+        "support_currency": "BRL",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "dtx",
+        "game_name": "Dragon Tiger",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1185/LIVE_CASINO/dtx.png",
+        "product_id": 1279,
+        "product_code": 1185,
+        "support_currency": "BRL",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "sicbo",
+        "game_name": "Sic Bo",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1185/LIVE_CASINO/sicbo.png",
+        "product_id": 1279,
+        "product_code": 1185,
+        "support_currency": "BRL",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "rot",
+        "game_name": "Roulette",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1185/LIVE_CASINO/rot.png",
+        "product_id": 1279,
+        "product_code": 1185,
+        "support_currency": "BRL",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "pokdeng",
+        "game_name": "Pok Deng",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1185/LIVE_CASINO/pokdeng.png",
+        "product_id": 1279,
+        "product_code": 1185,
+        "support_currency": "BRL",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "andarbahar",
+        "game_name": "Andar Bahar",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1185/LIVE_CASINO/andarbahar.png",
+        "product_id": 1279,
+        "product_code": 1185,
+        "support_currency": "BRL",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "teenpatti2020",
+        "game_name": "Teen Patti 20-20",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1185/LIVE_CASINO/teenpatti2020.png",
+        "product_id": 1279,
+        "product_code": 1185,
+        "support_currency": "BRL",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "blackjack",
+        "game_name": "Blackjack",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1185/LIVE_CASINO/blackjack.png",
+        "product_id": 1279,
+        "product_code": 1185,
+        "support_currency": "BRL",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "xocdia",
+        "game_name": "Xoc Dia",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1185/LIVE_CASINO/xocdia.png",
+        "product_id": 1279,
+        "product_code": 1185,
+        "support_currency": "BRL",
+        "status": "ACTIVATED"
+    }
+]

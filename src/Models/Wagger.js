@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const condb = require('../config/condb');
-const { type } = require('os');
 
 let WagerSchema = mongoose.Schema({
     member_account: {

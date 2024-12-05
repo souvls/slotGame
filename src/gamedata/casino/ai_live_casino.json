@@ -1,0 +1,42 @@
+[
+    {
+        "game_code": "HASH_BACCARAT",
+        "game_name": "Hash Baccarat",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1149/LIVE_CASINO/HASH_BACCARAT.png",
+        "product_id": 1178,
+        "product_code": 1149,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "HASH_ROULETTE",
+        "game_name": "Hash Roulette",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1149/LIVE_CASINO/HASH_ROULETTE.png",
+        "product_id": 1178,
+        "product_code": 1149,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "HASH_SICBO",
+        "game_name": "Hash SICBO ",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1149/LIVE_CASINO/HASH_SICBO.png",
+        "product_id": 1178,
+        "product_code": 1149,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "HASH_CRAPS",
+        "game_name": "Hash Craps",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1149/LIVE_CASINO/HASH_CRAPS.png",
+        "product_id": 1178,
+        "product_code": 1149,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    }
+]

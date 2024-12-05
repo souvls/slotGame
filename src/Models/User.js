@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const condb = require('../config/condb')
+const condb = require('../../src/config/condb')
 
 let UserSchema = mongoose.Schema({
     Username: {
