@@ -1,0 +1,112 @@
+[
+    {
+        "game_code": "aviator",
+        "game_name": "Aviator",
+        "game_type": "POKER",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1138/POKER/aviator.png",
+        "product_id": 1,
+        "product_code": 1138,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "dice",
+        "game_name": "Dice",
+        "game_type": "POKER",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1138/POKER/dice.png",
+        "product_id": 1,
+        "product_code": 1138,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "goal",
+        "game_name": "Goal",
+        "game_type": "POKER",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1138/POKER/goal.png",
+        "product_id": 1,
+        "product_code": 1138,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "plinko",
+        "game_name": "Plinko",
+        "game_type": "POKER",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1138/POKER/plinko.png",
+        "product_id": 1,
+        "product_code": 1138,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "mines",
+        "game_name": "Mines",
+        "game_type": "POKER",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1138/POKER/mines.png",
+        "product_id": 1,
+        "product_code": 1138,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "hi-lo",
+        "game_name": "Hi Lo",
+        "game_type": "POKER",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1138/POKER/hi-lo.png",
+        "product_id": 1,
+        "product_code": 1138,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "keno",
+        "game_name": "Keno",
+        "game_type": "POKER",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1138/POKER/keno.png",
+        "product_id": 1,
+        "product_code": 1138,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "mini-roulette",
+        "game_name": "Mini Roulette",
+        "game_type": "POKER",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1138/POKER/mini-roulette.png",
+        "product_id": 1,
+        "product_code": 1138,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "hotline",
+        "game_name": "Hotline",
+        "game_type": "POKER",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1138/POKER/hotline.png",
+        "product_id": 1,
+        "product_code": 1138,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "balloon",
+        "game_name": "Balloon",
+        "game_type": "POKER",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1138/POKER/balloon.png",
+        "product_id": 1,
+        "product_code": 1138,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "multikeno",
+        "game_name": "Keno 80",
+        "game_type": "POKER",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1138/POKER/multikeno.png",
+        "product_id": 1,
+        "product_code": 1138,
+        "support_currency": "THB",
+        "status": "ACTIVATED"
+    }
+]

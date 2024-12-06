@@ -1,0 +1,12 @@
+[
+    {
+        "provider": "Spribe",
+        "currency": "THB",
+        "status": "ACTIVATED",
+        "provider_id": 92,
+        "product_id": 1,
+        "product_code": 1138,
+        "product_name": "spribe",
+        "game_type": "POKER"
+    }
+]

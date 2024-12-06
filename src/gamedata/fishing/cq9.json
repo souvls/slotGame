@@ -1,0 +1,42 @@
+[
+    {
+        "game_code": "AT01",
+        "game_name": "OneShotFishing",
+        "game_type": "FISHING",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1009/FISHING/AT01.png",
+        "product_id": 1187,
+        "product_code": 1009,
+        "support_currency": "HKD,LAK,MXN,MYR,KRW,BND,GBP,SEK,ZAR,KES,VND,JPY,MMK,USD,SGD,EUR,VND2,IDR,INR,AUD,NOK,IDR2,BDT,PKR,RUB,THB,CAD,KHR,MMK2,CNY,CLP,COP,NGN,BRL,PHP",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "GO02",
+        "game_name": "Hero Fishing",
+        "game_type": "FISHING",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1009/FISHING/GO02.png",
+        "product_id": 1187,
+        "product_code": 1009,
+        "support_currency": "HKD,LAK,MXN,MYR,KRW,BND,GBP,SEK,ZAR,KES,VND,JPY,MMK,USD,SGD,EUR,VND2,IDR,INR,AUD,NOK,IDR2,BDT,PKR,RUB,THB,CAD,KHR,MMK2,CNY,CLP,COP,NGN,BRL,PHP",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "AB3",
+        "game_name": "Paradise",
+        "game_type": "FISHING",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1009/FISHING/AB3.png",
+        "product_id": 1187,
+        "product_code": 1009,
+        "support_currency": "HKD,LAK,MXN,MYR,KRW,BND,GBP,SEK,ZAR,KES,VND,JPY,MMK,USD,SGD,EUR,VND2,INR,AUD,NOK,BDT,PKR,RUB,THB,CAD,KHR,MMK2,CNY,CLP,COP,NGN,BRL,PHP",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "AT05",
+        "game_name": "LuckyFishing",
+        "game_type": "FISHING",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1009/FISHING/AT05.png",
+        "product_id": 1187,
+        "product_code": 1009,
+        "support_currency": "HKD,LAK,MXN,MYR,KRW,BND,GBP,SEK,ZAR,KES,VND,JPY,MMK,USD,SGD,EUR,VND2,INR,AUD,NOK,BDT,PKR,RUB,THB,CAD,KHR,MMK2,CNY,CLP,COP,NGN,BRL,PHP",
+        "status": "ACTIVATED"
+    }
+]
