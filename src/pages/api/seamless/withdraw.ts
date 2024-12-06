@@ -11,18 +11,7 @@ export default async function handler(
         try {
             const { member_account, currency, transactions, operator_code, request_time, sign } = req.body;
             console.log(req.body);
-            console.log("sss");
-            if (!member_account) {
-                console.log("Member not Exist");
-                res.status(200).json(
-                    {
-                        "code": 1000,
-                        "message": "Member not Exist",
-                        "before_balance": 0,
-                        "balance": 0
-                    }
-                );
-            }
+
             if (transactions[0].action !== 'BET') {
                 console.log("Expected to Return Invalid Action");
                 res.status(200).json(
@@ -59,78 +48,57 @@ export default async function handler(
             }
 
             //check sing
-            const originalSign = md5(operator_code + request_time + "withdraw" + process.env.SECRET_KEY);
-            if (sign !== originalSign) {
-                console.log("Invalid Sign")
+            // const originalSign = md5(operator_code + request_time + "withdraw" + process.env.SECRET_KEY);
+            // if (sign !== originalSign) {
+            //     console.log("Invalid Sign")
+            //     res.status(200).json(
+            //         {
+            //             "code": 1004,
+            //             "message": "Invalid Sign",
+            //         }
+            //     );
+            // }
+            const user = await User.findOne({ Username: member_account });
+            if (!user) {
+                console.log("Member not Exist");
                 res.status(200).json(
                     {
-                        "code": 1004,
-                        "message": "Invalid Sign",
+                        "code": 1000,
+                        "message": "Member not Exist",
                     }
                 );
             }
-
-
-            User.findOne({ Username: member_account })
-                .then(async (result: any) => {
-                    if (!result) {
-                        console.log("Member not Exist");
-                        res.status(200).json(
-                            {
-                                "code": 1000,
-                                "message": "Member not Exist",
-                            }
-                        );
-                        return;
+            if (user.Amount - parseFloat(transactions[0].amount) < 0) {
+                console.log("Insufficient Balance");
+                res.status(200).json(
+                    {
+                        "code": 1001,
+                        "message": "Insufficient Balance",
                     }
-                    if (result.Amount - parseFloat(transactions[0].amount) < 0) {
-                        console.log("Insufficient Balance");
-                        res.status(200).json(
-                            {
-                                "code": 1001,
-                                "message": "Insufficient Balance",
-                            }
-                        );
-                        return;
-                    }
-
-                    User.findOneAndUpdate(
-                        { _id: result._id },
-                        { $inc: { Amount: parseFloat(transactions[0].amount.toFixed(2)) } },
-                        { new: true }
-                    ).then((newBalance: any) => {
-                        //new Transaction(transactions[0]).save();
-                        console.log({
-                            "code": 0,
-                            "message": "withdraw",
-                            "before_balance": parseFloat(parseFloat(result.Amount).toFixed(2)),
-                            "balance": parseFloat(parseFloat(newBalance.Amount).toFixed(2))
-                        })
-                        res.status(200).json(
-                            {
-                                "code": 0,
-                                "message": "",
-                                "before_balance": parseFloat(parseFloat(result.Amount).toFixed(2)),
-                                "balance": parseFloat(parseFloat(newBalance.Amount).toFixed(2))
-                            }
-                        );
-                    }).catch((err: any) => {
-                        console.log(err);
-                        res.status(200).json(
-                            {
-                                "code": 1000,
-                                "message": err,
-                            }
-                        );
-                    });
-                }).catch((err: any) => {
-                    res.status(200).json(
-                        {
-                            "code": 1000,
-                            "message": err,
-                        }
-                    );
+                );
+            }
+            //update user amount
+            const withdraw = await User.findOneAndUpdate(
+                { _id: user._id },
+                { $inc: { Amount: parseFloat(transactions[0].amount.toFixed(2)) } },
+                { new: true }
+            )
+            if (withdraw) {
+                console.log({
+                    "code": 0,
+                    "message": "withdraw",
+                    "before_balance": parseFloat(parseFloat(user.Amount).toFixed(2)),
+                    "balance": parseFloat(parseFloat(withdraw.Amount).toFixed(2))
                 })
+                res.status(200).json(
+                    {
+                        "code": 0,
+                        "message": "",
+                        "before_balance": parseFloat(parseFloat(user.Amount).toFixed(2)),
+                        "balance": parseFloat(parseFloat(withdraw.Amount).toFixed(2))
+                    }
+                );
+            }
         } catch (err) {
             console.log(err);
             res.status(200).json(
