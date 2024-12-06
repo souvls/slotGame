@@ -48,16 +48,16 @@ export default async function handler(
             }
 
             //check sing
-            // const originalSign = md5(operator_code + request_time + "withdraw" + process.env.SECRET_KEY);
-            // if (sign !== originalSign) {
-            //     console.log("Invalid Sign")
-            //     res.status(200).json(
-            //         {
-            //             "code": 1004,
-            //             "message": "Invalid Sign",
-            //         }
-            //     );
-            // }
+            const originalSign = md5(operator_code + request_time + "withdraw" + process.env.SECRET_KEY);
+            if (sign !== originalSign) {
+                console.log("Invalid Sign")
+                res.status(200).json(
+                    {
+                        "code": 1004,
+                        "message": "Invalid Sign",
+                    }
+                );
+            }
             const user = await User.findOne({ Username: member_account });
             if (!user) {
                 console.log("Member not Exist");
@@ -80,7 +80,7 @@ export default async function handler(
             //update user amount
             const withdraw = await User.findOneAndUpdate(
                 { _id: user._id },
-                { $inc: { Amount: parseFloat(transactions[0].amount.toFixed(2)) } },
+                { $inc: { Amount: parseFloat(parseFloat(transactions[0].amount).toFixed(2)) } },
                 { new: true }
             )
             if (withdraw) {
