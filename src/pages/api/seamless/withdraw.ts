@@ -2,7 +2,7 @@ import md5 from 'md5';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const User = require("../../../Models/User");
-const Transaction = require("../../../Models/Transaction");
+//const Transaction = require("../../../Models/Transaction");
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -11,7 +11,7 @@ export default async function handler(
         try {
             const { member_account, currency, transactions, operator_code, request_time, sign } = req.body;
             console.log(req.body);
-
+            console.log("sss");
             if (!member_account) {
                 console.log("Member not Exist");
                 res.status(200).json(
@@ -22,7 +22,6 @@ export default async function handler(
                         "balance": 0
                     }
                 );
-                return
             }
             if (transactions[0].action !== 'BET') {
                 console.log("Expected to Return Invalid Action");
@@ -34,7 +33,6 @@ export default async function handler(
                         "balance": 0
                     }
                 );
-                return;
             }
             //check transaction
             // const duplicate = await Transaction.find({ id: { $in: transactionID } })
@@ -58,7 +56,6 @@ export default async function handler(
                         "balance": 0
                     }
                 );
-                return
             }
 
             //check sing
@@ -71,7 +68,6 @@ export default async function handler(
                         "message": "Invalid Sign",
                     }
                 );
-                return
             }
 
 
