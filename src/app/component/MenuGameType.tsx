@@ -59,13 +59,15 @@ const MenuGameType = () => {
                 })}
             </div>
             <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>
-                <div className='flex justify-center items-center gap-2 lg:gap-5 mb-2'>
+                <div className='flex justify-center items-center gap-2 lg:gap-5 mb-2 px-2'>
                     {gameHistory && gameHistory.map((item, index) => {
-                        return (
-                            <div key={index} className='p-2 w-20 h-24 bg-red-500 rounded-lg hover:bg-yellow-300'>
-                                <ShowGameItem product_name={""} game={item} />
-                            </div>
-                        )
+                        if (item?.game_code) {
+                            return (
+                                <div key={index} className='p-2 w-20 h-24 bg-red-500 rounded-lg hover:bg-yellow-300'>
+                                    <ShowGameItem product_name={""} game={item} />
+                                </div>
+                            )
+                        }
                     })}
                 </div>
             </div>
