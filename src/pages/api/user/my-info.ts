@@ -11,7 +11,13 @@ export default async function handler(
         verifyJWTToken(req, res, async () => {
             const user: any = req.headers.data
             if (req.method === 'GET') {
-
+                const { ip } = req.query;
+                const _user = await User.findById(user.id)
+                if (_user.ip === ip) {
+                    res.status(200).json({ status: 'ok', message: 'success', result: _user });
+                } else {
+                    res.status(200).json({ status: 'no', message: "logout" });
+                }
             }
             if (req.method === 'POST') {
                 const { ip } = req.body;

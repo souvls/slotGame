@@ -289,7 +289,12 @@ export default function Home() {
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-3 lg:grid-cols-4 gap-4 p-5 '>
                         {games && games.map((item: Game, index) => {
                             return (
-                                <ShowGameItem key={index} product_name={products[productActive].product_name} game={item} />
+                                <ShowGameItem
+                                    key={index}
+                                    product_code={products[productActive].product_code}
+                                    product_name={products[productActive].product_name}
+                                    game={item}
+                                />
                             )
 
                         })}

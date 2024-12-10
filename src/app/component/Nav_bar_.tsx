@@ -9,51 +9,62 @@ import Cookies from 'js-cookie';
 import Link from 'next/link';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import useSWR from 'swr';
+
+
+// const fetcher = (url: string) => fetch(url, {
+//     headers: {
+//         'Authorization': 'Bearer ' + localStorage.getItem("token"),
+//         'Content-Type': 'application/json'
+//     }
+// }).then(res => res.json());
+
+interface User {
+    Amount: Number
+    Username: String
+}
 const Nav_bar_ = () => {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState<User>();
+    const [ip, setIP] = useState<String>();
 
-    useEffect(() => {
-        fetchdata();
-    }, [])
-    const fetchdata = async () => {
-        const cookie = Cookies.get("userdata")
-        if (cookie) {
-            const user = JSON.parse(cookie);
-            const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
 
-            const data = JSON.stringify({
-                ip: ip.ip
-            });
-            fetch("/api/user/my-info", {
-                method: "POST",
+
+    const cookie = Cookies.get("userdata");
+    if (cookie) {
+        const fetcher = (url: string) => fetch(url).then(res => res.json());
+        const fetcher2 = (url: string) => fetch(url,
+            {
                 headers: {
-                    'Authorization': 'Bearer ' + user.token,
-                    'Content-Type': 'application/json'
-                },
-                body: data,
-                redirect: "follow"
-            })
-                .then((response) => response.json())
-                .then((result) => {
-                    // console.log(result);
-                    if (result.status === 'no' && result.message === "logout") {
-                        Cookies.remove("userdata");
-                        Swal.fire({
-                            title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
-                            text: "020 98 399 064",
-                            icon: "error",
-                            background: '#000000',
-                            color: '#ffffff',
-                            showConfirmButton: false,
-                        }).then(() => {
-                            window.location.reload();
-                        });
-                    } else {
-                        setUser(result.result);
-                    }
-                })
+                    'Authorization': 'Bearer ' + JSON.parse(cookie).token,
+                }
+            }
+        ).then(res => res.json());
+        const { data: data1, error: error1 } = useSWR("https://api.ipify.org/?format=json", fetcher, {
+            revalidateIfStale: false,
+            revalidateOnFocus: false,
+            revalidateOnReconnect: true,
+            onSuccess: (fetchedData) => {
+                setIP(fetchedData.ip); // อัปเดตสถานะเมื่อดึงข้อมูลสำเร็จ
+            },
+        });
+        const { data: data2, error: error2 } = useSWR("/api/user/my-info?ip=" + ip, fetcher2, {
+            refreshInterval: 3000,
+            onSuccess: (fetchedData) => {
+                console.log(fetchedData)
+                if (fetchedData.status === 'ok') {
+                    setUser(fetchedData.result)
+                }
+                if (fetchedData.meassage === 'nologout') {
+                    Cookies.remove("userdata");
+                    window.location.reload();
+                }
+            },
+        });
+        if (error2 || error1) {
+            return <>{error1}{" , "}{error2}</>
         }
     }
+
     return (
         <nav className='w-full fixed top-0 z-50'>
             <div className=' bg-gradient-to-br from-black to-black border-b-1 via-purple-700'>

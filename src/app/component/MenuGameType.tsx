@@ -30,15 +30,21 @@ interface Game {
     status: string,
     support_currency: string,
 }
+interface GameHistory {
+    product_code: Number,
+    product_name: String
+    game: Game
+}
 const MenuGameType = () => {
     const [selectGame, setSelectGame] = useState("slot");
-    const [gameHistory, setgGmeHistory] = useState<Game[]>();
+    const [gameHistory, setgGmeHistory] = useState<GameHistory[]>();
     useEffect(() => {
         const x = localStorage.getItem("game_type_active");
         const y = localStorage.getItem("game_history");
-        const gameHistory: Game[] = y ? JSON.parse(y) : [];
+        const gameHistory: GameHistory[] = y ? JSON.parse(y) : [];
         setgGmeHistory(gameHistory);
         if (x) {
+
             setSelectGame(x);
         }
     }, [])
@@ -61,10 +67,15 @@ const MenuGameType = () => {
             <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>
                 <div className='flex justify-center items-center gap-2 lg:gap-5 mb-2 px-2'>
                     {gameHistory && gameHistory.map((item, index) => {
-                        if (item?.game_code) {
+                        if (item) {
                             return (
                                 <div key={index} className='p-2 w-20 h-24 bg-red-500 rounded-lg hover:bg-yellow-300'>
-                                    <ShowGameItem product_name={""} game={item} />
+                                    <ShowGameItem
+                                        key={index}
+                                        product_code={item.product_code}
+                                        product_name={item.product_name}
+                                        game={item.game}
+                                    />
                                 </div>
                             )
                         }

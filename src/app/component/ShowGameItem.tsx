@@ -18,11 +18,12 @@ interface Game {
     support_currency: string,
 }
 interface Props {
+    product_code: Number,
     product_name: String
     game: Game
 }
 
-const ShowGameItem: React.FC<Props> = ({ product_name, game }) => {
+const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => {
     const router = useRouter();
     const [isVisible, setIsVisible] = useState(false);
     const imgRef = useRef<HTMLImageElement | null>(null);
@@ -47,58 +48,68 @@ const ShowGameItem: React.FC<Props> = ({ product_name, game }) => {
         };
     }, []);
     const handdlePlay = async () => {
-        if (game.game_type === "FISHING") {
-            Swal.fire({
-                icon: "warning",
-                title: "<p>ຂໍອະໄພ</p>",
-                html: "<p>ເກມກຳລັງປັບປຸງ</p>"
-            })
-            return
-        }
+        var url = "";
         try {
             const cookie = Cookies.get("userdata");
             if (cookie) {
-                setLoading(true);
-                //const token = JSON.parse(cookie).token;
-                const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
-                const request_time = new Date().getTime();
-
-                const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}launchgame${process.env.NEXT_PUBLIC_OP_CODE}`);
-                const raw = {
-                    "operator_code": process.env.NEXT_PUBLIC_OP_CODE,
-                    "member_account": JSON.parse(cookie).username,
-                    "password": JSON.parse(cookie).password,
-                    "currency": "THB",
-                    "game_code": game.game_code,
-                    "product_code": game.product_code,
-                    "game_type": game.game_type,
-                    "language_code": 3,
-                    "ip": ip.ip,
-                    "platform": "web",
-                    "sign": hash,
-                    "request_time": request_time,
-                    "operator_lobby_url": "http://infinity999.com",
+                const user = JSON.parse(cookie);
+                if (game.game_type === "FISHING") {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "<p>ຂໍອະໄພ</p>",
+                        html: "<p>ເກມກຳລັງປັບປຸງ</p>"
+                    })
+                    return
                 }
-                const res = await axios.post(`${process.env.NEXT_PUBLIC_API_NAME}/api/operators/launch-game`,
-                    JSON.stringify(raw),
-                    {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }
 
-                )
+                setLoading(true);
+                const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
+                const raw = {
+                    game_code: game.game_code,
+                    product_code: product_code,
+                    game_type: game.game_type,
+                    ip: ip.ip
+                }
+                const res = await axios.post("/api/user/playgame", raw, {
+                    headers: {
+                        'Authorization': 'Bearer ' + user.token,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                // console.log(res);
                 if (res.data) {
-                    if (res.data.code === 200) {
-                        saveGameHistory();
-                        router.push(res.data.url)
-                    } else {
+                    if (res.data?.status === 'no' && res.data?.message === 'logout') {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "<p>IP ບໍ່ຕົງກັນ </p>",
+                            html: "<p>ກະລຸນາເຂົ້າສູ່ລະບົບໃໝ່</p>"
+                        }).then(()=>{
+                            Cookies.remove("userdata");
+                            window.location.reload();
+                        })
+                    }
+                    if (res.data?.status === 'no' && res.data?.message === 'game error') {
                         Swal.fire({
                             icon: "warning",
                             title: "<p>ຂໍອະໄພ</p>",
                             html: "<p>ເກມກຳລັງປັບປຸງ</p>"
                         })
+                        return;
                     }
+                    if (res.data.code === 200) {
+                        setLoading(false);
+                        if (res.data.url) {
+                            saveGameHistory();
+                            url = res.data.url;
+                        } else {
+                            Swal.fire({
+                                icon: "warning",
+                                title: "<p>ຂໍອະໄພ</p>",
+                                html: "<p>ເກມກຳລັງປັບປຸງ</p>"
+                            })
+                        }
+                    }
+
                 }
             } else {
                 Swal.fire({
@@ -115,17 +126,28 @@ const ShowGameItem: React.FC<Props> = ({ product_name, game }) => {
             console.log(err);
             setLoading(false);
             Swal.fire({
-                icon: "warning",
-                title: "<p>ຂໍອະໄພ</p>",
-                html: "<p>ເກມກຳລັງປັບປຸງ</p>"
-            })
+                title: "<p>ຕິດຕໍ່ເອເຢັ້ນ</p>",
+                text: "020 98 399 064",
+                icon: "error",
+                background: '#000000',
+                color: '#ffffff',
+                showConfirmButton: false,
+            });
+        }
+        finally{
+            setLoading(false);
+            if(url != "") {
+                router.replace(url);
+            }
+
         }
     }
     const saveGameHistory = () => {
-        const temp: Game[] = [];
+        const temp: Props[] = [];
         const gameHistory = localStorage.getItem("game_history");
-        const Games: Game[] = gameHistory ? JSON.parse(gameHistory) : [];
-        temp.push(game);
+        const Games: Props[] = gameHistory ? JSON.parse(gameHistory) : [];
+        const x = { product_code: product_code, product_name: product_name, game: game }
+        temp.push(x);
         for (var i = 0; i < 4; i++) {
             temp.push(Games[i]);
         }

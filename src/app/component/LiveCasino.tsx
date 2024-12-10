@@ -92,7 +92,12 @@ const LiveCasino = () => {
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-5 '>
                         {games && games.length > 0 && games.map((item: any, index) => {
                             return (
-                                <ShowGameItem key={index} product_name={products[productActive].product_name} game={item} />
+                                <ShowGameItem
+                                    key={index}
+                                    product_code={products[productActive].product_code}
+                                    product_name={products[productActive].product_name}
+                                    game={item}
+                                />
                             )
                         })}
                     </div>
