@@ -59,7 +59,12 @@ const Poker = () => {
                         {games && games.length > 0 && games.map((item: any, index) => {
                             return (
                                 <>
-                                    <ShowGameItem key={index} product_name={products[productActive].product_name} game={item} />
+                                    <ShowGameItem
+                                        key={index}
+                                        product_code={products[productActive].product_code}
+                                        product_name={products[productActive].product_name}
+                                        game={item}
+                                    />
                                 </>
                             )
                         })}
