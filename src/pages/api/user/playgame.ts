@@ -27,7 +27,8 @@ export default async function handler(
                 }
                 if (checkIP) {
                     try {
-                        const request_time = new Date().getTime();
+                        const request_time = Math.floor(Date.now() / 1000);
+                        //const request_time = new Date().getTime();
                         const hash = md5(`${request_time}${process.env.SECRET_KEY}launchgame${process.env.OP_CODE}`);
                         const raw = {
                             "operator_code": process.env.OP_CODE,

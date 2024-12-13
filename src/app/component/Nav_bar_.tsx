@@ -48,20 +48,19 @@ const Nav_bar_ = () => {
             },
         });
         const { data: data2, error: error2 } = useSWR("/api/user/my-info?ip=" + ip, fetcher2, {
-            refreshInterval: 3000,
+            refreshInterval: 1000,
             onSuccess: (fetchedData) => {
-                console.log(fetchedData)
                 if (fetchedData.status === 'ok') {
                     setUser(fetchedData.result)
                 }
-                if (fetchedData.meassage === 'nologout') {
+                if (fetchedData.status === 'no' && fetchedData.meassage === 'logout') {
                     Cookies.remove("userdata");
-                    window.location.reload();
+                    window.location.reload()
                 }
             },
         });
         if (error2 || error1) {
-            return <>{error1}{" , "}{error2}</>
+            console.log(error1, error2);
         }
     }
 

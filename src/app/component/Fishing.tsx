@@ -95,7 +95,6 @@ const Fishing = () => {
                                         game={item}
                                     />
                                 </>
-
                             )
                         })}
                     </div>

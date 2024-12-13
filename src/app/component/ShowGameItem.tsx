@@ -137,7 +137,7 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
         finally{
             setLoading(false);
             if(url != "") {
-                router.replace(url);
+                window.open(url, '_blank');
             }
 
         }
