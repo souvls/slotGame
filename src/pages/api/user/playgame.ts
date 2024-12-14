@@ -14,8 +14,9 @@ export default async function handler(
             if (req.method === "POST") {
                 const { game_code, product_code, ip, game_type } = req.body;
                 var checkIP = false;
+                var _user;
                 try {
-                    const _user = await User.findById(user.id);
+                    _user = await User.findById(user.id);
                     if (_user.ip === ip) {
                         checkIP = true;
                     } else {
@@ -32,8 +33,8 @@ export default async function handler(
                         const hash = md5(`${request_time}${process.env.SECRET_KEY}launchgame${process.env.OP_CODE}`);
                         const raw = {
                             "operator_code": process.env.OP_CODE,
-                            "member_account": user.username,
-                            "password": "asd4@Laos2024",
+                            "member_account": _user.Username,
+                            "password": _user.Password,
                             "currency": "THB",
                             "game_code": game_code,
                             "product_code": product_code,
@@ -60,10 +61,6 @@ export default async function handler(
                         res.status(200).json({ status: 'no', message: "game error" });
                     }
                 }
-            }
-            else {
-                res.setHeader('Allow', ['POST']);
-                res.status(405).end(`Method ${req.method} Not Allowed`);
             }
         });
     })

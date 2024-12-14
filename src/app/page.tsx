@@ -15,7 +15,8 @@ import { RiCloseCircleLine } from "react-icons/ri";
 import Nav_bar_ from './component/Nav_bar_';
 import MenuGameType from './component/MenuGameType';
 import Ads1 from '../../public/assets/ads/ads1.jpg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 const services = [
   {
     path: "#",
@@ -72,15 +73,13 @@ export default function Home() {
   return (
     <div className=' relative'>
       {/* Header */}
-      <Nav_bar_ />
-      // btn contact
+      <Nav_bar_/>
       <div className=' fixed bottom-2 right-3 lg:right-10'>
         <div>
           <Link href={"https://api.whatsapp.com/send?phone=8562098399064"}>
             <Image src={whatapp_icon} alt='whatapp' className='w-[50px]' />
           </Link>
         </div>
-
       </div>
       {/* content */}
       <section className=' pt-[90px] bg-gradient-to-bl from-black to-black via-purple-700'>

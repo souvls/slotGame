@@ -45,9 +45,9 @@ const Login = () => {
                     //console.log(result)
                     if (result.status === 'ok') {
                         const data = {
-                            id: result.result._id,
+                            // id: result.result._id,
                             username: result.result.Username,
-                            password: result.result.Password,
+                            // password: result.result.Password,
                             token: result.token
                         }
                         Cookies.set('userdata', JSON.stringify(data), { expires: 1 / 24 });
