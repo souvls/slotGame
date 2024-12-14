@@ -9,14 +9,12 @@ import banner4 from "../../public/assets/banner/banner4.jpg";
 import provider1 from "../../public/assets/banner/provider-logo1.png";
 import provider2 from "../../public/assets/banner/provider-logo2.png";
 import provider3 from "../../public/assets/banner/provider-logo3.png";
-import gamesoftLogo from "../../public/assets/logo/GSS (2).png"
 import whatapp_icon from "../../public/assets/icon/whataap_icon.gif"
 import { RiCloseCircleLine } from "react-icons/ri";
 import Nav_bar_ from './component/Nav_bar_';
 import MenuGameType from './component/MenuGameType';
 import Ads1 from '../../public/assets/ads/ads1.jpg'
-import { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
+import {useState } from 'react';
 const services = [
   {
     path: "#",

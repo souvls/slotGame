@@ -24,13 +24,17 @@ const Nav_bar_ = () => {
     const [Username, setUsername] = useState("");
     const [Token, setToken] = useState("");
     useEffect(() => {
-        const cookie = Cookies.get("userdata");
-        if (cookie) {
-            const username = JSON.parse(cookie).username;
-            const token = JSON.parse(cookie).token;
-            setUsername(username);
-            setToken(token);
-            console.log(username)
+        try {
+            const cookie = Cookies.get("userdata");
+            if (cookie) {
+                const username = JSON.parse(cookie).username;
+                const token = JSON.parse(cookie).token;
+                setUsername(username);
+                setToken(token);
+                console.log(username)
+            }
+        } catch (error) {
+            console.log(error);
         }
     }, [])
 
@@ -118,6 +122,10 @@ const Balance: React.FC<Props> = (Token) => {
         )
     }
     if (balanceData) {
+        if (balanceData.code === 999) {
+            Cookies.remove("userdata");
+            window.location.reload();
+        }
         return (
             <>
                 {balanceData?.balance.toLocaleString()}

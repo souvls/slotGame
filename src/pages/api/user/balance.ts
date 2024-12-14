@@ -21,7 +21,11 @@ export default async function handler(
                             "balance": parseFloat(parseFloat(_user.Amount).toFixed(2)),
                         });
                     } else {
-                        res.status(200).json({ status: 'no', message: "logout" });
+                        res.status(200).json({
+                            "code": 999,
+                            "message": "logout",
+                            "balance": 0,
+                        });
                     }
                 } catch (error) {
                     //res.status(405).end(`Not Allowed`);
