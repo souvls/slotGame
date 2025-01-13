@@ -45,7 +45,7 @@ export default async function handler(
                 total_amount += parseFloat(parseFloat(i.amount).toFixed(2));
             }
             //check transaction
-            const duplicate = await Transaction.find({ id: { $in: transactionID } })
+            const duplicate = await Transaction.find({ 'transactions.id': { $in: transactionID } })
             if (duplicate.length !== 0 || hasDuplicates(transactionID)) {
                 console.log("Duplicate Transaction")
                 res.status(200).json(

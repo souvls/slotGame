@@ -9,8 +9,9 @@ export default async function handler(
 ) {
     //console.log(req.body)
     if (req.method === 'POST') {
+
         try {
-            const { member_account, currency, transactions, operator_code, request_time, sign } = req.body;
+            const { member_account, currency, transactions, product_code, operator_code, request_time, sign, game_type } = req.body;
             console.log(req.body);
 
             if (!member_account) {
@@ -24,6 +25,17 @@ export default async function handler(
                     }
                 );
                 return
+            }
+            const duplicate = await Transaction.find({ 'transactions.id': transactions[0].id })
+            if (duplicate.length > 0) {
+                console.log("Duplicate Transaction")
+                res.status(200).json(
+                    {
+                        "code": 1003,
+                        "message": " Duplicate Transaction",
+                    }
+                );
+                return;
             }
             if (transactions[0].action !== 'SETTLED') {
                 console.log("Expected to Return Invalid Action");
@@ -97,7 +109,18 @@ export default async function handler(
                             "message": "deposit",
                             "before_balance": parseFloat(parseFloat(result.Amount).toFixed(2)),
                             "balance": parseFloat(parseFloat(newBalance.Amount).toFixed(2))
-                        })
+                        });
+                        const TST = new Transaction({
+                            member_account: member_account,
+                            operator_code: operator_code,
+                            product_code: product_code,
+                            game_type: game_type,
+                            request_time: request_time,
+                            sign: sign,
+                            currency: currency,
+                            transactions: transactions
+                        });
+                        TST.save();
                         res.status(200).json(
                             {
                                 "code": 0,
@@ -106,7 +129,6 @@ export default async function handler(
                                 "balance": parseFloat(parseFloat(newBalance.Amount).toFixed(2))
                             }
                         );
-                        //new Transaction(transactions[0]).save();
                     }).catch((err: any) => {
                         console.log(err);
                         res.status(200).json(
@@ -141,7 +163,7 @@ export default async function handler(
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 }
-// function hasDuplicates(array: any) {
-//     const uniqueElements = new Set(array);
-//     return uniqueElements.size !== array.length;
-// }
+function hasDuplicates(array: any) {
+    const uniqueElements = new Set(array);
+    return uniqueElements.size !== array.length;
+}
