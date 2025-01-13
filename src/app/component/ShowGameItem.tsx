@@ -76,7 +76,6 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
                         'Content-Type': 'application/json'
                     }
                 })
-                // console.log(res);
                 if (res.data) {
                     if (res.data?.status === 'no' && res.data?.message === 'logout') {
                         Swal.fire({
@@ -180,7 +179,7 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
                 className='w-full rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
             /> */}
                     <h1 className=' text-center text-white text-[8px]'>{game?.game_name}</h1>
-                    {/* <p className=' text-center text-white'>{item.product_code}{item.game_code}</p>  */}
+                    {/* <p className=' text-center text-white'>{game.product_code}{game.game_code}</p>  */}
                 </>}
         </div>
 

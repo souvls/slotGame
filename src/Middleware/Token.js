@@ -3,10 +3,10 @@ const jwt = require('jsonwebtoken');
 
 class token {
     static async genToken1(id,name, username, role) {
-        return await jwt.sign({ "id": id, "name":name, "username": username, "role": role }, process.env.SCRET_KEY_TOKEN, { expiresIn: "2h", algorithm: "HS256" })
+        return await jwt.sign({ "id": id, "name":name, "username": username, "role": role }, process.env.SCRET_KEY_TOKEN, { expiresIn: "10h", algorithm: "HS256" })
     }
     static async genToken2(id, username, role) {
-        return await jwt.sign({ "id": id, "username": username, "role": role }, process.env.SCRET_KEY_TOKEN, {expiresIn: "2h",algorithm: "HS256" })
+        return await jwt.sign({ "id": id, "username": username, "role": role }, process.env.SCRET_KEY_TOKEN, {expiresIn: "1h",algorithm: "HS256" })
     }
     static jwtValidate = async(NextRequest,NextResponse,NextMiddleware)=>  {
         

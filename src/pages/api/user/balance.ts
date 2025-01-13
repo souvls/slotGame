@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import verifyJWTToken from '../../../Middleware/auth'
 import checkMaintenance from '../../../Middleware/checkMaintenance';
+import { Balance } from '@/Service/user';
 const User = require('../../../Models/User');
 
 export default async function handler(
@@ -12,25 +13,10 @@ export default async function handler(
             const user: any = req.headers.data
             if (req.method === 'GET') {
                 const { ip } = req.query;
-                try {
-                    const _user = await User.findById(user.id);
-                    if (_user.ip === ip) {
-                        res.status(200).json({
-                            "code": 0,
-                            "message": "",
-                            "balance": parseFloat(parseFloat(_user.Amount).toFixed(2)),
-                        });
-                    } else {
-                        res.status(200).json({
-                            "code": 999,
-                            "message": "logout",
-                            "balance": 0,
-                        });
-                    }
-                } catch (error) {
-                    //res.status(405).end(`Not Allowed`);
+                if (ip) {
+                    const balance = await Balance(user.id, ip.toString());
+                    res.status(200).json(balance);
                 }
-
             }
         });
     })

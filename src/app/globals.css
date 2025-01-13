@@ -13,9 +13,8 @@
 }
 
 * {
-  font-family: myFontEn;
-}
-
-* p {
   font-family: myFontLao;
+}
+h1{
+  font-family: myFontEn;
 }

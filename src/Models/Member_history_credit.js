@@ -2,23 +2,38 @@ const mongoose = require('mongoose')
 const condb = require('../config/condb');
 
 let MemberHistoryCreditSchema = mongoose.Schema({
-    MemberID: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'member',
-        require: true
+    Member: {
+        id: {
+            type: String,
+            required: true,
+        },
+        Username: {
+            type: String,
+            required: true,
+        }
     },
     Amount: {
         type: Number,
         required: true,
         default: 0,
     },
-    Transaction: {
-        type:String,
-        require:true
+    BeforeAmount: {
+        type: Number,
+        required: true,
+        default: 0,
     },
-    Date:{
-        type:String,
-        require:true
+    AfterAmount: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
+    Transaction: {
+        type: String,
+        require: true
+    },
+    Date: {
+        type: String,
+        require: true
     },
     status: {
         type: Boolean,

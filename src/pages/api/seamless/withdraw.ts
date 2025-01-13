@@ -59,7 +59,7 @@ export default async function handler(
                 );
             }
             const user = await User.findOne({ Username: member_account });
-            if (!user) {
+            if (!user || !user.status) {
                 console.log("Member not Exist");
                 res.status(200).json(
                     {

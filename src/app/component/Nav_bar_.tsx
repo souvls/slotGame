@@ -77,10 +77,10 @@ const Nav_bar_ = () => {
                             </div>
                             <div className=' flex gap-2'>
                                 <Link href={"/user"} className="px-3 flex items-center text-sm  rounded-full duration-500 hover:bg-yellow-400 hover:text-gray-950 bg-gray-950 text-white">
-                                    <span>เข้าสู่ละบบ</span>
+                                    <h1>เข้าสู่ละบบ</h1>
                                 </Link>
                                 <Link href={"https://api.whatsapp.com/send?phone=8562098399064"} className="flex items-center px-3 text-sm rounded-full bg-yellow-400">
-                                    สมัครสมาชิก
+                                    <h1>สมัครสมาชิก</h1>
                                 </Link>
                                 <div className=' flex items-center '>
                                     <img

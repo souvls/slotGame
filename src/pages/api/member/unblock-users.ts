@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import verifyJWTToken from '../../../Middleware/auth'
 
 import isMember from '@/Middleware/isMember';
-import { withdrawCreditUser } from '@/Service/credit';
+import { unblockUsers } from '@/Service/user';
 
 
 
@@ -14,9 +14,13 @@ export default async function handler(
         isMember(req, res, async () => {
             const member: any = req.headers.data;
             if (req.method === 'POST') {
-                const { id, credit } = req.body;
-                const withdraw = await withdrawCreditUser(member.id, id, credit);
-                res.status(200).json(withdraw);
+                const { idlist } = req.body;
+                const block = await unblockUsers(member.id, idlist);
+                if (block) {
+                    res.status(200).json({ code: 0 });
+                } else {
+                    res.status(200).json({ code: 999, message: 'error' });
+                }
             }
             else {
                 //res.setHeader('Allow', ['GET', 'POST', 'PATCH', 'DELETE']);

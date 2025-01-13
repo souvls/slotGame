@@ -1,10 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import verifyJWTToken from '../../../Middleware/auth'
 
+import { createUser, getUsers, updatePasswordUser } from '@/Service/user';
 import isMember from '@/Middleware/isMember';
-import { withdrawCreditUser } from '@/Service/credit';
-
-
+import { memberInfo } from '@/Service/member';
 
 export default async function handler(
     req: NextApiRequest,
@@ -12,11 +11,10 @@ export default async function handler(
 ) {
     verifyJWTToken(req, res, async () => {
         isMember(req, res, async () => {
-            const member: any = req.headers.data;
-            if (req.method === 'POST') {
-                const { id, credit } = req.body;
-                const withdraw = await withdrawCreditUser(member.id, id, credit);
-                res.status(200).json(withdraw);
+            const member:any= req.headers.data
+            if (req.method === 'GET') {
+                const memberinfo = await memberInfo(member.id);
+                res.status(200).json(memberinfo);
             }
             else {
                 //res.setHeader('Allow', ['GET', 'POST', 'PATCH', 'DELETE']);

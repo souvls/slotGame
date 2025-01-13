@@ -27,7 +27,6 @@ const page = () => {
         if (!Password) {
             error.Password = "Input password!";
         }
-        //console.log(Object.keys(error));
         setErrors(error);
         if (Object.keys(error).length <= 0) {
             setIsLoading(true);
@@ -46,7 +45,7 @@ const page = () => {
                 redirect: "follow"
             };
 
-            await fetch("/api/member/login", requestOptions)
+            fetch("/api/member/login", requestOptions)
                 .then((response) => response.json())
                 .then(async (result) => {
                     //console.log(result)
@@ -63,7 +62,7 @@ const page = () => {
                             showConfirmButton: false,
                             timer: 1000
                         }).then(() => {
-                            window.location.href = "/member/office"
+                            router.push("/member/office");
                         });
                     } else {
                         Swal.fire({

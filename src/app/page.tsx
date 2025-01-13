@@ -159,13 +159,13 @@ export default function Home() {
                   />
                 </div>
                 <div className="text-gray-100 flex flex-col">
-                  <span className="text-[8px] md:text-[15px] lg:text-[20px]">
+                  <h1 className="text-[8px] md:text-[15px] lg:text-[20px]">
                     {items.step}
-                  </span>
-                  <span className="text-[8px] md:text-[12px] lg:text-[18px] font-semibold text-yellow-300 ">
+                  </h1>
+                  <h1 className="text-[8px] md:text-[12px] lg:text-[18px] font-semibold text-yellow-300 ">
                     {items.title}
-                  </span>
-                  <span className="text-[8px] md:text-[12px] lg:text-[18px] text-gray-200">{items.label}</span>
+                  </h1>
+                  <h1 className="text-[8px] md:text-[12px] lg:text-[18px] text-gray-200">{items.label}</h1>
                 </div>
               </div>
             ))}
@@ -184,10 +184,10 @@ export default function Home() {
                   />
                 </div>
                 <div className=' flex flex-col'>
-                  <span className="font-semibold text-yellow-300 text-sm md:text-xl lg:text-2xl">{items.title}</span>
-                  <span className="text-[6px] md:text-sm lg:text-sm text-white">
+                  <h1 className="font-semibold text-yellow-300 text-sm md:text-xl lg:text-2xl">{items.title}</h1>
+                  <h1 className="text-[6px] md:text-sm lg:text-sm text-white">
                     {items.label}
-                  </span>
+                  </h1>
                 </div>
               </div>
             ))}

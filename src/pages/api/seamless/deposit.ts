@@ -77,6 +77,15 @@ export default async function handler(
                         );
                         return;
                     }
+                    if (result.status === false) {
+                        res.status(200).json(
+                            {
+                                "code": 1000,
+                                "message": "Member not Exist",
+                            }
+                        );
+                        return;
+                    }
 
                     User.findOneAndUpdate(
                         { _id: result._id },

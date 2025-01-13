@@ -94,25 +94,27 @@ const Login = () => {
                 </div>
                 <div className=' mt-10'>
                     <p className='my-2 text-center text-white'>LOGIN SYSYTEM</p>
-                    <div>
-                        <input
-                            type='text'
-                            placeholder='Username'
-                            className=' w-full p-2 text-amber-400 rounded-lg bg-transparent outline outline-amber-400'
-                            value={username}
-                            onChange={e => setUsername(e.target.value)} />
-                    </div>
-                    <div className='mt-5'>
-                        <input
-                            type='text'
-                            placeholder='Password'
-                            className=' w-full p-2 text-amber-400 rounded-lg bg-transparent outline outline-amber-400'
-                            value={password}
-                            onChange={e => setPassword(e.target.value)} />
-                    </div>
-                    <div className='mt-5'>
-                        <button onClick={handdleSubmit} className=' w-full p-2 rounded-lg bg-amber-400'>LOGIN</button>
-                    </div>
+                    <form onSubmit={handdleSubmit} className=' w-full'>
+                        <div>
+                            <input
+                                type='text'
+                                placeholder='Username'
+                                className=' w-full p-2 text-amber-400 rounded-lg bg-transparent outline outline-amber-400'
+                                value={username}
+                                onChange={e => setUsername(e.target.value)} />
+                        </div>
+                        <div className='mt-5'>
+                            <input
+                                type='text'
+                                placeholder='Password'
+                                className=' w-full p-2 text-amber-400 rounded-lg bg-transparent outline outline-amber-400'
+                                value={password}
+                                onChange={e => setPassword(e.target.value)} />
+                        </div>
+                        <div className='mt-5'>
+                            <button type='submit' className=' w-full p-2 rounded-lg bg-blue-400 hover:bg-blue-500'>LOGIN</button>
+                        </div>
+                    </form>
                     <p className=' mt-5 text-white text-sm'>ຫາກບໍ່ມີບັນຊີ ຕິດຕໍ່ແອັດມິນໄດ້ທີ່: <a className=' italic text-green-500' href='https://api.whatsapp.com/send?phone=8562098399064'>whatsapp</a></p>
                 </div>
             </div>
