@@ -99,6 +99,7 @@ const UserList = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
+                    setLoading(true);
                     const res = await axios.post("/api/member/block-users", {
                         idlist: [user._id]
                     }, {
@@ -106,6 +107,7 @@ const UserList = () => {
                             'Authorization': 'Bearer ' + localStorage.getItem('token')
                         }
                     });
+                    setLoading(false);
                     if (res.data.code === 0) {
                         fetchUsers();
                         Swal.fire({
@@ -124,6 +126,7 @@ const UserList = () => {
     }
     const handleUnBlock = async (user: User) => {
         try {
+            setLoading(true);
             const res = await axios.post("/api/member/unblock-users", {
                 idlist: [user._id]
             }, {
@@ -131,6 +134,7 @@ const UserList = () => {
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
                 }
             });
+            setLoading(false);
             if (res.data.code === 0) {
                 fetchUsers();
             }
@@ -151,6 +155,7 @@ const UserList = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
+                    setLoading(true);
                     const res = await axios.post("/api/member/delete-users", {
                         idlist: [user._id]
                     }, {
@@ -158,6 +163,8 @@ const UserList = () => {
                             'Authorization': 'Bearer ' + localStorage.getItem('token')
                         }
                     });
+                    setLoading(false);
+
                     if (res.data.code === 0) {
                         Swal.fire({
                             icon: "success",
@@ -191,6 +198,7 @@ const UserList = () => {
             preConfirm: async (credit) => {
                 if (credit) {
                     try {
+                        setLoading(true);
                         const res = await axios.post("/api/member/deposit-credit", {
                             id: user._id, credit: credit
                         }, {
@@ -198,6 +206,7 @@ const UserList = () => {
                                 'Authorization': 'Bearer ' + localStorage.getItem('token')
                             }
                         });
+                    setLoading(false);
                         return res.data;
                     } catch (error) {
                         Swal.showValidationMessage(`
@@ -214,7 +223,6 @@ const UserList = () => {
             allowOutsideClick: () => !Swal.isLoading()
         }).then((result) => {
             if (result.isConfirmed) {
-                console.log(result)
                 if (result.value.code === 0) {
                     fetchUsers();
                     Swal.fire({
@@ -249,6 +257,7 @@ const UserList = () => {
             preConfirm: async (credit) => {
                 if (credit) {
                     try {
+                        setLoading(true);
                         const res = await axios.post("/api/member/withdraw-credit", {
                             id: user._id, credit: credit
                         }, {
@@ -256,6 +265,7 @@ const UserList = () => {
                                 'Authorization': 'Bearer ' + localStorage.getItem('token')
                             }
                         });
+                        setLoading(false);
                         return res.data;
                     } catch (error) {
                         Swal.showValidationMessage(`
@@ -400,6 +410,7 @@ const UserList = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
+                    setLoading(true);
                     const res = await axios.post("/api/member/delete-users", {
                         idlist: useridList
                     }, {
@@ -407,6 +418,7 @@ const UserList = () => {
                             'Authorization': 'Bearer ' + localStorage.getItem('token')
                         }
                     });
+                    setLoading(false);
                     if (res.data.code === 0) {
                         fetchUsers();
                         Swal.fire({
@@ -434,6 +446,7 @@ const UserList = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
+                    setLoading(true);
                     const res = await axios.post("/api/member/block-users", {
                         idlist: useridList
                     }, {
@@ -441,6 +454,7 @@ const UserList = () => {
                             'Authorization': 'Bearer ' + localStorage.getItem('token')
                         }
                     });
+                    setLoading(false);
                     if (res.data.code === 0) {
                         fetchUsers();
                         Swal.fire({
@@ -598,7 +612,7 @@ const UserList = () => {
                                         ແກ້ໄຂຂໍ້ມູນ
                                     </button>/
                                     <Link href={`/member/office/history/credit_user?id=${user._id}`} className=' text-blue-700 mx-2'>ປະຫວັດເຄດິດ</Link>/
-                                    <Link href={`#`} className=' text-blue-700 mx-2'>ປະຫວັດເກມ</Link>/
+                                    <Link href={`/member/office/history/game_user?id=${user._id}`} className=' text-blue-700 mx-2'>ປະຫວັດເກມ</Link>/
                                     <button onClick={() => handleDeposit(user)} className=' text-blue-700 mx-2'>ເຕີມເງິນ</button>/
                                     <button onClick={() => handleWithdraw(user)} className=' text-blue-700 mx-2'>ຖອນເງິນ</button>/
                                     <button onClick={() => handleDelete(user)} className=' text-red-300 mx-2'>ລົບ</button>

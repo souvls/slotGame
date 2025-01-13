@@ -112,6 +112,9 @@ export default async function handler(
                         });
                         const TST = new Transaction({
                             member_account: member_account,
+                            member_id: result._id,
+                            before_balance: parseFloat(parseFloat(result.Amount).toFixed(2)),
+                            balance: parseFloat(parseFloat(newBalance.Amount).toFixed(2)),
                             operator_code: operator_code,
                             product_code: product_code,
                             game_type: game_type,

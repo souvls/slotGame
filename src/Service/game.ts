@@ -2,6 +2,9 @@ import { _findUserByID, _updateIsNotOnline } from "@/Repo/users";
 import axios from "axios";
 import md5 from "md5";
 
+export async function historyPayGame(memberid:string,userid:string,page:number,numberOfPage:number) {
+
+}
 export async function playGame(userid: string, game_code: string, product_code: number, ip: string, game_type: string) {
     const user = await _findUserByID(userid);
     if (user) {

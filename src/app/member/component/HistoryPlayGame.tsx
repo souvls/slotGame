@@ -1,82 +1,22 @@
-'use client'
+"use client"
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
-import React, { Suspense, useEffect, useState } from 'react'
-// import { useParams, useSearchParams } from 'next/navigation';
+import React, { Suspense, useState } from 'react'
+
 interface Transaction {
-    member_account: {
-        type: String,
-    },
-    operator_code: {
-        type: String,
-    },
-    product_code: {
-        type: Number,
-    },
-    game_type: {
-        type: String,
-    },
-    request_time: {
-        type: String,
-    },
-    sign: {
-        type: String,
-    },
-    currency: {
-        type: String,
-    },
-    transactions: [{
-        "id": {
-            type: String,
-        },
-        "amount": {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        "bet_amount": {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        "valid_bet_amount": {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        "prize_amount": {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        "tip_amount": {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        "action": {
-            type: String,
-        },
-        "wager_code": {
-            type: String,
-            required: true,
-        },
-        "wager_status": {
-            type: String,
-            required: true,
-        },
-        "payload": [],
-        "settled_at": {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        "game_code": {
-            type: String,
-        }
-    }]
+    User: {
+        id: string
+        Username: string
+        MemberID: string
+    }
+    Amount: number
+    BeforeAmount: number
+    AfterAmount: number
+    Transaction: string
+    Date: string
+    status: boolean
 }
-const HistoryCreditUser = () => {
+const HistoryPlayGame = () => {
     const searchParams = useSearchParams();
     const id = searchParams?.get('id');
 
@@ -85,36 +25,15 @@ const HistoryCreditUser = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [totalPages, setTotalPages] = useState<number>(0);
     const [transactions, setTransactions] = useState<Transaction[]>();
-
-    useEffect(() => {
-        fetchdata();
-    }, [])
-    const fetchdata = async () => {
-        try {
-            const res = await axios.get(`/api/member/history-credit-user?id=${id}&numberOfPage=${numOfPage}&page=${currentPage}`, {
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('token')
-                },
-            })
-            setTransactions(res.data.transaction);
-            setTotalPages(res.data.totalPages);
-        } catch (error) {
-
-        }
-    }
-    const onChangeNumOfPage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setNumOfPage(Number(e.target.value));
-    }
-    const handdleSetNumOfPage = () => {
-        fetchdata();
-    }
     const onChangePage = async (page: number) => {
         try {
+            setLoading(true);
             const res = await axios.get(`/api/member/history-credit-user?id=${id}&numberOfPage=${numOfPage}&page=${page}`, {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
             })
+            setLoading(false);
             setTransactions(res.data.transaction);
             setTotalPages(res.data.totalPages);
             setCurrentPage(res.data.currentPage)
@@ -125,20 +44,6 @@ const HistoryCreditUser = () => {
     return (
         <Suspense>
             <div className=' w-[1200px] text-sm'>
-                <div className='w-full bg-blue-300 px-2 flex justify-start items-center gap-2'>
-                    <div className=' flex items-center gap-2'>
-                        <span>ຈຳນວນເຊີຕໍ່ໜ້າ</span>
-                        <div>
-                            <input
-                                type="number"
-                                value={numOfPage}
-                                onChange={onChangeNumOfPage}
-                                className='text-sm p-2 w-16'
-                            />
-                            <button onClick={handdleSetNumOfPage} className=' bg-white border border-black p-2'>set</button>
-                        </div>
-                    </div>
-                </div>
                 <div className=' w-full text-sm'>
                     <table className=' w-full mt-2'>
                         <thead>
@@ -161,7 +66,33 @@ const HistoryCreditUser = () => {
                                 transactions?.map((transaction, index) => {
                                     return (
                                         <tr key={index} className={`hover:bg-blue-200 ${index % 2 !== 0 && 'bg-slate-100'}`}>
-                                           
+                                            <td className='border py-2 text-center'>
+                                                {transaction.Date}
+                                            </td>
+                                            <td className='border py-2 text-center'>
+                                                {transaction.User.Username}
+                                            </td>
+                                            <td className='border py-2 text-center'>
+                                                {transaction.Transaction === 'deposit' ?
+                                                    <span className=' text-green-500'>ຝາກ</span>
+                                                    :
+                                                    <span className=' text-red-500'>ຖອນ</span>
+
+
+                                                }
+                                            </td>
+                                            <td className='border py-2 text-start ps-2'>
+                                                {transaction.Amount.toLocaleString()}
+                                            </td>
+                                            <td className='border py-2 text-start ps-2'>
+                                                {transaction.BeforeAmount.toLocaleString()}
+                                            </td>
+                                            <td className='border py-2 text-start ps-2'>
+                                                {transaction.AfterAmount.toLocaleString()}
+                                            </td>
+                                            {/* <td className='border py-2 text-center'>
+                                                    {transaction.status && <span>ສຳເລັດ</span>}
+                                                </td> */}
                                         </tr>
                                     )
                                 })
@@ -183,4 +114,4 @@ const HistoryCreditUser = () => {
     )
 }
 
-export default HistoryCreditUser
+export default HistoryPlayGame

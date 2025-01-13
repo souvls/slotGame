@@ -5,6 +5,15 @@ let TransactionSchema = mongoose.Schema({
     member_account: {
         type: String,
     },
+    member_id: {
+        type: String
+    },
+    before_balance: {
+        type: Number,
+    },
+    balance: {
+        type: Number,
+    },
     operator_code: {
         type: String,
     },
