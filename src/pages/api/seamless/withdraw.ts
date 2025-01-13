@@ -2,14 +2,14 @@ import md5 from 'md5';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const User = require("../../../Models/User");
-//const Transaction = require("../../../Models/Transaction");
+const Transaction = require("../../../Models/Transaction");
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
     if (req.method === 'POST') {
         try {
-            const { member_account, currency, transactions, operator_code, request_time, sign } = req.body;
+            const { member_account, currency, transactions, product_code, operator_code, request_time, sign, game_type } = req.body;
             console.log(req.body);
 
             if (transactions[0].action !== 'BET') {
@@ -23,18 +23,17 @@ export default async function handler(
                     }
                 );
             }
-            //check transaction
-            // const duplicate = await Transaction.find({ id: { $in: transactionID } })
-            // if (duplicate.length !== 0 || hasDuplicates(transactionID)) {
-            //     console.log("Duplicate Transaction")
-            //     res.status(200).json(
-            //         {
-            //             "code": 1003,
-            //             "message": " Duplicate Transaction",
-            //         }
-            //     );
-            //     return;
-            // }
+            const duplicate = await Transaction.find({ 'transactions.id': transactions[0].id })
+            if (duplicate.length > 0) {
+                console.log("Duplicate Transaction")
+                res.status(200).json(
+                    {
+                        "code": 1003,
+                        "message": " Duplicate Transaction",
+                    }
+                );
+                return;
+            }
             if (currency !== "IDR" && currency !== "THB" && currency !== 'IDR2' && currency !== 'KRW2' && currency !== 'MMK2' && currency !== 'VND2' && currency !== 'LAK2' && currency !== 'KHR2') {
                 console.log("Expected to Return Invalid Currency")
                 res.status(200).json(
@@ -89,7 +88,18 @@ export default async function handler(
                     "message": "withdraw",
                     "before_balance": parseFloat(parseFloat(user.Amount).toFixed(2)),
                     "balance": parseFloat(parseFloat(withdraw.Amount).toFixed(2))
-                })
+                });
+                const TST = new Transaction({
+                    member_account: member_account,
+                    operator_code: operator_code,
+                    product_code: product_code,
+                    game_type: game_type,
+                    request_time: request_time,
+                    sign: sign,
+                    currency: currency,
+                    transactions: transactions
+                });
+                TST.save();
                 res.status(200).json(
                     {
                         "code": 0,

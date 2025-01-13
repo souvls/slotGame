@@ -14,7 +14,7 @@ export default async function handler(
         const transactionID = []
         try {
             console.log(req.body);
-            const { member_account, operator_code, request_time, sign, currency, transactions } = req.body;
+            const { member_account, currency, transactions, product_code, operator_code, request_time, sign, game_type } = req.body;
 
             const originalSign = md5(operator_code + request_time + "transfer" + process.env.SECRET_KEY);
             if (sign !== originalSign) {
@@ -45,7 +45,7 @@ export default async function handler(
             }
 
             //check duplicate
-            const duplicate = await Transaction.find({ id: { $in: transactionID } })
+            const duplicate = await Transaction.find({ 'transactions.id': { $in: transactionID } })
             if (duplicate.length !== 0 || hasDuplicates(transactionID)) {
                 console.log("Duplicate Transaction")
                 res.status(200).json(
@@ -70,7 +70,19 @@ export default async function handler(
                 const update_balance_user = await User.findOneAndUpdate(
                     { _id: user._id },
                     { $inc: { Amount: parseFloat(total_amount.toFixed(2)) } },
-                    { new: true });
+                    { new: true }
+                );
+                const TST = new Transaction({
+                    member_account: member_account,
+                    operator_code: operator_code,
+                    product_code: product_code,
+                    game_type: game_type,
+                    request_time: request_time,
+                    sign: sign,
+                    currency: currency,
+                    transactions: transactions
+                });
+                TST.save();
                 res.status(200).json(
                     {
                         "code": 0,
@@ -79,7 +91,6 @@ export default async function handler(
                         "balance": parseFloat(parseFloat(update_balance_user.Amount).toFixed(2))
                     }
                 );
-                await Transaction.insertMany(transactions);
             }
 
         } catch (err) {

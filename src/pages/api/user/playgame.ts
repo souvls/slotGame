@@ -13,7 +13,6 @@ export default async function handler(
             if (req.method === "POST") {
                 const { game_code, product_code, ip, game_type } = req.body;
                 const playgame = await playGame(user.id,game_code,product_code,ip,game_type);
-                console.log(playGame);
                 res.status(200).json(playgame);
             }
         });

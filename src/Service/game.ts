@@ -35,7 +35,7 @@ export async function playGame(userid: string, game_code: string, product_code: 
                         }
                     )
                     // console.log(callgame);
-                    console.log("==> " + user.username + " play game " + game_type + "," + product_code + "," + game_code);
+                    console.log("==> " + user.Username + " play game " + game_type + "," + product_code + "," + game_code);
                     return callgame.data;
                 } catch (error) {
                     console.log(error);
