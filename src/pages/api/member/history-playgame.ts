@@ -3,6 +3,7 @@ import verifyJWTToken from '../../../Middleware/auth'
 
 import isMember from '@/Middleware/isMember';
 import { depositCreditUser, getHistoryCredit } from '@/Service/credit';
+import { historyPayGame } from '@/Service/game';
 
 
 
@@ -16,7 +17,7 @@ export default async function handler(
             if (req.method === 'GET') {
                 const { id, numberOfPage, page } = req.query;
                 if (id && typeof id === 'string') {
-                    const transaction = await getHistoryCredit(member.id, id, Number(numberOfPage), Number(page))
+                    const transaction = await historyPayGame(id, Number(page), Number(numberOfPage))
                     res.status(200).json(transaction);
                 }
             }

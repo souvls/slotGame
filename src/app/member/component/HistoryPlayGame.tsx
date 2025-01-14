@@ -1,39 +1,58 @@
 "use client"
+import { parseTimestamp, timestampToDate } from '@/lib/dateFormat';
 import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 
+interface Wagger {
+    "id": string
+    "amount": number
+    "bet_amount": number
+    "valid_bet_amount": number
+    "prize_amount": number
+    "tip_amount": number
+    "action": string
+    "wager_code": string
+    "wager_status": string
+    "payload": [],
+    "settled_at": number
+    "game_code": string
+}
 interface Transaction {
-    User: {
-        id: string
-        Username: string
-        MemberID: string
-    }
-    Amount: number
-    BeforeAmount: number
-    AfterAmount: number
-    Transaction: string
-    Date: string
-    status: boolean
+    member_account: string
+    operator_code: string
+    before_balance: number
+    balance: number
+    product_code: number
+    game_type: string
+    request_time: string
+    sign: string
+    currency: string
+    createdAt: string
+    transactions: Wagger[]
 }
 const HistoryPlayGame = () => {
     const searchParams = useSearchParams();
     const id = searchParams?.get('id');
-
+    const realtime = searchParams?.get('realtime');
     const [loading, setLoading] = useState<boolean>(false);
     const [numOfPage, setNumOfPage] = useState<number>(20);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [totalPages, setTotalPages] = useState<number>(0);
     const [transactions, setTransactions] = useState<Transaction[]>();
-    const onChangePage = async (page: number) => {
+    useEffect(() => {
+        fetchdata();
+    }, [])
+    const fetchdata = async () => {
         try {
             setLoading(true);
-            const res = await axios.get(`/api/member/history-credit-user?id=${id}&numberOfPage=${numOfPage}&page=${page}`, {
+            const res = await axios.get(`/api/member/history-playgame?id=${id}&numberOfPage=${numOfPage}&page=${currentPage}`, {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
             })
-            setLoading(false);
+            setLoading(false)
+            // console.log(res)
             setTransactions(res.data.transaction);
             setTotalPages(res.data.totalPages);
             setCurrentPage(res.data.currentPage)
@@ -41,20 +60,66 @@ const HistoryPlayGame = () => {
             throw error;
         }
     }
+    const onChangePage = async (page: number) => {
+        try {
+            setLoading(true);
+            const res = await axios.get(`/api/member/history-playgame?id=${id}&numberOfPage=${numOfPage}&page=${page}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+            })
+            setLoading(false);
+            console.log(res)
+            setTransactions(res.data.transaction);
+            setTotalPages(res.data.totalPages);
+            setCurrentPage(res.data.currentPage)
+        } catch (error) {
+            throw error;
+        }
+    }
+    const resultTotal = () => {
+        var total = 0;
+        transactions?.forEach(x => {
+            if (x.transactions.length > 1) {
+                total += x.transactions[1].amount
+            } else {
+                total += x.transactions[0].amount
+            }
+        })
+        return total;
+    }
+    const betTotal = () => {
+        var total = 0;
+        transactions?.forEach(x => {
+            if (x.transactions.length > 1) {
+                total += x.transactions[1].bet_amount
+            } else {
+                total += x.transactions[0].bet_amount
+            }
+        })
+        return total;
+    }
     return (
         <Suspense>
             <div className=' w-[1200px] text-sm'>
+                {loading && 'Loading...'}
+                <div className=' mt-3 ps-3'>
+                    <span>ຈຳນວນເດີມພັນ: <span className=' font-bold'>{betTotal().toLocaleString()}{" THB"}</span> </span>
+                    <span>, ຜົນໄດ້ເສຍ: <span className=' font-bold'>{resultTotal().toLocaleString()}{" THB"}</span> </span>
+                </div>
                 <div className=' w-full text-sm'>
                     <table className=' w-full mt-2'>
                         <thead>
                             <tr className='bg-gray-200 w-full'>
-                                <th>ວັນທີ</th>
-                                <th className=' py-2'>ຊື່ຢູເຊີ້</th>
-                                <th>ປະເພດ</th>
-                                <th>ຈຳນວນເງິນ</th>
-                                <th>ກ່ອນ</th>
-                                <th>ຫຼັງ</th>
-                                {/* <th>ສະຖານະ</th> */}
+                                <th className=' py-2'>ເວລາ</th>
+                                <th>ຊື່ຢູເຊີ້</th>
+                                <th>game_type</th>
+                                <th>product_code</th>
+                                <th>game_code</th>
+                                <th>ເງິນເດີມພັນ</th>
+                                <th>ໄດ້/ເສຍ</th>
+                                <th>ເງິນກ່ອນໜ້າ</th>
+                                <th>ເງິນປັດຈຸບັນ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,33 +131,47 @@ const HistoryPlayGame = () => {
                                 transactions?.map((transaction, index) => {
                                     return (
                                         <tr key={index} className={`hover:bg-blue-200 ${index % 2 !== 0 && 'bg-slate-100'}`}>
-                                            <td className='border py-2 text-center'>
-                                                {transaction.Date}
-                                            </td>
-                                            <td className='border py-2 text-center'>
-                                                {transaction.User.Username}
-                                            </td>
-                                            <td className='border py-2 text-center'>
-                                                {transaction.Transaction === 'deposit' ?
-                                                    <span className=' text-green-500'>ຝາກ</span>
+                                            <td className=' text-center boder border-2'>{timestampToDate(transaction.createdAt)}</td>
+                                            <td className=' text-center boder border-2'>{transaction.member_account}</td>
+                                            <td className=' text-center boder border-2'>{transaction.game_type}</td>
+                                            <td className=' text-center boder border-2'>{transaction.product_code}</td>
+                                            {
+                                                transaction.transactions.length > 1 ?
+                                                    <td className=' text-center boder border-2'>{transaction.transactions[1].game_code}</td>
                                                     :
-                                                    <span className=' text-red-500'>ຖອນ</span>
+                                                    <td className=' text-center boder border-2'>{transaction.transactions[0].game_code}</td>
+                                            }
+                                            {
+                                                transaction.transactions.length > 1 ?
+                                                    <td className=' text-right pe-2 boder border-2'>{transaction.transactions[1].bet_amount.toLocaleString()}</td>
+                                                    :
+                                                    <td className=' text-right pe-2 boder border-2'>{transaction.transactions[0].bet_amount.toLocaleString()}</td>
+                                            }
+                                            {
+                                                transaction.transactions.length > 1 ?
+                                                    <td
+                                                        className={`text-end pe-2 boder border-2 
+                                                            ${transaction.transactions[1].bet_amount < transaction.transactions[1].amount ? 'text-red-500' : 'text-green-500'}`}
+                                                    >
+                                                        {transaction.transactions[1].amount}
+                                                    </td>
+                                                    :
+                                                    <td className={`text-end pe-2 boder border-2 
+                                                        ${transaction.transactions[0].bet_amount < transaction.transactions[0].amount ? 'text-red-500' : 'text-green-500'}`}
+                                                    >
+                                                        {transaction.transactions[0].amount}
+                                                    </td>
+                                            }
+                                            {
+                                                transaction.transactions.length > 1 ?
+                                                    <td className=' text-right pe-2 boder border-2'>{(transaction.before_balance).toLocaleString()}</td>
 
+                                                    :
+                                                    <td className=' text-right pe-2 boder border-2'>{(transaction.before_balance + transaction.transactions[0].bet_amount).toLocaleString()}</td>
 
-                                                }
-                                            </td>
-                                            <td className='border py-2 text-start ps-2'>
-                                                {transaction.Amount.toLocaleString()}
-                                            </td>
-                                            <td className='border py-2 text-start ps-2'>
-                                                {transaction.BeforeAmount.toLocaleString()}
-                                            </td>
-                                            <td className='border py-2 text-start ps-2'>
-                                                {transaction.AfterAmount.toLocaleString()}
-                                            </td>
-                                            {/* <td className='border py-2 text-center'>
-                                                    {transaction.status && <span>ສຳເລັດ</span>}
-                                                </td> */}
+                                            }
+
+                                            <td className=' text-right pe-2 boder border-2'>{transaction.balance.toLocaleString()}</td>
                                         </tr>
                                     )
                                 })

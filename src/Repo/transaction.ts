@@ -1,18 +1,40 @@
 import Transaction from '../Models/Transaction'
-export async function getTransactionByUserID(memberid: string, userid: string, page: number, numberOfPage: number) {
+export async function _getTransactionByMember(userid: string, page: number, numberOfPage: number) {
     try {
         const skip = (page - 1) * numberOfPage;
 
-        const users = await Transaction.find({ MemberID: memberid })
-            .sort({createdAt:-1})
+        const transaction = await Transaction.find({ member_id: userid, 'transactions.action': 'SETTLED' })
+            .sort({ createdAt: -1 })
             .skip(skip)
             .limit(numberOfPage);
 
-        const totalUsers = await Transaction.find({ MemberID: memberid }).countDocuments();
-        const totalPages = Math.ceil(totalUsers / numberOfPage);
+        const total = await Transaction.find({ member_id: userid, 'transactions.action': 'SETTLED' }).countDocuments();
+        const totalPages = Math.ceil(total / numberOfPage);
 
         return {
-            users,
+            transaction,
+            totalPages,
+            currentPage: page,
+        };
+
+    } catch (error) {
+
+    }
+} 
+export async function _getTransactionByUserID(userid: string, page: number, numberOfPage: number) {
+    try {
+        const skip = (page - 1) * numberOfPage;
+
+        const transaction = await Transaction.find({ member_id: userid, 'transactions.action': 'SETTLED' })
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(numberOfPage);
+
+        const total = await Transaction.find({ member_id: userid, 'transactions.action': 'SETTLED' }).countDocuments();
+        const totalPages = Math.ceil(total / numberOfPage);
+
+        return {
+            transaction,
             totalPages,
             currentPage: page,
         };

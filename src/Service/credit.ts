@@ -17,7 +17,7 @@ export async function depositCreditUser(memberid: string, userid: string, credit
          if (newBalance) {
             //update credit member
             await _updateCreditMember(memberid, -credit);
-            await _saveHistoryCreditMember(memberid, member.Username, credit, member.Amount, member.Amount - credit, 'deposit user');
+            await _saveHistoryCreditMember(memberid, member.Username, user._id, user.Username, credit, member.Amount, member.Amount - credit, 'deposit user');
             await _saveHistoryCreditUser(memberid, userid, user.Username, credit, user.Amount, newBalance.Amount, title);
             return { code: 0, message: "ເຕີມເງິນສຳເລັດ" }
          }
@@ -41,7 +41,7 @@ export async function withdrawCreditUser(memberid: string, userid: string, credi
          if (newBalance) {
             //update credit member
             await _updateCreditMember(memberid, credit);
-            await _saveHistoryCreditMember(memberid, member.Username, credit, member.Amount, Number(member.Amount) + Number(credit), 'withdraw user');
+            await _saveHistoryCreditMember(memberid, member.Username, user._id, user.Username, credit, member.Amount, Number(member.Amount) + Number(credit), 'withdraw user');
             await _saveHistoryCreditUser(memberid, userid, user.Username, credit, user.Amount, newBalance.Amount, title);
             return { code: 0, message: "ຖອນເງິນສຳເລັດ" }
          }

@@ -8,6 +8,9 @@ let TransactionSchema = mongoose.Schema({
     member_id: {
         type: String
     },
+    agent_id: {
+        type: String
+    },
     before_balance: {
         type: Number,
     },

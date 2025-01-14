@@ -7,7 +7,26 @@ const getDate = () => {
     const data = format(now, 'dd/MM/yy HH:mm:ss');
     return data;
 }
+export async function _myHistoryCredit(memberid: string, page: number, numberOfPage: number) {
+    try {
+        const skip = (page - 1) * numberOfPage;
+        const transactions = await MemberHistoryCredit.find({ 'Member.id': memberid })
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(numberOfPage);
 
+        const total = await MemberHistoryCredit.find({ 'Member.id': memberid }).countDocuments();
+        const totalPages = Math.ceil(total / numberOfPage);
+
+        return {
+            transactions,
+            totalPages,
+            currentPage: page,
+        };
+    } catch (error) {
+        throw error;
+    }
+}
 export async function _myCreditMember(memberid: string) {
     try {
         const credit = await Member.findById(memberid).select('Amount'); // Chỉ lấy trường amount
@@ -32,11 +51,15 @@ export async function _memberInfo(memberid: string) {
     }
 
 }
-export async function _saveHistoryCreditMember(memberid: string, username: string, credit: number, beforeCredit: number, afterCredit: number, title: string) {
+export function _saveHistoryCreditMember(memberid: string, membername: string, userid: string, username: string, credit: number, beforeCredit: number, afterCredit: number, title: string) {
     try {
         const NewMemberHistory = new MemberHistoryCredit({
             Member: {
                 id: memberid,
+                Username: membername
+            },
+            User: {
+                id: userid,
                 Username: username
             },
             Amount: credit,
@@ -45,7 +68,7 @@ export async function _saveHistoryCreditMember(memberid: string, username: strin
             Transaction: title,
             Date: getDate()
         });
-        return await NewMemberHistory.save();
+        return NewMemberHistory.save();
     } catch (error) {
         console.error('Error _saveHistoryCreditMember: ', error);
     }

@@ -12,6 +12,16 @@ let MemberHistoryCreditSchema = mongoose.Schema({
             required: true,
         }
     },
+    User: {
+        id: {
+            type: String,
+            required: true,
+        },
+        Username: {
+            type: String,
+            required: true,
+        }
+    },
     Amount: {
         type: Number,
         required: true,

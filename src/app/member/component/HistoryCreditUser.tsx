@@ -4,77 +4,17 @@ import { useSearchParams } from 'next/navigation';
 import React, { Suspense, useEffect, useState } from 'react'
 // import { useParams, useSearchParams } from 'next/navigation';
 interface Transaction {
-    member_account: {
-        type: String,
-    },
-    operator_code: {
-        type: String,
-    },
-    product_code: {
-        type: Number,
-    },
-    game_type: {
-        type: String,
-    },
-    request_time: {
-        type: String,
-    },
-    sign: {
-        type: String,
-    },
-    currency: {
-        type: String,
-    },
-    transactions: [{
-        "id": {
-            type: String,
-        },
-        "amount": {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        "bet_amount": {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        "valid_bet_amount": {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        "prize_amount": {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        "tip_amount": {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        "action": {
-            type: String,
-        },
-        "wager_code": {
-            type: String,
-            required: true,
-        },
-        "wager_status": {
-            type: String,
-            required: true,
-        },
-        "payload": [],
-        "settled_at": {
-            type: Number,
-            required: true,
-            default: 0
-        },
-        "game_code": {
-            type: String,
-        }
-    }]
+    User: {
+        id: string
+        Username: string
+        MemberID: string
+    }
+    Amount: number
+    BeforeAmount: number
+    AfterAmount: number
+    Transaction: string
+    Date: string
+    status: boolean
 }
 const HistoryCreditUser = () => {
     const searchParams = useSearchParams();
@@ -161,7 +101,33 @@ const HistoryCreditUser = () => {
                                 transactions?.map((transaction, index) => {
                                     return (
                                         <tr key={index} className={`hover:bg-blue-200 ${index % 2 !== 0 && 'bg-slate-100'}`}>
-                                           
+                                            <td className='border py-2 text-center'>
+                                                {transaction.Date}
+                                            </td>
+                                            <td className='border py-2 text-center'>
+                                                {transaction.User.Username}
+                                            </td>
+                                            <td className='border py-2 text-center'>
+                                                {transaction.Transaction === 'deposit' ?
+                                                    <span className=' text-green-500'>ຝາກ</span>
+                                                    :
+                                                    <span className=' text-red-500'>ຖອນ</span>
+
+
+                                                }
+                                            </td>
+                                            <td className='border py-2 text-start ps-2'>
+                                                {transaction.Amount.toLocaleString()}
+                                            </td>
+                                            <td className='border py-2 text-start ps-2'>
+                                                {transaction.BeforeAmount.toLocaleString()}
+                                            </td>
+                                            <td className='border py-2 text-start ps-2'>
+                                                {transaction.AfterAmount.toLocaleString()}
+                                            </td>
+                                            {/* <td className='border py-2 text-center'>
+                                                {transaction.status && <span>ສຳເລັດ</span>}
+                                            </td> */}
                                         </tr>
                                     )
                                 })

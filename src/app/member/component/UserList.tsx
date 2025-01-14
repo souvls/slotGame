@@ -84,7 +84,7 @@ const UserList = () => {
 
         }
     }
-    const handleClearUserList = () =>{
+    const handleClearUserList = () => {
         setUserIdList([]);
         setIsCheckedInPage(false);
     }
@@ -190,7 +190,9 @@ const UserList = () => {
                 <p> => ເຄດິດ ເອເຢັ້ນ ຈະຖືກຫັກຕາມຈຳນວນເຕີມ</p>`,
             input: "number",
             inputAttributes: {
-                autocapitalize: "off"
+                autocapitalize: "off",
+                step: '0.01',
+                min: '0',
             },
             showCancelButton: true,
             confirmButtonText: "ເຕີມເງິນ",
@@ -206,7 +208,7 @@ const UserList = () => {
                                 'Authorization': 'Bearer ' + localStorage.getItem('token')
                             }
                         });
-                    setLoading(false);
+                        setLoading(false);
                         return res.data;
                     } catch (error) {
                         Swal.showValidationMessage(`
@@ -248,12 +250,38 @@ const UserList = () => {
                 <p> => ເຄດິດ ເອເຢັ້ນ ຈະເພີ່ມຕາມຈຳນວນຖອນ</p>`,
             input: "number",
             inputAttributes: {
-                autocapitalize: "off"
+                autocapitalize: "off",
+                step: '0.01',
+                min: '0',
             },
             showCancelButton: true,
             confirmButtonText: "ຖອນເງິນ",
-            confirmButtonColor: "red",
+            confirmButtonColor: "blue",
             showLoaderOnConfirm: true,
+            showLoaderOnDeny:true,
+            showDenyButton: user.Amount > 0,
+            denyButtonText: "ຖອນໝົດ",
+            denyButtonColor: "red",
+            preDeny: async () => {
+                if (user.Amount > 0) {
+                    try {
+                        setLoading(true);
+                        const res = await axios.post("/api/member/withdraw-credit", {
+                            id: user._id, credit: user.Amount
+                        }, {
+                            headers: {
+                                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                            }
+                        });
+                        setLoading(false);
+                        return res.data;
+                    } catch (error) {
+                        Swal.showValidationMessage(`
+                          Request failed: ${error}
+                        `);
+                    }
+                }
+            },
             preConfirm: async (credit) => {
                 if (credit) {
                     try {
@@ -277,12 +305,10 @@ const UserList = () => {
                      ຈຳນວນເງິນບໍ່ຖືກຕ້ອງ
                     `);
                 }
-
             },
             allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                console.log(result)
                 if (result.value.code === 0) {
                     fetchUsers();
                     Swal.fire({
@@ -295,7 +321,20 @@ const UserList = () => {
                         icon: "error"
                     });
                 }
-
+            }
+            if (result.isDenied) {
+                if (result.value.code === 0) {
+                    fetchUsers();
+                    Swal.fire({
+                        title: result.value.message,
+                        icon: "success"
+                    });
+                } else {
+                    Swal.fire({
+                        title: result.value.message,
+                        icon: "error"
+                    });
+                }
             }
         });
     }
@@ -420,6 +459,7 @@ const UserList = () => {
                     });
                     setLoading(false);
                     if (res.data.code === 0) {
+                        setIsCheckedInPage(false);
                         fetchUsers();
                         Swal.fire({
                             icon: "success",
@@ -457,6 +497,7 @@ const UserList = () => {
                     setLoading(false);
                     if (res.data.code === 0) {
                         fetchUsers();
+                        setIsCheckedInPage(false);
                         Swal.fire({
                             icon: "success",
                             showConfirmButton: false,
@@ -536,7 +577,7 @@ const UserList = () => {
                         <div className=' flex gap-2'>
                             {/* <button className=' rounded-lg bg-green-500 text-white p-2'>ເຕີມ</button>
                             <button className=' rounded-lg bg-yellow-500 text-white p-2'>ຖອນ</button> */}
-                            <button onClick={handleBlockMany} className=' rounded-lg bg-violet-500 text-white p-2'>ປິດ</button>
+                            <button onClick={handleBlockMany} className=' rounded-lg bg-violet-500 text-white p-2'>ບລ໋ອກ</button>
                             <button onClick={handleDeleteMany} className=' rounded-lg bg-red-500 text-white p-2'>ລົບ</button>
                         </div>
                     }
@@ -596,7 +637,7 @@ const UserList = () => {
                                 <td className=' border text-center'>{user.status ? <span className=''>online</span> : <span className=' bg-red-600 text-white'>offline</span>}</td>
                                 <td className=' border ps-2'>
                                     {user.status ?
-                                        <button onClick={() => handleBlock(user)} className=' text-blue-700 mx-2'>ບ໋ອກ</button> :
+                                        <button onClick={() => handleBlock(user)} className=' text-blue-700 mx-2'>ບລ໋ອກ</button> :
                                         <button onClick={() => handleUnBlock(user)} className=' text-blue-700 mx-2'>ເປີດ</button>
                                     } /
                                     <button
@@ -612,10 +653,10 @@ const UserList = () => {
                                         ແກ້ໄຂຂໍ້ມູນ
                                     </button>/
                                     <Link href={`/member/office/history/credit_user?id=${user._id}`} className=' text-blue-700 mx-2'>ປະຫວັດເຄດິດ</Link>/
-                                    <Link href={`/member/office/history/game_user?id=${user._id}`} className=' text-blue-700 mx-2'>ປະຫວັດເກມ</Link>/
+                                    <Link href={`/member/office/history/game_user?id=${user._id}&realtime=${user.isOnline}`} className=' text-blue-700 mx-2'>ປະຫວັດເກມ</Link>/
                                     <button onClick={() => handleDeposit(user)} className=' text-blue-700 mx-2'>ເຕີມເງິນ</button>/
                                     <button onClick={() => handleWithdraw(user)} className=' text-blue-700 mx-2'>ຖອນເງິນ</button>/
-                                    <button onClick={() => handleDelete(user)} className=' text-red-300 mx-2'>ລົບ</button>
+                                    <button onClick={() => handleDelete(user)} className=' text-red-500 mx-2'>ລົບ</button>
                                 </td>
                                 <td>
                                     {isChecked(user._id) ?

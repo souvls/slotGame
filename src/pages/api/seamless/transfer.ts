@@ -73,6 +73,7 @@ export default async function handler(
                     { new: true }
                 );
                 const TST = new Transaction({
+                    agent_id: user.MemberID,
                     member_account: member_account,
                     member_id: user._id,
                     before_balance: parseFloat(parseFloat(user.Amount).toFixed(2)),

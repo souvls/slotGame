@@ -63,12 +63,12 @@ export async function deletekUsers(memberid: string, idlist: [string]) {
             total += user.Amount;
         }
     });
-    //delete user
-    await _deletekUsers(memberid, idlist);
     // toback credit to member
     await _updateCreditMember(memberid, total);
     // save history
-    await _saveHistoryCreditMember(memberid, member.Username, total, member.Amount, Number(member.Amount) + Number(total), 'toback');
+    await _saveHistoryCreditMember(member._id, member.Username, 'delete', 'delete', total, member.Amount, Number(member.Amount) + Number(total), 'to back');
+    //delete user
+    await _deletekUsers(memberid, idlist);
 
     return true
 }
