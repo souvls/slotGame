@@ -39,6 +39,7 @@ const Navbar: React.FC<{ token: string }> = (token) => {
                             <p className=' text-yellow-200 flex gap-1'>
                                 <Link href='/member/office'>ສະມາຊິກ</Link>-
                                 <Link href='/member/office/history/my_history_credit'>ປະຫວັດເຄດິດ</Link>-
+                                <Link href='/member/office/report'>ລາຍງານ</Link>-
                                 <Link href='#'>ປະຊາສຳພັນ</Link>
                             </p>
                         </div>
@@ -71,7 +72,7 @@ const Navbar: React.FC<{ token: string }> = (token) => {
                                 <p className=' text-yellow-200 flex gap-1'>
                                     <Link href='/member/office'>ສະມາຊິກ</Link>-
                                     <Link href='/member/office/history/my_history_credit'>ປະຫວັດເຄດິດ</Link>-
-                                    <Link href='/member/office/history/my_history_credit'>ລາຍງານ</Link>-
+                                    <Link href='/member/office/report'>ລາຍງານ</Link>-
                                     <Link href='#'>ປະຊາສຳພັນ</Link>
                                 </p>
                             </div>
