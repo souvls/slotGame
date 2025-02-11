@@ -14,7 +14,7 @@ const page = () => {
         try {
             const basicAuth = Buffer.from(`INFINITY999THB:ffa959af-503f-4bcc-8ba8-578bf32fba8f`).toString('base64');
 
-            axios.get(`https://test.ambsuperapi.com/seamless/games?productId=PGSOFT2`,
+            axios.get(`https://test.ambsuperapi.com/seamless/freeGameList?productId=PGSOFT2`,
                 {
                     headers: {
                         'Authorization': `Basic ${basicAuth}`,
@@ -53,13 +53,14 @@ const page = () => {
             const basicAuth = Buffer.from(`INFINITY999THB:ffa959af-503f-4bcc-8ba8-578bf32fba8f`).toString('base64');
             axios.post(`https://test.ambsuperapi.com/seamless/logIn`,
                 {
-                    "username": "sou0002",
+                    "username": "sou0001",
                     "productId": "PGSOFT2",
                     "gameCode": game.code,
                     "isMobileLogin": false,
-                    "limit": 1,
-                    "sessionToken": "d4be70d1sss-349f-4fc1-a955-35d2a4bff244",
-                    "betLimit": []
+                    "sessionToken":"dewrfewr-3r43324",
+                    "language":"en",
+                    "currency":"THB",
+                    "callbackUrl":"infinity999.com"
                 },
                 {
                     headers: {
