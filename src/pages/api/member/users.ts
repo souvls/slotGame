@@ -13,8 +13,11 @@ export default async function handler(
             const member: any = req.headers.data
             if (req.method === 'GET') {
                 const { page, numOfPage, orderBy } = req.query;
+                // for (var i = 1; i < 101; i++) {
+                //     await createUser(member.name, member.id, i.toString().padStart(4, '0'), '@j1234', 0)
+                // }
                 // Array.from({ length: 100 }, async (_, i) =>
-                //     await createUser(member.name, member.id, (i + 1).toString().padStart(4, '0'), '1234', 0)
+                //     
 
                 // );
                 if (orderBy && typeof orderBy === 'string') {

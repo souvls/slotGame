@@ -120,22 +120,41 @@ export async function _updatePassword(memberid: string, userid: string, newpass:
 }
 export async function _findUsers(memberid: string, page: number, numberOfPage: number, orderBy: string) {
     try {
-        const skip = (page - 1) * numberOfPage;
-        const sort: { [key: string]: 1 | -1 } = { [orderBy]: -1 }; // Ascending order by default
+        if (orderBy === "Username") {
+            const skip = (page - 1) * numberOfPage;
+            const sort: { [key: string]: 1 | -1 } = { [orderBy]: 1 }; // Ascending order by default
 
-        const users = await User.find({ MemberID: memberid })
-            .sort(sort)
-            .skip(skip)
-            .limit(numberOfPage);
+            const users = await User.find({ MemberID: memberid })
+                .sort(sort)
+                .skip(skip)
+                .limit(numberOfPage);
 
-        const totalUsers = await User.find({ MemberID: memberid }).countDocuments();
-        const totalPages = Math.ceil(totalUsers / numberOfPage);
+            const totalUsers = await User.find({ MemberID: memberid }).countDocuments();
+            const totalPages = Math.ceil(totalUsers / numberOfPage);
 
-        return {
-            users,
-            totalPages,
-            currentPage: page,
-        };
+            return {
+                users,
+                totalPages,
+                currentPage: page,
+            };
+        } else {
+            const skip = (page - 1) * numberOfPage;
+            const sort: { [key: string]: 1 | -1 } = { [orderBy]: -1 }; // Ascending order by default
+
+            const users = await User.find({ MemberID: memberid })
+                .sort(sort)
+                .skip(skip)
+                .limit(numberOfPage);
+
+            const totalUsers = await User.find({ MemberID: memberid }).countDocuments();
+            const totalPages = Math.ceil(totalUsers / numberOfPage);
+
+            return {
+                users,
+                totalPages,
+                currentPage: page,
+            };
+        }
     } catch (error) {
         console.error('Error fetching users:', error);
         throw error;
