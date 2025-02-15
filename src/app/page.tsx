@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import superjackpot from "../../public/assets/icon/supper-jackport.png"
+import banner from "../../public/assets/banner/Hacksaw_1600x900_TH_with Logo.jpg";
 import banner1 from "../../public/assets/banner/banner1.jpg";
 import banner2 from "../../public/assets/banner/banner2.jpg";
 import banner3 from "../../public/assets/banner/banner3.jpg";
@@ -14,7 +15,7 @@ import { RiCloseCircleLine } from "react-icons/ri";
 import Nav_bar_ from './component/Nav_bar_';
 import MenuGameType from './component/MenuGameType';
 import Ads1 from '../../public/assets/ads/ads1.jpg'
-import {useState } from 'react';
+import { useState } from 'react';
 const services = [
   {
     path: "#",
@@ -71,7 +72,7 @@ export default function Home() {
   return (
     <div className=' relative'>
       {/* Header */}
-      <Nav_bar_/>
+      <Nav_bar_ />
       <div className=' fixed bottom-2 right-3 lg:right-10'>
         <div>
           <Link href={"https://api.whatsapp.com/send?phone=8562098399064"}>
@@ -84,7 +85,7 @@ export default function Home() {
         <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>
           <div className='w-[90%] p-3 mx-auto border-2 border-purple-600 bg-gradient-to-r from-black to-black via-purple-700'>
             {/* jackport */}
-            <div className=' flex justify-center items-center gap-8'>
+            {/* <div className=' flex justify-center items-center gap-8'>
               <div className='w-[50px] h-[50px] lg:w-[80px] lg:h-[80px]  relative'>
                 <div className=" absolute bg-yellow-500 inset-1 blur  "></div>
                 <Image
@@ -114,11 +115,61 @@ export default function Home() {
                   <p className=' text-xl  text-white py-3 px-2 border-2 border-purple-400 bg-gray-900  rounded-lg relative'>9</p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>
             <div className='w-[90%] mx-auto border-2 border-purple-600'>
-              <Image src={banner1} alt='' className='w-full' />
+              {/* <Image src={banner} alt='' className='w-full' /> */}
+
+
+              <div id="default-carousel" className="relative w-full" data-carousel="slide">
+            
+                <div className="relative min-h-[200px] max-h-[900px] overflow-hidden rounded-lg lg:h-[600px]">
+                
+                  <div className="hidden duration-700 ease-in-out" data-carousel-item>
+                    <Image src={banner} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
+                  </div>
+             
+                  <div className="hidden duration-700 ease-in-out" data-carousel-item>
+                    <Image src={banner1} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
+                  </div>
+                
+                  <div className="hidden duration-700 ease-in-out" data-carousel-item>
+                    <Image src={banner2} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
+                  </div>
+                  <div className="hidden duration-700 ease-in-out" data-carousel-item>
+                    <Image src={banner3} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
+                  </div>
+                  <div className="hidden duration-700 ease-in-out" data-carousel-item>
+                    <Image src={banner4} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
+                  </div>
+                </div>
+       
+                <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                  <button type="button" className="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                  <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                  <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                  <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+                  <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+                </div>
+                <button type="button" className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
+                    </svg>
+                    <span className="sr-only">Previous</span>
+                  </span>
+                </button>
+                <button type="button" className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                    <svg className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                    </svg>
+                    <span className="sr-only">Next</span>
+                  </span>
+                </button>
+              </div>
+
             </div>
           </div>
           <div className='w-[90%] p-3 mx-auto border-2 border-purple-600 bg-gradient-to-r from-black to-black via-purple-700'>
