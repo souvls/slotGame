@@ -8,22 +8,17 @@ import Swal from "sweetalert2";
 import Spinner from "./Spinner";
 import axios from "axios";
 interface Game {
-    game_code: string,
-    game_name: string,
-    game_type: string,
-    image_url: string,
-    product_code: number,
-    product_id: number,
-    status: string,
-    support_currency: string,
-}
-interface Props {
-    product_code: Number,
-    product_name: String
-    game: Game
+    productId: string
+    name: string,
+    category: string,
+    type: string,
+    code: string,
+    providerCode: string,
+    img: string,
+    rank: number
 }
 
-const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => {
+const ShowGameItem: React.FC<Game> = ({ productId, name, category, type, code, providerCode, img, rank }) => {
     const router = useRouter();
     const [isVisible, setIsVisible] = useState(false);
     const imgRef = useRef<HTMLImageElement | null>(null);
@@ -53,37 +48,31 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
             const cookie = Cookies.get("userdata");
             if (cookie) {
                 const user = JSON.parse(cookie);
-                if (game.game_type === "FISHING") {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "<p>ຂໍອະໄພ</p>",
-                        html: "<p>ເກມກຳລັງປັບປຸງ</p>"
-                    })
-                    return
-                }
-
                 setLoading(true);
                 const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
                 const raw = {
-                    game_code: game.game_code,
-                    product_code: product_code,
-                    game_type: game.game_type,
+                    productId: productId,
+                    name: name,
+                    category: category,
+                    type: type,
+                    code: code,
+                    providerCode: providerCode,
                     ip: ip.ip
                 }
-                const res = await axios.post("/api/user/playgame", raw, {
+                const res = await axios.post("/api/user/playgameAMB", raw, {
                     headers: {
                         'Authorization': 'Bearer ' + user.token,
                         'Content-Type': 'application/json'
                     }
                 })
-                // console.log(res)
+                console.log(res)
                 if (res.data) {
                     if (res.data?.status === 'no' && res.data?.message === 'logout') {
                         Swal.fire({
                             icon: "warning",
                             title: "<p>IP ບໍ່ຕົງກັນ </p>",
                             html: "<p>ກະລຸນາເຂົ້າສູ່ລະບົບໃໝ່</p>"
-                        }).then(()=>{
+                        }).then(() => {
                             Cookies.remove("userdata");
                             window.location.reload();
                         })
@@ -99,7 +88,7 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
                     if (res.data.code === 200) {
                         setLoading(false);
                         if (res.data.url) {
-                            saveGameHistory();
+                            // saveGameHistory();
                             url = res.data.url;
                         } else {
                             Swal.fire({
@@ -134,53 +123,44 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
                 showConfirmButton: false,
             });
         }
-        finally{
+        finally {
             setLoading(false);
-            if(url != "") {
+            if (url != "") {
                 window.open(url, '_blank');
             }
 
         }
     }
-    const saveGameHistory = () => {
-        const temp: Props[] = [];
-        const gameHistory = localStorage.getItem("game_history");
-        const Games: Props[] = gameHistory ? JSON.parse(gameHistory) : [];
-        const x = { product_code: product_code, product_name: product_name, game: game }
-        temp.push(x);
-        for (var i = 0; i < 4; i++) {
-            temp.push(Games[i]);
-        }
-        localStorage.setItem("game_history", JSON.stringify(temp));
-    }
+    // const saveGameHistory = () => {
+    //     const temp: Props[] = [];
+    //     const gameHistory = localStorage.getItem("game_history");
+    //     const Games: Props[] = gameHistory ? JSON.parse(gameHistory) : [];
+    //     const x = { product_code: product_code, product_name: product_name, game: game }
+    //     temp.push(x);
+    //     for (var i = 0; i < 4; i++) {
+    //         temp.push(Games[i]);
+    //     }
+    //     localStorage.setItem("game_history", JSON.stringify(temp));
+    // }
     return (
         <div ref={imgRef} onClick={handdlePlay} className='w-full'>
             {isVisible &&
                 <>
                     {loading && <Spinner />}
                     <img
-                        src={game?.image_url}
+                        src={img}
                         // onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
                         //     const img = e.target as HTMLImageElement;
                         //     img.src = "/assets/icon/product/"+product_name+".png"
                         //     img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
 
                         // }
-                        alt={game?.game_name}
+                        alt={name}
                         loading="lazy"
                         className='w-[100%] rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
                     />
-                    {/* <img
-                src={item.image_url}
-                onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                    const img = e.target as HTMLImageElement;
-                    img.onerror = null; // Ngăn chặn vòng lặp vô hạn nếu hình ảnh thay thế cũng bị lỗi
-                    //img.src = `/assets/icon/game/${item?.product_code + item?.game_code}.png`
-                }}
-                className='w-full rounded-xl overflow-hidden flex justify-center items-center hover:border-2 border-yellow-300'
-            /> */}
-                    <h1 className=' text-center text-white text-[8px]'>{game?.game_name}</h1>
-                    {/* <p className=' text-center text-white'>{game.product_code}{game.game_code}</p>  */}
+                    <h1 className=' text-center text-white text-[8px]'>{name}</h1>
+
                 </>}
         </div>
 

@@ -9,6 +9,7 @@ import ShowGameItem from './ShowGameItem';
 import products from '@/gamedata/slot/products.json'
 import playstar from '@/gamedata/slot/playstar.json'
 import pg_soft from '@/gamedata/slot/pg_soft.json'
+import pg_soft2 from '@/gamedata/slot/pg_soft2.json'
 import pragmatic_play from '@/gamedata/slot/pragmatic_play.json'
 import fachai from '@/gamedata/slot/fachai.json'
 import jili_tcg from '@/gamedata/slot/jili_tcg.json'
@@ -25,6 +26,7 @@ import hacksaw from '@/gamedata/slot/hacksaw.json'
 import octoplay from '@/gamedata/slot/octoplay.json'
 import rich88 from '@/gamedata/slot/rich88.json'
 import smartsoft from '@/gamedata/slot/smartsoft.json'
+import ShowGameItemAMB from './ShowGameItemAMB';
 
 // interface Product {
 //     provider: string,
@@ -127,32 +129,7 @@ export default function Home() {
         localStorage.setItem("slot_active", index.toString());
         setProductActive(index);
     }
-    // const fetchGames = async (product_code: any) => {
-    //     const request_time = new Date().getTime();
-    //     const hash = md5(`${request_time}${process.env.NEXT_PUBLIC_SECRET_KEY}gamelist${process.env.NEXT_PUBLIC_OP_CODE}`);
-    //     fetch(process.env.NEXT_PUBLIC_API_NAME + "/api/operators/provider-games" +
-    //         "?product_code=" + product_code +
-    //         "&operator_code=" + process.env.NEXT_PUBLIC_OP_CODE +
-    //         "&game_type=" + "SLOT" +
-    //         "&sign=" + hash +
-    //         "&request_time=" + request_time
-    //     )
-    //         .then((response) => response.json())
-    //         .then(result => {
-    //             const game = result.provider_games.reduce((acc: any, current: any) => {
-    //                 if (current.status === "ACTIVATED" && !acc.find((item: any) => (item.game_name === current.game_name))) {
-    //                     acc.push(current);
-    //                 }
-    //                 return acc;
-    //             }, []);
 
-    //             //console.log(game);
-    //             // setGames(game);
-    //         })
-    //         .catch(err => {
-    //             throw err
-    //         })
-    // }
     return (
         <>
             {loadingGame && <Spinner />}
@@ -178,17 +155,34 @@ export default function Home() {
                         }
                     </div>
                     <div className='w-[80%] lg:w-[90%] grid grid-cols-3 lg:grid-cols-4 gap-4 p-5 '>
-                        {games && games.map((item: Game, index) => {
-                            return (
-                                <ShowGameItem
-                                    key={index}
-                                    product_code={products[productActive].product_code}
-                                    product_name={products[productActive].product_name}
-                                    game={item}
-                                />
-                            )
+                        {products[productActive].product_name !== 'pg_soft' ?
+                            games && games.map((item: Game, index) => {
+                                return (
+                                    <ShowGameItem
+                                        key={index}
+                                        product_code={products[productActive].product_code}
+                                        product_name={products[productActive].product_name}
+                                        game={item}
+                                    />
+                                )
+                            }) :
+                            pg_soft2.map((item, index) => {
+                                return (
+                                    <ShowGameItemAMB
+                                        key={index}
+                                        productId={"PGSOFT2"}
+                                        name={item.name}
+                                        category={item.category}
+                                        type={item.type}
+                                        code={item.code}
+                                        providerCode={item.providerCode}
+                                        img={item.img}
+                                        rank={item.rank}
+                                    />
+                                )
+                            })
+                        }
 
-                        })}
                     </div>
                 </div>
             </div>

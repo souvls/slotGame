@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import verifyJWTToken from '../../../Middleware/auth'
 import checkMaintenance from '../../../Middleware/checkMaintenance';
-import { launhGSCgame } from '@/Service/game';
+import { launhAMBgame } from '@/Service/game';
 
 export default async function handler(
     req: NextApiRequest,
@@ -11,8 +11,8 @@ export default async function handler(
         verifyJWTToken(req, res, async () => {
             const user: any = req.headers.data
             if (req.method === "POST") {
-                const { game_code, product_code, ip, game_type } = req.body;
-                const playgame = await launhGSCgame(user.id, game_code, product_code, ip, game_type);
+                const { productId, name, category, type, code, providerCode, ip } = req.body;
+                const playgame = await launhAMBgame(user.id,productId, name, category, type, code, providerCode, ip);
                 res.status(200).json(playgame);
             }
         });

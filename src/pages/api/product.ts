@@ -14,14 +14,15 @@ export default function handler(
             "&request_time=" + request_time)
             .then((response) => response.json())
             .then(async result => {
-                // console.log(result)
+                console.log(result)
                 const x:any = [{}];
                 for(const i of result){
-                    if(i.game_type === "SLOT" ){
-                        console.log({'pd_name':i.product_name,'currency':i.currency});
+                    if(i.game_type === "SLOT" && i.status === 'ACTIVATED'){
+                        // console.log();
+                        x.push(i)
                     }
                 }
-                res.status(200).json({});
+                res.status(200).json(x);
             })
             .catch(err => {
                 throw err

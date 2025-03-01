@@ -31,6 +31,7 @@ export async function historyPayGame(userid: string, page: number, numberOfPage:
 export async function launhGSCgame(userid: string, game_code: string, product_code: number, ip: string, game_type: string) {
     const user = await _findUserByID(userid);
     if (user) {
+        console.log(game_type, game_code, product_code);
         if (user.status) {
             if (user.ip === ip) {
                 try {
@@ -52,6 +53,7 @@ export async function launhGSCgame(userid: string, game_code: string, product_co
                         "request_time": request_time,
                         "operator_lobby_url": "https://infinity999.com",
                     }
+                    // console.log(raw);
                     const callgame = await axios.post(`${process.env.API_NAME}/api/operators/launch-game`,
                         JSON.stringify(raw),
                         {
@@ -80,29 +82,85 @@ export async function launhGSCgame(userid: string, game_code: string, product_co
         return { status: 'no', message: "logout" }
     }
 }
-export async function launhAMBgame() {
-    try {
-        //       API_NAME = https://production.gsimw.com
-        // AMB_API_NAME = https://test.ambsuperapi.com
-        // AMB_URL = https://api688.net
-        // AMB_SCRET = 846efe94-8787-49eb-9094-4d8d14d3c30f
-        const credentials = btoa(`${'INFINITY999THB'}:${process.env.AMB_SCRET}`);
-        const res = await axios.post(`https://test.ambsuperapi.com/external-game-launcher/api/v1/GetLaunchURLHTML`, {
-            headers: {
-                Authorization: `${credentials}`,
-            },
-        })
-        return res
-    } catch (error) {
-
-        console.log(error)
-        return error
-    }
-}
-export async function playGame(userid: string, game_code: string, product_code: number, ip: string, game_type: string) {
-    if (product_code !== 1007) {
-        return await launhGSCgame(userid, game_code, product_code, ip, game_type);
+export async function launhAMBgame(userid: string, productId: string, name: string, category: string, type: string, code: string, providerCode: string, ip: string) {
+    const user = await _findUserByID(userid);
+    if (user) {
+        console.log(type, productId, name, code);
+        if (user.status) {
+            if (user.ip === ip) {
+                try {
+                    const basicAuth = Buffer.from(`INFINITY999THB:ffa959af-503f-4bcc-8ba8-578bf32fba8f`).toString('base64');
+                    const callgame = await axios.post(`https://test.ambsuperapi.com/seamless/logIn`,
+                        {
+                            "username": user.Username,
+                            "productId": productId,
+                            "gameCode": code,
+                            "isMobileLogin": false,
+                            "sessionToken": basicAuth,
+                            "language": "th",
+                            "callbackUrl": "infinity999.com",
+                        },
+                        {
+                            headers: {
+                                'Authorization': `Basic ${basicAuth}`,
+                                'Content-Type': 'application/json',
+                            },
+                        });
+                    console.log(callgame.data);
+                    console.log(
+                        {
+                            "username": user.Username,
+                            "productId": productId,
+                            "gameCode": code,
+                            "isMobileLogin": false,
+                            "sessionToken": basicAuth,
+                            "language": "th",
+                            "callbackUrl": "infinity999.com",
+                        }
+                    )
+                    console.log("==> " + user.Username + " play game " + productId + "," + name + "," + code);
+                    //return callgame.data;
+                } catch (error) {
+                    console.log(error);
+                    return { status: 'no', message: "game error", error: error }
+                }
+                try {
+                    const basicAuth = Buffer.from(`INFINITY999THB:ffa959af-503f-4bcc-8ba8-578bf32fba8f`).toString('base64');
+                    axios.post(`https://test.ambsuperapi.com/seamless/logIn`,
+                        {
+                            "username": "aisue0001",
+                            "productId": "PGSOFT2",
+                            "gameCode": code,
+                            "isMobileLogin": false,
+                            "sessionToken": basicAuth,
+                            "language": "th",
+                            "callbackUrl": "infinity999.com",
+                            // "sessionToken": "d4be40d1-349f-4fc2-a955-35d2a4bff254",
+                        },
+                        {
+                            headers: {
+                                'Authorization': `Basic ${basicAuth}`,
+                                'Content-Type': 'application/json',
+                            },
+                        }).then((result) => {
+                            console.log(result.data)
+                            return {result:result}
+                            // window.open(result.data.data.url, "_bank")
+                        })
+                } catch (error) {
+                    console.log(error)
+                }
+            } else {
+                _updateIsNotOnline(userid)
+                return { status: 'no', message: "logout" }
+            }
+        } else {
+            _updateIsNotOnline(userid)
+            return { status: 'no', message: "logout" }
+        }
     } else {
-        return await launhAMBgame();
+        _updateIsNotOnline(userid)
+        return { status: 'no', message: "logout" }
     }
 }
+
