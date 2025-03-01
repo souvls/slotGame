@@ -85,7 +85,7 @@ export async function launhGSCgame(userid: string, game_code: string, product_co
 export async function launhAMBgame(userid: string, productId: string, name: string, category: string, type: string, code: string, providerCode: string, ip: string) {
     const user = await _findUserByID(userid);
     if (user) {
-        console.log(type, productId, name, code);
+        // console.log(type, productId, name, code);
         if (user.status) {
             if (user.ip === ip) {
                 try {
@@ -106,49 +106,14 @@ export async function launhAMBgame(userid: string, productId: string, name: stri
                                 'Content-Type': 'application/json',
                             },
                         });
-                    console.log(callgame.data);
-                    console.log(
-                        {
-                            "username": user.Username,
-                            "productId": productId,
-                            "gameCode": code,
-                            "isMobileLogin": false,
-                            "sessionToken": basicAuth,
-                            "language": "th",
-                            "callbackUrl": "infinity999.com",
-                        }
-                    )
-                    console.log("==> " + user.Username + " play game " + productId + "," + name + "," + code);
-                    //return callgame.data;
+                    if (callgame.data.code === 0) {
+                        // console.log(callgame)
+                        console.log("==> " + user.Username + " play game " + productId + "," + name + "," + code);
+                        return callgame.data.data.url;
+                    }
                 } catch (error) {
                     console.log(error);
                     return { status: 'no', message: "game error", error: error }
-                }
-                try {
-                    const basicAuth = Buffer.from(`INFINITY999THB:ffa959af-503f-4bcc-8ba8-578bf32fba8f`).toString('base64');
-                    axios.post(`https://test.ambsuperapi.com/seamless/logIn`,
-                        {
-                            "username": "aisue0001",
-                            "productId": "PGSOFT2",
-                            "gameCode": code,
-                            "isMobileLogin": false,
-                            "sessionToken": basicAuth,
-                            "language": "th",
-                            "callbackUrl": "infinity999.com",
-                            // "sessionToken": "d4be40d1-349f-4fc2-a955-35d2a4bff254",
-                        },
-                        {
-                            headers: {
-                                'Authorization': `Basic ${basicAuth}`,
-                                'Content-Type': 'application/json',
-                            },
-                        }).then((result) => {
-                            console.log(result.data)
-                            return {result:result}
-                            // window.open(result.data.data.url, "_bank")
-                        })
-                } catch (error) {
-                    console.log(error)
                 }
             } else {
                 _updateIsNotOnline(userid)

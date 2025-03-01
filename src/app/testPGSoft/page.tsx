@@ -1483,7 +1483,7 @@ const page = () => {
                     },
                 }).then((result) => {
                     console.log(result.data)
-                    // window.open(result.data.data.url, "_bank")
+                    window.open(result.data.data.url, "_bank")
                 })
         } catch (error) {
             console.log(error)

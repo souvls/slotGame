@@ -85,11 +85,11 @@ const ShowGameItem: React.FC<Game> = ({ productId, name, category, type, code, p
                         })
                         return;
                     }
-                    if (res.data.code === 200) {
+                    if (res.data.code === 0) {
                         setLoading(false);
-                        if (res.data.url) {
+                        if (res.data.data.url) {
                             // saveGameHistory();
-                            url = res.data.url;
+                            url = res.data.data.url;
                         } else {
                             Swal.fire({
                                 icon: "warning",
