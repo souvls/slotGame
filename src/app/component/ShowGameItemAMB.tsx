@@ -42,7 +42,36 @@ const ShowGameItem: React.FC<Game> = ({ productId, name, category, type, code, p
             if (imgRef.current) observer.unobserve(imgRef.current);
         };
     }, []);
-    const handdlePlay = async () => {
+    // const handlePlay = async (game: any) => {
+    //     try {
+    //         const basicAuth = Buffer.from(`INFINITY999THB:ffa959af-503f-4bcc-8ba8-578bf32fba8f`).toString('base64');
+    //         const callgame = await axios.post(`https://test.ambsuperapi.com/seamless/logIn`,
+    //             {
+    //                 "username": "aisue0001",
+    //                 "productId": "1234",
+    //                 "gameCode": code,
+    //                 "isMobileLogin": false,
+    //                 "sessionToken": basicAuth,
+    //                 "language": "th",
+    //                 "callbackUrl": "infinity999.com",
+    //             },
+    //             {
+    //                 headers: {
+    //                     'Authorization': `Basic ${basicAuth}`,
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //             });
+    //         console.log(callgame)
+    //         // if (callgame.data.code === 0) {
+
+    //         //     console.log("==> " + user.Username + " play game " + productId + "," + name + "," + code);
+    //         //     return callgame.data;
+    //         // }
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
+    const handlePlay = async () => {
         var url = "";
         try {
             const cookie = Cookies.get("userdata");
@@ -90,6 +119,7 @@ const ShowGameItem: React.FC<Game> = ({ productId, name, category, type, code, p
                         if (res.data.data.url) {
                             // saveGameHistory();
                             url = res.data.data.url;
+                            console.log(url)
                         } else {
                             Swal.fire({
                                 icon: "warning",
@@ -143,7 +173,7 @@ const ShowGameItem: React.FC<Game> = ({ productId, name, category, type, code, p
     //     localStorage.setItem("game_history", JSON.stringify(temp));
     // }
     return (
-        <div ref={imgRef} onClick={handdlePlay} className='w-full'>
+        <div ref={imgRef} onClick={handlePlay} className='w-full'>
             {isVisible &&
                 <>
                     {loading && <Spinner />}

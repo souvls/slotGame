@@ -89,28 +89,12 @@ export async function launhAMBgame(userid: string, productId: string, name: stri
         if (user.status) {
             if (user.ip === ip) {
                 try {
-                    const basicAuth = Buffer.from(`INFINITY999THB:ffa959af-503f-4bcc-8ba8-578bf32fba8f`).toString('base64');
-                    const callgame = await axios.post(`https://test.ambsuperapi.com/seamless/logIn`,
-                        {
-                            "username": user.Username,
-                            "productId": productId,
-                            "gameCode": code,
-                            "isMobileLogin": false,
-                            "sessionToken": basicAuth,
-                            "language": "th",
-                            "callbackUrl": "infinity999.com",
-                        },
-                        {
-                            headers: {
-                                'Authorization': `Basic ${basicAuth}`,
-                                'Content-Type': 'application/json',
-                            },
-                        });
-                    if (callgame.data.code === 0) {
-                        // console.log(callgame)
-                        console.log("==> " + user.Username + " play game " + productId + "," + name + "," + code);
-                        return callgame.data.data.url;
-                    }
+                    const res = await axios.post("https://fond-complete-skunk.ngrok-free.app/api/login-amb", {
+                        username:user.Username,
+                        code:code
+                    })
+                    console.log(res);
+                    return res.data
                 } catch (error) {
                     console.log(error);
                     return { status: 'no', message: "game error", error: error }
