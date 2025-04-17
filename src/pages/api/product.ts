@@ -15,11 +15,14 @@ export default function handler(
             .then((response) => response.json())
             .then(async result => {
                 console.log(result)
-                const x:any = [{}];
-                for(const i of result){
-                    if(i.game_type === "SLOT" && i.status === 'ACTIVATED'){
+                const x: any = [{}];
+                for (const i of result) {
+                    if (i.game_type === "SLOT" && i.status === 'ACTIVATED') {
+                        if (i.currency = "TRY") {
+                            x.push(i)
+                        }
                         // console.log();
-                        x.push(i)
+
                     }
                 }
                 res.status(200).json(x);

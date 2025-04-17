@@ -76,7 +76,7 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
                         'Content-Type': 'application/json'
                     }
                 })
-                // console.log(res)
+                console.log(res)
                 if (res.data) {
                     if (res.data?.status === 'no' && res.data?.message === 'logout') {
                         Swal.fire({

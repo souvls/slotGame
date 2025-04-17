@@ -46,14 +46,15 @@ export async function launhGSCgame(userid: string, game_code: string, product_co
                         "game_code": game_code,
                         "product_code": product_code,
                         "game_type": game_type,
-                        "language_code": 3,
+                        "language_code": 0,
                         "ip": ip,
                         "platform": "web",
                         "sign": hash,
                         "request_time": request_time,
                         "operator_lobby_url": "https://infinity999.com",
                     }
-                    // console.log(raw);
+
+                    console.log(raw);
                     const callgame = await axios.post(`${process.env.API_NAME}/api/operators/launch-game`,
                         JSON.stringify(raw),
                         {
@@ -62,12 +63,14 @@ export async function launhGSCgame(userid: string, game_code: string, product_co
                             },
                         }
                     )
-                    // console.log(callgame);
+                    
+                    console.log(callgame);
+
                     console.log("==> " + user.Username + " play game " + game_type + "," + product_code + "," + game_code);
                     return callgame.data;
                 } catch (error) {
                     console.log(error);
-                    return { status: 'no', message: "game error" }
+                    return { status: 'no', message: error }
                 }
             } else {
                 _updateIsNotOnline(userid)
