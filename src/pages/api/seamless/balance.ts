@@ -11,7 +11,7 @@ export default async function handler(
             console.log(req.body);
             const { member_account, operator_code, request_time, currency, sign } = req.body
             //currency
-            if (currency === "IDR" || currency === "THB" || currency === 'IDR2' || currency === 'KRW2' || currency === 'MMK2' || currency === 'VND2' || currency === 'LAK2' || currency === 'KHR2') {
+            if (currency === "TRY" || currency === "THB") {
                 //sign
                 const originalSign = md5(operator_code + request_time + "getbalance" + process.env.SECRET_KEY);
                 if (sign === originalSign) {
@@ -36,6 +36,12 @@ export default async function handler(
                                 }
                             );
                         } else {
+                            console.log(
+                                {
+                                    "code": 1000,
+                                    "message": "Member Not Exists",
+                                }
+                            )
                             res.status(200).json(
                                 {
                                     "code": 1000,
@@ -44,6 +50,10 @@ export default async function handler(
                             );
                         }
                     } else {
+                        console.log({
+                            "code": 1000,
+                            "message": "Member Not Exists",
+                        })
                         res.status(200).json(
                             {
                                 "code": 1000,
@@ -52,6 +62,12 @@ export default async function handler(
                         );
                     }
                 } else {
+                    console.log(
+                        {
+                            "code": 1004,
+                            "message": "Incorrect Signature",
+                        }
+                    )
                     res.status(200).json(
                         {
                             "code": 1004,
@@ -60,6 +76,12 @@ export default async function handler(
                     );
                 }
             } else {
+                console.log(
+                    {
+                        "code": 1004,
+                        "message": "Expected return Invalid Currency",
+                    }
+                )
                 res.status(200).json(
                     {
                         "code": 1004,
@@ -68,6 +90,10 @@ export default async function handler(
                 );
             }
         } catch (err) {
+            console.log({
+                "code": 0,
+                "message": err,
+            });
             res.status(200).json(
                 {
                     "code": 0,

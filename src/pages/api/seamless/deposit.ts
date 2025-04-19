@@ -50,7 +50,7 @@ export default async function handler(
                 return;
             }
 
-            if (currency !== "IDR" && currency !== "THB" && currency !== 'IDR2' && currency !== 'KRW2' && currency !== 'MMK2' && currency !== 'VND2' && currency !== 'LAK2' && currency !== 'KHR2') {
+            if (currency !== "TRY" && currency !== "THB") {
                 console.log("Expected to Return Invalid Currency")
                 res.status(200).json(
                     {

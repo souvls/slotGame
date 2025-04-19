@@ -27,6 +27,7 @@ import products from '@/gamedata/slot/products.json'
 // import smartsoft from '@/gamedata/slot/smartsoft.json'
 // import ShowGameItemAMB from './ShowGameItemAMB';
 import axios from 'axios';
+import { getGames } from '@/action/GSC';
 
 
 // interface Product {
@@ -54,94 +55,56 @@ interface Game {
 export default function Home() {
     const router = useRouter();
     const [productActive, setProductActive] = useState(0);
-    const [games, setGames] = useState<Game[]>();
+    const [games, setGames] = useState<Game[]>([]);
     const [loadingGame, setLoadingGame] = useState(false);
+    const [page, setPage] = useState(0);
+    const [totalPage, setTotalPage] = useState(0);
+
     useEffect(() => {
         const active = localStorage.getItem("slot_active");
         if (active) {
             setProductActive(parseInt(active));
         }
+
+        fetchGames();
         //setLoadingGame(false);
         //fetchGames(1050);
     }, []);
-    // useEffect(() => {
-    //     switch (products[productActive].product_name) {
-    //         case "playstar": {
-    //             setGames(playstar); break;
-    //         }
-    //         case "pg_soft": {
-    //             setGames(pg_soft); break;
-    //         }
-    //         case "pragmatic_play": {
-    //             setGames(pragmatic_play); break;
-    //         }
-    //         case "fachai": {
-    //             setGames(fachai); break;
-    //         }
-    //         case "jili_tcg": {
-    //             setGames(jili_tcg); break;
-    //         }
-    //         case "cq9": {
-    //             setGames(cq9); break;
-    //         }
-    //         case "live_22": {
-    //             setGames(live_22); break;
-    //         }
-    //         case "netent": {
-    //             setGames(netent); break;
-    //         }
-    //         case "no_limit_city": {
-    //             setGames(no_limit_city); break;
-    //         }
-    //         case "redtiger": {
-    //             setGames(redtiger); break;
-    //         }
-    //         case "evoplay": {
-    //             setGames(evoplay); break;
-    //         }
-    //         case "jdb": {
-    //             setGames(jdb); break;
-    //         }
-    //         case "booming_games": {
-    //             setGames(booming_games); break;
-    //         }
-    //         case "wow_gaming": {
-    //             setGames(wow_gaming); break;
-    //         }
-    //         case "hacksaw": {
-    //             setGames(hacksaw); break;
-    //         }
-    //         case "octoplay": {
-    //             setGames(octoplay); break;
-    //         }
-    //         case "rich88": {
-    //             setGames(rich88); break;
-    //         }
-    //         case "smartsoft": {
-    //             setGames(smartsoft); break;
-    //         }
-    //         default: {
-    //             setGames([]);
-    //         }
-    //     }
-    // }, [productActive])
-
-    const handleSelectProduct = (index: number) => {
+    const fetchGames = async () => {
+        const data = await getGames(products[productActive].product_code, "SLOT", 0, 36);
+        setPage(data?.pagination?.offset);
+        setTotalPage(data?.pagination?.total);
+        setGames(data?.provider_games);
+        // console.log(data);
+    }
+    const handleSelectProduct = async (index: number) => {
         localStorage.setItem("slot_active", index.toString());
         setProductActive(index);
+        const data = await getGames(products[index].product_code, "SLOT", 0, 36);
+        setPage(data?.pagination?.offset);
+        setTotalPage(data?.pagination?.total);
+        setGames(data?.provider_games);
     }
-    const getGameItem = async (product_code: Number) => {
-        try {
-            setLoadingGame(true);
-            const res = await axios.get("/api/gameItem?product_code=" + product_code)
-            console.log(res.data);
-            setGames(res.data?.provider_games);
-            setLoadingGame(false);
-        } catch (error) {
-            setLoadingGame(false);
-            throw error;
-        }
+
+    const handdleLoadMore = async () => {
+        const data = await getGames(products[productActive].product_code, "SLOT", page + 1, 36);
+        setPage(data?.pagination?.offset);
+        setTotalPage(data?.pagination?.total);
+        setGames(prev => [...prev, ...data?.provider_games]);
+        console.log(data);
     }
+    // const getGameItem = async (product_code: Number) => {
+    //     try {
+    //         setLoadingGame(true);
+    //         const res = await axios.get("/api/gameItem?product_code=" + product_code)
+    //         console.log(res.data);
+    //         setGames(res.data?.provider_games);
+    //         setLoadingGame(false);
+    //     } catch (error) {
+    //         setLoadingGame(false);
+    //         throw error;
+    //     }
+    // }
 
     return (
         <>
@@ -154,7 +117,6 @@ export default function Home() {
                                     <div key={index}
                                         onClick={() => {
                                             handleSelectProduct(index);
-                                            getGameItem(item.product_code);
                                         }}
                                         className={`bg-white w-full h-[50px] flex items-center border-2  rounded-lg overflow-hidden  ${index == productActive ? 'border-yellow-300' : 'border-purple-600'}`}>
                                         <Image
@@ -171,20 +133,24 @@ export default function Home() {
                             })
                         }
                     </div>
-                    <div className='w-[80%] lg:w-[90%] grid grid-cols-3 lg:grid-cols-4 gap-4 p-5 '>
-                        {games && games?.map((item: Game, index) => {
-                            return (
-                                <>
-                                    {loadingGame && <span>losding</span>}
+                    <div>
+                        <div className=' w-full grid grid-cols-3 lg:grid-cols-4 gap-4 p-5 '>
+                            {games && games?.map((item: Game, index) => {
+                                return (
                                     <ShowGameItem
                                         key={index}
                                         product_code={products[productActive]?.product_code}
                                         product_name={products[productActive]?.product_name}
                                         game={item}
                                     />
-                                </>
-                            )
-                        })}
+                                )
+                            })}
+                        </div>
+                        {page < totalPage &&
+                            <div className='flex justify-center items-center mb-2'>
+                                <button onClick={handdleLoadMore} className=' bg-blue-500 px-2 text-white rounded-lg'>ໂຫຼດເພີ່ມ</button>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

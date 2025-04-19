@@ -83,7 +83,7 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
                             icon: "warning",
                             title: "<p>IP ບໍ່ຕົງກັນ </p>",
                             html: "<p>ກະລຸນາເຂົ້າສູ່ລະບົບໃໝ່</p>"
-                        }).then(()=>{
+                        }).then(() => {
                             Cookies.remove("userdata");
                             window.location.reload();
                         })
@@ -101,7 +101,14 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
                         if (res.data.url) {
                             saveGameHistory();
                             url = res.data.url;
-                        } else {
+                        }
+                        else if (res.data.content) {
+                            const blob = new Blob([res.data.content], { type: 'text/html' });
+                            const blobUrl = URL.createObjectURL(blob);
+                            window.open(blobUrl, '_blank');
+
+                        }
+                        else {
                             Swal.fire({
                                 icon: "warning",
                                 title: "<p>ຂໍອະໄພ</p>",
@@ -134,9 +141,9 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
                 showConfirmButton: false,
             });
         }
-        finally{
+        finally {
             setLoading(false);
-            if(url != "") {
+            if (url != "") {
                 window.open(url, '_blank');
             }
 

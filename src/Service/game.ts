@@ -42,7 +42,7 @@ export async function launhGSCgame(userid: string, game_code: string, product_co
                         "operator_code": process.env.OP_CODE,
                         "member_account": user.Username,
                         "password": user.Password,
-                        "currency": "THB",
+                        "currency": "TRY",
                         "game_code": game_code,
                         "product_code": product_code,
                         "game_type": game_type,
