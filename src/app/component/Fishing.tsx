@@ -92,6 +92,7 @@ const Fishing = () => {
                                         key={index}
                                         product_code={products[productActive].product_code}
                                         product_name={products[productActive].product_name}
+                                        product_currency={products[productActive]?.currency}
                                         game={item}
                                     />
                                 </>

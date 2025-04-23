@@ -64,7 +64,7 @@ const MenuGameType = () => {
                     )
                 })}
             </div>
-            <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>
+            {/* <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>
                 <div className='flex justify-center items-center gap-2 lg:gap-5 mb-2 px-2'>
                     {gameHistory && gameHistory.map((item, index) => {
                         if (item) {
@@ -74,6 +74,7 @@ const MenuGameType = () => {
                                         key={index}
                                         product_code={item.product_code}
                                         product_name={item.product_name}
+                                        product_currency={item.}
                                         game={item.game}
                                     />
                                 </div>
@@ -81,7 +82,7 @@ const MenuGameType = () => {
                         }
                     })}
                 </div>
-            </div>
+            </div> */}
             {selectGame === "slot" && <GameSlot />}
             {selectGame === "casino" && <LiveCasino />}
             {selectGame === "poker" && <Poker />}
