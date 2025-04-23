@@ -1,7 +1,7 @@
 [
     {
         "provider": "PG Soft",
-        "currency": "THB",
+        "currency": "TRY",
         "status": "ACTIVATED",
         "provider_id": 31,
         "product_id": 1141,
@@ -50,17 +50,6 @@
         "product_name": "jdb",
         "game_type": "SLOT",
         "product_title": "JDB"
-    },
-    {
-        "provider": "PG Soft",
-        "currency": "TRY",
-        "status": "ACTIVATED",
-        "provider_id": 31,
-        "product_id": 1141,
-        "product_code": 1007,
-        "product_name": "pg_soft",
-        "game_type": "SLOT",
-        "product_title": "PGSoft"
     },
     {
         "provider": "WOW GAMING",

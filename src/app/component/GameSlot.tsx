@@ -6,10 +6,9 @@ import { useRouter } from 'next/navigation';
 
 import ShowGameItem from './ShowGameItem';
 import products from '@/gamedata/slot/products.json'
-// import playstar from '@/gamedata/slot/playstar.json'
-// import pg_soft from '@/gamedata/slot/pg_soft.json'
-// import pg_soft2 from '@/gamedata/slot/pg_soft2.json'
-// import pragmatic_play from '@/gamedata/slot/pragmatic_play.json'
+import pg_soft from '@/gamedata/slot/pg_soft.json'
+import playstar from '@/gamedata/slot/playstar.json'
+import pragmatic_play from '@/gamedata/slot/pragmatic_play.json'
 // import fachai from '@/gamedata/slot/fachai.json'
 // import jili_tcg from '@/gamedata/slot/jili_tcg.json'
 // import cq9 from '@/gamedata/slot/cq9.json';
@@ -56,10 +55,10 @@ export default function Home() {
     const router = useRouter();
     const [productActive, setProductActive] = useState(0);
     const [games, setGames] = useState<Game[]>([]);
-    const [loadingGame, setLoadingGame] = useState(false);
+    const [currentGames, setCurrentGames] = useState<Game[]>([]);
+    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(0);
     const [totalPage, setTotalPage] = useState(0);
-    const [numPage, setNumPage] = useState(0);
     useEffect(() => {
         const active = localStorage.getItem("slot_active");
         if (active) {
@@ -71,38 +70,39 @@ export default function Home() {
         //fetchGames(1050);
     }, []);
     const fetchGames = async () => {
-        const data = await getGames(products[productActive].product_code, "SLOT", 0, 24);
-        setTotalPage(data?.pagination?.total);
-        setGames(data?.provider_games);
-        setNumPage(Math.ceil(data?.pagination?.total / 24));
-        // console.log(data);
+        setGames(pg_soft);
+        setCurrentGames(pg_soft.slice(0, 24));
+        setTotalPage(Math.ceil(pg_soft.length / 24));
+
     }
-    const handleSelectProduct = async (index: number) => {
+    const handleSelectProduct = async (index: number,product_code:number) => {
         localStorage.setItem("slot_active", index.toString());
         setProductActive(index);
-        const data = await getGames(products[index].product_code, "SLOT", 0, 24);
-        setTotalPage(data?.pagination?.total);
-        setGames(data?.provider_games);
-        setNumPage(Math.ceil(data?.pagination?.total / 24));
+        if(product_code === 1007){
+            setGames(pg_soft);
+            setCurrentGames(pg_soft.slice(0, 24));
+            setTotalPage(Math.ceil(pg_soft.length / 24));
+        }else if(product_code === 1050){
+            setGames(playstar);
+            setCurrentGames(playstar.slice(0, 24));
+            setTotalPage(Math.ceil(playstar.length / 24));
+        }
+        else if(product_code === 1006){
+            setGames(pragmatic_play);
+            setCurrentGames(pragmatic_play.slice(0, 24));
+            setTotalPage(Math.ceil(pragmatic_play.length / 24));
+        }
+        setPage(0);
     }
 
     const handdleChangPage = async (page: number) => {
-        const data = await getGames(products[productActive].product_code, "SLOT", page * 24, 24);
+        setCurrentGames(games.slice(24*page, 24*page+24));
         setPage(page);
-        setGames(data?.provider_games);
+
+        // const data = await getGames(products[productActive].product_code, "SLOT", page * 24, 24);
+        // setPage(page);
+        // setGames(data?.provider_games);
     }
-    // const getGameItem = async (product_code: Number) => {
-    //     try {
-    //         setLoadingGame(true);
-    //         const res = await axios.get("/api/gameItem?product_code=" + product_code)
-    //         console.log(res.data);
-    //         setGames(res.data?.provider_games);
-    //         setLoadingGame(false);
-    //     } catch (error) {
-    //         setLoadingGame(false);
-    //         throw error;
-    //     }
-    // }
 
     return (
         <>
@@ -114,7 +114,7 @@ export default function Home() {
                                 return (
                                     <div key={index}
                                         onClick={() => {
-                                            handleSelectProduct(index);
+                                            handleSelectProduct(index, item.product_code);
                                         }}
                                         className={`bg-white w-full h-[50px] flex items-center border-2  rounded-lg overflow-hidden  ${index == productActive ? 'border-yellow-300' : 'border-purple-600'}`}>
                                         <Image
@@ -134,7 +134,7 @@ export default function Home() {
                     </div>
                     <div>
                         <div className=' w-full grid grid-cols-4 md:grid-cols-10 gap-4 p-5 '>
-                            {games && games?.map((item: Game, index) => {
+                            {currentGames && currentGames?.map((item: Game, index) => {
                                 return (
                                     <ShowGameItem
                                         key={index}
@@ -146,15 +146,15 @@ export default function Home() {
                                 )
                             })}
                         </div>
-                        {/* <div className=' px-2 flex flex-wrap gap-3'>
+                        <div className=' px-2 flex justify-center flex-wrap gap-3'>
                             {
-                                Array.from({ length: numPage }, (_, i) => {
+                                Array.from({ length: totalPage }, (_, i) => {
                                     return (
-                                        <button onClick={() => handdleChangPage(i)} className={`${page === i && 'bg-sky-500'} border border-sky-500 text-white p-1 rounded-lg`}>{i + 1}</button>
+                                        <button onClick={() => handdleChangPage(i)} className={`${page === i && 'bg-sky-500'} border border-sky-500 text-white px-2 rounded-lg`}>{i + 1}</button>
                                     )
                                 })
                             }
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>

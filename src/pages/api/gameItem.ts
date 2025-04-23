@@ -14,20 +14,20 @@ export default function handler(
             "&operator_code=" + process.env.OP_CODE +
             "&game_type=" + "SLOT" +
             "&sign=" + hash +
-            "&request_time=" + request_time+
-            "&offset=" + 24 +
-            "&size=" + 24
+            "&request_time=" + request_time
+            // "&offset=" + 24 +
+            // "&size=" + 24
 
         )
             .then((response) => response.json())
             .then(result => {
-                // const game = result.provider_games.reduce((acc: any, current: any) => {
-                //     if (current.status === "ACTIVATED" && !acc.find((item: any) => (item.game_name === current.game_name))) {
-                //         acc.push(current);
-                //     }
-                //     return acc;
-                // }, []);
-                res.status(200).json(result);
+                const game = result.provider_games.reduce((acc: any, current: any) => {
+                    if (current.status === "ACTIVATED" && !acc.find((item: any) => (item.game_name === current.game_name))) {
+                        acc.push(current);
+                    }
+                    return acc;
+                }, []);
+                res.status(200).json({length: game.length, game: game});
                 //console.log(game);
                 // setGames(game);
             })
