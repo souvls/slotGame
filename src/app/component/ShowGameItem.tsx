@@ -18,12 +18,13 @@ interface Game {
     support_currency: string,
 }
 interface Props {
-    product_code: Number,
-    product_name: String
+    product_code: number,
+    product_name: string,
+    product_currency: string,
     game: Game
 }
 
-const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => {
+const ShowGameItem: React.FC<Props> = ({ product_code, product_name, product_currency, game }) => {
     const router = useRouter();
     const [isVisible, setIsVisible] = useState(false);
     const imgRef = useRef<HTMLImageElement | null>(null);
@@ -49,6 +50,7 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
     }, []);
     const handdlePlay = async () => {
         var url = "";
+        var html = "";
         try {
             const cookie = Cookies.get("userdata");
             if (cookie) {
@@ -61,15 +63,18 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
                     })
                     return
                 }
-
                 setLoading(true);
                 const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json());
+                // const result = await playGame(user.username, game.game_code, product_code, game.game_type, ip.ip, product_currency);
+                // console.log(result)
                 const raw = {
                     game_code: game.game_code,
                     product_code: product_code,
                     game_type: game.game_type,
+                    product_currency: product_currency,
                     ip: ip.ip
                 }
+
                 const res = await axios.post("/api/user/playgame", raw, {
                     headers: {
                         'Authorization': 'Bearer ' + user.token,
@@ -103,10 +108,8 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
                             url = res.data.url;
                         }
                         else if (res.data.content) {
-                            const blob = new Blob([res.data.content], { type: 'text/html' });
-                            const blobUrl = URL.createObjectURL(blob);
-                            window.open(blobUrl, '_blank');
-
+                            saveGameHistory();
+                            html = res.data.content;
                         }
                         else {
                             Swal.fire({
@@ -146,6 +149,11 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
             if (url != "") {
                 window.open(url, '_blank');
             }
+            if (html != "") {
+                const blob = new Blob([html], { type: 'text/html' });
+                const blobUrl = URL.createObjectURL(blob);
+                window.open(blobUrl, '_blank');
+            }
 
         }
     }
@@ -153,7 +161,7 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
         const temp: Props[] = [];
         const gameHistory = localStorage.getItem("game_history");
         const Games: Props[] = gameHistory ? JSON.parse(gameHistory) : [];
-        const x = { product_code: product_code, product_name: product_name, game: game }
+        const x = { product_code: product_code, product_name: product_name, product_currency: product_currency, game: game }
         temp.push(x);
         for (var i = 0; i < 4; i++) {
             temp.push(Games[i]);
@@ -161,7 +169,7 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, game }) => 
         localStorage.setItem("game_history", JSON.stringify(temp));
     }
     return (
-        <div ref={imgRef} onClick={handdlePlay} className='w-full'>
+        <div ref={imgRef} onClick={handdlePlay} className=''>
             {isVisible &&
                 <>
                     {loading && <Spinner />}

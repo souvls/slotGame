@@ -14,11 +14,11 @@ export default function handler(
             "&request_time=" + request_time)
             .then((response) => response.json())
             .then(async result => {
-                console.log(result)
+                // console.log(result)
                 const x: any = [{}];
                 for (const i of result) {
                     if (i.game_type === "SLOT" && i.status === 'ACTIVATED') {
-                        if (i.currency = "THB") {
+                        if (i.currency = "TRY") {
                             x.push(i)
                         }
                         // console.log();

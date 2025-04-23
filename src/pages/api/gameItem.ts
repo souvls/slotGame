@@ -14,7 +14,10 @@ export default function handler(
             "&operator_code=" + process.env.OP_CODE +
             "&game_type=" + "SLOT" +
             "&sign=" + hash +
-            "&request_time=" + request_time
+            "&request_time=" + request_time+
+            "&offset=" + 24 +
+            "&size=" + 24
+
         )
             .then((response) => response.json())
             .then(result => {

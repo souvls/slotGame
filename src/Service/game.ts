@@ -28,7 +28,8 @@ export async function productList() {
 export async function historyPayGame(userid: string, page: number, numberOfPage: number) {
     return await _getTransactionByUserID(userid, page, numberOfPage);
 }
-export async function launhGSCgame(userid: string, game_code: string, product_code: number, ip: string, game_type: string) {
+//in server  component
+export async function launhGSCgame(userid: string, game_code: string, product_code: number, ip: string, game_type: string,currency: string) {
     const user = await _findUserByID(userid);
     if (user) {
         console.log(game_type, game_code, product_code);
@@ -42,7 +43,7 @@ export async function launhGSCgame(userid: string, game_code: string, product_co
                         "operator_code": process.env.OP_CODE,
                         "member_account": user.Username,
                         "password": user.Password,
-                        "currency": "TRY",
+                        "currency": currency,
                         "game_code": game_code,
                         "product_code": product_code,
                         "game_type": game_type,
@@ -54,7 +55,7 @@ export async function launhGSCgame(userid: string, game_code: string, product_co
                         "operator_lobby_url": "https://infinity999.com",
                     }
 
-                    console.log(raw);
+                    // console.log(raw);
                     const callgame = await axios.post(`${process.env.API_NAME}/api/operators/launch-game`,
                         JSON.stringify(raw),
                         {
@@ -64,7 +65,7 @@ export async function launhGSCgame(userid: string, game_code: string, product_co
                         }
                     )
                     
-                    console.log(callgame);
+                    // console.log(callgame);
 
                     console.log("==> " + user.Username + " play game " + game_type + "," + product_code + "," + game_code);
                     return callgame.data;

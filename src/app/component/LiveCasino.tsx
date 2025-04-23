@@ -94,6 +94,7 @@ const LiveCasino = () => {
                             return (
                                 <ShowGameItem
                                     key={index}
+                                    product_currency={products[productActive]?.currency}
                                     product_code={products[productActive].product_code}
                                     product_name={products[productActive].product_name}
                                     game={item}

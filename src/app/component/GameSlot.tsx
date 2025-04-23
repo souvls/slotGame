@@ -59,7 +59,7 @@ export default function Home() {
     const [loadingGame, setLoadingGame] = useState(false);
     const [page, setPage] = useState(0);
     const [totalPage, setTotalPage] = useState(0);
-
+    const [numPage, setNumPage] = useState(0);
     useEffect(() => {
         const active = localStorage.getItem("slot_active");
         if (active) {
@@ -71,27 +71,25 @@ export default function Home() {
         //fetchGames(1050);
     }, []);
     const fetchGames = async () => {
-        const data = await getGames(products[productActive].product_code, "SLOT", 0, 36);
-        setPage(data?.pagination?.offset);
+        const data = await getGames(products[productActive].product_code, "SLOT", 0, 24);
         setTotalPage(data?.pagination?.total);
         setGames(data?.provider_games);
+        setNumPage(Math.ceil(data?.pagination?.total / 24));
         // console.log(data);
     }
     const handleSelectProduct = async (index: number) => {
         localStorage.setItem("slot_active", index.toString());
         setProductActive(index);
-        const data = await getGames(products[index].product_code, "SLOT", 0, 36);
-        setPage(data?.pagination?.offset);
+        const data = await getGames(products[index].product_code, "SLOT", 0, 24);
         setTotalPage(data?.pagination?.total);
         setGames(data?.provider_games);
+        setNumPage(Math.ceil(data?.pagination?.total / 24));
     }
 
-    const handdleLoadMore = async () => {
-        const data = await getGames(products[productActive].product_code, "SLOT", page + 1, 36);
-        setPage(data?.pagination?.offset);
-        setTotalPage(data?.pagination?.total);
-        setGames(prev => [...prev, ...data?.provider_games]);
-        console.log(data);
+    const handdleChangPage = async (page: number) => {
+        const data = await getGames(products[productActive].product_code, "SLOT", page * 24, 24);
+        setPage(page);
+        setGames(data?.provider_games);
     }
     // const getGameItem = async (product_code: Number) => {
     //     try {
@@ -109,7 +107,7 @@ export default function Home() {
     return (
         <>
             <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>
-                <div className='flex border rounded-lg overflow-hidden'>
+                <div className='flex border rounded-lg '>
                     <div className='w-[20%] lg:w-[10%] flex flex-col gap-2 bg-gray-800 px-2 py-4'>
                         {
                             products.map((item, index) => {
@@ -120,6 +118,7 @@ export default function Home() {
                                         }}
                                         className={`bg-white w-full h-[50px] flex items-center border-2  rounded-lg overflow-hidden  ${index == productActive ? 'border-yellow-300' : 'border-purple-600'}`}>
                                         <Image
+                                            loading='lazy'
                                             src={`/assets/icon/product/${item.product_name}.png`}
                                             alt={item.product_name} width={100} height={100}
                                             onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -134,23 +133,28 @@ export default function Home() {
                         }
                     </div>
                     <div>
-                        <div className=' w-full grid grid-cols-3 lg:grid-cols-4 gap-4 p-5 '>
+                        <div className=' w-full grid grid-cols-4 md:grid-cols-10 gap-4 p-5 '>
                             {games && games?.map((item: Game, index) => {
                                 return (
                                     <ShowGameItem
                                         key={index}
                                         product_code={products[productActive]?.product_code}
                                         product_name={products[productActive]?.product_name}
+                                        product_currency={products[productActive]?.currency}
                                         game={item}
                                     />
                                 )
                             })}
                         </div>
-                        {page < totalPage &&
-                            <div className='flex justify-center items-center mb-2'>
-                                <button onClick={handdleLoadMore} className=' bg-blue-500 px-2 text-white rounded-lg'>ໂຫຼດເພີ່ມ</button>
-                            </div>
-                        }
+                        <div className=' px-2 flex flex-wrap gap-3'>
+                            {
+                                Array.from({ length: numPage }, (_, i) => {
+                                    return (
+                                        <button onClick={() => handdleChangPage(i)} className={`${page === i && 'bg-sky-500'} border border-sky-500 text-white p-1 rounded-lg`}>{i + 1}</button>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
