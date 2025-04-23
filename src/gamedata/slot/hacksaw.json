@@ -1,32 +1,22 @@
 [
     {
-        "game_code": "1043",
-        "game_name": "OmNom",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1043.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
         "game_code": "1042",
         "game_name": "Stickem",
         "game_type": "SLOT",
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1042.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1049",
-        "game_name": "MiamiMultiplier",
+        "game_code": "1043",
+        "game_name": "OmNom",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1049.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1043.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
@@ -36,7 +26,17 @@
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1048.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1049",
+        "game_name": "MiamiMultiplier",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1049.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
@@ -46,7 +46,7 @@
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1055.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
@@ -56,7 +56,7 @@
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1058.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
@@ -66,27 +66,7 @@
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1059.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1071",
-        "game_name": "Mystery Motel",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1071.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1069",
-        "game_name": "Cubes2",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1069.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
@@ -96,87 +76,7 @@
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1066.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1081",
-        "game_name": "Frutz",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1081.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1084",
-        "game_name": "Stack 'em",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1084.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1091",
-        "game_name": "Hop 'n Pop",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1091.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1093",
-        "game_name": "Xpander",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1093.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1096",
-        "game_name": "Tasty Treats",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1096.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1099",
-        "game_name": "Cash Quest",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1099.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1087",
-        "game_name": "Toshi Video Club",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1087.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1102",
-        "game_name": "Rocket Reels",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1102.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
@@ -186,507 +86,17 @@
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1067.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1144",
-        "game_name": "Double Rainbow",
+        "game_code": "1069",
+        "game_name": "Cubes2",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1144.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1069.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1117",
-        "game_name": "Joker Bombs",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1117.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1140",
-        "game_name": "Harvest Wilds",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1140.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1127",
-        "game_name": "King Carrot",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1127.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1135",
-        "game_name": "The Bowery Boys",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1135.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1131",
-        "game_name": "Warrior Ways",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1131.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1160",
-        "game_name": "Gladiator Legends",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1160.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1164",
-        "game_name": "Hand of Anubis",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1164.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1189",
-        "game_name": "Born WILD",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1189.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1168",
-        "game_name": "Itero",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1168.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1176",
-        "game_name": "Buffalo Stack 'n' Sync",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1176.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1083",
-        "game_name": "Outlaws Inc",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1083.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1181",
-        "game_name": "Time Spinners",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1181.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1172",
-        "game_name": "Dork Unit",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1172.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1197",
-        "game_name": "Fruit Duel",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1197.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1185",
-        "game_name": "Forest Fortune",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1185.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1201",
-        "game_name": "Alpha Eagle",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1201.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1193",
-        "game_name": "Undead Fortune",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1193.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1205",
-        "game_name": "BreakBones",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1205.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1217",
-        "game_name": "Pug Life",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1217.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1213",
-        "game_name": "Book of Time",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1213.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1221",
-        "game_name": "Gronk's Gems",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1221.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1251",
-        "game_name": "Bloodthirst",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1251.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1209",
-        "game_name": "Rotten",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1209.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1233",
-        "game_name": "Rip City",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1233.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1225",
-        "game_name": "Frank's Farm",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1225.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1247",
-        "game_name": "Magic Piggy",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1247.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1259",
-        "game_name": "Keep 'em Cool",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1259.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1243",
-        "game_name": "Stormforged",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1243.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1271",
-        "game_name": "Fear the Dark",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1271.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1263",
-        "game_name": "Cursed Seas",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1263.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1275",
-        "game_name": "Mayan Stackways",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1275.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1237",
-        "game_name": "Temple Of Torment",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1237.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1305",
-        "game_name": "Mighty Masks",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1305.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1279",
-        "game_name": "Beast Below",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1279.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1340",
-        "game_name": "Vending Machine",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1340.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1314",
-        "game_name": "Drop'em",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1314.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1267",
-        "game_name": "Ronin Stackways",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1267.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1309",
-        "game_name": "Le Bandit",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1309.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1348",
-        "game_name": "Densho",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1348.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1352",
-        "game_name": "Chaos Crew 2",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1352.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1356",
-        "game_name": "Benny the Beer",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1356.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1344",
-        "game_name": "Eye of the Panda",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1344.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1364",
-        "game_name": "Immortal Desire",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1364.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1392",
-        "game_name": "Dark Summoning",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1392.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1400",
-        "game_name": "2Wild2Die",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1400.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1372",
-        "game_name": "Feel the Beat",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1372.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1426",
-        "game_name": "Beam Boys",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1426.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1408",
-        "game_name": "Fist of Destruction",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1408.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1442",
-        "game_name": "Dawn of Kings",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1442.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
@@ -696,37 +106,537 @@
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1070.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1396",
-        "game_name": "Xmas Drop",
+        "game_code": "1071",
+        "game_name": "Mystery Motel",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1396.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1071.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1508",
-        "game_name": "Ze Zeus",
+        "game_code": "1081",
+        "game_name": "Frutz",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1508.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1081.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1423",
-        "game_name": "Bouncy Bombs",
+        "game_code": "1083",
+        "game_name": "Outlaws Inc",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1423.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1083.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1084",
+        "game_name": "Stack 'em",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1084.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1087",
+        "game_name": "Toshi Video Club",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1087.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1091",
+        "game_name": "Hop 'n Pop",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1091.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1093",
+        "game_name": "Xpander",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1093.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1096",
+        "game_name": "Tasty Treats",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1096.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1099",
+        "game_name": "Cash Quest",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1099.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1102",
+        "game_name": "Rocket Reels",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1102.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1117",
+        "game_name": "Joker Bombs",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1117.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1127",
+        "game_name": "King Carrot",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1127.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1131",
+        "game_name": "Warrior Ways",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1131.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1135",
+        "game_name": "The Bowery Boys",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1135.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1140",
+        "game_name": "Harvest Wilds",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1140.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1144",
+        "game_name": "Double Rainbow",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1144.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1160",
+        "game_name": "Gladiator Legends",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1160.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1164",
+        "game_name": "Hand of Anubis",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1164.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1168",
+        "game_name": "Itero",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1168.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1172",
+        "game_name": "Dork Unit",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1172.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1176",
+        "game_name": "Buffalo Stack 'n' Sync",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1176.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1181",
+        "game_name": "Time Spinners",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1181.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1185",
+        "game_name": "Forest Fortune",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1185.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1189",
+        "game_name": "Born WILD",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1189.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1193",
+        "game_name": "Undead Fortune",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1193.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1197",
+        "game_name": "Fruit Duel",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1197.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1201",
+        "game_name": "Alpha Eagle",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1201.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1205",
+        "game_name": "BreakBones",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1205.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1209",
+        "game_name": "Rotten",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1209.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1213",
+        "game_name": "Book of Time",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1213.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1217",
+        "game_name": "Pug Life",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1217.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1221",
+        "game_name": "Gronk's Gems",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1221.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1225",
+        "game_name": "Frank's Farm",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1225.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1233",
+        "game_name": "Rip City",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1233.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1234",
+        "game_name": "Rip city",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1234.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1237",
+        "game_name": "Temple Of Torment",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1237.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1243",
+        "game_name": "Stormforged",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1243.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1247",
+        "game_name": "Magic Piggy",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1247.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1251",
+        "game_name": "Bloodthirst",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1251.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1259",
+        "game_name": "Keep 'em Cool",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1259.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1263",
+        "game_name": "Cursed Seas",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1263.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1267",
+        "game_name": "Ronin Stackways",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1267.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1271",
+        "game_name": "Fear the Dark",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1271.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1275",
+        "game_name": "Mayan Stackways",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1275.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1279",
+        "game_name": "Beast Below",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1279.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1288",
+        "game_name": "Le Bandit",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1288.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1289",
+        "game_name": "Drop'em",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1289.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1305",
+        "game_name": "Mighty Masks",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1305.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1340",
+        "game_name": "Vending Machine",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1340.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1344",
+        "game_name": "Eye of the Panda",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1344.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1348",
+        "game_name": "Densho",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1348.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1352",
+        "game_name": "Chaos Crew 2",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1352.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1356",
+        "game_name": "Benny the Beer",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1356.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
@@ -736,67 +646,107 @@
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1360.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1536",
-        "game_name": "SixSixSix",
+        "game_code": "1364",
+        "game_name": "Immortal Desire",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1536.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1364.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1459",
-        "game_name": "Cash Crew",
+        "game_code": "1372",
+        "game_name": "Feel the Beat",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1459.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1372.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1494",
-        "game_name": "Keep'em",
+        "game_code": "1392",
+        "game_name": "Dark Summoning",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1494.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1392.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1485",
-        "game_name": "Slayers Inc",
+        "game_code": "1396",
+        "game_name": "Xmas Drop",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1485.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1396.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1517",
-        "game_name": "Twisted Lab",
+        "game_code": "1400",
+        "game_name": "2Wild2Die",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1517.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1400.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1235",
-        "game_name": "Rip city",
+        "game_code": "1404",
+        "game_name": "Rusty & Curly",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1235.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1404.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1408",
+        "game_name": "Fist of Destruction",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1408.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1422",
+        "game_name": "Bouncy Bombs",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1422.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1426",
+        "game_name": "Beam Boys",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1426.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1430",
+        "game_name": "Dorks of the Deep",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1430.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
@@ -806,27 +756,127 @@
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1434.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1493",
-        "game_name": "Divine Drop",
+        "game_code": "1438",
+        "game_name": "Klowns",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1493.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1438.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1453",
+        "game_code": "1442",
+        "game_name": "Dawn of Kings",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1442.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1452",
         "game_name": "Jelly Slice",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1453.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1452.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1456",
+        "game_name": "Cash Crew",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1456.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1460",
+        "game_name": "Life and Death",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1460.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1464",
+        "game_name": "Slayers Inc",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1464.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1467",
+        "game_name": "Donny Dough",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1467.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1468",
+        "game_name": "SixSixSix",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1468.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1469",
+        "game_name": "Le Pharaoh",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1469.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1470",
+        "game_name": "Duel at Dawn",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1470.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1471",
+        "game_name": "Donut Division",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1471.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1474",
+        "game_name": "Orb of Destiny",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1474.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
@@ -836,137 +886,227 @@
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1478.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1405",
-        "game_name": "Rusty & Curly",
+        "game_code": "1486",
+        "game_name": "Fighter Pit",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1405.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1486.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1476",
-        "game_name": "Orb of Destiny",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1476.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1531",
-        "game_name": "Donny Dough",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1531.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1585",
-        "game_name": "Octo Attack",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1585.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1573",
-        "game_name": "Evil Eyes",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1573.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1563",
-        "game_name": "Le Pharaoh",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1563.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1605",
-        "game_name": "Cloud Princess",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1605.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1582",
-        "game_name": "Get the CHEESE",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1582.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1619",
-        "game_name": "Rise of Ymir",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1619.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1613",
-        "game_name": "Wings of Horus",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1613.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1621",
-        "game_name": "Duel at Dawn",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1621.png",
-        "product_id": 1230,
-        "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "1559",
+        "game_code": "1487",
         "game_name": "Snow Slingers",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1559.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1487.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "1555",
-        "game_name": "Shaolin Master",
+        "game_code": "1490",
+        "game_name": "Divine Drop",
         "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1555.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1490.png",
         "product_id": 1230,
         "product_code": 1153,
-        "support_currency": "THB,INR,USD,NGN,AED,COP,PKR,IDR,VND,MMK,BDT,AUD,LKR,MXN,BRL,MYR,IDR2,JPY,TND,HKD,PHP,AOA,KES,NPR,CNY",
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1494",
+        "game_name": "Keep'em",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1494.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1508",
+        "game_name": "Ze Zeus",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1508.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1514",
+        "game_name": "Twisted Lab",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1514.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1554",
+        "game_name": "Shaolin Master",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1554.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1570",
+        "game_name": "Evil Eyes",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1570.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1580",
+        "game_name": "Get the CHEESE",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1580.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1584",
+        "game_name": "Octo Attack",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1584.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1602",
+        "game_name": "Cloud Princess",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1602.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1612",
+        "game_name": "Wings of Horus",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1612.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1616",
+        "game_name": "Rise of Ymir",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1616.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1640",
+        "game_name": "Fire my Laser",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1640.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1666",
+        "game_name": "Hounds of Hell",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1666.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1675",
+        "game_name": "Phoenix DuelReels",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1675.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1681",
+        "game_name": "Marlin Masters",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1681.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1689",
+        "game_name": "Le Viking",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1689.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1693",
+        "game_name": "FRKN Bananas",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1693.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1697",
+        "game_name": "Strength of Hercules",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1697.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1711",
+        "game_name": "Wishbringer",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1711.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1728",
+        "game_name": "Reign of Rome",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1153/SLOT/1728.png",
+        "product_id": 1230,
+        "product_code": 1153,
+        "support_currency": "NPR,AUD,COP,LKR,EUR,PHP,AED,TND,IDR2,JPY,PKR,VND,INR,USD,BDT,HKD,KRW,THB,MMK,MYR,SAR,KES,MXN,TWD,BRL,NGN,AOA,IDR,CNY",
         "status": "ACTIVATED"
     }
 ]
