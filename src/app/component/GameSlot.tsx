@@ -146,7 +146,7 @@ export default function Home() {
                                 )
                             })}
                         </div>
-                        <div className=' px-2 flex flex-wrap gap-3'>
+                        {/* <div className=' px-2 flex flex-wrap gap-3'>
                             {
                                 Array.from({ length: numPage }, (_, i) => {
                                     return (
@@ -154,7 +154,7 @@ export default function Home() {
                                     )
                                 })
                             }
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

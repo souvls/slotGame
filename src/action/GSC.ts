@@ -12,9 +12,9 @@ export const getGames = async (product_code: number, game_type: string, offset: 
             "&operator_code=" + process.env.OP_CODE +
             "&game_type=" + game_type +
             "&sign=" + hash +
-            "&request_time=" + request_time +
-            "&offset=" + offset +
-            "&size=" + size
+            "&request_time=" + request_time 
+            // "&offset=" + offset +
+            // "&size=" + size
         )
         // console.log(res.data);
         return res.data;
