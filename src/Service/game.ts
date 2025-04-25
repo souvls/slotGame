@@ -65,7 +65,7 @@ export async function launhGSCgame(userid: string, game_code: string, product_co
                         }
                     )
                     
-                    // console.log(callgame);
+                    console.log(callgame);
 
                     console.log("==> " + user.Username + " play game " + game_type + "," + product_code + "," + game_code);
                     return callgame.data;

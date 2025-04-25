@@ -12,7 +12,7 @@ export default function handler(
         fetch(process.env.API_NAME + "/api/operators/provider-games" +
             "?product_code=" + product_code +
             "&operator_code=" + process.env.OP_CODE +
-            "&game_type=" + "SLOT" +
+            "&game_type=" + "POKER" +
             "&sign=" + hash +
             "&request_time=" + request_time
             // "&offset=" + 24 +
@@ -32,6 +32,7 @@ export default function handler(
                 // setGames(game);
             })
             .catch(err => {
+                console.log(err)
                 throw err
             })
     } else if (req.method === 'POST') {

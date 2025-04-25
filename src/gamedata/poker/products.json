@@ -1,12 +1,13 @@
 [
     {
-        "provider": "Spribe",
+        "provider": "SBO",
         "currency": "THB",
         "status": "ACTIVATED",
-        "provider_id": 92,
-        "product_id": 1,
-        "product_code": 1138,
-        "product_name": "spribe",
-        "game_type": "POKER"
+        "provider_id": 2,
+        "product_id": 1190,
+        "product_code": 1012,
+        "product_name": "sbo",
+        "game_type": "POKER",
+        "product_title": "SBO"
     }
 ]

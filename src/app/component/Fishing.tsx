@@ -83,7 +83,7 @@ const Fishing = () => {
                             })
                         }
                     </div>
-                    <div className='w-[80%] lg:w-[90%] grid grid-cols-3 lg:grid-cols-4 gap-4 p-5 '>
+                    {/* <div className='w-[80%] lg:w-[90%] grid grid-cols-3 lg:grid-cols-4 gap-4 p-5 '>
                         {games && games.length > 0 && games.map((item: any, index) => {
                             // console.log(item)
                             return (
@@ -98,7 +98,7 @@ const Fishing = () => {
                                 </>
                             )
                         })}
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

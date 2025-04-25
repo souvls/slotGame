@@ -20,20 +20,20 @@
         "status": "ACTIVATED"
     },
     {
-        "game_code": "MX-LIVE-009",
-        "game_name": "Roulette",
+        "game_code": "MX-LIVE-006",
+        "game_name": "DragonTiger",
         "game_type": "LIVE_CASINO",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1022/LIVE_CASINO/MX-LIVE-009.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1022/LIVE_CASINO/MX-LIVE-006.png",
         "product_id": 1166,
         "product_code": 1022,
         "support_currency": "THB",
         "status": "ACTIVATED"
     },
     {
-        "game_code": "MX-LIVE-010",
-        "game_name": "Red Blue Duel",
+        "game_code": "MX-LIVE-009",
+        "game_name": "Roulette",
         "game_type": "LIVE_CASINO",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1022/LIVE_CASINO/MX-LIVE-010.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1022/LIVE_CASINO/MX-LIVE-009.png",
         "product_id": 1166,
         "product_code": 1022,
         "support_currency": "THB",
@@ -100,10 +100,10 @@
         "status": "ACTIVATED"
     },
     {
-        "game_code": "MX-LIVE-006",
-        "game_name": "DragonTiger",
+        "game_code": "MX-LIVE-018",
+        "game_name": "Pok Deng",
         "game_type": "LIVE_CASINO",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1022/LIVE_CASINO/MX-LIVE-006.png",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1022/LIVE_CASINO/MX-LIVE-018.png",
         "product_id": 1166,
         "product_code": 1022,
         "support_currency": "THB",

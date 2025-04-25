@@ -17,10 +17,11 @@ export default function handler(
                 // console.log(result)
                 const x: any = [{}];
                 for (const i of result) {
-                    if (i.game_type === "SLOT" && i.status === 'ACTIVATED') {
-                        if (i.currency = "TRY") {
-                            x.push(i)
+                    if (i.game_type === "FISHING" && i.status === 'ACTIVATED') {
+                        if (i.currency = "THB") {
+                            
                         }
+                        x.push(i)
                         // console.log();
 
                     }

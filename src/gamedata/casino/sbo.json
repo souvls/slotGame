@@ -1,0 +1,72 @@
+[
+    {
+        "game_code": "1",
+        "game_name": "Baccarat",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1012/LIVE_CASINO/1.png",
+        "product_id": 1192,
+        "product_code": 1012,
+        "support_currency": "KES",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "10",
+        "game_name": "MultipleTableBaccarat",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1012/LIVE_CASINO/10.png",
+        "product_id": 1192,
+        "product_code": 1012,
+        "support_currency": "KES",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "11",
+        "game_name": "BeautyBaccarat",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1012/LIVE_CASINO/11.png",
+        "product_id": 1192,
+        "product_code": 1012,
+        "support_currency": "KES",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "12",
+        "game_name": "SpeedBaccarat",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1012/LIVE_CASINO/12.png",
+        "product_id": 1192,
+        "product_code": 1012,
+        "support_currency": "KES",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "3",
+        "game_name": "Roulette",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1012/LIVE_CASINO/3.png",
+        "product_id": 1192,
+        "product_code": 1012,
+        "support_currency": "KES",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "5",
+        "game_name": "SicBo",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1012/LIVE_CASINO/5.png",
+        "product_id": 1192,
+        "product_code": 1012,
+        "support_currency": "KES",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "9",
+        "game_name": "DragonTiger",
+        "game_type": "LIVE_CASINO",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1012/LIVE_CASINO/9.png",
+        "product_id": 1192,
+        "product_code": 1012,
+        "support_currency": "KES",
+        "status": "ACTIVATED"
+    }
+]
