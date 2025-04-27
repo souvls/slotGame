@@ -105,11 +105,16 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, product_cur
                         setLoading(false);
                         if (res.data.url) {
                             saveGameHistory();
-                            url = res.data.url;
+                            // url = res.data.url;
+                            window.open(res.data.url, '_blank');
                         }
                         else if (res.data.content) {
                             saveGameHistory();
-                            html = res.data.content;
+                            // html = res.data.content;
+                            const blob = new Blob([res.data.content], { type: 'text/html' });
+                            const blobUrl = URL.createObjectURL(blob);
+                            window.open(blobUrl, '_blank');
+
                         }
                         else {
                             Swal.fire({
@@ -144,18 +149,24 @@ const ShowGameItem: React.FC<Props> = ({ product_code, product_name, product_cur
                 showConfirmButton: false,
             });
         }
-        finally {
-            setLoading(false);
-            if (url != "") {
-                window.open(url, '_blank');
-            }
-            if (html != "") {
-                const blob = new Blob([html], { type: 'text/html' });
-                const blobUrl = URL.createObjectURL(blob);
-                window.open(blobUrl, '_blank');
-            }
+        // finally {
+        //     setLoading(false);
+        //     if (url != "") {
+        //         window.open(url, '_blank');
+        //     }
+        //     if (html != "") {
+        //         const blob = new Blob([html], { type: 'text/html' });
+        //         const blobUrl = URL.createObjectURL(blob);
+        //         window.open(blobUrl, '_blank');
 
-        }
+        //         // const htmlContent = html;
+        //         // const base64Html = Buffer.from(htmlContent).toString('base64');
+        //         console.log(blob);
+        //         // const url = "/pg/"+base64Html
+        //         window.open(blob, '_blank');
+        //     }
+
+        // }
     }
     const saveGameHistory = () => {
         const temp: Props[] = [];

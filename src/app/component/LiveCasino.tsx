@@ -33,15 +33,12 @@ const LiveCasino = () => {
         fetchGames();
     }, []);
     const fetchGames = async () => {
-        setGames(sbo);
+        setGames(sa_gaming);
     }
     const handleSelectProduct = async (index: number, product_code: number) => {
-        localStorage.setItem("slot_active", index.toString());
+        localStorage.setItem("casino_active", index.toString());
         setProductActive(index);
-        if (product_code === 1012) {
-            setGames(sbo);
-        }
-        else if (product_code === 1185) {
+        if (product_code === 1185) {
             setGames(sa_gaming);
         }
         else if (product_code === 1185) {
