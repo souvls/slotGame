@@ -40,22 +40,22 @@ export default async function handler(
                 return
             }
             for (const i of transactions) {
-                // transactionID.push(i.id)
+                transactionID.push(i.id)
                 total_amount += parseFloat(parseFloat(i.amount).toFixed(2))
             }
 
             //check duplicate
-            // const duplicate = await Transaction.find({ 'transactions.id': { $in: transactionID } })
-            // if (duplicate.length !== 0 || hasDuplicates(transactionID)) {
-            //     console.log("Duplicate Transaction")
-            //     res.status(200).json(
-            //         {
-            //             "code": 1003,
-            //             "message": "Duplicate Transaction",
-            //         }
-            //     );
-            //     return;
-            // }
+            const duplicate = await Transaction.find({ 'transactions.id': { $in: transactionID } })
+            if (duplicate.length !== 0 || hasDuplicates(transactionID)) {
+                console.log("Duplicate Transaction")
+                res.status(200).json(
+                    {
+                        "code": 1003,
+                        "message": "Duplicate Transaction",
+                    }
+                );
+                return;
+            }
             const user = await User.findOne({ Username: member_account });
             if (!user || !user.status) {
                 console.log("Member Not Exists")
@@ -72,21 +72,21 @@ export default async function handler(
                     { $inc: { Amount: parseFloat(total_amount.toFixed(2)) } },
                     { new: true }
                 );
-                // const TST = new Transaction({
-                //     agent_id: user.MemberID,
-                //     member_account: member_account,
-                //     member_id: user._id,
-                //     before_balance: parseFloat(parseFloat(user.Amount).toFixed(2)),
-                //     balance: parseFloat(parseFloat(update_balance_user.Amount).toFixed(2)),
-                //     operator_code: operator_code,
-                //     product_code: product_code,
-                //     game_type: game_type,
-                //     request_time: request_time,
-                //     sign: sign,
-                //     currency: currency,
-                //     transactions: transactions
-                // });
-                // TST.save();
+                const TST = new Transaction({
+                    agent_id: user.MemberID,
+                    member_account: member_account,
+                    member_id: user._id,
+                    before_balance: parseFloat(parseFloat(user.Amount).toFixed(2)),
+                    balance: parseFloat(parseFloat(update_balance_user.Amount).toFixed(2)),
+                    operator_code: operator_code,
+                    product_code: product_code,
+                    game_type: game_type,
+                    request_time: request_time,
+                    sign: sign,
+                    currency: currency,
+                    transactions: transactions
+                });
+                TST.save();
                 res.status(200).json(
                     {
                         "code": 0,

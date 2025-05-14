@@ -23,17 +23,17 @@ export default async function handler(
                     }
                 );
             }
-            // const duplicate = await Transaction.find({ 'transactions.id': transactions[0].id })
-            // if (duplicate.length > 0) {
-            //     console.log("Duplicate Transaction")
-            //     res.status(200).json(
-            //         {
-            //             "code": 1003,
-            //             "message": " Duplicate Transaction",
-            //         }
-            //     );
-            //     return;
-            // }
+            const duplicate = await Transaction.find({ 'transactions.id': transactions[0].id })
+            if (duplicate.length > 0) {
+                console.log("Duplicate Transaction")
+                res.status(200).json(
+                    {
+                        "code": 1003,
+                        "message": " Duplicate Transaction",
+                    }
+                );
+                return;
+            }
             if (currency !== "TRY" && currency !== "THB") {
                 console.log("Expected to Return Invalid Currency")
                 res.status(200).json(
@@ -89,21 +89,21 @@ export default async function handler(
                     "before_balance": parseFloat(parseFloat(user.Amount).toFixed(2)),
                     "balance": parseFloat(parseFloat(withdraw.Amount).toFixed(2))
                 });
-                // const TST = new Transaction({
-                //     agent_id: user.MemberID,
-                //     member_account: member_account,
-                //     member_id: user._id,
-                //     before_balance: parseFloat(parseFloat(user.Amount).toFixed(2)),
-                //     balance: parseFloat(parseFloat(withdraw.Amount).toFixed(2)),
-                //     operator_code: operator_code,
-                //     product_code: product_code,
-                //     game_type: game_type,
-                //     request_time: request_time,
-                //     sign: sign,
-                //     currency: currency,
-                //     transactions: transactions
-                // });
-                // TST.save();
+                const TST = new Transaction({
+                    agent_id: user.MemberID,
+                    member_account: member_account,
+                    member_id: user._id,
+                    before_balance: parseFloat(parseFloat(user.Amount).toFixed(2)),
+                    balance: parseFloat(parseFloat(withdraw.Amount).toFixed(2)),
+                    operator_code: operator_code,
+                    product_code: product_code,
+                    game_type: game_type,
+                    request_time: request_time,
+                    sign: sign,
+                    currency: currency,
+                    transactions: transactions
+                });
+                TST.save();
                 res.status(200).json(
                     {
                         "code": 0,
