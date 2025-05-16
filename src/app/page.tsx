@@ -331,14 +331,14 @@ export default function Home() {
       <section className=' bg-black py-10'>
         <p className=' text-gray-300 text-center'>copyright @ mondev2024 <Link href={"https://t.me/mondev20"} className=' text-sky-400' target='bank'> click for contact me</Link></p>
       </section>
-      <div className={`${!showAds && ' hidden'}`}>
+      {/* <div className={`${!showAds && ' hidden'}`}>
         <div className=' fixed w-full  top-[50%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center  h-screen bg-black bg-opacity-25  z-50'>
           <div className=' relative'>
             <button onClick={() => setShowAds(!showAds)} className=' bg-white bg-opacity-10 rounded-lg absolute -bottom-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2'><RiCloseCircleLine size={50} color='red' /></button>
             <Image alt='ads' src={Ads1} className=' w-[300px] lg:w-[400px]' />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
