@@ -10,7 +10,7 @@ export default async function handler(
     if (req.method === 'POST') {
         try {
             const { member_account, currency, transactions, product_code, operator_code, request_time, sign, game_type } = req.body;
-            console.log(req.body);
+            // console.log(req.body);
 
             if (transactions[0].action !== 'BET') {
                 console.log("Expected to Return Invalid Action");
@@ -83,12 +83,12 @@ export default async function handler(
                 { new: true }
             )
             if (withdraw) {
-                console.log({
-                    "code": 0,
-                    "message": "withdraw",
-                    "before_balance": parseFloat(parseFloat(user.Amount).toFixed(2)),
-                    "balance": parseFloat(parseFloat(withdraw.Amount).toFixed(2))
-                });
+                // console.log({
+                //     "code": 0,
+                //     "message": "withdraw",
+                //     "before_balance": parseFloat(parseFloat(user.Amount).toFixed(2)),
+                //     "balance": parseFloat(parseFloat(withdraw.Amount).toFixed(2))
+                // });
                 const TST = new Transaction({
                     agent_id: user.MemberID,
                     member_account: member_account,

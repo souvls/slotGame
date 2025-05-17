@@ -9,7 +9,7 @@ export default async function handler(
     //console.log(req.body)
     if (req.method === 'POST') {
         try {
-            console.log(req.body);
+            // console.log(req.body);
             const { member_account, transactions } = req.body;
 
             //check user

@@ -12,7 +12,7 @@ export default async function handler(
 
         try {
             const { member_account, currency, transactions, product_code, operator_code, request_time, sign, game_type } = req.body;
-            console.log(req.body);
+            // console.log(req.body);
 
             if (!member_account) {
                 console.log("Member not Exist");
@@ -104,12 +104,12 @@ export default async function handler(
                         { $inc: { Amount: parseFloat(parseFloat(transactions[0].amount).toFixed(2)) } },
                         { new: true }
                     ).then((newBalance: any) => {
-                        console.log({
-                            "code": 0,
-                            "message": "deposit",
-                            "before_balance": parseFloat(parseFloat(result.Amount).toFixed(2)),
-                            "balance": parseFloat(parseFloat(newBalance.Amount).toFixed(2))
-                        });
+                        // console.log({
+                        //     "code": 0,
+                        //     "message": "deposit",
+                        //     "before_balance": parseFloat(parseFloat(result.Amount).toFixed(2)),
+                        //     "balance": parseFloat(parseFloat(newBalance.Amount).toFixed(2))
+                        // });
                         const TST = new Transaction({
                             agent_id: result.MemberID,
                             member_account: member_account,

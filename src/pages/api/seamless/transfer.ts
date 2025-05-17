@@ -13,7 +13,7 @@ export default async function handler(
         var total_amount = 0;
         const transactionID = []
         try {
-            console.log(req.body);
+            // console.log(req.body);
             const { member_account, currency, transactions, product_code, operator_code, request_time, sign, game_type } = req.body;
 
             const originalSign = md5(operator_code + request_time + "transfer" + process.env.SECRET_KEY);

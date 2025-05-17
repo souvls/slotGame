@@ -12,7 +12,7 @@ export default async function handler(
             const user: any = req.headers.data
             if (req.method === "POST") {
                 const { game_code, product_code, ip, game_type, product_currency } = req.body;
-                console.log(req.body);
+                // console.log(req.body);
                 const playgame = await launhGSCgame(user.id, game_code, product_code, ip, game_type, product_currency);
                 res.status(200).json(playgame);
             }

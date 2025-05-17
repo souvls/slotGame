@@ -32,7 +32,7 @@ export async function historyPayGame(userid: string, page: number, numberOfPage:
 export async function launhGSCgame(userid: string, game_code: string, product_code: number, ip: string, game_type: string,currency: string) {
     const user = await _findUserByID(userid);
     if (user) {
-        console.log(game_type, game_code, product_code);
+        // console.log(game_type, game_code, product_code);
         if (user.status) {
             if (user.ip === ip) {
                 try {
@@ -65,7 +65,7 @@ export async function launhGSCgame(userid: string, game_code: string, product_co
                         }
                     )
                     
-                    console.log(callgame);
+                    // console.log(callgame);
 
                     console.log("==> " + user.Username + " play game " + game_type + "," + product_code + "," + game_code);
                     return callgame.data;
