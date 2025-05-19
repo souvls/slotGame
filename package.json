@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "deploy:local": "next build && pm2 startOrRestart ecosystem.config.js --env local",
+    "deploy:dev": "next build && pm2 startOrRestart ecosystem.config.js --env dev",
+    "deploy:prod": "next build && pm2 startOrRestart ecosystem.config.js --env prod"
   },
   "dependencies": {
     "@madzadev/image-slider": "^2.0.1",
