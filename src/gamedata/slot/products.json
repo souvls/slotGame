@@ -82,16 +82,6 @@
         "game_type": "SLOT"
     },
     {
-        "provider": "Live22",
-        "currency": "THB",
-        "status": "ACTIVATED",
-        "provider_id": 11,
-        "product_id": 1237,
-        "product_code": 1018,
-        "product_name": "live_22",
-        "game_type": "SLOT"
-    },
-    {
         "provider": "Evolution",
         "currency": "THB",
         "status": "ACTIVATED",
