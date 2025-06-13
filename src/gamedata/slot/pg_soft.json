@@ -1,35 +1,5 @@
 [
     {
-        "game_code": "65",
-        "game_name": "Mahjong Ways",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1007/SLOT/65.png",
-        "product_id": 1141,
-        "product_code": 1007,
-        "support_currency": "IDR2",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "74",
-        "game_name": "Mahjong Ways 2",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1007/SLOT/74.png",
-        "product_id": 1141,
-        "product_code": 1007,
-        "support_currency": "IDR2",
-        "status": "ACTIVATED"
-    },
-    {
-        "game_code": "3",
-        "game_name": "Fortune Gods",
-        "game_type": "SLOT",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1007/SLOT/3.png",
-        "product_id": 1141,
-        "product_code": 1007,
-        "support_currency": "IDR2",
-        "status": "ACTIVATED"
-    },
-    {
         "game_code": "1",
         "game_name": "Honey Trap of Diao Chan",
         "game_type": "SLOT",
@@ -840,10 +810,30 @@
         "status": "ACTIVATED"
     },
     {
+        "game_code": "1865521",
+        "game_name": "Dead Man's Riches",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1007/SLOT/1865521.png",
+        "product_id": 1141,
+        "product_code": 1007,
+        "support_currency": "IDR2",
+        "status": "ACTIVATED"
+    },
+    {
         "game_code": "1879752",
         "game_name": "Fortune Snake",
         "game_type": "SLOT",
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1007/SLOT/1879752.png",
+        "product_id": 1141,
+        "product_code": 1007,
+        "support_currency": "IDR2",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "1881268",
+        "game_name": "Knockout Riches",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1007/SLOT/1881268.png",
         "product_id": 1141,
         "product_code": 1007,
         "support_currency": "IDR2",
@@ -919,12 +909,21 @@
         "support_currency": "IDR2",
         "status": "ACTIVATED"
     },
-
+    {
+        "game_code": "3",
+        "game_name": "Fortune Gods",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1007/SLOT/3.png",
+        "product_id": 1141,
+        "product_code": 1007,
+        "support_currency": "IDR2",
+        "status": "ACTIVATED"
+    },
     {
         "game_code": "31",
         "game_name": "Baccarat Deluxe",
-        "game_type": "LIVE_CASINO",
-        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1007/LIVE_CASINO/31.png",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1007/SLOT/31.png",
         "product_id": 1141,
         "product_code": 1007,
         "support_currency": "IDR2",
@@ -1170,7 +1169,16 @@
         "support_currency": "IDR2",
         "status": "ACTIVATED"
     },
-
+    {
+        "game_code": "65",
+        "game_name": "Mahjong Ways",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1007/SLOT/65.png",
+        "product_id": 1141,
+        "product_code": 1007,
+        "support_currency": "IDR2",
+        "status": "ACTIVATED"
+    },
     {
         "game_code": "67",
         "game_name": "Shaolin Soccer",
@@ -1236,6 +1244,16 @@
         "game_name": "Egypt's Book of Mystery",
         "game_type": "SLOT",
         "image_url": "https://images.gscplusmd.com/statics/production/images/games/1007/SLOT/73.png",
+        "product_id": 1141,
+        "product_code": 1007,
+        "support_currency": "IDR2",
+        "status": "ACTIVATED"
+    },
+    {
+        "game_code": "74",
+        "game_name": "Mahjong Ways 2",
+        "game_type": "SLOT",
+        "image_url": "https://images.gscplusmd.com/statics/production/images/games/1007/SLOT/74.png",
         "product_id": 1141,
         "product_code": 1007,
         "support_currency": "IDR2",

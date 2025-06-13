@@ -12,7 +12,7 @@ export default function handler(
         fetch(process.env.API_NAME + "/api/operators/provider-games" +
             "?product_code=" + product_code +
             "&operator_code=" + process.env.OP_CODE +
-            "&game_type=" + "POKER" +
+            "&game_type=" + "SLOT" +
             "&sign=" + hash +
             "&request_time=" + request_time
             // "&offset=" + 24 +
@@ -21,15 +21,30 @@ export default function handler(
         )
             .then((response) => response.json())
             .then(result => {
-                const game = result.provider_games.reduce((acc: any, current: any) => {
-                    if (current.status === "ACTIVATED" && !acc.find((item: any) => (item.game_name === current.game_name))) {
+                const x = result.provider_games.reduce((acc: any, current: any) => {
+                    if (current.status === "ACTIVATED" && !acc.find((item: any) => (item.game_code === current.game_code))) {
                         acc.push(current);
                     }
                     return acc;
                 }, []);
-                res.status(200).json({length: game.length, game: game});
-                //console.log(game);
-                // setGames(game);
+                // console.log(result)
+                // const x: any = [{}];
+                // for (const i of result.provider_games) {
+                //     // console.log(i)
+                //     if (i.status === "ACTIVATED") {
+                //         // const z = x.find((x: any) => x.game_name === i.game_name);
+
+                //         // console.log(z?.game_name)
+                //         if (i.game_name === "Heist Stakes") {
+                //             x.push(i)
+
+                //         }
+
+                //     }
+                // }
+                res.status(200).json({ length: x.length, game: x });
+                // console.log(game);
+                // setGames(game);/
             })
             .catch(err => {
                 console.log(err)

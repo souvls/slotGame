@@ -17,14 +17,20 @@ export default function handler(
                 // console.log(result)
                 const x: any = [{}];
                 for (const i of result) {
-                    if (i.game_type === "FISHING" && i.status === 'ACTIVATED') {
-                        if (i.currency = "THB") {
-                            
-                        }
-                        x.push(i)
-                        // console.log();
+                    // if (i.game_type === "SLOT" && i.status === 'ACTIVATED') {
+                    //     if (i.currency = "THB") {
 
+                    //     }
+                    if (i.product_code === 1162) {
+                        x.push(i)
                     }
+
+
+
+
+                    //     // console.log();
+
+                    // }
                 }
                 res.status(200).json(x);
             })
