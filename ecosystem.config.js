@@ -26,10 +26,10 @@ module.exports = {
       name: 'my-app',
       script: 'node_modules/next/dist/bin/next',
       args: 'start',
-      instances: 1,
+      instances: 2,
       exec_mode: 'cluster',
       watch: false,
-      max_memory_restart: '12000M',
+      max_memory_restart: '5000M',
       env_local: {
         APP_ENV: 'local'
       },
