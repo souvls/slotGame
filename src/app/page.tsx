@@ -73,13 +73,13 @@ export default function Home() {
     <div className=' relative'>
       {/* Header */}
       <Nav_bar_ />
-      <div className=' fixed bottom-2 right-3 lg:right-10'>
+      {/* <div className=' fixed bottom-2 right-3 lg:right-10'>
         <div>
           <Link href={"https://api.whatsapp.com/send?phone=8562098399064"}>
             <Image src={whatapp_icon} alt='whatapp' className='w-[50px]' />
           </Link>
         </div>
-      </div>
+      </div> */}
       {/* content */}
       <section className=' pt-[90px] bg-gradient-to-bl from-black to-black via-purple-700'>
         <div className='sm:w-full md:w-[960px] lg:w-[1200px] mx-auto'>

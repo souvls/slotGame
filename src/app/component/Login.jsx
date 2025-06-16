@@ -116,7 +116,7 @@ const Login = () => {
                             <button type='submit' className=' w-full p-2 rounded-lg bg-blue-400 hover:bg-blue-500'>LOGIN</button>
                         </div>
                     </form>
-                    <p className=' mt-5 text-white text-sm'>ຫາກບໍ່ມີບັນຊີ ຕິດຕໍ່ແອັດມິນໄດ້ທີ່: <a className=' italic text-green-500' href='https://api.whatsapp.com/send?phone=8562098399064'>whatsapp</a></p>
+                    {/* <p className=' mt-5 text-white text-sm'>ຫາກບໍ່ມີບັນຊີ ຕິດຕໍ່ແອັດມິນໄດ້ທີ່: <a className=' italic text-green-500' href='https://api.whatsapp.com/send?phone=8562098399064'>whatsapp</a></p> */}
                 </div>
             </div>
         </div>
