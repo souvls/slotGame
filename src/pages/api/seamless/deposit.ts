@@ -7,12 +7,12 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-    //console.log(req.body)
+    console.log(req.body)
     if (req.method === 'POST') {
 
         try {
             const { member_account, currency, transactions, product_code, operator_code, request_time, sign, game_type } = req.body;
-            // console.log(req.body);
+            console.log(req.body);
 
             if (!member_account) {
                 console.log("Member not Exist");

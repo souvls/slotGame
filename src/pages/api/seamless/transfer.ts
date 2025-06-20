@@ -14,7 +14,7 @@ export default async function handler(
         const transactionID = []
         try {
             const { member_account, currency, transactions, product_code, operator_code, request_time, sign, game_type } = req.body;
-            console.log("Transfer Request Received",member_account,product_code,game_type,currency);
+            console.log("Transfer Request Received",req.body);
             const originalSign = md5(operator_code + request_time + "transfer" + process.env.SECRET_KEY);
             if (sign !== originalSign) {
                 console.log("Invalid Sign")
@@ -66,16 +66,16 @@ export default async function handler(
                 );
                 return;
             }
-            // if (user.Amount - parseFloat(transactions[0].amount) < 0) {
-            //     console.log("Insufficient Balance");
-            //     res.status(200).json(
-            //         {
-            //             "code": 1001,
-            //             "message": "Insufficient Balance",
-            //         }
-            //     );
-            //     return;
-            // }
+            if (user.Amount - parseFloat(transactions[0]. bet_amount) < 0) {
+                console.log("Insufficient Balance");
+                res.status(200).json(
+                    {
+                        "code": 1001,
+                        "message": "Insufficient Balance",
+                    }
+                );
+                return;
+            }
             const update_balance_user = await User.findOneAndUpdate(
                 { _id: user._id },
                 { $inc: { Amount: parseFloat(total_amount.toFixed(2)) } },
