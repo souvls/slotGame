@@ -11,7 +11,7 @@ export default async function handler(
         try {
             const { member_account, currency, transactions, product_code, operator_code, request_time, sign, game_type } = req.body;
             // console.log(req.body);
-
+            console.log("Withdrwa Request Received", member_account, product_code, game_type, currency);
             if (transactions[0].action !== 'BET') {
                 console.log("Expected to Return Invalid Action");
                 res.status(200).json(
@@ -22,6 +22,8 @@ export default async function handler(
                         "balance": 0
                     }
                 );
+                return;
+
             }
             const duplicate = await Transaction.find({ 'transactions.id': transactions[0].id })
             if (duplicate.length > 0) {
@@ -44,6 +46,7 @@ export default async function handler(
                         "balance": 0
                     }
                 );
+                return;
             }
 
             //check sing
@@ -56,6 +59,8 @@ export default async function handler(
                         "message": "Invalid Sign",
                     }
                 );
+                return;
+
             }
             const user = await User.findOne({ Username: member_account });
             if (!user || !user.status) {
@@ -66,6 +71,8 @@ export default async function handler(
                         "message": "Member not Exist",
                     }
                 );
+                return;
+
             }
             if (user.Amount - parseFloat(transactions[0].amount) < 0) {
                 console.log("Insufficient Balance");
@@ -75,6 +82,7 @@ export default async function handler(
                         "message": "Insufficient Balance",
                     }
                 );
+                return;
             }
             //update user amount
             const withdraw = await User.findOneAndUpdate(
@@ -112,6 +120,8 @@ export default async function handler(
                         "balance": parseFloat(parseFloat(withdraw.Amount).toFixed(2))
                     }
                 );
+                return;
+
             }
         } catch (err) {
             console.log(err);
@@ -123,6 +133,8 @@ export default async function handler(
                     "balance": 0
                 }
             );
+            return;
+
         }
     } else {
         console.log("Not allow " + req.method);

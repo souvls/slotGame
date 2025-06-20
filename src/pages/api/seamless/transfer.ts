@@ -13,9 +13,8 @@ export default async function handler(
         var total_amount = 0;
         const transactionID = []
         try {
-            // console.log(req.body);
             const { member_account, currency, transactions, product_code, operator_code, request_time, sign, game_type } = req.body;
-
+            console.log("Transfer Request Received",member_account,product_code,game_type,currency);
             const originalSign = md5(operator_code + request_time + "transfer" + process.env.SECRET_KEY);
             if (sign !== originalSign) {
                 console.log("Invalid Sign")
@@ -66,36 +65,47 @@ export default async function handler(
                     }
                 );
                 return;
-            } else {
-                const update_balance_user = await User.findOneAndUpdate(
-                    { _id: user._id },
-                    { $inc: { Amount: parseFloat(total_amount.toFixed(2)) } },
-                    { new: true }
-                );
-                const TST = new Transaction({
-                    agent_id: user.MemberID,
-                    member_account: member_account,
-                    member_id: user._id,
-                    before_balance: parseFloat(parseFloat(user.Amount).toFixed(2)),
-                    balance: parseFloat(parseFloat(update_balance_user.Amount).toFixed(2)),
-                    operator_code: operator_code,
-                    product_code: product_code,
-                    game_type: game_type,
-                    request_time: request_time,
-                    sign: sign,
-                    currency: currency,
-                    transactions: transactions
-                });
-                TST.save();
-                res.status(200).json(
-                    {
-                        "code": 0,
-                        "message": "",
-                        "before_balance": parseFloat(parseFloat(user.Amount).toFixed(2)),
-                        "balance": parseFloat(parseFloat(update_balance_user.Amount).toFixed(2))
-                    }
-                );
             }
+            // if (user.Amount - parseFloat(transactions[0].amount) < 0) {
+            //     console.log("Insufficient Balance");
+            //     res.status(200).json(
+            //         {
+            //             "code": 1001,
+            //             "message": "Insufficient Balance",
+            //         }
+            //     );
+            //     return;
+            // }
+            const update_balance_user = await User.findOneAndUpdate(
+                { _id: user._id },
+                { $inc: { Amount: parseFloat(total_amount.toFixed(2)) } },
+                { new: true }
+            );
+            const TST = new Transaction({
+                agent_id: user.MemberID,
+                member_account: member_account,
+                member_id: user._id,
+                before_balance: parseFloat(parseFloat(user.Amount).toFixed(2)),
+                balance: parseFloat(parseFloat(update_balance_user.Amount).toFixed(2)),
+                operator_code: operator_code,
+                product_code: product_code,
+                game_type: game_type,
+                request_time: request_time,
+                sign: sign,
+                currency: currency,
+                transactions: transactions
+            });
+            TST.save();
+            res.status(200).json(
+                {
+                    "code": 0,
+                    "message": "",
+                    "before_balance": parseFloat(parseFloat(user.Amount).toFixed(2)),
+                    "balance": parseFloat(parseFloat(update_balance_user.Amount).toFixed(2))
+                }
+            );
+            return;
+
 
         } catch (err) {
             res.status(200).json(
@@ -106,6 +116,8 @@ export default async function handler(
                     "balance": 0
                 }
             );
+            return;
+
         }
     } else {
         res.setHeader('Allow', ['POST']);
